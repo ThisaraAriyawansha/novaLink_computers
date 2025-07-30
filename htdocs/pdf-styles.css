@@ -1,0 +1,11 @@
+/* public/pdf-styles.css */
+.bg-gray-800 {
+    background-color: #1f2937 !important; /* Hex equivalent */
+}
+.text-gray-300 {
+    color: #d1d5db !important; /* Hex equivalent */
+}
+.bg-gray-50 {
+    background-color: #f9fafb !important;
+}
+/* Add other overrides for all oklch-based classes */
