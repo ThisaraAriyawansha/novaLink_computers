@@ -28,6 +28,7 @@ use App\Http\Controllers\BlogController;
 
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\LoadingScreenController;
 
 
 
@@ -74,7 +75,11 @@ Route::get('admin/dashboard', [DashboardController::class, 'indexadmin'])->name(
 
 
 //Public Site
-Route::get('/', [HomeController::class, 'homeShow'])->name('home');
+Route::get('/', [LoadingScreenController::class, 'show'])->name('show');
+Route::get('/loading', [LoadingScreenController::class, 'show'])->name('loading');
+Route::get('/process', [LoadingScreenController::class, 'process'])->name('process');
+
+Route::get('/home', [HomeController::class, 'homeShow'])->name('home');
 Route::get('/aboutus', [PageController::class, 'aboutusShow'])->name('aboutUs');
 Route::get('/blog', [PageController::class, 'blogShow'])->name('blog');
 Route::get('/singleBlog', [PageController::class, 'blogSingleShow'])->name('blog.show');
