@@ -6,7 +6,7 @@
                 <div class="grid xl:grid-cols-4">
                     <div class="footer-logo flex max-xl:justify-center items-center">
                         <a href="{{ route('home')}}">
-                            <img src="assets/images/logo/X_logo-r.png" alt="" class="h-[200px] w-full object-contain max-xl:h-[100px] object-contain">
+                            <img src="assets/images/logo/N_white.png" alt="" class="h-[200px] w-full object-contain max-xl:h-[100px] object-contain">
                         </a>
                     </div>
                     <div class="mb-lm-30px xl:pl-6">
@@ -61,7 +61,7 @@
                                     <strong>
                                         Address:
                                     </strong>
-                                    CoreX Computers,
+                                    NovaLink Computers,
                                     No. 12/B,
                                     Galle Road,
                                     Matara.
@@ -76,7 +76,7 @@
                                 </p>
                                 <p class="mail text-white text-sm">
                                     <strong>Email:</strong>
-                                    <a href="mailto:coreXcomputers@gmail.com" class=" text-white"> coreXcomputers@gmail.com</a>
+                                    <a href="mailto:novaLinkcomputers@gmail.com" class=" text-white"> novaLinkcomputers@gmail.com</a>
                                 </p>
                             </div>
                             <ul class="flex gap-2 mt-3 justify-end">
@@ -125,7 +125,7 @@
         <div class="footer-bottom dark-blue-bg border-t border-[#aaa]">
             <div class="container text-white">
                 <div class="">
-                    <p class="w-full text-center">2025 © All Rights Reserved | CoreX Computers </p>
+                    <p class="w-full text-center">2025 © All Rights Reserved | NovaLink Computers </p>
                 </div>
             </div>
         </div>

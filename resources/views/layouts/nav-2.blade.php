@@ -2,7 +2,7 @@
 <nav class="bg-[#010117] text-white h-[10dvh] flex justify-center items-center rounded-full w-full">
     <div class="px-4 flex justify-between items-center w-full">
         <a href="{{ route('home') }}" class="flex items-center">
-            <img src="assets/images/logo/X_logo-r.png" alt="udarata" class="h-15 mr-4">
+            <img src="assets/images/logo/N_white.png" alt="udarata" class="h-15 mr-4">
         </a>
         <div class="flex items-center space-x-6 max-lg:hidden">
             <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'ALL']) }}" class="text-white uppercase font-bold text-center max-xl:text-sm">Products</a>
