@@ -901,34 +901,34 @@ function addToCart(prodID) {
 
 
 
-<div class="modal fade" id="exampleModal-search" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog p-0">
-        <div class="modal-content p-0">
+<div class="modal fade" id="exampleModal-search" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.7);">
+    <div class="modal-dialog p-0" style="background-color: rgba(0, 0, 0, 0.7);">
+        <div class="modal-content p-0" style="background-color: rgba(0, 0, 0, 0.7);">
             <div class="modal-body p-3 m-0">
                 <form onsubmit="event.preventDefault(); searchProduct(this.search.value);">
                     <div class="flex gap-3 items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
-                        <input type="text" name="search" class="form-control" placeholder="Search...">
+                        <input type="text" name="search" class="form-control" placeholder="Search..." style="width: 100%; background-color: #1a1a1a; color: #ffffff; border: none; border-radius: 6px; padding: 8px 12px; font-size: 14px; outline: none; transition: box-shadow 0.2s;" placeholder="Search products..." onfocus="this.style.boxShadow='0 0 0 2px #3b82f6';" onblur="this.style.boxShadow='none';">
                     </div>
                 </form>
                 <div class="flex flex-col gap-1 mt-1">
-                    <p>Showing top 3 results</p>
+                    <p >Showing top 3 results</p>
                     <ul>
-                        <li onclick="window.location.href = '{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'LAPTOPS']) }}'" class="flex gap-3 items-center hover:bg-blue-200 rounded-sm px-2 cursor-pointer">
+                        <li onclick="window.location.href = '{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'LAPTOPS']) }}'" class="flex gap-3 items-center text-white hover:bg-blue-900 rounded-sm px-2 cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
                             </svg>
                             Laptops
                         </li>
-                        <li onclick="window.location.href = '{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'APPLE PRODUCTS']) }}'" class="flex gap-3 items-center hover:bg-blue-200 rounded-sm px-2 cursor-pointer">
+                        <li onclick="window.location.href = '{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'APPLE PRODUCTS']) }}'" class="flex gap-3 items-center text-white hover:bg-blue-900 rounded-sm px-2 cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
                             </svg>
                             Smart Phones
                         </li>
-                        <li onclick="window.location.href = '{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'RAM']) }}'" class="flex gap-3 items-center hover:bg-blue-200 rounded-sm px-2 cursor-pointer">
+                        <li onclick="window.location.href = '{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'RAM']) }}'" class="flex gap-3 items-center text-white hover:bg-blue-900 rounded-sm px-2 cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
                             </svg>
