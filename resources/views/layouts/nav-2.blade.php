@@ -326,46 +326,58 @@
 <div class="offcanvas-overlay hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-40"></div>
 
 <!-- OffCanvas Cart -->
-<div id="offcanvas-cart" class="offcanvas offcanvas-cart red-custom-scroll">
-    <div class="inner">
-        <div class="head">
-            <span class="title">Cart</span>
-            <button class="offcanvas-close">×</button>
+<div id="offcanvas-cart" class="offcanvas offcanvas-cart fixed inset-y-0 right-0 w-full max-w-[400px] bg-black shadow-2xl transform transition-transform duration-300 ease-in-out z-50">
+    <div class="inner flex flex-col h-full">
+        <div class="head flex items-center justify-between p-4 border-b border-gray-800">
+            <span class="title text-lg font-semibold text-white">Cart</span>
+            <button class="offcanvas-close bg-white text-gray-300 hover:text-white text-2xl font-light w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-800 transition-colors duration-200">&times;</button>
         </div>
-        <div class="body customScroll">
-            <ul class="minicart-product-list">
+        <div class="body flex-1 overflow-y-auto p-4">
+            <ul class="minicart-product-list space-y-4">
                 <!--cart items will be inserted here-->
             </ul>
         </div>
-        <div class="foot">
-            <div class="buttons my-[30px]">
-                <a href="{{ route('cart') }}" class="btn btn-dark btn-hover-primary mb-30px">view cart</a>
-                <a href="{{ route('cart') }}" class="btn btn-dark btn-hover-primary mb-30px">checkout</a>
+        <div class="foot p-4 border-t border-gray-800">
+            <div class="buttons flex flex-col gap-3">
+                <a href="{{ route('cart') }}" class="btn block w-full text-center py-3 border border-gray-600 text-white rounded-lg hover:bg-gray-800 transition-colors duration-200">View Cart</a>
+                <a href="{{ route('cart') }}" class="btn block w-full text-center py-3 border border-gray-600 text-white rounded-lg hover:bg-gray-800 transition-colors duration-200">Checkout</a>
             </div>
         </div>
     </div>
 </div>
 
 <!-- OffCanvas Wishlist -->
-<div id="offcanvas-wishlist" class="offcanvas offcanvas-cart red-custom-scroll">
-    <div class="inner">
-        <div class="head">
-            <span class="title">Wishlist</span>
-            <button class="offcanvas-close">×</button>
+<div id="offcanvas-wishlist" class="offcanvas offcanvas-cart fixed inset-y-0 right-0 w-full max-w-[400px] bg-black shadow-2xl transform transition-transform duration-300 ease-in-out z-50">
+    <div class="inner flex flex-col h-full">
+        <div class="head flex items-center justify-between p-4 border-b border-gray-800">
+            <span class="title text-lg font-semibold text-white">Wishlist</span>
+            <button class="offcanvas-close bg-white text-gray-300 hover:text-white text-2xl font-light w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-800 transition-colors duration-200">&times;</button>
         </div>
-        <div class="body customScroll">
-            <ul class="miniwishlist-product-list">
+        <div class="body flex-1 overflow-y-auto p-4">
+            <ul class="miniwishlist-product-list space-y-4">
                 <!--wishlist items will be inserted here-->
             </ul>
         </div>
-        <div class="foot">
-            <div class="buttons my-[30px]">
-                <a href="{{ route('wishlist')}}" class="btn btn-dark btn-hover-primary mb-30px">view wishlist</a>
-                <a href="{{ route('cart') }}" class="btn btn-outline-dark current-btn">view cart</a>
+        <div class="foot p-4 border-t border-gray-800">
+            <div class="buttons flex flex-col gap-3">
+                <a href="{{ route('wishlist') }}" class="btn block w-full text-center py-3 border border-gray-600 text-white rounded-lg hover:bg-gray-800 transition-colors duration-200">View Wishlist</a>
+                <a href="{{ route('cart') }}" class="btn block w-full text-center py-3 border border-gray-600 text-white rounded-lg hover:bg-gray-800 transition-colors duration-200">View Cart</a>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+.offcanvas {
+    transform: translateX(100%);
+}
+.offcanvas.open {
+    transform: translateX(0);
+}
+body {
+    font-family: 'Inter', sans-serif;
+}
+</style>
 
 <script>
     // Mobile menu toggle functionality with animation
@@ -578,32 +590,46 @@ function addToCart(prodID) {
 
         if (!cartList) return;
 
-        // Clear existing items
         cartList.innerHTML = '';
 
         if (savedCart) {
             const cart = JSON.parse(savedCart);
 
             cart.forEach(item => {
+                // Trim name to 25 characters
+                const shortName = item.name.length > 25 
+                    ? `${item.name.substring(0, 20)}...` 
+                    : item.name;
+
                 const li = document.createElement('li');
+                li.className = 'flex py-2 gap-3 items-center';
                 li.innerHTML = `
-                <a href="singleProduct?product-id=${item.id}" class="image">
-                    <img src="${item.image}" alt="Cart product Image">
-                </a>
-                <div class="content">
-                    <a href="singleProduct?product-id=${item.id}" class="title">${item.name}</a>
-                    <span class="quantity-price">${item.quantity} x <span class="amount">${item.price}</span></span>
-                    <a href="#" class="remove" data-product-id="${item.id}">×</a>
-                </div>
-            `;
+                    <a href="singleProduct?product-id=${item.id}" >
+                        <img src="${item.image}" alt="${item.name}" class="w-12 h-12 object-cover">
+                    </a>
+                    <div class="content flex-1 min-w-0">
+                        <div class="flex justify-between items-baseline gap-2">
+                            <a href="singleProduct?product-id=${item.id}" 
+                            class="title text-white text-sm truncate hover:text-gray-300"
+                            title="${item.name}"> <!-- Full name shows on hover -->
+                                ${shortName}
+                            </a>
+                            <a href="#" class="remove text-white hover:text-gray-300 text-xl font-light transition-colors" data-product-id="${item.id}">×</a>
+                        </div>
+                        <div class="flex justify-between items-center mt-1">
+                            <span class="text-gray-300 text-xs">${item.quantity} × ${item.price}</span>
+                            ${item.color || item.size ? 
+                                `<span class="text-gray-400 text-xs">${item.color ? item.color : ''}${item.color && item.size ? ' • ' : ''}${item.size ? item.size : ''}</span>` 
+                                : ''}
+                        </div>
+                    </div>
+                `;
                 cartList.appendChild(li);
             });
 
-            // Add event listeners to remove buttons
             addRemoveEventListeners();
         }
 
-        // Update cart total
         updateCartTotal();
     }
 
@@ -759,28 +785,44 @@ function addToCart(prodID) {
 
         if (!wishlistList) return;
 
-        // Clear existing items
         wishlistList.innerHTML = '';
 
         if (savedWishlist) {
             const wishlist = JSON.parse(savedWishlist);
 
             wishlist.forEach(item => {
+                // Trim name to 20 characters (25 was too long for wishlist design)
+                const shortName = item.name.length > 20 
+                    ? `${item.name.substring(0, 20)}...` 
+                    : item.name;
+
                 const li = document.createElement('li');
+                li.className = 'flex py-2 gap-3 items-center border-b border-gray-700 last:border-b-0';
                 li.innerHTML = `
-                <a href="singleProduct?product-id=${item.id}" class="image">
-                    <img src="${item.image}" alt="Wishlist product Image">
-                </a>
-                <div class="content">
-                    <a href="singleProduct?product-id=${item.id}" class="title">${item.name}</a>
-                    <span class="quantity-price"><span class="amount">${item.price}</span></span>
-                    <a href="#" class="remove" data-product-id="${item.id}">×</a>
-                </div>
-            `;
+                    <a href="singleProduct?product-id=${item.id}" class="shrink-0">
+                        <img src="${item.image}" alt="${item.name}" class="w-12 h-12 object-cover">
+                    </a>
+                    <div class="content flex-1 min-w-0">
+                        <div class="flex justify-between items-baseline gap-2">
+                            <a href="singleProduct?product-id=${item.id}" 
+                            class="title text-white text-sm truncate hover:text-gray-300"
+                            title="${item.name}">
+                                ${shortName}
+                            </a>
+                            <a href="#" class="remove text-white hover:text-gray-300 text-xl font-light transition-colors" data-product-id="${item.id}">×</a>
+                        </div>
+                        <div class="flex justify-between items-center mt-1">
+                            <span class="text-gray-300 text-xs">${item.price}</span>
+                            <button class="add-to-cart text-xs text-gray-400 hover:text-white transition-colors" 
+                                    data-product-id="${item.id}">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                `;
                 wishlistList.appendChild(li);
             });
 
-            // Add event listeners to remove and add-to-cart buttons
             addWishlistEventListeners();
         }
     }
