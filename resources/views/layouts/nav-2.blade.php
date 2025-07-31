@@ -1,64 +1,88 @@
 <div class="{{ request()->is('/') ? 'w-full p-2 px-3 z-50 fixed top-0' : 'w-full p-2 px-3 z-50 absolute' }}">
-<nav class="bg-[#010117] text-white h-[10dvh] flex justify-center items-center rounded-full w-full">
-    <div class="px-4 flex justify-between items-center w-full">
-        <a href="{{ route('home') }}" class="flex items-center">
-            <img src="assets/images/logo/N_white.png" alt="NovaLink " class="h-15 mr-4">
-        </a>
-        <div class="flex items-center space-x-6 max-lg:hidden">
-            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'ALL']) }}" class="text-white uppercase font-bold text-center max-xl:text-sm">Products</a>
-            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'ALL']) }}" class="text-white uppercase font-bold text-center max-xl:text-sm">Accessories</a>
-            <a href="/products?filter=LAPTOPS&sort=name_asc" class="text-white uppercase font-bold text-center max-xl:text-sm">Laptops</a>
-            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'APPLE PRODUCTS']) }}" class="text-white uppercase font-bold text-center max-xl:text-sm">Mobile</a>
-            <a href="{{ route('aboutUs') }}" class="text-white uppercase font-bold text-center max-xl:text-sm">About Us</a>
-            <a href="{{ route('contact') }}" class="text-white uppercase font-bold text-center max-xl:text-sm">Contact Us</a>
-            <a href="{{ route('myAcc') }}" class="text-white uppercase font-bold text-center max-xl:text-sm">My Account</a>
-            <a href="{{ route('buildMyPC')}}" class="text-white uppercase font-bold text-center max-xl:text-sm">Build My PC</a>
+    <nav class="bg-black text-white h-[10dvh] flex justify-center items-center rounded-2xl w-full">
+        <div class="px-4 flex justify-between items-center w-full">
+            <!-- Logo -->
+            <a href="{{ route('home') }}" class="flex items-center">
+                <img src="assets/images/logo/N_white.png" alt="NovaLink" class="h-15 mr-4">
+            </a>
 
-        </div>
-        <div class="flex items-center space-x-4">
-                <a data-bs-toggle="modal" data-bs-target="#exampleModal-search" class="text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            <!-- Desktop Navigation -->
+            <div class="hidden lg:flex items-center space-x-6">
+                <a href="#" class="text-white uppercase font-bold text-center max-xl:text-sm">Category</a>
+                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'ALL']) }}" class="text-white uppercase font-bold text-center max-xl:text-sm">Products</a>
+                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'ALL']) }}" class="text-white uppercase font-bold text-center max-xl:text-sm">Accessories</a>
+                <a href="/products?filter=LAPTOPS&sort=name_asc" class="text-white uppercase font-bold text-center max-xl:text-sm">Laptops</a>
+                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'APPLE PRODUCTS']) }}" class="text-white uppercase font-bold text-center max-xl:text-sm">Mobile</a>
+                <a href="{{ route('aboutUs') }}" class="text-white uppercase font-bold text-center max-xl:text-sm">About Us</a>
+                <a href="{{ route('contact') }}" class="text-white uppercase font-bold text-center max-xl:text-sm">Contact Us</a>
+                <a href="{{ route('myAcc') }}" class="text-white uppercase font-bold text-center max-xl:text-sm">My Account</a>
+                <a href="{{ route('buildMyPC')}}" class="text-white uppercase font-bold text-center max-xl:text-sm">Build My PC</a>
+            </div>
+
+            <!-- Icons (Cart, Search, Wishlist) - Always visible -->
+            <div class="flex items-center space-x-4">
+                <a data-bs-toggle="modal" data-bs-target="#exampleModal-search" class="text-white hidden sm:block">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                 </a>
                 <a href="#offcanvas-cart" class="text-white offcanvas-toggle relative">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-    </svg>
-    <span class="absolute inset-3 object-right-top -mr-6 -top-4">
-        <div class="inline-flex items-center px-1 border-white rounded-full text-xs font-semibold leading-4 bg-white text-black">
-            <p id="cart-badge"></p>
-        </div>
-    </span>
-</a>
-
-<a href="#offcanvas-wishlist" class="text-white offcanvas-toggle relative">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" class="bi bi-bag-heart-fill" viewBox="0 0 18 18">
-        <path d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132" />
-    </svg>
-    <span class="absolute inset-3 object-right-top -mr-6 -top-4">
-        <div class="inline-flex items-center px-1 border-white rounded-full text-xs font-semibold leading-4 bg-white text-black">
-            <p id="wishlist-badge"></p>
-        </div>
-    </span>
-</a>
-                <a href="#offcanvas-categories" class="text-white offcanvas-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor"
-                        class="bi bi-list scale-150" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
+                    <span class="absolute inset-3 object-right-top -mr-6 -top-4">
+                        <div class="inline-flex items-center px-1 border-white rounded-full text-xs font-semibold leading-4 bg-white text-black">
+                            <p id="cart-badge"></p>
+                        </div>
+                    </span>
+                </a>
+                <a href="#offcanvas-wishlist" class="text-white offcanvas-toggle relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" class="bi bi-bag-heart-fill" viewBox="0 0 18 18">
+                        <path d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132" />
+                    </svg>
+                    <span class="absolute inset-3 object-right-top -mr-6 -top-4">
+                        <div class="inline-flex items-center px-1 border-white rounded-full text-xs font-semibold leading-4 bg-white text-black">
+                            <p id="wishlist-badge"></p>
+                        </div>
+                    </span>
                 </a>
             </div>
+            <!-- Mobile Menu Button -->
+            <button class="lg:hidden text-white focus:outline-none" id="mobile-menu-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="lg:hidden fixed top-0 right-0 h-full bg-black text-white w-3/4 transition-all duration-300 transform translate-x-full z-50" id="mobile-menu">
+        <div class="px-4 py-2 space-y-1 h-full flex flex-col">
+            <div class="flex justify-end">
+                <button class="text-white focus:outline-none p-2" id="mobile-menu-close">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <a href="#" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white">Category</a>
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'ALL']) }}" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white">Products</a>
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'ALL']) }}" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white">Accessories</a>
+            <a href="/products?filter=LAPTOPS&sort=name_asc" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white">Laptops</a>
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'APPLE PRODUCTS']) }}" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white">Mobile</a>
+            <a href="{{ route('aboutUs') }}" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white">About Us</a>
+            <a href="{{ route('contact') }}" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white">Contact Us</a>
+            <a href="{{ route('myAcc') }}" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white">My Account</a>
+            <a href="{{ route('buildMyPC')}}" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white">Build My PC</a>
+        </div>
     </div>
-</nav>
 </div>
 
-<!-- offcanvas overlay start -->
-<div class="offcanvas-overlay"></div>
-<!-- OffCanvas Cart Start -->
+<!-- Offcanvas overlay -->
+<div class="offcanvas-overlay hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-40"></div>
+
+<!-- OffCanvas Cart -->
 <div id="offcanvas-cart" class="offcanvas offcanvas-cart red-custom-scroll">
     <div class="inner">
         <div class="head">
@@ -78,7 +102,8 @@
         </div>
     </div>
 </div>
-<!-- OffCanvas Wishlist Start -->
+
+<!-- OffCanvas Wishlist -->
 <div id="offcanvas-wishlist" class="offcanvas offcanvas-cart red-custom-scroll">
     <div class="inner">
         <div class="head">
@@ -98,191 +123,42 @@
         </div>
     </div>
 </div>
+
+<script>
+    // Mobile menu toggle functionality with animation
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const overlay = document.querySelector('.offcanvas-overlay');
+
+    function toggleMenu() {
+        if (mobileMenu.classList.contains('hidden')) {
+            // Open menu
+            mobileMenu.classList.remove('hidden');
+            overlay.classList.remove('hidden');
+            setTimeout(() => {
+                mobileMenu.classList.remove('translate-x-full');
+                mobileMenu.classList.add('translate-x-0');
+                overlay.classList.add('opacity-100');
+            }, 10);
+        } else {
+            // Close menu
+            mobileMenu.classList.remove('translate-x-0');
+            mobileMenu.classList.add('translate-x-full');
+            overlay.classList.remove('opacity-100');
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+                overlay.classList.add('hidden');
+            }, 300); // Match duration-300
+        }
+    }
+
+    mobileMenuButton.addEventListener('click', toggleMenu);
+    mobileMenuClose.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
+</script>
 <!-- OffCanvas Categories Start -->
-<div id="offcanvas-categories" class="offcanvas offcanvas-cart red-custom-scroll normal-w-on-lg">
-    <div class="inner">
-        <div class="head align-items-center">
-            <span class="title text-white">Categories</span>
-            <button class="offcanvas-close text-white">×</button>
-        </div>
-        <div class="body customScroll">
-            <div class="grid grid-cols-1 gap-2 pb-2">
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'LAPTOPS']) }}" class="bg-gray-500 p-4 flex items-center justify-between"
-                    style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-                    <img src="assets/images/category/1697178958_laptops_laptop.png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">LAPTOPS</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'brand' => 'ASUS']) }}" class="bg-gray-500 p-4 flex items-center justify-between" 
-                style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
 
-                    <img src="assets/images/category/1691938347_asus_rog_29-asus-logo-rog-icon-symbol-26.png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">ASUS ROG</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'APPLE PRODUCTS']) }}" class="bg-gray-500 p-4 flex items-center justify-between" 
-                style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-
-                    <img src="assets/images/category/1691938365_apple_products_33-apple.png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">APPLE PRODUCTS</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'GAMING CONSOLE']) }}" class="bg-gray-500 p-4 flex items-center justify-between" 
-                style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-
-                    <img src="assets/images/category/1697179045_gaming_console_wireless2 (8).png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">GAMING CONSOLE</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'PROCESSOR']) }}" class="bg-gray-500 p-4 flex items-center justify-between"
-                 style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-
-                    <img src="assets/images/category/1697179065_processors_1 (7).png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">PROCESSORS</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'MOTHERBOARD']) }}" class="bg-gray-500 p-4 flex items-center justify-between" 
-                style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-
-                    <img src="assets/images/category/1697179145_motherboards_board.png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">MOTHERBOARDS</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'RAM']) }}" class="bg-gray-500 p-4 flex items-center justify-between" 
-                style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-
-                    <img src="assets/images/category/1697179167_memory_ram_ram memory.png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">MEMORY (RAM)</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'GRAPHIC CARDS']) }}" class="bg-gray-500 p-4 flex items-center justify-between" 
-                style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-
-                    <img src="assets/images/category/1697179212_graphic_cards_vga card.png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">GRAPHIC CARDS</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'brand' => 'ASUS']) }}" 
-                class="bg-gray-500 p-4 flex items-center justify-between" 
-                style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-
-                    <img src="assets/images/category/1691938461_powered_by_asus_31-Powered_by_ASUS_Black.png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">POWERED BY ASUS</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'COMMERCIAL SOLUTIONS']) }}"
-                 class="bg-gray-500 p-4 flex items-center justify-between" 
-                 style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-
-                    <img src="assets/images/category/1691938477_commercial_solutions_26-Asus Logo.png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">COMMERCIAL SOLUTIONS</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'CASINGS']) }}" class="bg-gray-500 p-4 flex items-center justify-between" 
-                style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-
-                    <img src="assets/images/category/1697179233_casings_wireless2 (7).png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">CASINGS</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'POWER SUPPLY']) }}" class="bg-gray-500 p-4 flex items-center justify-between" 
-                style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-
-                    <img src="assets/images/category/1697179291_power_supply_ups_surge_protectors_cable.png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">POWER SUPPLY, UPS & SURGE PROTECTORS</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'COOLING & LIGHTING']) }}" 
-                class="bg-gray-500 p-4 flex items-center justify-between" style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-
-                    <img src="assets/images/category/1697179312_cooling_and_lighting_gaming fan.png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">COOLING & LIGHTING</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'STORAGE & NAS']) }}" 
-                class="bg-gray-500 p-4 flex items-center justify-between" style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-
-                    <img src="assets/images/category/1697179339_storage_and_nas_hard disk.png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">STORAGE & NAS</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'MONITORS & ACCESSORIES']) }}" 
-                class="bg-gray-500 p-4 flex items-center justify-between" style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-
-                    <img src="assets/images/category/1697179351_monitors_and_accessories_monitor.png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">MONITORS & ACCESSORIES</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'OPTICAL DRIVERS & PRINTERS']) }}" 
-                class="bg-gray-500 p-4 flex items-center justify-between" style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-
-                    <img src="assets/images/category/1697179398_optical_drivers_and_printers_wireless2 (23).png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">OPTICAL DRIVERS & PRINTERS</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'SPEAKERS & HEADPHONES']) }}" 
-                class="bg-gray-500 p-4 flex items-center justify-between" style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-
-                    <img src="assets/images/category/1697179477_speakers_and_headphones_wireless2 (15).png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">SPEAKERS & HEADPHONES</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'KEYBOARDS, MOUSE & GAMEPADS']) }}" 
-                class="bg-gray-500 p-4 flex items-center justify-between" style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-
-                    <img src="assets/images/category/1697179509_keyboars_mice_and_gamepads_wireless2 (24).png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">KEYBOARDS, MOUSE & GAMEPADS</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'GRAPHICS TABLET / TAB']) }}" 
-                class="bg-gray-500 p-4 flex items-center justify-between" style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-
-                    <img src="assets/images/category/1691938652_graphics_tablet_tab_35-1077685.png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">GRAPHICS TABLET / TAB</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'DESKTOP WORKSTATIONS']) }}" 
-                class="bg-gray-500 p-4 flex items-center justify-between" style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-
-                    <img src="assets/images/category/1697179672_desktop_workstations_cpu 2.png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">DESKTOP WORKSTATIONS</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'GAMING DESKTOPS']) }}" 
-                class="bg-gray-500 p-4 flex items-center justify-between" style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-
-                    <img src="assets/images/category/1691938688_gaming_desktops_20-3312339-200.png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">GAMING DESKTOPS</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'BUDGET DESKTOP COMPUTERS']) }}" 
-                class="bg-gray-500 p-4 flex items-center justify-between" style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-
-                    <img src="assets/images/category/1697179650_budget_desktop_computers_cpu.png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">BUDGET DESKTOP COMPUTERS</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'GAMING CHAIRS']) }}" 
-                class="bg-gray-500 p-4 flex items-center justify-between" style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-
-                    <img src="assets/images/category/1691938742_gaming_chairs_27-barber-chair.png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">GAMING CHAIRS</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'CABLES & CONNECTORS']) }}" 
-                class="bg-gray-500 p-4 flex items-center justify-between" style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-
-                    <img src="assets/images/category/1697179564_cables_and_connetctors_power cable.png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">CABLES & CONNECTORS</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'EXTERNAL STORAGE']) }}" 
-                class="bg-gray-500 p-4 flex items-center justify-between" style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-
-                    <img src="assets/images/category/1697179575_external_storage_wireless2 (20).png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="ffont-bold text-end" style="margin: 0%;">EXTERNAL STORAGE</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'LIVE STREAMING & RECORDING']) }}" 
-                class="bg-gray-500 p-4 flex items-center justify-between" style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-
-                    <img src="assets/images/category/1691938788_live_streaminge_and_recording_14-2177994.png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">LIVE STREAMING & RECORDING</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'EXPANSION CARDS & NETWORKING']) }}" 
-                class="bg-gray-500 p-4 flex items-center justify-between" style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-
-                    <img src="assets/images/category/1697179622_expansion_cards_and_networking_wireless2 (10).png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">EXPANSION CARDS & NETWORKING</h6>
-                </a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'GIFT VOUCHER']) }}" 
-                class="bg-gray-500 p-4 flex items-center justify-between" style="background: white; border-bottom: 1px solid #ebebeb; border-radius: 18px;">
-
-                    <img src="assets/images/category/1691938823_gift_voucher_36-png.png" alt="Laptop" class="w-10 h-10 object-contain">
-                    <h6 class="font-bold text-end" style="margin: 0%;">GIFT VOUCHER</h6>
-                </a>
-            </div>
-        </div>
-        <div class="foot">
-
-        </div>
-    </div>
-</div>
 <!--cart & wishlist logic-->
 <script>
 let cart = [];
