@@ -8,7 +8,7 @@
 
             <!-- Desktop Navigation -->
             <div class="hidden lg:flex items-center space-x-6">
-                <a href="#" class="text-white uppercase font-bold text-center max-xl:text-sm">Category</a>
+                <a href="#" class="text-white uppercase font-bold text-center max-xl:text-sm" id="category-toggle">Category</a>
                 <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'ALL']) }}" class="text-white uppercase font-bold text-center max-xl:text-sm">Products</a>
                 <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'ALL']) }}" class="text-white uppercase font-bold text-center max-xl:text-sm">Accessories</a>
                 <a href="/products?filter=LAPTOPS&sort=name_asc" class="text-white uppercase font-bold text-center max-xl:text-sm">Laptops</a>
@@ -66,7 +66,7 @@
                     </svg>
                 </button>
             </div>
-            <a href="#" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white">Category</a>
+            <a href="#" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white" id="mobile-category-toggle">Category</a>
             <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'ALL']) }}" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white">Products</a>
             <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'ALL']) }}" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white">Accessories</a>
             <a href="/products?filter=LAPTOPS&sort=name_asc" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white">Laptops</a>
@@ -77,6 +77,244 @@
             <a href="{{ route('buildMyPC')}}" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white">Build My PC</a>
         </div>
     </div>
+
+    <!-- Category Popup -->
+    <div class="fixed inset-0 bg-black bg-opacity-50 z-60 hidden" id="category-popup-overlay">
+    <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black rounded-2xl p-6 w-11/12 max-w-2xl max-h-[80vh] overflow-y-auto transition-all duration-300 scale-75 opacity-0 border border-gray-700" id="category-popup">
+        <div class="flex justify-end">
+            <button class="text-white focus:outline-none" id="category-popup-close">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Laptops -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'LAPTOPS']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">LAPTOPS</h6>
+            </a>
+            
+            <!-- ASUS ROG -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'brand' => 'ASUS']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">ASUS ROG</h6>
+            </a>
+            
+            <!-- Apple Products -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'APPLE PRODUCTS']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">APPLE PRODUCTS</h6>
+            </a>
+            
+            <!-- Gaming Console -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'GAMING CONSOLE']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">GAMING CONSOLE</h6>
+            </a>
+            
+            <!-- Processors -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'PROCESSOR']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">PROCESSORS</h6>
+            </a>
+            
+            <!-- Motherboards -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'MOTHERBOARD']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">MOTHERBOARDS</h6>
+            </a>
+            
+            <!-- Memory (RAM) -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'RAM']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">MEMORY (RAM)</h6>
+            </a>
+            
+            <!-- Graphic Cards -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'GRAPHIC CARDS']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">GRAPHIC CARDS</h6>
+            </a>
+            
+            <!-- Powered by ASUS -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'brand' => 'ASUS']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">POWERED BY ASUS</h6>
+            </a>
+            
+            <!-- Commercial Solutions -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'COMMERCIAL SOLUTIONS']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">COMMERCIAL SOLUTIONS</h6>
+            </a>
+            
+            <!-- Casings -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'CASINGS']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">CASINGS</h6>
+            </a>
+            
+            <!-- Power Supply -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'POWER SUPPLY']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">POWER SUPPLY, UPS & SURGE PROTECTORS</h6>
+            </a>
+            
+            <!-- Cooling & Lighting -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'COOLING & LIGHTING']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">COOLING & LIGHTING</h6>
+            </a>
+            
+            <!-- Storage & NAS -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'STORAGE & NAS']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">STORAGE & NAS</h6>
+            </a>
+            
+            <!-- Monitors & Accessories -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'MONITORS & ACCESSORIES']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">MONITORS & ACCESSORIES</h6>
+            </a>
+            
+            <!-- Optical Drivers & Printers -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'OPTICAL DRIVERS & PRINTERS']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">OPTICAL DRIVERS & PRINTERS</h6>
+            </a>
+            
+            <!-- Speakers & Headphones -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'SPEAKERS & HEADPHONES']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15.536a5 5 0 001.414 1.414m2.828-9.9a9 9 0 012.728-2.728" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">SPEAKERS & HEADPHONES</h6>
+            </a>
+            
+            <!-- Keyboards, Mouse & Gamepads -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'KEYBOARDS, MOUSE & GAMEPADS']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">KEYBOARDS, MOUSE & GAMEPADS</h6>
+            </a>
+            
+            <!-- Graphics Tablet / Tab -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'GRAPHICS TABLET / TAB']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">GRAPHICS TABLET / TAB</h6>
+            </a>
+            
+            <!-- Desktop Workstations -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'DESKTOP WORKSTATIONS']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">DESKTOP WORKSTATIONS</h6>
+            </a>
+            
+            <!-- Gaming Desktops -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'GAMING DESKTOPS']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">GAMING DESKTOPS</h6>
+            </a>
+            
+            <!-- Budget Desktop Computers -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'BUDGET DESKTOP COMPUTERS']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">BUDGET DESKTOP COMPUTERS</h6>
+            </a>
+            
+            <!-- Gaming Chairs -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'GAMING CHAIRS']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">GAMING CHAIRS</h6>
+            </a>
+            
+            <!-- Cables & Connectors -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'CABLES & CONNECTORS']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">CABLES & CONNECTORS</h6>
+            </a>
+            
+            <!-- External Storage -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'EXTERNAL STORAGE']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">EXTERNAL STORAGE</h6>
+            </a>
+            
+            <!-- Live Streaming & Recording -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'LIVE STREAMING & RECORDING']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">LIVE STREAMING & RECORDING</h6>
+            </a>
+            
+            <!-- Expansion Cards & Networking -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'EXPANSION CARDS & NETWORKING']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">EXPANSION CARDS & NETWORKING</h6>
+            </a>
+            
+            <!-- Gift Voucher -->
+            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'GIFT VOUCHER']) }}" class="p-4 flex items-center justify-between hover:bg-gray-800 rounded-lg transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4H5z" />
+                </svg>
+                <h6 class="font-bold text-white text-end" style="margin: 0%;">GIFT VOUCHER</h6>
+            </a>
+        </div>
+    </div>
+</div>
 </div>
 
 <!-- Offcanvas overlay -->
@@ -129,33 +367,84 @@
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenuClose = document.getElementById('mobile-menu-close');
     const mobileMenu = document.getElementById('mobile-menu');
-    const overlay = document.querySelector('.offcanvas-overlay');
+    const mobileOverlay = document.querySelector('.offcanvas-overlay');
+    const categoryToggle = document.getElementById('category-toggle');
+    const mobileCategoryToggle = document.getElementById('mobile-category-toggle');
+    const categoryPopupOverlay = document.getElementById('category-popup-overlay');
+    const categoryPopup = document.getElementById('category-popup');
+    const categoryPopupClose = document.getElementById('category-popup-close');
 
-    function toggleMenu() {
+    function toggleMobileMenu() {
         if (mobileMenu.classList.contains('hidden')) {
-            // Open menu
+            // Open mobile menu
             mobileMenu.classList.remove('hidden');
-            overlay.classList.remove('hidden');
+            mobileOverlay.classList.remove('hidden');
             setTimeout(() => {
                 mobileMenu.classList.remove('translate-x-full');
                 mobileMenu.classList.add('translate-x-0');
-                overlay.classList.add('opacity-100');
+                mobileOverlay.classList.add('opacity-100');
             }, 10);
         } else {
-            // Close menu
+            // Close mobile menu
             mobileMenu.classList.remove('translate-x-0');
             mobileMenu.classList.add('translate-x-full');
-            overlay.classList.remove('opacity-100');
+            mobileOverlay.classList.remove('opacity-100');
             setTimeout(() => {
                 mobileMenu.classList.add('hidden');
-                overlay.classList.add('hidden');
+                mobileOverlay.classList.add('hidden');
             }, 300); // Match duration-300
         }
     }
 
-    mobileMenuButton.addEventListener('click', toggleMenu);
-    mobileMenuClose.addEventListener('click', toggleMenu);
-    overlay.addEventListener('click', toggleMenu);
+    function toggleCategoryPopup() {
+        if (categoryPopupOverlay.classList.contains('hidden')) {
+            // Open category popup
+            categoryPopupOverlay.classList.remove('hidden');
+            setTimeout(() => {
+                categoryPopup.classList.remove('scale-75', 'opacity-0');
+                categoryPopup.classList.add('scale-100', 'opacity-100');
+                categoryPopupOverlay.classList.add('opacity-100');
+            }, 10);
+            // Close mobile menu if open
+            if (!mobileMenu.classList.contains('hidden')) {
+                toggleMobileMenu();
+            }
+        } else {
+            // Close category popup
+            categoryPopup.classList.remove('scale-100', 'opacity-100');
+            categoryPopup.classList.add('scale-75', 'opacity-0');
+            categoryPopupOverlay.classList.remove('opacity-100');
+            setTimeout(() => {
+                categoryPopupOverlay.classList.add('hidden');
+            }, 300); // Match duration-300
+        }
+    }
+
+    mobileMenuButton.addEventListener('click', toggleMobileMenu);
+    mobileMenuClose.addEventListener('click', toggleMobileMenu);
+    mobileOverlay.addEventListener('click', () => {
+        // Close both mobile menu and category popup if open
+        if (!mobileMenu.classList.contains('hidden')) {
+            toggleMobileMenu();
+        }
+        if (!categoryPopupOverlay.classList.contains('hidden')) {
+            toggleCategoryPopup();
+        }
+    });
+    categoryToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleCategoryPopup();
+    });
+    mobileCategoryToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleCategoryPopup();
+    });
+    categoryPopupClose.addEventListener('click', toggleCategoryPopup);
+    categoryPopupOverlay.addEventListener('click', (e) => {
+        if (e.target === categoryPopupOverlay) {
+            toggleCategoryPopup();
+        }
+    });
 </script>
 <!-- OffCanvas Categories Start -->
 
