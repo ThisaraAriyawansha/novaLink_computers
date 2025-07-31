@@ -21,28 +21,33 @@
 
             <!-- Icons (Cart, Search, Wishlist) - Always visible -->
             <div class="flex items-center space-x-4">
-                <a data-bs-toggle="modal" data-bs-target="#exampleModal-search" class="text-white hidden sm:block">
+                <!-- Search Icon - Now visible on all screen sizes -->
+                <a data-bs-toggle="modal" data-bs-target="#exampleModal-search" class="text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                 </a>
-                <a href="#offcanvas-cart" class="text-white offcanvas-toggle relative">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                
+                <!-- Cart Icon with updated styling -->
+                <a href="#offcanvas-cart" class="text-white offcanvas-toggle relative group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 group-hover:text-gray-300 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
-                    <span class="absolute inset-3 object-right-top -mr-6 -top-4">
-                        <div class="inline-flex items-center px-1 border-white rounded-full text-xs font-semibold leading-4 bg-white text-black">
-                            <p id="cart-badge"></p>
+                    <span class="absolute -top-2 -right-2">
+                        <div class="inline-flex items-center justify-center h-5 w-5 rounded-full bg-red-500 text-white text-xs font-bold">
+                            <span id="cart-badge">0</span>
                         </div>
                     </span>
                 </a>
-                <a href="#offcanvas-wishlist" class="text-white offcanvas-toggle relative">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" class="bi bi-bag-heart-fill" viewBox="0 0 18 18">
+                
+                <!-- Wishlist Icon with updated styling -->
+                <a href="#offcanvas-wishlist" class="text-white offcanvas-toggle relative group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 group-hover:text-gray-300 transition-colors" fill="currentColor" viewBox="0 0 18 18">
                         <path d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132" />
                     </svg>
-                    <span class="absolute inset-3 object-right-top -mr-6 -top-4">
-                        <div class="inline-flex items-center px-1 border-white rounded-full text-xs font-semibold leading-4 bg-white text-black">
-                            <p id="wishlist-badge"></p>
+                    <span class="absolute -top-2 -right-2">
+                        <div class="inline-flex items-center justify-center h-5 w-5 rounded-full bg-red-500 text-white text-xs font-bold">
+                            <span id="wishlist-badge">0</span>
                         </div>
                     </span>
                 </a>
