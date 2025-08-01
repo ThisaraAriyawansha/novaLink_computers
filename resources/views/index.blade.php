@@ -23,6 +23,85 @@
     <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
     <!-- Style CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Import Orbitron font -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Keyframes for animations */
+        @keyframes slideInLeft {
+            0% { transform: translateX(-100px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            0% { transform: scale(1.2); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Styles */
+        .background-container {
+            background: url('assets/images/gaming.jpg') no-repeat center center;
+            position: relative;
+            width: 100%;
+            height: 100dvh;
+            background-size: cover;
+            background-attachment: fixed; /* Fixed background for desktop */
+            background-color: #0a0a2e; /* Fallback color */
+        }
+
+        /* Overlay for better text visibility */
+        .background-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
+            z-index: 1;
+        }
+
+        .text-container {
+            position: relative;
+            z-index: 2; /* Ensure text is above overlay */
+            animation: slideInLeft 1s ease-out forwards, fadeInUp 1.2s ease-out forwards;
+        }
+
+        /* Interactive elements */
+        .button, a {
+            animation: pulse 2s infinite ease-in-out;
+            transition: transform 0.3s ease;
+        }
+
+        .button:hover, a:hover {
+            animation: none;
+            transform: scale(1.1);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .background-container {
+                background-attachment: scroll; /* Prevent fixed background issues on mobile */
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -44,8 +123,16 @@
 
         @include('layouts.nav-2')
 
+    <div class="relative lg:h-[100dvh] w-full bg-dark-blue-bg background-container">
+        <!-- Text Overlay -->
+        <div class="absolute left-0 top-0 h-full flex flex-col justify-center pl-8 md:pl-16 text-white z-10 text-container">
+            <h1 class="text-3xl md:text-5xl font-bold text-white" style="font-family: 'Orbitron', sans-serif;">NovaLink Computers</h1>
+            <p class="text-lg md:text-xl mt-2" style="font-family: 'Orbitron', sans-serif;">Empowering Innovation with Advanced Technology</p>
+        </div>
+    </div>
+
         <!--sample video-->
-        <div class="relative lg:h-[100dvh] w-full">
+        <div class="relative lg:h-[100dvh] w-full hidden">
             <!-- Loading Indicator -->
             <div id="loadingIndicator" class="absolute inset-0 flex items-center justify-center bg-dark-blue-bg">
                 <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-white"></div>
