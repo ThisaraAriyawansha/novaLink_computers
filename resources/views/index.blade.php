@@ -55,29 +55,28 @@
             100% { transform: scale(1); }
         }
 
-        /* Styles */
-        .background-container {
-            background: url('assets/images/gaming.jpg') no-repeat center center;
-            position: relative;
-            width: 100%;
-            height: 100dvh;
-            background-size: cover;
-            background-attachment: fixed; /* Fixed background for desktop */
-            background-color: #0a0a2e; /* Fallback color */
-        }
+                    /* Styles */
+            .background-container {
+                background: url('assets/images/mix_copy.jpg') no-repeat center center;
+                position: relative;
+                width: 100%;
+                height: 100dvh;
+                background-size: cover;
+                background-attachment: fixed; /* Fixed background for desktop */
+                background-color: #0a0a2e; /* Fallback color */
+            }
 
-        /* Overlay for better text visibility */
-        .background-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
-            z-index: 1;
-        }
-
+            /* Overlay with gradient for better text visibility */
+            .background-container::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.1)); /* Darker on left, transparent on right */
+                z-index: 1;
+            }
         .text-container {
             position: relative;
             z-index: 2; /* Ensure text is above overlay */
