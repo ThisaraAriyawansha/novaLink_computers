@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- Import Orbitron font -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
 
     <style>
         /* Keyframes for animations */
@@ -130,8 +132,15 @@
         </div>
     </div>
 
-        <!--sample video-->
-        <div class="relative lg:h-[100dvh] w-full hidden">
+
+
+         @include('mainSlider')
+
+        <!-- All content -->
+        <div class="w-full">
+            <!-- Hero/Intro Slider Start -->
+                    <!--sample video-->
+        <div class="relative lg:h-[100dvh] w-full ">
             <!-- Loading Indicator -->
             <div id="loadingIndicator" class="absolute inset-0 flex items-center justify-center bg-dark-blue-bg">
                 <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-white"></div>
@@ -151,67 +160,6 @@
             </video>
         </div>
 
-        <!-- All content -->
-        <div class="w-full">
-            <!-- Hero/Intro Slider Start -->
-            <div class="section h-[90dvh]">
-
-                <div class="hero-slider swiper-container slider-nav-style-1 slider-dot-style-1 h-full cursor-pointer">
-                    <!-- Hero slider Active -->
-
-                    <div class="swiper-wrapper h-[85dvh] bg-black">
-                        <!-- Single slider item -->
-                        <div class="hero-slide-item swiper-slide  h-[85dvh]" data-bg-image="assets/images/hero/bg/hero-bg-1.webp">
-                            <div class="container  h-[85dvh]">
-                                <div class="row  h-[85dvh]">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 align-self-center sm-center-view">
-                                        <div class="hero-slide-content slider-animated-1">
-                                            <span class="category">Welcome To CoreX Computers</span>
-                                            <h2 class="title-1 max-[575px]:text-center">Computers <br> Accessories & <br> Gaming Products </h2>
-                                            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'ALL']) }}" class="btn btn-primary text-capitalize">Shop All Devices</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 d-flex justify-content-center position-relative align-items-end">
-                                        <div class="show-case">
-                                            <div class="hero-slide-image">
-                                                <img src="assets/images/hero/inner-img/hero-1-1.png" alt="" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Single slider item -->
-                        <div class="hero-slide-item swiper-slide  bg-[#0c1a5f]" data-bg-image="assets/images/hero/bg/hero-bg-2.jpg">
-                            <div class="container h-100">
-                                <div class="row h-100">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 align-self-center sm-center-view">
-                                        <div class="hero-slide-content slider-animated-1">
-                                            <span class="category">Welcome To CoreX Computers</span>
-                                            <h2 class="title-1">Computers <br> Accessories & <br> Gaming Products </h2>
-                                            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'ALL']) }}" class="btn btn-primary text-capitalize">Shop All Devices</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 d-flex justify-content-center position-relative align-items-end">
-                                        <div class="show-case">
-                                            <div class="hero-slide-image">
-                                                <img src="assets/images/hero/inner-img/hero-1-3.png" alt="" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Add Pagination -->
-                    <div class="swiper-pagination swiper-pagination-white"></div>
-                    <!-- Add Arrows -->
-                    <div class="swiper-buttons">
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
-                    </div>
-                </div>
-            </div>
             <!-- Banner Area Start -->
             <div class="banner-area style-one pt-100px pb-100px">
                 <div class="container">
