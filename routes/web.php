@@ -79,6 +79,8 @@ Route::get('/', [LoadingScreenController::class, 'show'])->name('show');
 Route::get('/loading', [LoadingScreenController::class, 'show'])->name('loading');
 Route::get('/process', [LoadingScreenController::class, 'process'])->name('process');
 
+Route::get('/get-chatbot-products', [HomeController::class, 'getChatbotProducts']);
+
 Route::get('/home', [HomeController::class, 'homeShow'])->name('home');
 Route::get('/aboutus', [PageController::class, 'aboutusShow'])->name('aboutUs');
 Route::get('/blog', [PageController::class, 'blogShow'])->name('blog');
