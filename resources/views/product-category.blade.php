@@ -28,9 +28,8 @@
     <div class="main-wrapper">
     @include('layouts.nav-2')
 
-        <div class="h-[10dvh]"></div>
         <!-- breadcrumb-area start -->
-        <div id="breadcrumb-carousel" class="relative carousel slide hidden" data-bs-ride="carousel">
+        <div id="breadcrumb-carousel" class="relative carousel slide " data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#breadcrumb-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#breadcrumb-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
