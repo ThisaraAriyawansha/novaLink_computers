@@ -57,11 +57,11 @@
                                 echo "GAMING";
                             } elseif (isset($searchQuery)) {
                                 // If a search query is present but not "gaming", show the search query
-                                $string = (strlen($searchQuery) > 13) ? substr($searchQuery, 0, 10) . '...' : $searchQuery;
+                                $string = (strlen($searchQuery) > 13) ? substr($searchQuery, 0, 30) . '...' : $searchQuery;
                                 echo $string;
                             } elseif ($filter != "ALL") {
                                 // Handle filter case
-                                $string = (strlen($filter) > 13) ? substr($filter, 0, 10) . '...' : $filter;
+                                $string = (strlen($filter) > 13) ? substr($filter, 0, 30) . '...' : $filter;
                                 echo $string;
                             } else {
                                 // Default text if neither search nor filter is set
