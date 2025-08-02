@@ -1,54 +1,55 @@
 <!-- Footer Area Start -->
 <div class="footer-area bg-black" style="font-family: 'Orbitron', sans-serif;">
     <!-- Floating Message Icon with Popup -->
-    <div class="fixed right-6 bottom-6 z-50">
+    <div class="fixed right-6 bottom-2 z-50">
     <div class="relative">
         <!-- Message Button with Notification Badge -->
-        <button id="messageBtn" class="bg-black text-white p-3 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110 group" style="border-radius: 9999px;">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 group-hover:rotate-12 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-            </svg>
-            <span id="notificationBadge" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden animate-pulse">1</span>
-        </button>
+            <button id="messageBtn" class="hidden sm:inline-flex bg-black text-white p-2 rounded-full shadow-xl items-center justify-center transition-all duration-300 hover:scale-110 group relative" style="border-radius: 9999px;">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 group-hover:rotate-12 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+                <span id="notificationBadge" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden animate-pulse">1</span>
+            </button>
+
         
         <!-- Advanced Chatbot Popup -->
-        <div id="chatPopup" class="hidden absolute bottom-full right-0 mb-4 w-96 bg-gray-900 rounded-xl shadow-2xl border border-gray-700 overflow-hidden backdrop-blur-sm" style="font-family: 'Inter', sans-serif;">
+        <div id="chatPopup" class="hidden absolute bottom-full right-0  w-96 bg-black rounded-xl shadow-2xl border border-gray-700 overflow-hidden backdrop-blur-sm" style="font-family: 'Inter', sans-serif;">
             <!-- Header with Status -->
-            <div class="p-4 border-b border-gray-700 bg-gradient-to-r from-gray-800 to-gray-900 flex justify-between items-center">
-                <div class="flex items-center space-x-3">
-                    <div class="relative">
-                        <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
+                <div class="p-2 border-b border-gray-700 bg-black flex justify-between items-center">
+                    <div class="flex items-center space-x-2">
+                        <div class="relative">
+                            <div class="w-6 h-6 bg-black rounded-full flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div class="absolute -bottom-1 -right-1 w-2 h-2 bg-green-400 rounded-full border-2 border-gray-900 animate-pulse"></div>
                         </div>
-                        <div class="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-gray-900 animate-pulse"></div>
+                        <div>
+                                <h3 style="font-family: 'Orbitron', sans-serif; font-size: 18px; color: white;">NovaLink AI Assistant</h3>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="font-bold text-white text-sm">NovaLink AI Assistant</h3>
-                        <p class="text-xs text-green-400">Online • Typically replies instantly</p>
-                    </div>
+                    <button id="closeChat" class="text-gray-400 hover:text-white transition-colors p-1 rounded hover:bg-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
                 </div>
-                <button id="closeChat" class="text-gray-400 hover:text-white transition-colors p-1 rounded hover:bg-gray-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-                    </svg>
-                </button>
-            </div>
+
             
             <!-- Quick Actions -->
-            <div id="quickActions" class="px-4 py-3 bg-gray-800 border-b border-gray-700">
-                <p class="text-xs text-gray-400 mb-2">Quick Actions:</p>
-                <div class="flex flex-wrap gap-2">
-                    <button class="quick-action-btn bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded-full text-xs transition-colors" data-action="products">🖥️ Products</button>
-                    <button class="quick-action-btn bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-full text-xs transition-colors" data-action="contact">📞 Contact</button>
-                    <button class="quick-action-btn bg-purple-600 hover:bg-purple-700 text-white px-3 py-1 rounded-full text-xs transition-colors" data-action="deals">💰 Deals</button>
-                    <button class="quick-action-btn bg-orange-600 hover:bg-orange-700 text-white px-3 py-1 rounded-full text-xs transition-colors" data-action="help">❓ Help</button>
+                <div id="quickActions" class="px-2 py-1 bg-black border-b border-gray-700">
+                    <div class="flex items-center gap-1">
+                        <button class="quick-action-btn bg-blue-600 hover:bg-blue-700 text-white px-2 py-0.5 rounded-full text-[8px] transition-colors" data-action="products">🖥️ Products</button>
+                        <button class="quick-action-btn bg-green-600 hover:bg-green-700 text-white px-2 py-0.5 rounded-full text-[8px] transition-colors" data-action="contact">📞 Contact</button>
+                        <button class="quick-action-btn bg-purple-600 hover:bg-purple-700 text-white px-2 py-0.5 rounded-full text-[8px] transition-colors" data-action="deals">💰 Deals</button>
+                        <button class="quick-action-btn bg-orange-600 hover:bg-orange-700 text-white px-2 py-0.5 rounded-full text-[8px] transition-colors" data-action="help">❓ Help</button>
+                    </div>
                 </div>
-            </div>
+
             
             <!-- Chat Messages Container -->
-            <div id="chatMessages" class="p-4 h-80 overflow-y-auto space-y-4 bg-gray-900">
+            <div id="chatMessages" class="p-4 h-90 overflow-y-auto space-y-4 bg-black min-h-[430px]">
                 <!-- Initial greeting message -->
                 <div class="flex items-start space-x-2">
                     <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
@@ -95,37 +96,40 @@
             </div>
             
             <!-- User Input Area -->
-            <div class="p-3 border-t border-gray-700 bg-gray-800">
-                <div class="flex space-x-2">
+            <div class="p-1 border-t border-gray-700 bg-black">
+                <div class="flex space-x-1">
                     <div class="flex-1 relative">
-                        <input id="userMessage" type="text" placeholder="Ask me anything about our products..." class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-full text-sm text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 pr-10">
+                        <input id="userMessage" type="text" placeholder="Ask me anything..." class="w-full px-3 py-1.5 bg-gray-700 border border-gray-600 rounded-full text-[11px] text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 pr-8">
                         <button id="voiceBtn" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
                             </svg>
                         </button>
                     </div>
-                    <button id="sendMessage" class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center space-x-1">
-                        <span>Send</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                        </svg>
-                    </button>
+                        <button id="sendMessage" class="bg-transparent border border-white text-white px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 flex items-center space-x-1 hover:bg-gray-800 hover:text-white">
+                            <span>Send</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                            </svg>
+                        </button>
+
+
                 </div>
-                <div class="flex justify-between items-center mt-2">
-                    <div class="flex space-x-2">
-                        <button class="text-gray-400 hover:text-white text-xs flex items-center space-x-1">
+                <div class="flex justify-between items-center mt-1">
+                    <div class="flex space-x-1">
+                        <button class="text-gray-400 hover:text-white text-[10px] flex items-center space-x-1">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
                             </svg>
                             <span>Attach</span>
                         </button>
                     </div>
-                    <div class="text-xs text-gray-500">
+                    <div class="text-[10px] text-gray-500">
                         Powered by NovaLink AI
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
