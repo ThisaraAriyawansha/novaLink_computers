@@ -1,4 +1,4 @@
-<div class="{{ request()->is('/') ? 'w-full p-2 px-3 z-50 fixed top-0' : 'w-full p-2 px-3 z-50 absolute' }}">
+<div class="w-full p-2 px-3 z-50 fixed top-0">
     <nav class="bg-black text-white h-[10dvh] flex justify-center items-center rounded-2xl w-full">
         <div class="px-4 flex justify-between items-center w-full">
             <!-- Logo -->
