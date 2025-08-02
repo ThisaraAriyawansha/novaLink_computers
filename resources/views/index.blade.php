@@ -140,186 +140,78 @@
         <div class="w-full">
             <!-- Hero/Intro Slider Start -->
                     <!--sample video-->
-        <div class="relative lg:h-[100dvh] w-full ">
-            <!-- Loading Indicator -->
-            <div id="loadingIndicator" class="absolute inset-0 flex items-center justify-center bg-dark-blue-bg">
-                <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-white"></div>
-            </div>
-
-            <!-- Video Element -->
-            <video
-                id="videoPlayer"
-                autoplay
-                loop
-                muted
-                playsinline
-                class="h-full w-full object-cover dark-blue-bg"
-                style="background: url('assets/videos/video-thumb.png') no-repeat; background-size: cover;">
-                <source src="assets/videos/18 - RAISE YOUR GAME. CARRY YOUR SQUAD.  _ ROG.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-
-            <!-- Banner Area Start -->
-            <div class="banner-area style-one pt-100px pb-100px">
-                <div class="container">
-                    <div class="grid lg:grid-cols-2 gap-6">
-                    <div class="h-full relative">
-                            <div class="bg-black/50 absolute left-0 top-0 w-full h-full"></div>
-                            <div class="single-banner nth-child-1">
-                                <img src="assets/images/banner/3.webp" alt="" class="h-full">
-                                <div class="banner-content nth-child-1">
-                                    <h3 class="title text-white">REDRAGON JUNO G818 <br> WIRELESS GAMEPAD</h3>
-                                    <span class="category text-white">10,400 LKR</span>
-                                    <a href="{{ route('singleProduct', ['product-id' => 9]) }}" class="shop-link"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="">
-                            <div class="single-banner nth-child-2 mb-30px mb-lm-30px mt-lm-30px ">
-                                <img src="assets/images/banner/4.webp" alt="" class="relative">
-                                <div class="bg-black/50 absolute left-0 top-0 w-full h-full"></div>
-                                <div class="banner-content nth-child-2">
-                                    <h3 class="title text-white">G SKILL TRIDENT Z NEO <br> RGB 16GB (8X2) 3200MHZ MEMORY</h3>
-                                    <span class="category text-white">18,000 LKR</span>
-                                    <a href="{{ route('singleProduct', ['product-id' => 10]) }}" class="shop-link"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                            <div class="single-banner nth-child-2">
-                                <img src="assets/images/banner/5.webp" alt="" class="relative">
-                                <div class="bg-black/50 absolute left-0 top-0 w-full h-full"></div>
-                                <div class="banner-content nth-child-3">
-
-                                    <h3 class="title text-white">iPhone 16 Pro Max</h3>
-                                    <span class="category text-white">520,000 LKR</span>
-                                    <a href="{{ route('singleProduct', ['product-id' => 8]) }}" class="shop-link">
-                                        <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                                    </a>                        
-                                        </div>
-                            </div>
+                <div class="relative lg:h-[80dvh] w-full mb-">
+                    <!-- Loading Indicator -->
+                    <div id="loadingIndicator" class="absolute inset-0 flex items-center justify-center bg-dark-blue-bg">
+                        <div class="relative w-12 h-12">
+                            <div class="absolute inset-0 border-4 border-transparent border-t-white border-r-white rounded-full animate-spin"></div>
+                            <div class="absolute inset-0 border-4 border-transparent border-b-white border-l-white rounded-full animate-spin-reverse"></div>
                         </div>
                     </div>
+
+                    <style>
+                        @keyframes spin-reverse {
+                            to { transform: rotate(-360deg); }
+                        }
+                        .animate-spin-reverse {
+                            animation: spin-reverse 5s linear infinite;
+                        }
+                    </style>
+                    <!-- Video Element -->
+                    <video
+                        id="videoPlayer"
+                        autoplay
+                        loop
+                        muted
+                        playsinline
+                        class="h-full w-full object-cover dark-blue-bg"
+                        style="background: url('assets/videos/video-thumb.png') no-repeat; background-size: cover;">
+                        <source src="assets/videos/18 - RAISE YOUR GAME. CARRY YOUR SQUAD.  _ ROG.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
-            </div>
 
+            <!-- Banner Area Start -->
+            
 
-            <div class="container pb-100px">
-            @foreach ($products as $product)
-                    @if ($product['tags'] === 'DEAL OF THE DAYS')
-                    @if ($product['tags'] === 'DEAL OF THE DAYS' && \Carbon\Carbon::parse($product['deal_end'])->isFuture())
-
-                        <div class="flex flex-col md:flex-row shadow-lg rounded-xl overflow-hidden bg-white md:h-[500px]">
-                            <!-- Product Image Section -->
-                            <div class="md:w-3/5 relative group">
-                                <img src="{{ $product['image'] }}" alt="{{ $product['name'] }}" class="w-full h-full object-contain">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
-                                    <h1 class="text-xl md:text-3xl font-bold text-white p-6">{{ strtoupper($product['name']) }}</h1>
-                                </div>
-                                <!-- Overlay on hover -->
-                                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                    <button class="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white px-6 py-3 rounded-full border border-white/30 transition-all duration-300">
-                                        View Gallery
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Bid Information Section -->
-                            <div class="md:w-2/5 p-6 flex flex-col justify-between">
-                                <div>
-                                    <div class="flex justify-between items-center mb-6">
-                                        <h2 class="text-xl font-bold text-gray-800">Live Auction</h2>
-                                        <span class="text-sm text-gray-500">ID: #{{ $product['auction_id'] ?? 'A7845291' }}</span>
+            <div class="container mx-auto px-4 py-12">   
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center p-4 mb-4" style="font-family: 'Orbitron', sans-serif;">Deal of the Day - Place Your Bids!</h2>                 
+                    <!-- Product Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        @foreach ($products as $product)
+                            @if ($product['tags'] === 'DEAL OF THE DAYS' && \Carbon\Carbon::parse($product['deal_end'])->isFuture())
+                                <div class="bg-white rounded-2xl shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md">
+                                    <!-- Product Image -->
+                                    <div class="relative">
+                                        <img src="{{ $product['image'] }}" alt="{{ $product['name'] }}" class="w-full h-[200px] object-contain bg-gray-50 p-4">
+                                        <span class="absolute top-3 left-3 bg-gray-900 text-white text-xs font-medium px-2 py-1 rounded">New</span>
                                     </div>
-
-                                    <div class="space-y-6">
-                                        <!-- Timer -->
-                                        <div class="bg-gray-50 rounded-lg p-2">
-                                            <p class="text-sm text-gray-500 mb-1">Time Remaining</p>
-                                            <div class="flex gap-2 timer-container" data-end="{{ $product['deal_end'] }}">
-                                                <div class="hours bg-gradient-to-r from-pink-600 to-purple-600 text-white px-3 py-2 rounded font-mono text-xl">0H</div>
-                                                <div class="minutes bg-gradient-to-r from-pink-600 to-purple-600 text-white px-3 py-2 rounded font-mono text-xl">0M</div>
-                                                <div class="seconds bg-gradient-to-r from-pink-600 to-purple-600 text-white px-3 py-2 rounded font-mono text-xl">0S</div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Current Price -->
-                                        <div>
-                                            <p class="text-sm text-gray-500">Current Bid</p>
-                                            <div class="flex items-end gap-2">
-                                                <span class="text-3xl font-bold text-gray-900">Rs {{$product['dis_price'] }}</span>
-                                            </div>
-                                        </div>
-
-                                        <!-- Bidding History -->
-
-                                    </div>
-                                </div>
-
-                                <!-- Action Buttons -->
-                                <div class="mt-8 space-y-3">
-                                    <a class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white py-3 px-6 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all duration-300 rounded" href="biddings?product-id={{ $product['id'] }}">
-                                        Place Bid
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        @break <!-- Stop after the first matching product -->
-                        @endif
-                    @endif
-                @endforeach
-                <hr>
-                <div class="row">
-                    @foreach ($products as $product)
-                        @if ($product['tags'] === 'DEAL OF THE DAYS')
-                        @if ($product['tags'] === 'DEAL OF THE DAYS' && \Carbon\Carbon::parse($product['deal_end'])->isFuture())
-                            <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px bg-transparent">
-                                <!-- Single Product -->
-                                <div class="product">
-                                    <span class="badges">
-                                        <span class="sale">New</span>
-                                    </span>
-                                    <div class="thumb">
-                                    <a href="biddings?product-id=<?= $product['id'] ?>" class="image">
-                                    <img src="{{ $product['image'] }}" class="aspect-square object-contain object-center" alt="Product" />
-                                            <img class="hover-image" src="{{ $product['image'] }}" alt="Product" />
-                                        </a>
-                                    </div>
-                                    <div class="content bg-transparent pb-2">
-                                        <span class="category text-black">
-                                            <a href="#" class="text-black">{{ $product['type'] }}</a>
-                                        </span>
-                                        <h5 class="title">
-                                            <a href="biddings?product-id=<?= $product['id'] ?>" class="line-clamp-1 text-center px-3 text-black">
-                                                {{ $product['name'] }}
-                                            </a>
-                                        </h5>
-                                        <span class="price">
-                                            <span class="new text-black">{{ $product['ret_price'] }}</span>
-                                        </span>
-                                    </div>
-                                    <div class="flex flex-col items-center pb-4">
-                                        <p class="text-xl text-green-600">{{ $product['dis_price'] }}</p>
+                                    <!-- Product Info -->
+                                    <div class="p-4">
+                                        <p class="text-sm text-gray-600 mb-1">{{ $product['type'] }}</p>
+                                        <h5 class="text-base font-semibold text-gray-900 line-clamp-1 mb-2">{{ $product['name'] }}</h5>
+                                        <p class="text-lg font-bold text-gray-900 mb-2">Rs {{ $product['dis_price'] }}</p>
                                         <div class="timer-container" data-end="{{ $product['deal_end'] }}">
-                                            <p class="text-sm text-gray-500 mb-1 text-center">Bidding Ends in</p>
-                                            <div class="flex gap-2 justify-center">
-                                                <div class="hours bg-gradient-to-r from-pink-600 to-purple-600 text-white px-3 py-2 rounded font-mono text-xl">0H</div>
-                                                <div class="minutes bg-gradient-to-r from-pink-600 to-purple-600 text-white px-3 py-2 rounded font-mono text-xl">0M</div>
-                                                <div class="seconds bg-gradient-to-r from-pink-600 to-purple-600 text-white px-3 py-2 rounded font-mono text-xl">0S</div>
+                                            <p class="text-xs text-gray-600 mb-1">Bidding Ends in</p>
+                                            <div class="flex gap-2">
+                                                <div class="hours bg-black text-white px-2 py-1 rounded font-mono text-sm">0H</div>
+                                                <div class="minutes bg-black text-white px-2 py-1 rounded font-mono text-sm">0M</div>
+                                                <div class="seconds bg-black text-white px-2 py-1 rounded font-mono text-sm">0S</div>
                                             </div>
                                         </div>
-                                        <p class="text-sm">Bidders</p>
-                                        <a href="biddings?product-id=<?= $product['id'] ?>" class="light-blue-bg text-white text-center w-full">BID NOW!</a>
                                     </div>
-                                    <div class="actions items-center">
-                                        <button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart" onclick="addToCart({{ $product['id'] }});">
-                                            <i class="pe-7s-cart"></i>
-                                        </button>
-                                        <button class="action wishlist" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist" onclick="addToWishlist({{ $product['id'] }});">
-                                            <i class="pe-7s-like"></i>
-                                        </button>
+                                    <!-- Actions -->
+                                    <div class="p-4 pt-0 flex justify-between items-center">
+                                        <a href="biddings?product-id={{ $product['id'] }}" class="bg-black text-white text-sm font-medium px-4 py-2 rounded-md hover:bg-gray-800 transition-all duration-300">
+                                            Bid Now
+                                        </a>
+                                        <div class="flex gap-2">
+                                            <button class="text-gray-600 hover:text-gray-900" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart" onclick="addToCart({{ $product['id'] }});">
+                                                <i class="pe-7s-cart"></i>
+                                            </button>
+                                            <button class="text-gray-600 hover:text-gray-900" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist" onclick="addToWishlist({{ $product['id'] }});">
+                                                <i class="pe-7s-like"></i>
+                                            </button>
                                         <button class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal" 
                                                 data-product-id="{{ $product['id'] }}" 
                                                 data-product-name="{{ $product['name'] }}" 
@@ -329,14 +221,15 @@
                                                 data-product-price="{{ $product['dis_price'] }}">
                                             <i class="pe-7s-look"></i>
                                         </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             @endif
-                        @endif
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
-            </div>
+
+
 
 
 
