@@ -334,9 +334,9 @@
                                             <h3 class="text-base font-light text-black truncate">${product.name}</h3>
                                             <p class="text-xs text-gray-600 font-light">${truncateDescription(product.desc)}</p>
                                             <div class="flex items-center space-x-2">
-                                                <span class="text-base text-black">${product.dis_price}</span>
+                                                <span class="text-base text-black">${product.dis_price} LKR</span>
                                                 ${product.ret_price && product.dis_price !== product.ret_price 
-                                                    ? `<span class="text-xs text-gray-400 line-through">${product.ret_price}</span>` 
+                                                    ? `<span class="text-xs text-gray-400 line-through">${product.ret_price} LKR</span>` 
                                                     : ''}
                                             </div>
                                             <div class="flex space-x-2">

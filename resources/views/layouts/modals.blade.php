@@ -49,7 +49,7 @@
                                     
                                     <div class="pricing-meta">
                                         <ul class="d-flex">
-                                            <li class="new-price" >From 125,000 LKR</li>
+                                            <li class="new-price" >From 125,000 LKR</li><li class="new-price" > LKR</li>
                                         </ul>
                                     </div>
 
