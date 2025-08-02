@@ -9,6 +9,8 @@
     <title>NovaLink Computers | Best Computers for you</title>
     <meta name="robots" content="index, follow" />
     <meta name="description" content="NovaLink Computers offer the best computers available at the market">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/N_back.jpg" />
     <!-- CSS
@@ -230,286 +232,235 @@
                 </div>
 
 
+            <!-- Fashion Area Start -->
+        <div class="product-area py-[200px] dark-blue-bg relative" 
+            style="background:url(assets/images/3292900-gaming-laptops-banner.avif) no-repeat; background-position:center; background-size:cover; background-attachment: fixed;">
+            
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-black opacity-60 z-0"></div>
+
+            <div class="container h-100 relative z-10">
+                <div class="row justify-content-center align-items-center h-100">
+                    <div class="col-12 text-center">
+                        <h2 class="text-2xl lg:text-5xl font-light text-white mb-2" 
+                            style="font-family: 'Orbitron', sans-serif;">
+                            Welcome to NovaLink – Your Gateway to Elite Tech Gear
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
 
 
             <!-- Product Area Start -->
-            <div class="product-area py-[50px] dark-blue-bg relative" style="background:url(assets/images/banner/gaming_4.jpg)no-repeat;background-position:center;background-size:cover;background-attachment: fixed;">
-                <div class="bg-black/50 absolute left-0 top-0 w-full h-full"></div>
-                <div class="container relative">
-                    <!-- Section Title & Tab Start -->
-                    <div class="row">
-                        <div class="col-12">
-                            <!-- Tab Start -->
-                            <div class="tab-slider d-md-flex justify-content-md-between align-items-md-center">
-                                <ul class="product-tab-nav nav justify-content-start align-items-center max-md:flex-col gap-6">
-                                    <li class="nav-item">
-                                        <button class="btn btn-primary active" data-bs-toggle="tab" data-bs-target="#newarrivals">New Arrivals</button>
-                                    </li>
-                                    <li class="nav-item">
-                                        <button class="btn btn-primary" data-bs-toggle="tab" data-bs-target="#toprated">Top Rated</button>
-                                    </li>
-                                    <li class="nav-item">
-                                        <button class="btn btn-primary" data-bs-toggle="tab" data-bs-target="#featured">Featured</button>
-                                    </li>
-                                </ul>
+
+            <section class="py-12 px-4 max-w-7xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-2xl font-light text-black mb-2" style="font-family: 'Orbitron', sans-serif;">Featured Products</h2>
+                    <div class="w-20 h-px bg-black mx-auto"></div>
+                </div>
+
+                <div id="product-carousel" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    @foreach ($products->take(8) as $product)
+                        <div class="group" 
+                            data-product-id="{{ $product['id'] }}" 
+                            data-product-name="{{ $product['name'] }}" 
+                            data-product-image="{{ $product['image'] }}" 
+                            data-product-type="{{ $product['type'] }}" 
+                            data-product-desc="{{ $product['desc'] }}" 
+                            data-product-price="{{ $product['dis_price'] }}">
+                            <div class="relative bg-white border border-gray-200 overflow-hidden mb-3">
+                                <img src="{{ $product['image'] }}" 
+                                    alt="{{ $product['name'] }}" 
+                                    class="w-full h-64 object-cover">
                             </div>
-                            <!-- Tab End -->
-                        </div>
-                    </div>
-                    <!-- Section Title & Tab End -->
-                    <div class="row">
-                        <div class="col">
-                            <div class="tab-content mt-60px">
-                                <!-- 1st tab start -->
-                                <div class="tab-pane fade show active" id="newarrivals">
-                                    <div class="row mb-n-30px">
-                                        <?php
-                                        foreach ($products as $product) {
-                                            if ($product['tags'] == "New Arrivals") {
-                                                echo "<div class='col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px bg-transparent'>
-                                            <!-- Single Prodect -->
-                                            <div class='product'>
-                                                <span class='badges'>
-                                                    <span class='sale'>Sale</span>
-                                                    <span class='new'>New</span>
-                                                </span>
-                                                <div class='thumb'>
-                                                    <a href='singleProduct?product-id={$product['id']}' class='image'>
-                                                        <img src='{$product['image']}' class='aspect-square object-contain object-center' alt='Product' />
-                                                        <img class='hover-image' src='{$product['image']}' alt='Product' />
-                                                    </a>
-                                                </div>
-                                                <div class='content bg-transparent'>
-                                                    <span class='category text-white'><a href='#' class=' text-white'>{$product['type']}</a></span>
-                                                    <h5 class='title'>
-                                                        <a href='singleProduct?product-id={$product['id']}' class='line-clamp-1 text-center px-3 text-white'>
-                                                            {$product['name']}
-                                                        </a>  
-                                                    </h5>
-                                                    <span class='price'>
-                                                        <span class='new'>{$product['dis_price']}</span>
-                                                    </span>
-                                                </div>
-                                                <div class='actions items-center'>
-                                                    <button title='Add To Cart' class='action add-to-cart' data-bs-toggle='modal' data-bs-target='#exampleModal-Cart' onClick='addToCart({$product['id']});'>
-                                                        <i class='pe-7s-shopbag'></i>
-                                                    </button>
-                                                   <button class='action wishlist' title='Wishlist' data-bs-toggle='modal' data-bs-target='#exampleModal-Wishlist' onClick='addToWishlist({$product['id']});'>
-                                                        <i class='pe-7s-like'></i>
-                                                    </button>
-                                                    <button class='action quickview' data-link-action='quickview' title='Quick view' data-bs-toggle='modal' data-bs-target='#exampleModal' 
-                                                            data-product-id='{$product['id']}' 
-                                                            data-product-name='{$product['name']}' 
-                                                            data-product-image='{$product['image']}' 
-                                                            data-product-type='{$product['type']}' 
-                                                            data-product-desc='{$product['desc']}' 
-                                                            data-product-price='{$product['dis_price']}'>
-                                                        <i class='pe-7s-look'></i>
-                                                    </button>  
-                                                  </div>
-                                            </div>
-                                        </div>";
-                                            }
-                                        }
-                                        ?>
-                                    </div>
+                            
+                            <div class="space-y-2 min-h-[120px]">
+                                <h3 class="text-base font-light text-black truncate">{{ $product['name'] }}</h3>
+                                <p class="text-xs text-gray-600 font-light">{{ \Illuminate\Support\Str::limit($product['desc'], 50, '...') }}</p>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-base text-black">{{ $product['dis_price'] }}</span>
+                                    @if (isset($product['ret_price']) && $product['dis_price'] !== $product['ret_price'])
+                                        <span class="text-xs text-gray-400 line-through">{{ $product['ret_price'] }}</span>
+                                    @endif
                                 </div>
-                                <!-- 2nd tab start -->
-                                <div class="tab-pane fade" id="toprated">
-                                    <div class="row">
-                                        <?php
-                                        foreach ($products as $product) {
-                                            if ($product['tags'] == "Top Rated") {
-                                                echo "<div class='col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px bg-transparent'>
-                                            <!-- Single Prodect -->
-                                            <div class='product'>
-                                                <span class='badges'>
-                                                    <span class='sale'>Sale</span>
-                                                </span>
-                                                <div class='thumb'>
-                                                    <a href='singleProduct?product-id={$product['id']}' class='image'>
-                                                        <img src='{$product['image']}' class='aspect-square object-contain object-center' alt='Product' />
-                                                        <img class='hover-image' src='{$product['image']}' alt='Product' />
-                                                    </a>
-                                                </div>
-                                                <div class='content bg-transparent'>
-                                                    <span class='category '><a href='#' class=' text-white'>{$product['type']}</a></span>
-                                                    <h5 class='title'>
-                                                        <a href='singleProduct?product-id={$product['id']}' class='line-clamp-1 text-center px-3 text-white'>
-                                                            {$product['name']}
-                                                        </a>
-                                                    </h5>
-                                                    <span class='price'>
-                                                        <span class='new'>{$product['dis_price']}</span>
-                                                    </span>
-                                                </div>
-                                                <div class='actions items-center'>
-                                                    <button title='Add To Cart' class='action add-to-cart' data-bs-toggle='modal' data-bs-target='#exampleModal-Cart' onClick='addToCart({$product['id']});'>
-                                                        <i class='pe-7s-shopbag'></i>
-                                                    </button>
-                                                    <button class='action wishlist' title='Wishlist' data-bs-toggle='modal' data-bs-target='#exampleModal-Wishlist' onClick='addToWishlist({$product['id']});'>
-                                                        <i class='pe-7s-like'></i>
-                                                    </button>
-                                                    <button class='action quickview' data-link-action='quickview' title='Quick view' data-bs-toggle='modal' data-bs-target='#exampleModal' 
-                                                            data-product-id='{$product['id']}' 
-                                                            data-product-name='{$product['name']}' 
-                                                            data-product-image='{$product['image']}' 
-                                                            data-product-type='{$product['type']}' 
-                                                             data-product-desc='{$product['desc']}' 
-                                                            data-product-price='{$product['dis_price']}'>
-                                                        <i class='pe-7s-look'></i>
-                                                    </button>  
-                                             </div>
-                                            </div>
-                                        </div>";
-                                            }
-                                        }
-                                        ?>
-                                    </div>
-                                </div>
-                                <!-- 3rd tab start -->
-                                <div class="tab-pane fade" id="featured">
-                                    <div class="row">
-                                        <?php
-                                        foreach ($products as $product) {
-                                            if ($product['tags'] == "Featured") {
-                                                echo "<div class='col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px bg-transparent'>
-                                            <!-- Single Prodect -->
-                                            <div class='product'>
-                                                <span class='badges'>
-                                                    <span class='sale'>Sale</span>
-                                                </span>
-                                                <div class='thumb'>
-                                                    <a href='singleProduct?product-id={$product['id']}' class='image'>
-                                                        <img src='{$product['image']}' class='aspect-square object-contain object-center' alt='Product' />
-                                                        <img class='hover-image' src='{$product['image']}' alt='Product' />
-                                                    </a>
-                                                </div>
-                                                <div class='content bg-transparent'>
-                                                    <span class='category '><a href='#' class=' text-white'>{$product['type']}</a></span>
-                                                    <h5 class='title'>
-                                                        <a href='singleProduct?product-id={$product['id']}' class='line-clamp-1 text-center px-3 text-white'>
-                                                            {$product['name']}
-                                                        </a>
-                                                    </h5>
-                                                    <span class='price'>
-                                                        <span class='new'>{$product['dis_price']}</span>
-                                                    </span>
-                                                </div>
-                                                <div class='actions items-center'>
-                                                    <button title='Add To Cart' class='action add-to-cart' data-bs-toggle='modal' data-bs-target='#exampleModal-Cart' onClick='addToCart({$product['id']});'>
-                                                        <i class='pe-7s-shopbag'></i>
-                                                    </button>
-                                                    <button class='action wishlist' title='Wishlist' data-bs-toggle='modal' data-bs-target='#exampleModal-Wishlist' onClick='addToWishlist({$product['id']});'>
-                                                        <i class='pe-7s-like'></i>
-                                                    </button>
-                                                    <button class='action quickview' data-link-action='quickview' title='Quick view' data-bs-toggle='modal' data-bs-target='#exampleModal' 
-                                                            data-product-id='{$product['id']}' 
-                                                            data-product-name='{$product['name']}' 
-                                                            data-product-image='{$product['image']}' 
-                                                            data-product-type='{$product['type']}' 
-                                                            data-product-desc='{$product['desc']}' 
-                                                            data-product-price='{$product['dis_price']}'>
-                                                        <i class='pe-7s-look'></i>
-                                                    </button>  
-                                                </div>
-                                            </div>
-                                        </div>";
-                                            }
-                                        }
-                                        ?>
-                                    </div>
+                                <div class="flex space-x-2">
+                                    <button class="add-to-cart-btn w-1/2 border border-black text-black py-2 text-xs font-light hover:bg-black hover:text-white transition-all duration-200" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart" onClick="addToCart({{ $product['id'] }});">
+                                        Add to Cart
+                                    </button>
+                                    <a href="/singleProduct?product-id={{ $product['id'] }}" class="w-1/2 border border-black text-black py-2 text-xs font-light hover:bg-black hover:text-white transition-all duration-200 text-center">
+                                        View Product
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
-            </div>
-            <!-- Fashion Area Start -->
-            <div class="fashion-area" data-bg-image="assets/images/fashion/fashion-bg.webp">
-                <div class="container h-100">
-                    <div class="row justify-content-center align-items-center h-100">
-                        <div class="col-12 text-center">
-                            <h2 class="title"> <span>Level Up</span> Your Laptop </h2>
-                            <a href="#" class="btn btn-primary text-capitalize m-auto">See Upgrades</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+                <script>
+                    // Store all products in a JavaScript array
+                    const allProducts = @json($products);
+                    const carousel = document.getElementById('product-carousel');
+                    let currentIndex = 0;
+                    const productsPerPage = 8;
+                    const transitionDuration = 500; // 0.5s for fade transition
+
+                    function truncateDescription(text, limit = 40) {
+                        if (text.length <= limit) return text;
+                        return text.substring(0, limit - 3) + '...';
+                    }
+
+                    function renderProducts(startIndex) {
+                        const productsToShow = allProducts.slice(startIndex, startIndex + productsPerPage);
+                        carousel.style.opacity = 0; // Start fade out
+
+                        setTimeout(() => {
+                            carousel.innerHTML = ''; // Clear current products
+                            productsToShow.forEach(product => {
+                                const productCard = `
+                                    <div class="group" 
+                                        data-product-id="${product.id}" 
+                                        data-product-name="${product.name}" 
+                                        data-product-image="${product.image}" 
+                                        data-product-type="${product.type}" 
+                                        data-product-desc="${product.desc}" 
+                                        data-product-price="${product.dis_price}">
+                                        <div class="relative bg-white border border-gray-200 overflow-hidden mb-3">
+                                            <img src="${product.image}" alt="${product.name}" class="w-full h-64 object-cover">
+                                        </div>
+                                        <div class="space-y-2 min-h-[120px]">
+                                            <h3 class="text-base font-light text-black truncate">${product.name}</h3>
+                                            <p class="text-xs text-gray-600 font-light">${truncateDescription(product.desc)}</p>
+                                            <div class="flex items-center space-x-2">
+                                                <span class="text-base text-black">${product.dis_price}</span>
+                                                ${product.ret_price && product.dis_price !== product.ret_price 
+                                                    ? `<span class="text-xs text-gray-400 line-through">${product.ret_price}</span>` 
+                                                    : ''}
+                                            </div>
+                                            <div class="flex space-x-2">
+                                                <button class="add-to-cart-btn w-1/2 border border-black text-black py-2 text-xs font-light hover:bg-black hover:text-white transition-all duration-200" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart" onClick="addToCart(${product.id});">
+                                                    Add to Cart
+                                                </button>
+                                                <button 
+                                                    onclick="window.location.href='/singleProduct?product-id=${product.id}'"
+                                                    class="w-1/2 border border-black text-black py-2 text-xs font-light hover:bg-black hover:text-white transition-all duration-200 text-center">
+                                                    View Product
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+                                carousel.insertAdjacentHTML('beforeend', productCard);
+                            });
+                            carousel.style.opacity = 1; // Fade in
+                        }, transitionDuration);
+                    }
+
+                    function rotateProducts() {
+                        currentIndex = (currentIndex + productsPerPage) % allProducts.length;
+                        renderProducts(currentIndex);
+                    }
+
+                    // Initial render
+                    renderProducts(currentIndex);
+
+                    // Rotate every 3 seconds
+                    setInterval(rotateProducts, 5000);
+
+                    // Add fade transition CSS
+                    const style = document.createElement('style');
+                    style.innerHTML = `
+                        #product-carousel {
+                            transition: opacity ${transitionDuration}ms ease-in-out;
+                        }
+                    `;
+                    document.head.appendChild(style);
+                </script>
+            </section>
+            
+
             <!-- Feature product area start -->
-            <div class="feature-product-area py-[50px] dark-blue-bg">
-                <div class="container">
+            <div class="feature-product-area py-[50px] bg-black relative" 
+                style="background: url('assets/images/gaming.jpg') no-repeat center center / cover; background-attachment: fixed;">
+                
+                <!-- Dark Overlay -->
+                <div class="absolute top-0 left-0 w-full h-full bg-black/70 z-[1]"></div>
+
+                <div class="container relative z-[2]">
                     <div class="row">
                         <div class="col-12">
                             <div class="section-title text-center">
-                                <h2 class="title text-white">Special Offers</h2>
-                                <p class="text-white">There are many special offers available</p>
+                                <h2 class="title text-white" style="font-family: 'Orbitron', sans-serif;">Special Offers</h2>
+                                <p class="text-white" style="font-family: 'Orbitron', sans-serif;">Check out our latest high-performance PC combos</p>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 max-[992px]:mb-[30px]">
-                            <div class="single-feature-content h-full">
-                                <div class="feature-image max-[992px]:pb-[10px]">
-                                    <img src="assets/images/feature-image/e2509820e3d308e6c97cb663f1c2357bb.jpg" alt="" class="h-full">
+
+                    <div class="row g-4">
+                        <!-- Package 1 -->
+                        <div class="col-lg-6 d-flex">
+                            <div class="feature-right-content  p-4 rounded w-100 flex flex-col md:flex-row gap-4">
+                                <div class="image-side w-full md:w-1/2">
+                                    <img src="assets/images/feature-image/desktop-wallpaper-3d-mobile-broken-motherboard.jpg" 
+                                        alt="" 
+                                        class="w-full h-full object-cover rounded">
+                                </div>
+                                <div class="content-side w-full md:w-1/2 flex flex-col justify-between">
+                                    <div class="prize-content mb-3">
+                                        <h5 class="title text-white"><a class="text-white" href="single-product.php">GAMING BEAST COMBO</a></h5>
+                                        <span class="price text-white">
+                                            <span class="old text-white">160,000 LKR</span>
+                                            <span class="new text-white">155,000 LKR</span>
+                                        </span>
+                                    </div>
+                                    <ul class="product-feature text-white list-disc pl-5">
+                                        <li>AMD Ryzen 7 7800X3D Processor</li>
+                                        <li>MSI B650 TOMAHAWK WiFi Motherboard</li>
+                                        <li>Corsair Vengeance 32GB DDR5 RAM</li>
+                                        <li>Samsung 980 PRO 500GB NVMe SSD</li>
+                                        <li>Corsair RM750 80+ Gold Power Supply</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6 col-lg-6">
-                            <div class="feature-right-content">
-                                <div class="image-side">
-                                    <img src="assets/images/feature-image/desktop-wallpaper-3d-mobile-broken-motherboard.jpg" alt="" class="h-full">
-                                    <button title="Add To Cart" class="action add-to-cart " ><i
-                                            class="pe-7s-shopbag"></i></button>
+
+                        <!-- Package 2 -->
+                        <div class="col-lg-6 d-flex">
+                            <div class="feature-right-content  p-4 rounded w-100 flex flex-col md:flex-row gap-4">
+                                <div class="image-side w-full md:w-1/2">
+                                    <img src="assets/images/feature-image/republic-of-gamers-motherboard-red-background-logo-4k-sd-1280x2120.jpg" 
+                                        alt="" 
+                                        class="w-full h-full object-cover rounded">
                                 </div>
-                                <div class="content-side">
-                                    <div class="prize-content">
-                                        <h5 class="title text-white"><a class=" text-white" href="single-product.php">POWERFUL PC COMBO</a></h5>
+                                <div class="content-side w-full md:w-1/2 flex flex-col justify-between">
+                                    <div class="prize-content mb-3">
+                                        <h5 class="title text-white"><a class="text-white" href="single-product.php">INTEL ULTIMATE COMBO</a></h5>
                                         <span class="price text-white">
-                                            <span class="old text-white">143,000 LKR</span>
-                                            <span class="new text-white">139,000 LKR</span>
+                                            <span class="old text-white">175,000 LKR</span>
+                                            <span class="new text-white">169,000 LKR</span>
                                         </span>
                                     </div>
-                                    <div class="product-feature text-white">
-                                        <ul class="">
-                                            <li class=" text-white">AMD RYZEN 5 7600x PROCESSOR</li>
-                                            <li class=" text-white">PRO A620M-E MOTHERBOARD</li>
-                                            <li class=" text-white">VENGEANCE 16GB DDR5 RAM</li>
-                                            <li class=" text-white">LEXAR NM620 256GB NVMe</li>
-                                            <li class=" text-white">CX SERIES CX550 550W 80 PLUS POWERSUPPLY</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="feature-right-content mt-30px" style="margin-bottom:5px">
-                                <div class="image-side">
-                                    <img src="assets/images/feature-image/republic-of-gamers-motherboard-red-background-logo-4k-sd-1280x2120.jpg" alt="" class="h-full">
-                                    <button title="Add To Cart" class="action add-to-cart " ><i
-                                            class="pe-7s-shopbag"></i></button>
-                                </div>
-                                <div class="content-side">
-                                    <div class="prize-content">
-                                        <h5 class="title"><a class=" text-white" href="single-product.php">POWERFUL PC COMBO</a></h5>
-                                        <span class="price text-white">
-                                            <span class="old">153,000 LKR</span>
-                                            <span class="new">149,500 LKR</span>
-                                        </span>
-                                    </div>
-                                    <div class="product-feature">
-                                        <ul>
-                                            <li class=" text-white">INTEL i5 12490F PROCESSOR</li>
-                                            <li class=" text-white">B760 BOMBER WIFI MOTHERBOARD</li>
-                                            <li class=" text-white">TRIDENT Z5 RGB RAM</li>
-                                            <li class=" text-white">LEXAR NM620 256GB NVMe</li>
-                                        </ul>
-                                    </div>
+                                    <ul class="product-feature text-white list-disc pl-5">
+                                        <li>Intel Core i7 13700KF Processor</li>
+                                        <li>ASUS ROG Strix Z790-F Gaming WiFi</li>
+                                        <li>G.SKILL Trident Z5 RGB 32GB DDR5 RAM</li>
+                                        <li>Kingston Fury Renegade 1TB NVMe SSD</li>
+                                        <li>Seasonic Focus GX-750 80+ Gold PSU</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+
+
+            
             <!-- Testimonial area start -->
             <div class="main-blog-area py-[50px] light-blue-bg">
                 <div class="container">
