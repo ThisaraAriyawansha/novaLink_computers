@@ -339,8 +339,9 @@
         </div>
         <div class="foot p-4 border-t border-gray-800">
             <div class="buttons flex flex-col gap-3">
-                <a href="{{ route('cart') }}" class="btn block w-full text-center py-3 border border-gray-600 text-white rounded-lg hover:bg-gray-800 transition-colors duration-200">View Cart</a>
-                <a href="{{ route('cart') }}" class="btn block w-full text-center py-3 border border-gray-600 text-white rounded-lg hover:bg-gray-800 transition-colors duration-200">Checkout</a>
+                <a href="{{ route('cart') }}" class="btn block w-full text-center py-2 text-sm border border-gray-600 text-white rounded-md hover:bg-gray-800 transition-colors duration-200">View Cart</a>
+                <a href="{{ route('cart') }}" class="btn block w-full text-center py-2 text-sm border border-gray-600 text-white rounded-md hover:bg-gray-800 transition-colors duration-200 mt-2">Checkout</a>
+
             </div>
         </div>
     </div>
@@ -360,8 +361,9 @@
         </div>
         <div class="foot p-4 border-t border-gray-800">
             <div class="buttons flex flex-col gap-3">
-                <a href="{{ route('wishlist') }}" class="btn block w-full text-center py-3 border border-gray-600 text-white rounded-lg hover:bg-gray-800 transition-colors duration-200">View Wishlist</a>
-                <a href="{{ route('cart') }}" class="btn block w-full text-center py-3 border border-gray-600 text-white rounded-lg hover:bg-gray-800 transition-colors duration-200">View Cart</a>
+                <a href="{{ route('wishlist') }}" class="btn block w-full text-center py-2 text-sm border border-gray-600 text-white rounded-md hover:bg-gray-800 transition-colors duration-200">View Wishlist</a>
+                <a href="{{ route('cart') }}" class="btn block w-full text-center py-2 text-sm border border-gray-600 text-white rounded-md hover:bg-gray-800 transition-colors duration-200 mt-2">View Cart</a>
+
             </div>
         </div>
     </div>
