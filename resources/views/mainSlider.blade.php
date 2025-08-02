@@ -173,7 +173,7 @@
                             <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'RAM']) }}" class="shop-button" style="display: inline-block; background-color: #000000; color: #ffffff; padding: 0.75rem 1.5rem; border-radius: 0.25rem; text-decoration: none; font-size: 1rem; text-transform: capitalize; margin-top: 1rem; transition: transform 0.3s ease; align-self: flex-start; font-family: 'Orbitron', sans-serif;" onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';">Shop Accessories</a>
                         </div>
                         <div class="product-image-container">
-                            <img src="assets/images/Banner_section/Restored-Gaming-Keyboard-Mouse-Combo-Headset-RGB-Backlit-Keyboard-USB-Wired-Mouse-Lighted-Headset-Microphone-Set-For-Gamer-Refurbished_7db8ee39-541a-4baf-8774-98d78d947c9c.d81aa19354d4a57b23ba34f9fc18.png" alt="Accessories" class="product-image" />
+                            <img src="assets/images/Banner_section/Sample.png" alt="Accessories" class="product-image" />
                         </div>
                     </div>
                 </div>
