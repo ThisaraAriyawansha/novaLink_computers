@@ -410,7 +410,7 @@
                                 </div>
                                 <div class="content-side w-full md:w-1/2 flex flex-col justify-between">
                                     <div class="prize-content mb-3">
-                                        <h5 class="title text-white"><a class="text-white" href="single-product.php">GAMING BEAST COMBO</a></h5>
+                                        <h5 class="title text-white"><a class="text-white" href="#">GAMING BEAST COMBO</a></h5>
                                         <span class="price text-white">
                                             <span class="old text-white">160,000 LKR</span>
                                             <span class="new text-white">155,000 LKR</span>
@@ -437,7 +437,7 @@
                                 </div>
                                 <div class="content-side w-full md:w-1/2 flex flex-col justify-between">
                                     <div class="prize-content mb-3">
-                                        <h5 class="title text-white"><a class="text-white" href="single-product.php">INTEL ULTIMATE COMBO</a></h5>
+                                        <h5 class="title text-white"><a class="text-white" href="#">INTEL ULTIMATE COMBO</a></h5>
                                         <span class="price text-white">
                                             <span class="old text-white">175,000 LKR</span>
                                             <span class="new text-white">169,000 LKR</span>
@@ -462,40 +462,51 @@
 
             
             <!-- Testimonial area start -->
-            <div class="main-blog-area py-[50px] light-blue-bg">
-                <div class="container">
-                    <!-- section title start -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="section-title text-center mb-30px0px">
-                                <h2 class="title text-white">Latest Blogs</h2>
-                                <p class="text-white">Discover our latest articles and updates</p>
-                            </div>
-                        </div>
+            <div class="blog-section py-16 bg-white">
+                <div class="container mx-auto px-4">
+                    <!-- Section Title -->
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl font-semibold text-black mb-2 flex items-center justify-center" style="font-family: 'Orbitron', sans-serif;">
+                            <i class="fas fa-lightbulb mr-2"></i> Latest Insights
+                        </h2>
+                        <p class="text-black" style="font-family: 'Orbitron', sans-serif;">Explore our newest articles and updates</p>
                     </div>
-                    <!-- section title start -->
-                    <div class="row">
+
+                    <!-- Blog Posts Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         @foreach ($blogs as $blog)
-                            <div class="col-lg-6 col-sm-6 mb-xs-30px">
-                                <div class="single-blog">
-                                    <div class="blog-image">
-                                        <a href="{{ route('blog.show') . '?blog-id=' . $blog['id'] }}"><img src="{{ $blog['image'] }}" class="img-responsive w-100" alt="{{ $blog['title'] }}"></a>
+                            <div class="blog-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+                                <div class="blog-image-container">
+                                    <a href="{{ route('blog.show') . '?blog-id=' . $blog['id'] }}">
+                                        <img src="{{ $blog['image'] }}" alt="{{ $blog['title'] }}" class="w-full h-96 object-cover">
+                                    </a>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex items-center text-sm text-black mb-3">
+                                        <span class="flex items-center mr-4">
+                                            <i class="fas fa-calendar-alt w-4 h-4 mr-1 text-black"></i>
+                                            {{ $blog['date'] }}
+                                        </span>
+                                        <span class="flex items-center">
+                                            <i class="fas fa-user w-4 h-4 mr-1 text-black"></i>
+                                            Admin
+                                        </span>
                                     </div>
-                                    <div class="lg:pl-3 max-lg:pt-3 flex flex-col gap-2 justify-center">
-                                        <div class="blog-athor-date line-height-1">
-                                            <span class="blog-date text-white"><i class="fa fa-calendar text-white" aria-hidden="true"></i> {{ $blog['date'] }}</span>
-                                            <span><a class="blog-author text-white" href="#"><i class="fa fa-user text-white" aria-hidden="true"></i> Admin</a></span>
-                                        </div>
-                                        <h5 class="blog-heading mt-2"><a class="blog-heading-link text-white" href="{{ route('blog.show') . '?blog-id=' . $blog['id'] }}">{{ $blog['title'] }}</a></h5>
-                                        <h5 class="blog-heading"><a class="blog-heading-link text-white text-sm" href="{{ route('blog.show') . '?blog-id=' . $blog['id'] }}">{{ $blog['description'] }}</a></h5>
-                                        <a href="{{ route('blog.show') . '?blog-id=' . $blog['id'] }}" class="btn btn-primary blog-btn">Read More</a>
-                                    </div>
+                                    <h3 class="text-xl font-semibold text-black mb-2 hover:text-blue-600 transition-colors flex items-center">
+                                        <a class="text-black" href="{{ route('blog.show') . '?blog-id=' . $blog['id'] }}" style="font-family: 'Orbitron', sans-serif;">{{ $blog['title'] }}</a>
+                                    </h3>
+                                    <p class="text-black mb-4" >{{ $blog['description'] }}</p>
+                                    <a href="{{ route('blog.show') . '?blog-id=' . $blog['id'] }}" class="inline-flex items-center text-black hover:text-blue-800 font-medium transition-colors" style="font-family: 'Orbitron', sans-serif;">
+                                        Read more
+                                        <i class="fas fa-arrow-right w-4 h-4 ml-1"></i>
+                                    </a>
                                 </div>
                             </div>
                         @endforeach
+                        
                         @if($blogs->isEmpty())
-                            <div class="col-12 text-center">
-                                <p class="text-white">No blogs available at the moment.</p>
+                            <div class="col-span-full text-center py-12">
+                                <p class="text-black">No articles available at this time.</p>
                             </div>
                         @endif
                     </div>
