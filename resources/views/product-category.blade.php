@@ -486,7 +486,7 @@
 
                                                                 </div>
                                                                 <span class="category">
-                                                                    <a href="#" class="text-black">{{ $product['type'] }}</a>
+                                                                    <a href="#" class="text-black" >{{ $product['type'] }}</a>
                                                                 </span>
                                                                 <h5 class="title">
                                                                     <a href="{{ route('singleProduct', ['product-id' => $product['id']]) }}" class="text-black line-clamp-1 text-center px-3">
@@ -494,26 +494,44 @@
                                                                     </a>
                                                                 </h5>
                                                                 <span class="price">
-                                                                    <span class="new text-black">{{ $product['discounted_price'] }} LKR</span>
+                                                                    <span class="new text-black">Rs. {{ $product['discounted_price'] }}</span>
+                                                                </span>
+                                                                <span class="price">
+                                                                @if (isset($product['retail_price']) && $product['discounted_price'] !== $product['ret_price'])
+                                                                    <span class="line-through text-sm text-gray-700">Rs. {{ $product['retail_price'] }}</span>
+                                                                @endif
                                                                 </span>
                                                             </div>
-                                                            <div class="actions items-center">
-                                                                <button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart" onClick="addToCartProduct({{ $product['id'] }});">
-                                                                    <i class="pe-7s-shopbag"></i>
-                                                                </button>
-                                                                <button class="action wishlist" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist" onClick="addToWishlistProduct({{ $product['id'] }});">
-                                                                    <i class="pe-7s-like"></i>
-                                                                </button>
-                                                                <button class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                                                    data-product-id="{{ $product['id'] }}"
-                                                                    data-product-name="{{ $product['name'] }}"
-                                                                    data-product-image="{{ $product['image'] }}"
-                                                                    data-product-type="{{ $product['type'] }}"
-                                                                    data-product-distription="{{ $product['description'] }}"
-                                                                    data-product-price="{{ $product['discounted_price'] }}">
+                                                            <!-- Actions -->
+                                                            <div class="p-4 pt-0 flex justify-between items-center">
+                                                                <a 
+                                                                    class="bg-black text-white text-sm font-medium px-4 py-2 rounded-md hover:bg-gray-800 transition-all duration-300"
+                                                                    href="javascript:void(0);"
+                                                                    data-bs-toggle="modal" 
+                                                                    data-bs-target="#exampleModal-Cart"
+                                                                    onclick="addToCartProduct({{ $product['id'] }});"
+                                                                >
+                                                                    Buy Now
+                                                                </a>
+                                                                <div class="flex gap-2">
+                                                                    <button class="text-gray-600 hover:text-gray-900" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart" onclick="addToCartProduct({{ $product['id'] }});">
+                                                                        <i class="pe-7s-cart"></i>
+                                                                    </button>
+                                                                    <button class="text-gray-600 hover:text-gray-900" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist" onclick="addToWishlistProduct({{ $product['id'] }});">
+                                                                        <i class="pe-7s-like"></i>
+                                                                    </button>
+                                                                <button class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal" 
+                                                                        data-product-id="{{ $product['id'] }}" 
+                                                                        data-product-name="{{ $product['name'] }}" 
+                                                                        data-product-image="{{ $product['image'] }}" 
+                                                                        data-product-type="{{ $product['type'] }}" 
+                                                                        data-product-distription="{{ $product['description'] }}" 
+                                                                        data-product-price="{{ $product['discounted_price'] }}">
                                                                     <i class="pe-7s-look"></i>
                                                                 </button>
+                                                                </div>
                                                             </div>
+                                                            
                                                         </div>
                                                     </div>
                                                 @endforeach
