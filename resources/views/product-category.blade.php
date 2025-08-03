@@ -22,6 +22,26 @@
     <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
     <!-- Style CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+    input[type=range] {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 8px;
+        background: #000;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+    
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        background: #fff;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+</style>
 </head>
 
 <body>
@@ -86,237 +106,91 @@
         <div class="shop-category-area relative" >
             <div class="flex p-6 gap-6 max-lg:flex-col relative z-10">
 
-            <div class="relative h-fit lg:w-1/5 bg-gray-200 relative shadow-lg p-3 space-y-6 text-white rounded-md max-lg:hidden">
-                    <div class="grid grid-cols-1 gap-6">
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'LAPTOPS']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between"
-                            style="border-bottom: 1px solid #ebebeb;">
-                            <img src="assets/images/category/1697178958_laptops_laptop.png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">LAPTOPS</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'brand' => 'ASUS']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
 
-                            <img src="assets/images/category/1691938347_asus_rog_29-asus-logo-rog-icon-symbol-26.png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">ASUS ROG</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'APPLE PRODUCTS']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
-
-                            <img src="assets/images/category/1691938365_apple_products_33-apple.png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">APPLE PRODUCTS</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'GAMING CONSOLE']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
-
-                            <img src="assets/images/category/1697179045_gaming_console_wireless2 (8).png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">GAMING CONSOLE</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'PROCESSOR']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
-
-                            <img src="assets/images/category/1697179065_processors_1 (7).png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">PROCESSORS</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'MOTHERBOARD']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
-
-                            <img src="assets/images/category/1697179145_motherboards_board.png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">MOTHERBOARDS</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'RAM']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
-
-                            <img src="assets/images/category/1697179167_memory_ram_ram memory.png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">MEMORY (RAM)</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'GRAPHIC CARDS']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
-
-                            <img src="assets/images/category/1697179212_graphic_cards_vga card.png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">GRAPHIC CARDS</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'brand' => 'ASUS']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
-
-                            <img src="assets/images/category/1691938461_powered_by_asus_31-Powered_by_ASUS_Black.png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">POWERED BY ASUS</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'COMMERCIAL SOLUTIONS']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
-
-                            <img src="assets/images/category/1691938477_commercial_solutions_26-Asus Logo.png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">COMMERCIAL SOLUTIONS</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'CASINGS']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
-
-                            <img src="assets/images/category/1697179233_casings_wireless2 (7).png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">CASINGS</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'POWER SUPPLY']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
-
-                            <img src="assets/images/category/1697179291_power_supply_ups_surge_protectors_cable.png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">POWER SUPPLY, UPS & SURGE PROTECTORS</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'COOLING & LIGHTING']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
-
-                            <img src="assets/images/category/1697179312_cooling_and_lighting_gaming fan.png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">COOLING & LIGHTING</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'STORAGE & NAS']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
-
-                            <img src="assets/images/category/1697179339_storage_and_nas_hard disk.png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">STORAGE & NAS</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'MONITORS & ACCESSORIES']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
-
-                            <img src="assets/images/category/1697179351_monitors_and_accessories_monitor.png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">MONITORS & ACCESSORIES</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'OPTICAL DRIVERS & PRINTERS']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
-
-                            <img src="assets/images/category/1697179398_optical_drivers_and_printers_wireless2 (23).png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">OPTICAL DRIVERS & PRINTERS</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'SPEAKERS & HEADPHONES']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
-
-                            <img src="assets/images/category/1697179477_speakers_and_headphones_wireless2 (15).png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">SPEAKERS & HEADPHONES</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'KEYBOARDS, MOUSE & GAMEPADS']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
-
-                            <img src="assets/images/category/1697179509_keyboars_mice_and_gamepads_wireless2 (24).png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">KEYBOARDS, MOUSE & GAMEPADS</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'GRAPHICS TABLET / TAB']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
-
-                            <img src="assets/images/category/1691938652_graphics_tablet_tab_35-1077685.png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">GRAPHICS TABLET / TAB</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'DESKTOP WORKSTATIONS']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
-
-                            <img src="assets/images/category/1697179672_desktop_workstations_cpu 2.png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">DESKTOP WORKSTATIONS</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'GAMING DESKTOPS']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
-
-                            <img src="assets/images/category/1691938688_gaming_desktops_20-3312339-200.png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">GAMING DESKTOPS</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'BUDGET DESKTOP COMPUTERS']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
-
-                            <img src="assets/images/category/1697179650_budget_desktop_computers_cpu.png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">BUDGET DESKTOP COMPUTERS</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'GAMING CHAIRS']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
-
-                            <img src="assets/images/category/1691938742_gaming_chairs_27-barber-chair.png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">GAMING CHAIRS</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'CABLES & CONNECTORS']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
-
-                            <img src="assets/images/category/1697179564_cables_and_connetctors_power cable.png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">CABLES & CONNECTORS</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'EXTERNAL STORAGE']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
-
-                            <img src="assets/images/category/1697179575_external_storage_wireless2 (20).png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">EXTERNAL STORAGE</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'LIVE STREAMING & RECORDING']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
-
-                            <img src="assets/images/category/1691938788_live_streaminge_and_recording_14-2177994.png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">LIVE STREAMING & RECORDING</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'EXPANSION CARDS & NETWORKING']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
-
-                            <img src="assets/images/category/1697179622_expansion_cards_and_networking_wireless2 (10).png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">EXPANSION CARDS & NETWORKING</p>
-                        </a>
-                        <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'GIFT VOUCHER']) }}" class="bg-gray-500 p-4 shadow rounded flex items-center justify-between" style="border-bottom: 1px solid #ebebeb;">
-
-                            <img src="assets/images/category/1691938823_gift_voucher_36-png.png" alt="Laptop" class="w-10 h-10 object-contain">
-                            <p class="font-semibold text-end text-sm text-black">GIFT VOUCHER</p>
-                        </a>
-                    </div>
-                </div>
                 <!--filter controls-->
-                <form class="relative h-fit bg-gray-200 shadow-lg p-3 space-y-6 text-white rounded-md lg:w-1/5 <?= $filter !== "ALL" ? "" : "hidden" ?>" method="GET" action="{{ route('product.category') }}">
-    <div class="absolute left-0 top-0 w-full h-full"></div>
-    <!-- Preserve existing filter and sort parameters -->
-    <input type="hidden" name="filter" value="<?php echo htmlspecialchars($_GET['filter'] ?? 'ALL'); ?>">
-    <input type="hidden" name="sort" value="<?php echo htmlspecialchars($_GET['sort'] ?? ''); ?>">
-    <input type="hidden" name="brand" value="<?php echo htmlspecialchars($_GET['brand'] ?? ''); ?>">
+            <form class="bg-gray-100 p-2 rounded-md lg:w-1/5" method="GET" action="{{ route('product.category') }}">
+                <!-- Preserve existing filter and sort parameters -->
+                <input type="hidden" name="filter" value="<?php echo htmlspecialchars($_GET['filter'] ?? 'ALL'); ?>">
+                <input type="hidden" name="sort" value="<?php echo htmlspecialchars($_GET['sort'] ?? ''); ?>">
+                <input type="hidden" name="brand" value="<?php echo htmlspecialchars($_GET['brand'] ?? ''); ?>">
 
-    <!-- Toggle Button -->
-    <button type="button" onclick="document.getElementById('expandable').classList.toggle('h-8'); document.getElementById('expandable').classList.toggle('h-fit');" class="lg:hidden absolute right-6 z-10 border px-3 py-1 rounded">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
-            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
-            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
-        </svg>
-    </button>
+                <!-- Toggle Button -->
+                <button type="button" onclick="document.getElementById('expandable').classList.toggle('h-8'); document.getElementById('expandable').classList.toggle('h-fit');" class="lg:hidden absolute right-4 top-2 p-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                    </svg>
+                </button>
 
-    <div id="expandable" class="relative h-fit transition-[height] duration-300 ease-in-out overflow-hidden">
-        <h3 class="text-lg font-semibold mb-4 text-black">Filters</h3>
+                <div id="expandable" class="h-fit transition-[height] duration-300 ease-in-out overflow-hidden">
+                    <h3 class="text-base font-medium mb-2 text-black" style="font-family: 'Orbitron', sans-serif;">Filters</h3>
 
-        <!-- Price Range Filter -->
-        <div class="mb-6">
-            <h5 class="font-medium mb-3 text-black">Price Range</h5>
-            <div class="flex flex-col space-y-2">
-                <div class="flex flex-col space-x-4">
-                    <span class="text-black">Min: Rs. <span id="minPrice"><?php echo htmlspecialchars($_GET['price_min'] ?? '0'); ?></span></span>
-                    <input type="range" name="price_min" min="0" max="2000000" step="1000" value="<?php echo htmlspecialchars($_GET['price_min'] ?? '0'); ?>" class="w-full" oninput="document.getElementById('minPrice').textContent = this.value">
-                    <span class="text-black">Max: Rs. <span id="maxPrice"><?php echo htmlspecialchars($_GET['price_max'] ?? '2000000'); ?></span></span>
-                    <input type="range" name="price_max" min="0" max="2000000" step="1000" value="<?php echo htmlspecialchars($_GET['price_max'] ?? '2000000'); ?>" class="w-full" oninput="document.getElementById('maxPrice').textContent = this.value">
-                </div>
-            </div>
-        </div>
-
-        <!-- Warranty Filter -->
-        <div class="mb-6">
-            <h5 class="font-medium mb-3 text-black">Warranty</h5>
-            <div class="space-y-2 flex flex-col">
-                @foreach(['all' => 'All', '1 year Warranty' => '1 Year Warranty', '2 year Warranty' => '2 Year Warranty', '3 year Warranty' => '3 Year Warranty', '1 months warranty' => '1 Months Warranty', '3 months warranty' => '3 Months Warranty', '6 months warranty' => '6 Months Warranty'] as $value => $label)
-                    <label class="d-flex gap-2 items-center space-x-2">
-                        <input type="radio" name="warranty" value="{{ $value }}" {{ ($warranty ?? 'all') === $value ? 'checked' : '' }} class="text-blue-600" style="width: 15px; height: 15px;">
-                        <span class="text-black">{{ $label }}</span>
-                    </label>
-                @endforeach
-            </div>
-        </div>
-
-        <!-- Stock Status Filter -->
-        <div class="mb-6">
-            <h5 class="font-medium mb-3 text-black">Stock Status</h5>
-            <div class="space-y-2">
-                @foreach(['ALL' => 'All', 'In Stock' => 'In Stock', 'Out of Stock' => 'Out of Stock', 'Used' => 'Used'] as $value => $label)
-                    <label class="d-flex gap-2 items-center space-x-2">
-                        <input type="radio" name="stock" value="{{ $value }}" {{ ($stock ?? 'ALL') === $value ? 'checked' : '' }} class="text-blue-600" style="width: 15px; height: 15px;">
-                        <span class="text-black">{{ $label }}</span>
-                    </label>
-                @endforeach
-            </div>
-        </div>
-
-        <!-- Dynamic Product Features Filter -->
-        @if(isset($productFeatures) && $productFeatures->isNotEmpty())
-            @foreach($productFeatures as $featureName => $values)
-                <div class="mb-6">
-                    <h5 class="font-medium mb-3 text-black">{{ ucwords(str_replace('_', ' ', $featureName)) }}</h5>
-                    <div class="space-y-2 flex flex-col">
-                        @foreach($values as $value)
-                            <label class="d-flex gap-2 items-center space-x-2">
-                                <input type="checkbox" name="features[{{ $featureName }}][]" value="{{ $value }}" {{ in_array($value, request()->input("features.$featureName", [])) ? 'checked' : '' }} class="text-blue-600" style="width: 15px; height: 15px;">
-                                <span class="text-black">{{ $value }}</span>
-                            </label>
-                        @endforeach
+                    <!-- Price Range Filter -->
+                    <div class="mb-3">
+                        <h5 class="text-sm font-medium mb-1 text-black" style="font-family: 'Orbitron', sans-serif;">Price Range</h5>
+                        <div class="flex flex-col space-y-1">
+                            <span class="text-xs text-black" style="font-family: 'Orbitron', sans-serif;">Min: Rs. <span id="minPrice" style="font-family: 'Orbitron', sans-serif;"><?php echo htmlspecialchars($_GET['price_min'] ?? '0'); ?></span></span>
+                            <input type="range" name="price_min" min="0" max="2000000" step="1000" value="<?php echo htmlspecialchars($_GET['price_min'] ?? '0'); ?>" class="w-full" oninput="document.getElementById('minPrice').textContent = this.value">
+                            <span class="text-xs text-black" style="font-family: 'Orbitron', sans-serif;">Max: Rs. <span id="maxPrice" style="font-family: 'Orbitron', sans-serif;"><?php echo htmlspecialchars($_GET['price_max'] ?? '2000000'); ?></span></span>
+                            <input type="range" name="price_max" min="0" max="2000000" step="1000" value="<?php echo htmlspecialchars($_GET['price_max'] ?? '2000000'); ?>" class="w-full" style="background-color: #000000;" oninput="document.getElementById('maxPrice').textContent = this.value">
+                        </div>
                     </div>
-                </div>
-            @endforeach
-        @endif
 
-        <!-- Apply Filters Button -->
-        <button type="submit" class="w-full border py-2 px-4 rounded-md" style="background-color: #28337e; color: #ffffff;">
-            Apply Filters
-        </button>
-    </div>
-</form>
+                    <!-- Warranty Filter -->
+                    <div class="mb-3">
+                        <h5 class="text-sm font-medium mb-1 text-black" style="font-family: 'Orbitron', sans-serif;">Warranty</h5>
+                        <div class="">
+                            @foreach(['all' => 'All', '1 year Warranty' => '1 Year', '2 year Warranty' => '2 Year', '3 year Warranty' => '3 Year', '1 months warranty' => '1 Month', '3 months warranty' => '3 Month', '6 months warranty' => '6 Month'] as $value => $label)
+                                <label class="flex items-center space-x-1">
+                                    <input type="radio" name="warranty" value="{{ $value }}" {{ ($warranty ?? 'all') === $value ? 'checked' : '' }} style="width: 12px; height: 12px; accent-color: #000000; cursor: pointer;">
+                                    <span class="text-xs text-black" style="font-family: 'Orbitron', sans-serif;">{{ $label }}</span>
+                                </label>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <!-- Stock Status Filter -->
+                    <div class="mb-3">
+                        <h5 class="text-sm font-medium mb-1 text-black" style="font-family: 'Orbitron', sans-serif;">Stock Status</h5>
+                        <div class="space-y-1">
+                            @foreach(['ALL' => 'All', 'In Stock' => 'In Stock', 'Out of Stock' => 'Out of Stock', 'Used' => 'Used'] as $value => $label)
+                                <label class="flex items-center space-x-1">
+                                    <input type="radio" name="stock" value="{{ $value }}" {{ ($stock ?? 'ALL') === $value ? 'checked' : '' }} style="width: 12px; height: 12px; accent-color: #000000; cursor: pointer;">
+                                    <span class="text-xs text-black" style="font-family: 'Orbitron', sans-serif;">{{ $label }}</span>
+                                </label>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Product Features Filter -->
+                    @if(isset($productFeatures) && $productFeatures->isNotEmpty())
+                        @foreach($productFeatures as $featureName => $values)
+                            <div class="mb-3">
+                                <h5 class="text-sm font-medium mb-1 text-black" style="font-family: 'Orbitron', sans-serif;">{{ ucwords(str_replace('_', ' ', $featureName)) }}</h5>
+                                <div class="space-y-1 flex flex-col">
+                                    @foreach($values as $value)
+                                        <label class="flex items-center space-x-1">
+                                            <input type="checkbox" name="features[{{ $featureName }}][]" value="{{ $value }}" {{ in_array($value, request()->input("features.$featureName", [])) ? 'checked' : '' }} style="width: 12px; height: 12px; accent-color: black;">
+                                            <span class="text-xs text-black" style="font-family: 'Orbitron', sans-serif;">{{ $value }}</span>
+                                        </label>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
+
+                    <!-- Apply Filters Button -->
+                    <button type="submit" class="w-full py-1 px-3 rounded-md text-xs" style="background-color: #000000; color: #ffffff; font-family: 'Orbitron', sans-serif;">
+                        Apply
+                    </button>
+                </div>
+            </form>
 
 
 
 
                 <!--product cards-->
-                <div class="row <?= $filter !== "ALL" ? "lg:w-3/5" : "lg:w-4/5" ?>">
+                <div class="row <?= $filter !== "ALL" ? "lg:w-4/5" : "lg:w-4/5" ?>">
                     <div class="col-md-12">
                         <!-- Shop Top Area Start -->
                         <div class="shop-top-bar flex max-md:flex-col max-md:justify-center gap-3">
@@ -512,18 +386,9 @@
 
                             <!-- Tab Content Area End -->
                             <!--  Pagination Area Start -->
-                            <div class="pro-pagination-style text-center text-lg-end" data-aos="fade-up" data-aos-delay="200">
-                            <div class="pro-pagination-style text-center text-lg-end" data-aos="fade-up" data-aos-delay="200">
-                                    <div class="pages">
-                                        <div class="pagination">
-                                            {{ $products->appends(request()->query())->links() }}
-                                        </div>
-                                    </div>
-                                </div>
-
+                            <div class="text-center lg:text-end" data-aos="fade-up" data-aos-delay="200" style="font-family: 'Orbitron', sans-serif; font-size: 0.75rem;">
+                                {{ $products->appends(request()->query())->links() }}
                             </div>
-
-                            <!-- Add pagination below the product list -->
 
 
 
