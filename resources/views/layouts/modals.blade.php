@@ -49,7 +49,7 @@
                                     
                                     <div class="pricing-meta">
                                         <ul class="d-flex">
-                                            <li class="new-price" >From 125,000 LKR</li><li class="new-price" > LKR</li>
+                                            <li class="new-price" style="font-family: 'Poppins', sans-serif;" >From 125,000 LKR</li><li class="new-price" style="font-family: 'Poppins', sans-serif;" > LKR</li>
                                         </ul>
                                     </div>
 
@@ -66,7 +66,7 @@
                                         </span>
                                     </div>
 
-                                    <p class="product-description">
+                                    <p class="product-description" >
                                         At Udarata Computers, we bring you an extensive range of laptops designed to meet every need and budget. Whether you're a gamer seeking high-performance machines, a professional looking for reliable work laptops, or a student in need of a lightweight device for studies, we have the perfect laptop for you.
                                     </p>
 

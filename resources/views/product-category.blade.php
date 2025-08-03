@@ -13,6 +13,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
     <!-- CSS
     ============================================ -->
@@ -82,12 +83,14 @@
             font-weight: 700;
         }
         
-        .search-container {
-            position: relative;
-            max-width: 300px;
-            width: 100%;
-            margin: 0 auto;
-        }
+            .search-container {
+                position: relative;
+                max-width: 300px;
+                width: 100%;
+                margin-left: auto;   /* aligns the element to the right */
+                margin-right: 0;
+            }
+
         
         .search-input {
             width: 100%;
@@ -335,9 +338,9 @@
                     <div class="mb-3">
                         <h5 class="text-sm font-medium mb-1 text-black" style="font-family: 'Orbitron', sans-serif;">Price Range</h5>
                         <div class="flex flex-col space-y-1">
-                            <span class="text-xs text-black" style="font-family: 'Orbitron', sans-serif;">Min: Rs. <span id="minPrice" style="font-family: 'Orbitron', sans-serif;"><?php echo htmlspecialchars($_GET['price_min'] ?? '0'); ?></span></span>
+                            <span class="text-xs text-black" style="font-family: 'Orbitron', sans-serif;">Min: Rs. <span id="minPrice" style="font-family: 'Poppins', sans-serif;"><?php echo htmlspecialchars($_GET['price_min'] ?? '0'); ?></span></span>
                             <input type="range" name="price_min" min="0" max="2000000" step="1000" value="<?php echo htmlspecialchars($_GET['price_min'] ?? '0'); ?>" class="w-full" oninput="document.getElementById('minPrice').textContent = this.value">
-                            <span class="text-xs text-black" style="font-family: 'Orbitron', sans-serif;">Max: Rs. <span id="maxPrice" style="font-family: 'Orbitron', sans-serif;"><?php echo htmlspecialchars($_GET['price_max'] ?? '2000000'); ?></span></span>
+                            <span class="text-xs text-black" style="font-family: 'Orbitron', sans-serif;">Max: Rs. <span id="maxPrice" style="font-family: 'Poppins', sans-serif;"><?php echo htmlspecialchars($_GET['price_max'] ?? '2000000'); ?></span></span>
                             <input type="range" name="price_max" min="0" max="2000000" step="1000" value="<?php echo htmlspecialchars($_GET['price_max'] ?? '2000000'); ?>" class="w-full" style="background-color: #000000;" oninput="document.getElementById('maxPrice').textContent = this.value">
                         </div>
                     </div>
@@ -424,27 +427,6 @@
                                             </form>
                                         </div>
                                         
-                                        <!-- Controls Group -->
-                                        <div class="controls-group">
-                                            <!-- Sort Dropdown -->
-
-                                            
-                                            <!-- View Toggle -->
-                                            <!-- View Toggle (Tech-Themed) -->
-                                            <div class="shop-tab nav items-center justify-center gap-3">
-                                                <!-- Grid View: Use a tech-style dashboard icon -->
-                                                <button class="active" data-bs-target="#shop-grid" data-bs-toggle="tab" title="Grid View">
-                                                    <i class="fa-solid fa-table-cells-large text-black text-xl"></i>
-                                                </button>
-
-                                                <!-- List View: Use a terminal-style or file-list icon -->
-                                                <button data-bs-target="#shop-list" data-bs-toggle="tab" style="margin: 0px;" title="List View">
-                                                    <i class="fa-solid fa-list-ul text-black text-xl"></i>
-                                                </button>
-                                            </div>
-
-
-                                        </div>
                                     </div>
                                 </div>
                         <!-- Shop Bottom Area Start -->
@@ -460,7 +442,7 @@
                                                         <!-- Single Product -->
                                                         <div class="product bg-white">
                                                             <span class="badges">
-                                                                <span class="sale">Sale</span>
+                                                                <span class="sale"  style="font-family: 'Orbitron', sans-serif;">Sale</span>
                                                                 @if ($product['tags'][0] == "New Arrivals")
                                                                     <span class="new">New</span>
                                                                 @endif
@@ -468,7 +450,7 @@
 
                                                                     <span class='badges'>
                                                                         @if(isset($product['tags'][0]) && $product['tags'] == "New Arrivals")
-                                                                            <span class='new w-fit border-1 border-black text-white'>New</span>
+                                                                            <span class='new w-fit border-1 border-black text-white'  style="font-family: 'Orbitron', sans-serif;">New</span>
                                                                         @endif
                                                                     </span>
 
@@ -481,31 +463,31 @@
                                                             <div class="content bg-transparent">
                                                                 <div class='flex w-full justify-end px-2 mb-3'>
                                                                 <span class='font-bold w-fit p-1 rounded-md text-xs bg-white text-black border-1 border-black'>
-                                                                    <a href="#" class="text-black">{{ $product['in_stock'] }}</a>
+                                                                    <a href="#" class="text-black"  style="font-family: 'Orbitron', sans-serif;">{{ $product['in_stock'] }}</a>
                                                                 </span>
 
                                                                 </div>
                                                                 <span class="category">
-                                                                    <a href="#" class="text-black" >{{ $product['type'] }}</a>
+                                                                    <a href="#" class="text-black"  style="font-family: 'Orbitron', sans-serif;" >{{ $product['type'] }}</a>
                                                                 </span>
                                                                 <h5 class="title">
-                                                                    <a href="{{ route('singleProduct', ['product-id' => $product['id']]) }}" class="text-black line-clamp-1 text-center px-3">
+                                                                    <a href="{{ route('singleProduct', ['product-id' => $product['id']]) }}" class="text-black line-clamp-1 text-center px-3"  style="font-family: 'Orbitron', sans-serif;">
                                                                         {{ $product['name'] }}
                                                                     </a>
                                                                 </h5>
                                                                 <span class="price">
-                                                                    <span class="new text-black">Rs. {{ $product['discounted_price'] }}</span>
+                                                                    <span class="new text-black"  style="font-family: 'Poppins', sans-serif;">Rs. {{ $product['discounted_price'] }}</span>
                                                                 </span>
                                                                 <span class="price">
                                                                 @if (isset($product['retail_price']) && $product['discounted_price'] !== $product['ret_price'])
-                                                                    <span class="line-through text-sm text-gray-700">Rs. {{ $product['retail_price'] }}</span>
+                                                                    <span class="line-through text-sm text-gray-700"  style="font-family: 'Roboto', sans-serif;">Rs. {{ $product['retail_price'] }}</span>
                                                                 @endif
                                                                 </span>
                                                             </div>
                                                             <!-- Actions -->
                                                             <div class="p-4 pt-0 flex justify-between items-center">
                                                                 <a 
-                                                                    class="bg-black text-white text-sm font-medium px-4 py-2 rounded-md hover:bg-gray-800 transition-all duration-300"
+                                                                    class="bg-black text-white text-sm font-medium px-4 py-2 rounded-md hover:bg-gray-800 transition-all duration-300"  style="font-family: 'Orbitron', sans-serif;"
                                                                     href="javascript:void(0);"
                                                                     data-bs-toggle="modal" 
                                                                     data-bs-target="#exampleModal-Cart"
@@ -514,7 +496,7 @@
                                                                     Buy Now
                                                                 </a>
                                                                 <div class="flex gap-2">
-                                                                    <button class="text-gray-600 hover:text-gray-900" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart" onclick="addToCartProduct({{ $product['id'] }});">
+                                                                    <button class="text-gray-600 hover:text-gray-900"  title="Add to Cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart" onclick="addToCartProduct({{ $product['id'] }});">
                                                                         <i class="pe-7s-cart"></i>
                                                                     </button>
                                                                     <button class="text-gray-600 hover:text-gray-900" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist" onclick="addToWishlistProduct({{ $product['id'] }});">
