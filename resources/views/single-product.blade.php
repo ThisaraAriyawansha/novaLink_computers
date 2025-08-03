@@ -41,6 +41,369 @@
     margin-right: 15px;
 }
 </style>
+
+<style>
+
+
+        .product-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            box-shadow: 0 32px 64px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .product-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-price {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #ffd700;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-content {
+            padding: 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1px;
+            background: #e5e7eb;
+            margin-bottom: 2rem;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover::before {
+            transform: scaleY(1);
+        }
+
+        .feature-item:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-label {
+            font-weight: 600;
+            color: #374151;
+            margin-right: 1rem;
+            min-width: 100px;
+        }
+
+        .feature-value {
+            color: #6b7280;
+            flex-grow: 1;
+        }
+
+        .action-buttons {
+            padding: 40px;
+            background: #f9fafb;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 32px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+        }
+
+        .wishlist-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: auto;
+        }
+
+        .wishlist-btn:hover {
+            background: #fef2f2;
+            border-color: #f87171;
+            color: #f87171;
+            transform: scale(1.1);
+        }
+
+        .tabs-section {
+            background: white;
+        }
+
+        .tabs-nav {
+            display: flex;
+            border-bottom: 1px solid #e5e7eb;
+            background: #f9fafb;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 20px;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #6b7280;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .tab-btn.active {
+            color: #667eea;
+            background: white;
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        .tab-btn:hover:not(.active) {
+            color: #374151;
+            background: #f3f4f6;
+        }
+
+        .tab-content {
+            padding: 40px;
+            min-height: 300px;
+        }
+
+        .tab-panel {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .info-item {
+            padding: 1.5rem;
+            background: #f9fafb;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-value {
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+
+        .description-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #374151;
+            text-align: justify;
+        }
+
+        .review-form {
+            background: #f9fafb;
+            padding: 2rem;
+            border-radius: 16px;
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .product-title {
+                font-size: 2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .wishlist-btn {
+                margin: 0;
+                align-self: center;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 <body>
     <div class="main-wrapper">
     @include('layouts.nav-2')
@@ -183,91 +546,98 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <!-- prod data -->
                     <div class="col-lg-6 col-sm-12 col-xs-12" data-aos="fade-up" data-aos-delay="200">
-                        <div class="product-details-content quickview-content ml-25px">
-                            <h2 class="text-black"><?php echo $product['name'] ?></h2>
-                            <div class="pricing-meta">
-                                <ul class="d-flex">
-                                    <li class="new-price text-black"><?php echo $product['dis_price'] ?></li>
-                                </ul>
+                        
+                    <div class="product-container">
+                            <!-- Product Header -->
+                            <div class="product-header">
+                                <h1 class="product-title"><?php echo htmlspecialchars($product['name']); ?></h1>
+                                <div class="product-price"><?php echo $product['dis_price'] ?></div>
                             </div>
 
-                            <div class="pro-details-categories-info pro-details-same-style d-flex m-0 mt-3 border-t pt-3 border-white">
-                                <ul>
+                            <!-- Product Content -->
+                            <div class="product-content">
+                                <!-- Features Grid -->
+
+
+                                <div class="features-grid">
                                     @if (!empty($product['features']))
                                         @foreach ($product['features'] as $feature)
                                             @php
-                                                // Split feature into name and value
-                                                $featureParts = explode(':', $feature);
-                                                $featureName = trim($featureParts[0]);
-                                                $featureValue = isset($featureParts[1]) ? trim($featureParts[1]) : '';
+                                                [$featureName, $featureValue] = explode(':', $feature, 2);
                                             @endphp
-                                            <li class="text-black">
-                                                <strong>{{ $featureName }}:</strong> {{ $featureValue }}
-                                            </li>
+                                            <div class="feature-item">
+                                                <span class="feature-label">{{ trim($featureName) }}:</span>
+                                                <span class="feature-value">{{ trim($featureValue) }}</span>
+                                            </div>
                                         @endforeach
                                     @endif
-                                </ul>
-                            </div>
-
-
-                            <div class="pro-details-quality">
-
-                                <div class="pro-details-cart">
-                                <button class="add-cart" onClick="addToCart(<?= $product['id']; ?>)" title="Add To Cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart">Add To Cart</button>
-
-                                </div>
-                                <div class="pro-details-compare-wishlist pro-details-wishlist ">
-                                <a href="{{ route('wishlist')}}"><i class="pe-7s-like"></i></a>
                                 </div>
 
-                            </div>
-                        </div>
-                        <!-- product details description area start -->
-                        <div class="description-review-wrapper max-[992px]:m-0">
-                        <div class="description-review-topbar nav " >
-                        <button class="text-black active" data-bs-toggle="tab" data-bs-target="#des-details2">Information</button>
-                                <button class="text-black" data-bs-toggle="tab" data-bs-target="#des-details1">Description</button>
-                                <button class="text-black" data-bs-toggle="tab" data-bs-target="#des-details3">Reviews</button>
-                            </div>
-                            <div class="tab-content description-review-bottom ">
-                                <div id="des-details2" class="tab-pane active">
-                                    <div class="product-anotherinfo-wrapper text-start">
-                                        <ul>
-                                            <li class="text-black"><span class="text-black"><strong>Brand:</strong> <?php echo $product['brand'] ?></li>
-                                            <li class="text-black"><span class="text-black"><strong>Product Type:</strong> <?php echo $product['type'] ?></li>
-                                            <li class="text-black"><span class="text-black"><strong>Warranty:</strong> <?php echo $product['warranty'] ?></li>
-                                            <li class="text-black"><span class="text-black"><strong>Availability:</strong>
-                                                    <?php echo $product['in_stock'] ?>
-                                            </li>
-                                        </ul>
+
+                                <!-- Action Buttons -->
+                                <div class="action-buttons">
+                                    <button class="btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart" onClick="addToCart({{ $product['id'] }});">
+                                        Add to Cart
+                                    </button>
+                                    <button class="btn-secondary" onclick="window.location='{{ route('cart') }}'">
+                                        Buy Now
+                                    </button>
+
+                                    <button class="wishlist-btn" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist" onclick="addToWishlist({{ $product['id'] }});">
+                                        ♡
+                                    </button>
+                                </div>
+
+                                <!-- Tabs Section -->
+                                <div class="tabs-section">
+                                    <div class="tabs-nav">
+                                        <button class="tab-btn active" onclick="showTab('information')">Information</button>
+                                        <button class="tab-btn" onclick="showTab('description')">Description</button>
+                                        <button class="tab-btn" onclick="showTab('reviews')">Reviews</button>
                                     </div>
-                                </div>
-                                <div id="des-details1" class="tab-pane">
-                                    <div class="product-description-wrapper">
-                                        <p class="text-black text-justify">
-                                            <?php echo $product['desc'] ?>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div id="des-details3" class="tab-pane">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="review-wrapper">
-                                                <!-- Reviews will be appended here -->
+
+                                    <div class="tab-content">
+                                        <!-- Information Tab -->
+                                        <div id="information" class="tab-panel active">
+                                            <div class="info-grid">
+                                                <div class="info-item">
+                                                    <div class="info-label">Brand</div>
+                                                    <div class="info-value"><?php echo $product['brand'] ?></div>
+                                                </div>
+                                                <div class="info-item">
+                                                    <div class="info-label">Product Type</div>
+                                                    <div class="info-value"><?php echo $product['type'] ?></div>
+                                                </div>
+                                                <div class="info-item">
+                                                    <div class="info-label">Warranty</div>
+                                                    <div class="info-value"><?php echo $product['warranty'] ?></div>
+                                                </div>
+                                                <div class="info-item">
+                                                    <div class="info-label">Availability</div>
+                                                    <div class="info-value"><?php echo $product['in_stock'] ?></div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-12">
-                                            <div class="ratting-form-wrapper pt-0">
-                                                <!-- Inside your form -->
-                                                <input type="hidden" id="product-id" value="<?php echo $product['id']; ?>">
-                                                <h3 class="text-black">Add a Review</h3>
+
+                                        <!-- Description Tab -->
+                                        <div id="description" class="tab-panel">
+                                            <p class="description-text">
+                                                <?php echo $product['desc'] ?>
+                                            </p>
+                                        </div>
+
+                                        <!-- Reviews Tab -->
+                                        <div id="reviews" class="tab-panel">
+                                            
+                                            <div class="review-form">
+                                                <h3 style="margin-bottom: 1.5rem; color: #374151;">Add a Review</h3>
                                                 <div class="ratting-form">
                                                     <form id="review-form">
                                                         @csrf
                                                         <input type="hidden" id="product-id" value="1"> <!-- Replace with dynamic product ID -->
                                                         <div class="star-box">
                                                             <span class="text-black">Your rating:</span>
-                                                            <div class="rating-productt">
+                                                            <div class="rating-product">
                                                                 <select id="rating" name="rating">
                                                                     <option value="1">1 Star</option>
                                                                     <option value="2">2 Stars</option>
@@ -302,7 +672,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>                        
                     </div>
                 </div>
             </div>
@@ -729,3 +1099,84 @@ function fetchReviews(productId) {
 }
 });
 </script>
+
+
+<script>
+        function showTab(tabName) {
+            // Hide all tab panels
+            const panels = document.querySelectorAll('.tab-panel');
+            panels.forEach(panel => panel.classList.remove('active'));
+            
+            // Remove active class from all tab buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected tab panel
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+
+
+        function toggleWishlist() {
+            const btn = event.target;
+            if (btn.textContent === '♡') {
+                btn.textContent = '♥';
+                btn.style.color = '#f87171';
+            } else {
+                btn.textContent = '♡';
+                btn.style.color = '';
+            }
+        }
+
+        function submitReview(event) {
+            event.preventDefault();
+            
+            const btn = event.target.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+            
+            btn.textContent = 'Submitting...';
+            btn.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                btn.textContent = 'Review Submitted! ✓';
+                btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                    btn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                    event.target.reset();
+                }, 2000);
+            }, 1500);
+        }
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const animateElements = document.querySelectorAll('.feature-item, .info-item');
+            animateElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
