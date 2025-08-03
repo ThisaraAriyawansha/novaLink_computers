@@ -10,6 +10,10 @@
     <title>NovaLink Computers | Best Computers for you</title>
     <meta name="description" content="NovaLink Computers offer the best computers available at the market">
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/N_back.jpg" />    <!-- Favicon -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
     <!-- CSS
     ============================================ -->
     <script src="assets/js/tailwind-cdn.js"></script>
@@ -41,6 +45,232 @@
         border-radius: 50%;
         cursor: pointer;
     }
+
+        .shop-top-bar {
+            background: 
+                url('assets/images/banner/01__kv_rog_scar_se.jpg') no-repeat center center / cover fixed;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        
+        .top-bar-container {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 24px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .product-count {
+            color: white;
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .product-count .count {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+        
+        .search-container {
+            position: relative;
+            max-width: 300px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 12px 50px 12px 16px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.9);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.875rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            background: white;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, #000000ff, #373737ff);
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .search-btn:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .controls-group {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .sort-container {
+            position: relative;
+        }
+        
+        .sort-label {
+            color: white;
+            font-size: 0.875rem;
+            margin-right: 8px;
+            font-weight: 500;
+        }
+        
+        .sort-dropdown {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.875rem;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s ease;
+            appearance: none;
+            min-width: 140px;
+        }
+        
+        .sort-dropdown:hover {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .sort-container::after {
+            content: '\f107';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            pointer-events: none;
+        }
+        
+        .view-toggle {
+            display: flex;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 4px;
+            gap: 4px;
+        }
+        
+        .view-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .view-btn:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .view-btn.active {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .top-bar-container {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                text-align: center;
+            }
+            
+            .product-count {
+                justify-content: center;
+            }
+            
+            .search-container {
+                max-width: 100%;
+            }
+            
+            .controls-group {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .sort-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .shop-top-bar {
+                padding: 16px;
+                margin: 0 -10px;
+                border-radius: 8px;
+            }
+            
+            .controls-group {
+                width: 100%;
+            }
+            
+            .sort-dropdown {
+                min-width: 120px;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .shop-top-bar {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        
+        
 </style>
 </head>
 
@@ -49,58 +279,34 @@
     @include('layouts.nav-2')
 
         <!-- breadcrumb-area start -->
-        <div id="breadcrumb-carousel" class="relative carousel slide " data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#breadcrumb-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#breadcrumb-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#breadcrumb-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner absolute md:h-[406px] max-md:h-[50dvh]">
-                <div class="carousel-item active h-full">
-                    <img src="assets/images/banner/gaming_1.jpg" class="d-block w-100 h-full object-cover" alt="...">
-                </div>
-                <div class="carousel-item h-full">
-                    <img src="assets/images/breadcrumb/banner.jpg" class="d-block w-100 h-full object-cover" alt="...">
-                </div>
-                <div class="carousel-item h-full">
-                    <img src="assets/images/banner/gaming_5.jpg" class="d-block w-100 h-full object-cover" alt="...">
-                </div>
-            </div>
-            <div class="bg-black/50 absolute left-0 top-0 w-full h-full"></div>
-            <div class="absolute top-[40%] left-0 w-full z-10 mt-0 pt-0">
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-12 text-center relative">
-                        <h1 class="text-white font-bold uppercase">
-                        <?php
-                            // Check if the 'search' parameter is set in the URL and if it equals "gaming"
-                            if (isset($_GET['search']) && $_GET['search'] === 'gaming') {
-                                echo "GAMING";
-                            } elseif (isset($searchQuery)) {
-                                // If a search query is present but not "gaming", show the search query
-                                $string = (strlen($searchQuery) > 13) ? substr($searchQuery, 0, 30) . '...' : $searchQuery;
-                                echo $string;
-                            } elseif ($filter != "ALL") {
-                                // Handle filter case
-                                $string = (strlen($filter) > 13) ? substr($filter, 0, 30) . '...' : $filter;
-                                echo $string;
-                            } else {
-                                // Default text if neither search nor filter is set
-                                echo "Product Page";
-                            }
-                            ?>
+        <div id="breadcrumb-banner" class="relative w-full h-[50dvh] md:h-[406px] bg-cover bg-center bg-no-repeat" 
+                    style="background:url(assets/images/banner/01__kv_rog_scar_se.jpg)no-repeat;background-position:center;background-size:cover;background-attachment: fixed;">
 
+                    <!-- Overlay -->
+                    <div class="absolute inset-0 bg-black/60"></div>
 
-                        </h1>
-                        <!-- breadcrumb-list start -->
-                        <ul class="breadcrumb-list hidden">
-                            <li class="breadcrumb-item"><a class="text-white" href="index.php">Home</a></li>
-                            <li class="breadcrumb-item active text-white">Shop</li>
-                        </ul>
-                        <!-- breadcrumb-list end -->
+                    <!-- Centered Text -->
+                    <div class="absolute top-1/2 left-1/2 z-10 transform -translate-x-1/2 -translate-y-1/2 w-full px-4">
+                        <div class="text-center">
+                            <h1 class="text-white font-bold uppercase text-2xl md:text-4xl" style="font-family: 'Orbitron', sans-serif;">
+                                <?php
+                                    if (isset($_GET['search']) && $_GET['search'] === 'gaming') {
+                                        echo "GAMING";
+                                    } elseif (isset($searchQuery)) {
+                                        $string = (strlen($searchQuery) > 13) ? substr($searchQuery, 0, 30) . '...' : $searchQuery;
+                                        echo $string;
+                                    } elseif ($filter != "ALL") {
+                                        $string = (strlen($filter) > 13) ? substr($filter, 0, 30) . '...' : $filter;
+                                        echo $string;
+                                    } else {
+                                        echo "Product Page";
+                                    }
+                                ?>
+                            </h1>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+
 
         <!-- Shop Page Start  -->
         <div class="shop-category-area relative" >
@@ -108,7 +314,7 @@
 
 
                 <!--filter controls-->
-            <form class="bg-gray-100 p-2 rounded-md lg:w-1/5" method="GET" action="{{ route('product.category') }}">
+            <form class="bg-gray-10 p-2 rounded-md lg:w-1/5" method="GET" action="{{ route('product.category') }}">
                 <!-- Preserve existing filter and sort parameters -->
                 <input type="hidden" name="filter" value="<?php echo htmlspecialchars($_GET['filter'] ?? 'ALL'); ?>">
                 <input type="hidden" name="sort" value="<?php echo htmlspecialchars($_GET['sort'] ?? ''); ?>">
@@ -193,65 +399,54 @@
                 <div class="row <?= $filter !== "ALL" ? "lg:w-4/5" : "lg:w-4/5" ?>">
                     <div class="col-md-12">
                         <!-- Shop Top Area Start -->
-                        <div class="shop-top-bar flex max-md:flex-col max-md:justify-center gap-3">
-                            <p class="compare-product max-md:w-full"> <span><?php echo count($products) ?></span> Product Found</p>
-                            <form action="" onsubmit="event.preventDefault(); searchProduct(this.search.value);" style="position: relative;">
-                                <input type="text" name="search" style="width: fit-content; border-radius: 4px; border: 2px solid #e1e1e1;" placeholder="Search for product">
-                                <button type="submit" style="position: absolute; top: 0%; right: 0%; height: 100%; padding: 0px 8px; margin: 0px;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                                        stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                    </svg>
-                                </button>
-                            </form>
-                            <div class="flex gap-3 max-md:flex-col items-center">
-                                <!-- Right Side Start -->
-                                <div class="select-shoing-wrap flex items-center bg-white">
-                                    <div class="shot-product">
-                                        <p class="text-nowrap">Sort By:</p>
+                                <div class="shop-top-bar">
+                                    <div class="top-bar-container">
+                                        <!-- Product Count -->
+                                        <div class="product-count">
+                                            <i class="fas fa-box"></i>
+                                            <span class="count" id="productCount"><span style="font-family: 'Orbitron', sans-serif;"><?php echo count($products) ?></span></span>
+                                            <span style="font-family: 'Orbitron', sans-serif;">Products Found</span>
+                                        </div>
+                                        
+                                        <!-- Search Bar -->
+                                        <div class="search-container">
+                                            <form onsubmit="event.preventDefault(); searchProduct(this.search.value);">
+                                                <input 
+                                                    type="text" 
+                                                    name="search" 
+                                                    class="search-input"
+                                                    placeholder="Search products..."
+                                                    id="searchInput"
+                                                >
+                                                <button type="submit" class="search-btn">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                        
+                                        <!-- Controls Group -->
+                                        <div class="controls-group">
+                                            <!-- Sort Dropdown -->
+
+                                            
+                                            <!-- View Toggle -->
+                                            <!-- View Toggle (Tech-Themed) -->
+                                            <div class="shop-tab nav items-center justify-center gap-3">
+                                                <!-- Grid View: Use a tech-style dashboard icon -->
+                                                <button class="active" data-bs-target="#shop-grid" data-bs-toggle="tab" title="Grid View">
+                                                    <i class="fa-solid fa-table-cells-large text-black text-xl"></i>
+                                                </button>
+
+                                                <!-- List View: Use a terminal-style or file-list icon -->
+                                                <button data-bs-target="#shop-list" data-bs-toggle="tab" style="margin: 0px;" title="List View">
+                                                    <i class="fa-solid fa-list-ul text-black text-xl"></i>
+                                                </button>
+                                            </div>
+
+
+                                        </div>
                                     </div>
-                                    <!-- Single Wedge End -->
-                                    <div class="header-bottom-set dropdown" style="padding-right: 15px;">
-                                        <button class="dropdown-toggle header-action-btn" data-bs-toggle="dropdown">
-                                            <?php
-                                            switch ($_GET['sort']) {
-                                                case "name_asc":
-                                                    echo "Name, A to Z";
-                                                    break;
-                                                case "name_desc":
-                                                    echo "Name, Z to A";
-                                                    break;
-                                                case "price_asc":
-                                                    echo "Price, low to high";
-                                                    break;
-                                                case "price_desc":
-                                                    echo "Price, high to low";
-                                                    break;
-                                            }
-                                            ?> <i class="fa fa-angle-down"></i>
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a class="dropdown-item" href="<?php echo "?filter=", $filter, "&sort=name_asc" ?>">Name, A to Z</a></li>
-                                            <li><a class="dropdown-item" href="<?php echo "?filter=", $filter, "&sort=name_desc" ?>">Name, Z to A</a></li>
-                                            <li><a class="dropdown-item" href="<?php echo "?filter=", $filter, "&sort=price_asc" ?>">Price, low to high</a></li>
-                                            <li><a class="dropdown-item" href="<?php echo "?filter=", $filter, "&sort=price_desc" ?>">Price, high to low</a></li>
-                                        </ul>
-                                    </div>
-                                    <!-- Single Wedge Start -->
                                 </div>
-                                <!-- list view / grid view buttons -->
-                                <div class="shop-tab nav items-center justify-center gap-3">
-                                    <button class="active" data-bs-target="#shop-grid" data-bs-toggle="tab">
-                                        <i class="fa fa-th" aria-hidden="true"></i>
-                                    </button>
-                                    <button data-bs-target="#shop-list" data-bs-toggle="tab" style="margin: 0px;">
-                                        <i class="fa fa-list" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <!-- Right Side End -->
-                        </div>
                         <!-- Shop Bottom Area Start -->
                         <div class="shop-bottom-area">
                             <!-- Tab Content Area Start -->
@@ -399,6 +594,7 @@
                 </div>
             </div>
         </div>
+        </br>
         <!-- footer -->
         @include('layouts.footer2')
 
