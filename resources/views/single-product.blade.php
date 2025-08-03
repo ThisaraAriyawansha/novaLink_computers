@@ -6,12 +6,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CoreX Computers | Best Computers for you</title>
     <meta name="robots" content="index, follow" />
-    <meta name="description" content="CoreX Computers offer the best computers available at the market">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/X_logo.jpg" />
-
+    <title>NovaLink Computers | Best Computers for you</title>
+    <meta name="description" content="NovaLink Computers offer the best computers available at the market">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/N_back.jpg" />    <!-- Favicon -->
     <!-- CSS
     ============================================ -->
     <script src="assets/js/tailwind-cdn.js"></script>
