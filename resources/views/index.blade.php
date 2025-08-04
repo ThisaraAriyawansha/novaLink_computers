@@ -61,7 +61,7 @@
 
                     /* Styles */
             .background-container {
-                background: url('assets/images/mix_copy.jpg') no-repeat center center;
+                background: url('assets/images/fwebp-Photoroom-Picsart-AiImageEnhancer.png') no-repeat center center;
                 position: relative;
                 width: 100%;
                 height: 100dvh;
