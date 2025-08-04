@@ -50,362 +50,357 @@
 
 
         .product-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-radius: 24px;
-            overflow: hidden;
-            animation: slideUp 0.8s ease-out;
-        }
+    max-width: 1000px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 16px;
+    overflow: hidden;
+    animation: slideUp 0.6s ease-out;
+}
 
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
-        .product-header {
-            padding: 40px;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
+.product-header {
+    padding: 24px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
 
-        .product-header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-        }
+.product-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+    animation: rotate 25s linear infinite;
+}
 
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
 
-        .product-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 2;
-        }
+.product-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    position: relative;
+    z-index: 2;
+}
 
-        .product-price {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #ffd700;
-            margin-bottom: 2rem;
-            position: relative;
-            z-index: 2;
-        }
+.product-price {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #ffd700;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
 
-        .product-content {
-            padding: 0;
-        }
+.product-content {
+    padding: 0;
+}
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1px;
-            background: #e5e7eb;
-            margin-bottom: 2rem;
-        }
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: #f1f3f5;
+    margin-bottom: 1.5rem;
+}
 
-        .feature-item {
-            background: white;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
+.feature-item {
+    background: white;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
 
-        .feature-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(135deg, #1f1f2e 0%, #2c2c3e 100%);
-            transform: scaleY(0);
-            transition: transform 0.3s ease;
-        }
+.feature-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(135deg, #2c2c3e 0%, #3f3f5e 100%);
+    transform: scaleY(0);
+    transition: transform 0.2s ease;
+}
 
-        .feature-item:hover::before {
-            transform: scaleY(1);
-        }
+.feature-item:hover::before {
+    transform: scaleY(1);
+}
 
-        .feature-item:hover {
-            transform: translateX(8px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
+.feature-item:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
 
-        .feature-label {
-            font-weight: 600;
-            color: #374151;
-            margin-right: 1rem;
-            min-width: 100px;
-        }
+.feature-label {
+    font-weight: 500;
+    color: #374151;
+    margin-right: 0.8rem;
+    min-width: 80px;
+    font-size: 0.9rem;
+}
 
-        .feature-value {
-            color: #6b7280;
-            flex-grow: 1;
-        }
+.feature-value {
+    color: #6b7280;
+    flex-grow: 1;
+    font-size: 0.9rem;
+}
 
-        .action-buttons {
-            padding: 40px;
-            background: #f9fafb;
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            align-items: center;
-        }
+.action-buttons {
+    padding: 24px;
+    background: #f9fafb;
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
 
-        .btn-primary {
-            background: linear-gradient(135deg, #1f1f2e 0%, #2c2c3e 100%);
-            color: white;
-            border: none;
-            padding: 16px 32px;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
+.btn-primary {
+    background: linear-gradient(135deg, #2c2c3e 0%, #3f3f5e 100%);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
 
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s ease;
-        }
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.4s ease;
+}
 
-        .btn-primary:hover::before {
-            left: 100%;
-        }
+.btn-primary:hover::before {
+    left: 100%;
+}
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            background: linear-gradient(135deg, #1f1f2e 0%, #2c2c3e 100%);
-        }
+.btn-primary:hover {
+    transform: translateY(-1px);
+}
 
-        .btn-secondary {
-            background: white;
-            color: #000000ff;
-            border: 2px solid #000000ff;
-            padding: 14px 28px;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+.btn-secondary {
+    background: white;
+    color: #000000ff;
+    border: 1px solid #000000ff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
 
-        .btn-secondary:hover {
-            background: #75777dff;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
-        }
+.btn-secondary:hover {
+    background: #75777dff;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.2);
+}
 
-        .wishlist-btn {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: white;
-            border: 2px solid #e5e7eb;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-left: auto;
-        }
+.wishlist-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    border: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-left: auto;
+}
 
-        .wishlist-btn:hover {
-            background: #fef2f2;
-            border-color: #f87171;
-            color: #f87171;
-            transform: scale(1.1);
-        }
+.wishlist-btn:hover {
+    background: #fef2f2;
+    border-color: #f87171;
+    color: #f87171;
+    transform: scale(1.05);
+}
 
-        .tabs-section {
-            background: white;
-        }
+.tabs-section {
+    background: white;
+}
 
-        .tabs-nav {
-            display: flex;
-            border-bottom: 1px solid #e5e7eb;
-            background: #f9fafb;
-        }
+.tabs-nav {
+    display: flex;
+    border-bottom: 1px solid #e5e7eb;
+    background: #f9fafb;
+}
 
-        .tab-btn {
-            flex: 1;
-            padding: 20px;
-            background: none;
-            border: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #6b7280;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
+.tab-btn {
+    flex: 1;
+    padding: 12px;
+    background: none;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
 
-        .tab-btn.active {
-            color: #667eea;
-            background: white;
-        }
+.tab-btn.active {
+    color: #667eea;
+    background: white;
+}
 
-        .tab-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 3px;
-            background: linear-gradient(135deg, #1f1f2e 0%, #2c2c3e 100%);
-            border-radius: 2px;
-        }
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(135deg, #2c2c3e 0%, #3f3f5e 100%);
+    border-radius: 1px;
+}
 
-        .tab-btn:hover:not(.active) {
-            color: #374151;
-            background: #f3f4f6;
-        }
+.tab-btn:hover:not(.active) {
+    color: #374151;
+    background: #f3f4f6;
+}
 
-        .tab-content {
-            padding: 40px;
-            min-height: 300px;
-        }
+.tab-content {
+    padding: 24px;
+    min-height: 200px;
+}
 
-        .tab-panel {
-            display: none;
-            animation: fadeIn 0.5s ease-in-out;
-        }
+.tab-panel {
+    display: none;
+    animation: fadeIn 0.4s ease-in-out;
+}
 
-        .tab-panel.active {
-            display: block;
-        }
+.tab-panel.active {
+    display: block;
+}
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-        }
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+}
 
-        .info-item {
-            padding: 1.5rem;
-            background: #f9fafb;
-            border-radius: 12px;
-            border-left: 4px solid #000000ff;
-        }
+.info-item {
+    padding: 1rem;
+    background: #f9fafb;
+    border-radius: 8px;
+    border-left: 3px solid #000000ff;
+}
 
-        .info-label {
-            font-weight: 600;
-            color: #374151;
-            margin-bottom: 0.5rem;
-        }
+.info-label {
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+}
 
-        .info-value {
-            color: #6b7280;
-            font-size: 1.1rem;
-        }
+.info-value {
+    color: #6b7280;
+    font-size: 0.9rem;
+}
 
-        .description-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #374151;
-            text-align: justify;
-        }
+.description-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #374151;
+    text-align: justify;
+}
 
-        .review-form {
-            background: #f9fafb;
-            padding: 2rem;
-            border-radius: 16px;
-            margin-top: 2rem;
-        }
+.review-form {
+    background: #f9fafb;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-top: 1.5rem;
+}
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
+.form-group {
+    margin-bottom: 1rem;
+}
 
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #374151;
-        }
+.form-label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+    color: #374151;
+    font-size: 0.9rem;
+}
 
-        .form-input, .form-textarea, .form-select {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-            
-        }
+.form-input, .form-textarea, .form-select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: border-color 0.2s ease;
+}
 
-        .form-input:focus, .form-textarea:focus, .form-select:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+}
 
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+}
 
-        @media (max-width: 768px) {
-            .product-title {
-                font-size: 2rem;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .action-buttons {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .wishlist-btn {
-                margin: 0;
-                align-self: center;
-            }
-            
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        }
+@media (max-width: 768px) {
+    .product-title {
+        font-size: 1.5rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .wishlist-btn {
+        margin: 0;
+        align-self: center;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
     </style>
 <body>
     <div class="main-wrapper">
@@ -568,9 +563,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         
                     <div class="product-container">
                             <!-- Product Header -->
-                            <div class="product-header">
+                            <div class="product-header ">
                                 <h1 class="product-title" style="font-family: 'Orbitron', sans-serif; color: black;"><?php echo htmlspecialchars($product['name']); ?></h1>
-                                <div class="product-price" style="font-family: 'Roboto', sans-serif; color: black;">Rs. <?php echo $product['dis_price'] ?></div>
+                                <div class="product-price" style="font-family: 'Orbitron', sans-serif; color: black;">Rs. <?php echo $product['dis_price'] ?></div>
                             </div>
 
                             <!-- Product Content -->
@@ -729,49 +724,59 @@ document.addEventListener('DOMContentLoaded', function() {
                             <div class="swiper-wrapper">
                                 <?php
                                 foreach ($products as $product) {
-                                    echo "<div class='swiper-slide'>
+                                    echo '<div class="swiper-slide">
                                             <!-- Single Prodect -->
-                                            <div class='product'>
-                                                <span class='badges'>
-                                                    <span class='sale'>Sale</span>
+                                            <div class="product">
+                                                <span class="badges">
+                                                    <span class="sale">Sale</span>
                                                 </span>
-                                                <div class='thumb'>
-                                                    <a href='singleProduct?product-id={$product['id']}' class='image'>
-                                                        <img src='{$product['image']}' class='aspect-square object-contain object-center' alt='Product' />
-                                                        <img class='hover-image' src='{$product['image']}' alt='Product' />
+                                                <div class="thumb">
+                                                    <a href="singleProduct?product-id=' . $product['id'] . '" class="image">
+                                                        <img src="' . $product['image'] . '" class="aspect-square object-contain object-center" alt="Product" />
+                                                        <img class="hover-image" src="' . $product['image'] . '" alt="Product" />
                                                     </a>
                                                 </div>
-                                                <div class='content bg-transparent'>
-                                                    <span class='category text-black'><a href='#' class=' text-black'>{$product['type']}</a></span>
-                                                    <h5 class='title'>
-                                                        <a href='singleProduct?product-id={$product['id']}' class='line-clamp-1 text-black px-3'>
-                                                            {$product['name']}
+                                                <div class="content bg-transparent">
+                                                    <span class="category text-black" ><a href="#"  class=" text-black" >' . $product['type'] . '</a></span>
+                                                    <h5 class="title">
+                                                        <a href="singleProduct?product-id=' . $product['id'] . '" class="line-clamp-1 text-black px-3">
+                                                            ' . $product['name'] . '
                                                         </a>
                                                     </h5>
-                                                    <span class='price'>
-                                                        <span class='new text-black'>{$product['dis_price']}</span>
+                                                    <span class="price text-black">
+                                                        Rs. <span class="new text-black">' . $product['dis_price'] . '</span>
                                                     </span>
                                                 </div>
-                                                <div class='actions items-center'>
-                                                    <button title='Add To Cart' class='action add-to-cart' data-bs-toggle='modal' data-bs-target='#exampleModal-Cart' onClick='addToCart({$product['id']});'>
-                                                        <i class='pe-7s-shopbag'></i>
-                                                    </button>
-                                                   <button class='action wishlist' title='Wishlist' data-bs-toggle='modal' data-bs-target='#exampleModal-Wishlist' onClick='addToWishlist({$product['id']});'>
-                                                        <i class='pe-7s-like'></i>
-                                                    </button>
-                                                    <button class='action quickview' data-link-action='quickview' title='Quick view' data-bs-toggle='modal' data-bs-target='#exampleModal'
-                                                            data-product-id='{$product['id']}'
-                                                            data-product-name='{$product['name']}'
-                                                            data-product-image='{$product['image']}'
-                                                            data-product-type='{$product['type']}'
-                                                            data-product-distription='{$product['description'] }'
-                                                            data-product-price='{$product['dis_price']}'>
-                                                        <i class='pe-7s-look'></i>
-                                                    </button>
-
+                                                <div class="p-4 pt-0 flex justify-between items-center">
+                                                    <a 
+                                                        class="bg-black text-white text-sm font-medium px-4 py-2 rounded-md hover:bg-gray-800 transition-all duration-300"  style="font-family: \'Orbitron\', sans-serif;"
+                                                        href="javascript:void(0);"
+                                                        data-bs-toggle="modal" 
+                                                        data-bs-target="#exampleModal-Cart"
+                                                        onclick="addToCart(' . $product['id'] . ');"
+                                                    >
+                                                        Buy Now
+                                                    </a>
+                                                    <div class="flex gap-2">
+                                                        <button class="text-gray-600 hover:text-gray-900"  title="Add to Cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart" onclick="addToCart(' . $product['id'] . ');">
+                                                            <i class="pe-7s-cart"></i>
+                                                        </button>
+                                                        <button class="text-gray-600 hover:text-gray-900" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist" onclick="addToWishlist(' . $product['id'] . ');">
+                                                            <i class="pe-7s-like"></i>
+                                                        </button>
+                                                        <button class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal" 
+                                                            data-product-id="' . $product['id'] . '" 
+                                                            data-product-name="' . htmlspecialchars($product['name']) . '" 
+                                                            data-product-image="' . $product['image'] . '" 
+                                                            data-product-type="' . $product['type'] . '" 
+                                                            data-product-distription="' . htmlspecialchars($product['description']) . '" 
+                                                            data-product-price="' . $product['dis_price'] . '">
+                                                            <i class="pe-7s-look"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>";
+                                        </div>';
                                 }
                                 ?>
                             </div>
@@ -1124,24 +1129,24 @@ function fetchReviews(productId) {
                     const bgColor = colors[colorIndex];
 
                     const reviewHtml = `
-                        <div class="single-review bg-white rounded-lg shadow-md p-4 flex gap-4 hover:shadow-lg transition-shadow duration-300 max-w-2xl mx-auto">
-                                <div class="review-img flex-shrink-0">
-                                    <div class="initials-avatar text-white font-semibold text-lg rounded-full flex items-center justify-center w-12 h-12" style="background-color: ${bgColor};">
-                                        ${firstLetter}
-                                    </div>
-                                </div>
-                                <div class="review-content flex-1">
-                                    <div class="review-top-wrap flex justify-between items-center flex-wrap gap-2">
-                                        <h4 class="text-gray-800 font-semibold text-lg md:text-xl m-0" style="font-family: 'Orbitron', sans-serif;">${review.name}</h4>
-                                        <div class="rating-product flex items-center gap-1">
-                                            ${stars}
-                                        </div>
-                                    </div>
-                                    <div class="review-bottom mt-2">
-                                        <p class="text-gray-600 text-sm md:text-base text-justify m-0" style="font-family: 'Orbitron', sans-serif;">${review.message}</p>
-                                    </div>
+                        <div class="single-review bg-white rounded-md shadow-sm p-3 flex gap-3 hover:shadow-md transition-shadow duration-200 max-w-xl mx-auto">
+                            <div class="review-img flex-shrink-0">
+                                <div class="initials-avatar text-white font-medium text-base rounded-full flex items-center justify-center w-10 h-10" style="background-color: ${bgColor};">
+                                    ${firstLetter}
                                 </div>
                             </div>
+                            <div class="review-content flex-1">
+                                <div class="review-top-wrap flex justify-between items-center flex-wrap gap-1">
+                                    <h4 class="text-gray-800 font-medium text-base m-0" style="font-family: 'Orbitron', sans-serif;">${review.name}</h4>
+                                    <div class="rating-product flex items-center gap-0.5">
+                                        ${stars}
+                                    </div>
+                                </div>
+                                <div class="review-bottom mt-1">
+                                    <p class="text-gray-600 text-xs text-justify m-0" style="font-family: 'Orbitron', sans-serif;">${review.message}</p>
+                                </div>
+                            </div>
+                        </div>
                     `;
                     reviewContainer.append(reviewHtml);
                 });

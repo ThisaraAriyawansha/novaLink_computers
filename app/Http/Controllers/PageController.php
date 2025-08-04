@@ -186,7 +186,7 @@ class PageController extends Controller
                 'name' => $prod->name,
                 'type' => $prod->type,
                 'description' => $prod->description,
-                'dis_price' => $prod->discounted_price . ' LKR',
+                'dis_price' => $prod->discounted_price ,
                 'image' => asset($prod->image),
             ];
         });
