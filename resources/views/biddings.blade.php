@@ -6,12 +6,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CoreX Computers | Best Computers for you</title>
     <meta name="robots" content="index, follow" />
-    <meta name="description" content="CoreX Computers offer the best computers available at the market">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/X_logo.jpg" />
-
+    <title>NovaLink Computers | Best Computers for you</title>
+    <meta name="description" content="NovaLink Computers offer the best computers available at the market">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/N_back.jpg" />    <!-- Favicon -->
 
     <!-- CSS
     ============================================ -->
@@ -46,15 +45,398 @@
 }
 </style>
 
+<style>
+
+
+
+        .product-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 16px;
+    overflow: hidden;
+    animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.product-header {
+    padding: 12px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+    animation: rotate 25s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.product-title {
+    font-size: 1.3rem;
+    font-weight: 200;
+    margin-bottom: 0.2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.product-price {
+    font-size: 1.3rem;
+    font-weight: 100;
+    color: #ffd700;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.product-content {
+    padding: 0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: #f1f3f5;
+    margin-bottom: 1.5rem;
+}
+
+.feature-item {
+    background: white;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(135deg, #2c2c3e 0%, #3f3f5e 100%);
+    transform: scaleY(0);
+    transition: transform 0.2s ease;
+}
+
+.feature-item:hover::before {
+    transform: scaleY(1);
+}
+
+.feature-item:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.feature-label {
+    font-weight: 500;
+    color: #374151;
+    margin-right: 0.8rem;
+    min-width: 80px;
+    font-size: 0.9rem;
+}
+
+.feature-value {
+    color: #6b7280;
+    flex-grow: 1;
+    font-size: 0.9rem;
+}
+
+.action-buttons {
+    padding: 24px;
+    background: #f9fafb;
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.btn-primaryy {
+    background: linear-gradient(135deg, #2c2c3e 0%, #3f3f5e 100%);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primaryy::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.4s ease;
+}
+
+.btn-primaryy:hover::before {
+    left: 100%;
+}
+
+.btn-primaryy:hover {
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: white;
+    color: #000000ff;
+    border: 1px solid #000000ff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background: #75777dff;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.2);
+}
+
+.wishlist-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    border: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-left: auto;
+}
+
+.wishlist-btn:hover {
+    background: #fef2f2;
+    border-color: #f87171;
+    color: #f87171;
+    transform: scale(1.05);
+}
+
+.tabs-section {
+    background: white;
+}
+
+.tabs-nav {
+    display: flex;
+    border-bottom: 1px solid #e5e7eb;
+    background: #f9fafb;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 12px;
+    background: none;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.tab-btn.active {
+    color: #667eea;
+    background: white;
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(135deg, #2c2c3e 0%, #3f3f5e 100%);
+    border-radius: 1px;
+}
+
+.tab-btn:hover:not(.active) {
+    color: #374151;
+    background: #f3f4f6;
+}
+
+.tab-content {
+    padding: 24px;
+    min-height: 200px;
+}
+
+.tab-panel {
+    display: none;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+}
+
+.info-item {
+    padding: 1rem;
+    background: #f9fafb;
+    border-radius: 8px;
+    border-left: 3px solid #000000ff;
+}
+
+.info-label {
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+}
+
+.info-value {
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+.description-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #374151;
+    text-align: justify;
+}
+
+.review-form {
+    background: #f9fafb;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-top: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+    color: #374151;
+    font-size: 0.9rem;
+}
+
+.form-input, .form-textarea, .form-select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: border-color 0.2s ease;
+}
+
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+}
+
+@media (max-width: 768px) {
+    .product-title {
+        font-size: 1.5rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .wishlist-btn {
+        margin: 0;
+        align-self: center;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
+
 <body>
     <div class="main-wrapper">
     @include('layouts.nav-2')
 
         <div class="h-[10dvh]"></div>
 
+        <nav style="display: flex; align-items: center; padding: 16px 24px;    max-width: 1200px; margin: 10px auto;" aria-label="Breadcrumb">
+            <ol style="display: inline-flex; align-items: center; margin: 0; padding: 0; list-style: none; flex-wrap: wrap;">
+                <li style="display: inline-flex; align-items: center;">
+                    <a href="/home" style="display: inline-flex; align-items: center; font-size: 14px; font-family: 'Orbitron', sans-serif; font-weight: 500; color: #4b5563; text-decoration: none; transition: color 0.3s ease, transform 0.2s ease; padding: 6px 10px; border-radius: 6px;">
+                        <svg style="width: 18px; height: 18px; margin-right: 8px; fill: none; stroke: #6b7280; stroke-width: 2;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                        Home
+                    </a>
+                </li>
+                <li style="display: flex; align-items: center; margin: 0 6px;">
+                    <svg style="width: 16px; height: 16px; color: #9ca3af; fill: none; stroke: currentColor; stroke-width: 2;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <a href="/products" style="margin-left: 8px; font-size: 14px; font-weight: 500; color: #4b5563; text-decoration: none; transition: color 0.3s ease, transform 0.2s ease; padding: 6px 10px; border-radius: 6px; font-family: 'Orbitron', sans-serif;">Products</a>
+                </li>
+                <li style="display: flex; align-items: center; margin: 0 6px;" aria-current="page">
+                    <svg style="width: 16px; height: 16px; color: #9ca3af; fill: none; stroke: currentColor; stroke-width: 2;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <span style="margin-left: 8px; font-size: 14px; font-weight: 600; color: #374151; padding: 6px 10px; border-radius: 6px; font-family: 'Orbitron', sans-serif;"><?php echo htmlspecialchars($product['name']); ?></span>
+                </li>
+            </ol>
+        </nav>
+
 
         <!-- Product Details Area Start -->
-        <div class="product-details-area pt-100px pb-100px ">
+        <div class="product-details-area pb-100px ">
             <div class="container">
                 <div class="row">
                 <div class="col-lg-6 col-sm-12 col-xs-12 mb-lm-30px mb-md-30px mb-sm-30px">
@@ -160,50 +542,67 @@ document.addEventListener('DOMContentLoaded', function() {
     max-width: 100%;
 }
 </style>
+
+
+<div class="container mx-auto px-3 py-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
+    
+        <!-- Reviews Section -->
+        <div class="bg-white text-black rounded-lg p-4 w-full">
+            <h3 class="text-lg font-semibold mb-3" style="font-family: 'Orbitron', sans-serif;">Reviews</h3>
+            <div class="review-wrapper space-y-3">
+                <!-- Reviews will be appended here -->
+            </div>
+        </div>
+
+    </div>
+</div>
                     </div>
                     <!-- prod data -->
                     <div class="col-lg-6 col-sm-12 col-xs-12" data-aos="fade-up" data-aos-delay="200">
-                        <div class="product-details-content quickview-content ml-25px">
-                            <h2 class="text-black"><?php echo $product['name'] ?></h2>
-                            <div class="pricing-meta">
-                                <ul class="d-flex">
-                                    <li class="new-price text-black"><?php echo $product['dis_price'] ?></li>
-                                </ul>
+                        
+                    <div class="product-container">
+                            <!-- Product Header -->
+                            <div class="product-header ">
+                                <h1 class="product-title" style="font-family: 'Orbitron', sans-serif; color: black;">Product Features :</h1>
                             </div>
 
-                            <div class="pro-details-categories-info pro-details-same-style d-flex m-0 mt-3 border-t pt-3 border-white">
-                                <ul>
+                            <!-- Product Content -->
+                            <div class="product-content">
+                                <!-- Features Grid -->
+
+
+                                <div class="features-grid">
                                     @if (!empty($product['features']))
                                         @foreach ($product['features'] as $feature)
                                             @php
-                                                // Split feature into name and value
-                                                $featureParts = explode(':', $feature);
-                                                $featureName = trim($featureParts[0]);
-                                                $featureValue = isset($featureParts[1]) ? trim($featureParts[1]) : '';
+                                                [$featureName, $featureValue] = explode(':', $feature, 2);
                                             @endphp
-                                            <li class="text-black">
-                                                <strong>{{ $featureName }}:</strong> {{ $featureValue }}
-                                            </li>
+                                            <div class="feature-item">
+                                                <span class="feature-label" style="font-family: 'Orbitron', sans-serif; color: black;" >{{ trim($featureName) }}:</span>
+                                                <span class="feature-value" style="font-family: 'Orbitron', sans-serif; color: black;">{{ trim($featureValue) }}</span>
+                                            </div>
                                         @endforeach
                                     @endif
-                                </ul>
-                            </div>
-
+                                </div>
 
                             <div class="flex flex-col pt-0 gap-1">
                                 <hr>
-                                <p class="m-0">Bid End Date: {{ \Carbon\Carbon::parse($product['deal_end'])->format('Y-m-d h:i:s A') }}</p>
-                                <p class="m-0">Time Remaining</p>
+                                <p class="m-0" style="font-family: 'Orbitron', sans-serif; color: black;">Bid End Date: {{ \Carbon\Carbon::parse($product['deal_end'])->format('Y-m-d h:i:s A') }}</p>
+                                <p class="m-0" style="font-family: 'Orbitron', sans-serif; color: black;">Time Remaining:</p>
                                 <div>
                                     <p class="text-xl flex items-center gap-2 max-md:flex-wrap m-0 timer-container"
                                     data-end="{{ \Carbon\Carbon::parse($product['deal_end'])->toIso8601String() }}">
-                                        <i class='pe-7s-timer'></i>
-                                        <span class="days"></span>
-                                        <span class="hours"></span>
-                                        <span class="minutes"></span>
-                                        <span class="seconds"></span>
+
+                                        <i class='pe-7s-timer text-red-600'></i>
+
+                                        <span style="font-family: 'Orbitron', sans-serif; color: #ff0404ff;" class="days"></span>
+                                        <span style="font-family: 'Orbitron', sans-serif; color: #ff0404ff;" class="hours"></span>
+                                        <span style="font-family: 'Orbitron', sans-serif; color: #ff0404ff;" class="minutes"></span>
+                                        <span style="font-family: 'Orbitron', sans-serif; color: #ff0404ff;" class="seconds"></span>
                                     </p>
                                 </div>
+
 
                                 <hr>
                                 <div class="auction-container">
@@ -225,14 +624,14 @@ document.addEventListener('DOMContentLoaded', function() {
                                             </div>
                                         @endif
 
-                                        <span class="m-0 flex justify-between font-semibold">
+                                        <span class="m-0 flex justify-between font-semibold" style="font-family: 'Orbitron', sans-serif; color: black;">
                                             Current Bid:
-                                            <p class="m-0 bid-count">{{ count($bids) }} Bids</p>
+                                            <p class="m-0 bid-count" style="font-family: 'Orbitron', sans-serif; color: black;">{{ count($bids) }} Bids</p>
                                         </span>
 
-                                        <ul class="font-semibold">
+                                        <ul class="" >
                                             @foreach($bids as $bid)
-                                                <li>Rs. {{ number_format($bid->bid_amount, 2) }}</li>
+                                                <li style="font-family: 'Orbitron', sans-serif; color: black;">Rs. {{ number_format($bid->bid_amount, 2) }}</li>
                                             @endforeach
                                         </ul>
 
@@ -240,180 +639,125 @@ document.addEventListener('DOMContentLoaded', function() {
 
                                         <!-- Input + Button Row -->
                                         <div class="flex items-center gap-3 mt-3">
-                                            <input type="number" step="0.01" name="bid_amount"
+                                            <input type="number" step="0.01" name="bid_amount" style="font-family: 'Orbitron', sans-serif; color: black;"
                                                 class="border p-2 w-full max-w-[75%] rounded"
                                                 placeholder="Enter bid amount" required>
-                                            <button class="dark-blue-bg text-white px-4 py-2 whitespace-nowrap">
+                                            <button class="btn-primaryy" style="font-family: 'Orbitron', sans-serif; color: white;">
                                                 Place Bid
                                             </button>
                                         </div>
                                     </form>
                                 </div>
-                            </div>
+                            </div><br/>
 
+                                <!-- Action Buttons -->
+                                <div class="action-buttons">
+                                    <button class="btn-primaryy" style="font-family: 'Orbitron', sans-serif; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart" onClick="addToCart({{ $product['id'] }});">
+                                        Add to Cart
+                                    </button>
+                                    <button class="btn-secondary" style="font-family: 'Orbitron', sans-serif; color: black;" onclick="window.location='{{ route('cart') }}'">
+                                        Buy Now
+                                    </button>
 
-
-                        </div>
-                        <!-- product details description area start -->
-                        <div class="description-review-wrapper max-[992px]:m-0">
-                        <div class="description-review-topbar nav " >
-                        <button class="text-black active" data-bs-toggle="tab" data-bs-target="#des-details2">Information</button>
-                                <button class="text-black" data-bs-toggle="tab" data-bs-target="#des-details1">Description</button>
-                                <button class="text-black" data-bs-toggle="tab" data-bs-target="#des-details3">Reviews</button>
-                            </div>
-                            <div class="tab-content description-review-bottom ">
-                                <div id="des-details2" class="tab-pane active">
-                                    <div class="product-anotherinfo-wrapper text-start">
-                                        <ul>
-                                            <li class="text-black"><span class="text-black"><strong>Brand:</strong> <?php echo $product['brand'] ?></li>
-                                            <li class="text-black"><span class="text-black"><strong>Product Type:</strong> <?php echo $product['type'] ?></li>
-                                            <li class="text-black"><span class="text-black"><strong>Warranty:</strong> <?php echo $product['warranty'] ?></li>
-                                            <li class="text-black"><span class="text-black"><strong>Availability:</strong>
-                                                    <?php echo $product['in_stock'] ?>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <button class="wishlist-btn" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist" onclick="addToWishlist({{ $product['id'] }});">
+                                        ♡
+                                    </button>
                                 </div>
-                                <div id="des-details1" class="tab-pane">
-                                    <div class="product-description-wrapper">
-                                        <p class="text-black text-justify">
-                                            <?php echo $product['desc'] ?>
-                                        </p>
+
+                                <!-- Tabs Section -->
+                                <div class="tabs-section">
+                                    <div class="tabs-nav">
+                                        <button class="tab-btn active" style="font-family: 'Orbitron', sans-serif; color: black;"  onclick="showTab('information')">Information</button>
+                                        <button class="tab-btn" style="font-family: 'Orbitron', sans-serif; color: black;" onclick="showTab('description')">Description</button>
+                                        <button class="tab-btn" style="font-family: 'Orbitron', sans-serif; color: black;" onclick="showTab('reviews')">Reviews</button>
                                     </div>
-                                </div>
-                                <div id="des-details3" class="tab-pane">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="review-wrapper">
-                                                <!-- Reviews will be appended here -->
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="ratting-form-wrapper pt-0">
-                                                <!-- Inside your form -->
-                                                <input type="hidden" id="product-id" value="<?php echo $product['id']; ?>">
-                                                <h3 class="text-black">Add a Review</h3>
-                                                <div class="ratting-form">
-                                                    <form id="review-form">
-                                                        @csrf
-                                                        <input type="hidden" id="product-id" value="1"> <!-- Replace with dynamic product ID -->
-                                                        <div class="star-box">
-                                                            <span class="text-black">Your rating:</span>
-                                                            <div class="rating-product">
-                                                                <select id="rating" name="rating">
-                                                                    <option value="1">1 Star</option>
-                                                                    <option value="2">2 Stars</option>
-                                                                    <option value="3">3 Stars</option>
-                                                                    <option value="4">4 Stars</option>
-                                                                    <option value="5">5 Stars</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="rating-form-style">
-                                                                    <input id="name" name="name" placeholder="Name" type="text" required />
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="rating-form-style">
-                                                                    <input id="email" name="email" placeholder="Email" type="email" required />
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <div class="rating-form-style form-submit">
-                                                                    <textarea id="message" name="message" placeholder="Message" required></textarea>
-                                                                    <button class="btn btn-primary btn-hover-color-primary" type="submit">Submit</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </form>
+
+                                    <div class="tab-content">
+                                        <!-- Information Tab -->
+                                        <div id="information" class="tab-panel active">
+                                                <div class="product-header ">
+                                                    <h1 class="product-title" style="font-family: 'Orbitron', sans-serif; color: black;"><?php echo htmlspecialchars($product['name']); ?></h1>
+                                                    <div class="product-price" style="font-family: 'Orbitron', sans-serif; color: black;">Rs. <?php echo $product['dis_price'] ?></div>
+                                                </div>
+                                            <div class="info-grid">
+                                                <div class="info-item">
+                                                    <div class="info-label" style="font-family: 'Orbitron', sans-serif;">Brand</div>
+                                                    <div class="info-value" style="font-family: 'Orbitron', sans-serif;"><?php echo $product['brand'] ?></div>
+                                                </div>
+                                                <div class="info-item">
+                                                    <div class="info-label" style="font-family: 'Orbitron', sans-serif;">Product Type</div>
+                                                    <div class="info-value" style="font-family: 'Orbitron', sans-serif;"><?php echo $product['type'] ?></div>
+                                                </div>
+                                                <div class="info-item">
+                                                    <div class="info-label" style="font-family: 'Orbitron', sans-serif;">Warranty</div>
+                                                    <div class="info-value" style="font-family: 'Orbitron', sans-serif;"><?php echo $product['warranty'] ?></div>
+                                                </div>
+                                                <div class="info-item">
+                                                    <div class="info-label" style="font-family: 'Orbitron', sans-serif;">Availability</div>
+                                                    <div class="info-value" style="font-family: 'Orbitron', sans-serif;"><?php echo $product['in_stock'] ?></div>
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <!-- Description Tab -->
+                                        <div id="description" class="tab-panel">
+                                            <p class="description-text" style="font-family: 'Orbitron', sans-serif;">
+                                                <?php echo $product['desc'] ?>
+                                            </p>
+                                        </div>
+
+                                        <!-- Reviews Tab -->
+                                        <div id="reviews" class="tab-panel">
+
+                                            <div class="review-form">
+                                            <input type="hidden" id="product-id" value="<?php echo $product['id']; ?>">
+                                                <h3 style="margin-bottom: 1.5rem; color: #374151; font-family: 'Orbitron', sans-serif;">Add a Review</h3>
+                                                <form id="review-form">
+                                                     @csrf
+
+                                                    <div class="form-group">
+                                                        <label class="form-label" style="font-family: 'Orbitron', sans-serif;">Your Rating:</label>
+                                                        <select class="form-select" id="rating" name="rating" style="font-family: 'Orbitron', sans-serif;" required>
+                                                            <option value="" >Select Rating</option>
+                                                            <option value="5" >⭐⭐⭐⭐⭐</option>
+                                                            <option value="4" >⭐⭐⭐⭐</option>
+                                                            <option value="3">⭐⭐⭐</option>
+                                                            <option value="2">⭐⭐</option>
+                                                            <option value="1">⭐</option>
+                                                        </select>
+                                                    </div>
+                                                    
+                                                    <div class="form-row">
+                                                        <div class="form-group">
+                                                            <label class="form-label" style="font-family: 'Orbitron', sans-serif;">Name:</label>
+                                                            <input type="text" style="font-family: 'Orbitron', sans-serif;" class="form-input" id="name" name="name" placeholder="Your name" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="form-label" style="font-family: 'Orbitron', sans-serif;">Email:</label>
+                                                            <input type="email" style="font-family: 'Orbitron', sans-serif;" class="form-input" id="email" name="email" placeholder="your@email.com" required>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group">
+                                                        <label class="form-label">Review:</label>
+                                                        <textarea class="form-textarea" style="font-family: 'Orbitron', sans-serif;" id="message" name="message" rows="4" placeholder="Share your experience..." required></textarea>
+                                                    </div>
+                                                    
+                                                    <button type="submit" style="font-family: 'Orbitron', sans-serif;" class="btn-primary">Submit Review</button>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>                        
                     </div>
+                </div>
                 </div>
             </div>
         </div>
         <!-- Product Area Start -->
-        <div class="product-area related-product single-prod-bg border-t-2 pt-[30px]">
-            <div class="container">
-                <!-- Section Title & Tab Start -->
-                <div class="row">
-                    <div class="col-12">
-                        <div class="section-title text-center m-0">
-                            <h2 class="title text-black">Related Products</h2>
-                            <p class="text-black">There are many related products available</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Section Title & Tab End -->
-                <div class="row">
-                    <div class="col">
-                        <div class="new-product-slider swiper-container slider-nav-style-1">
-                            <div class="swiper-wrapper">
-                                <?php
-                                foreach ($products as $product) {
-                                    echo "<div class='swiper-slide'>
-                                            <!-- Single Prodect -->
-                                            <div class='product'>
-                                                <span class='badges'>
-                                                    <span class='sale'>Sale</span>
-                                                </span>
-                                                <div class='thumb'>
-                                                    <a href='singleProduct?product-id={$product['id']}' class='image'>
-                                                        <img src='{$product['image']}' class='aspect-square object-contain object-center' alt='Product' />
-                                                        <img class='hover-image' src='{$product['image']}' alt='Product' />
-                                                    </a>
-                                                </div>
-                                                <div class='content bg-transparent'>
-                                                    <span class='category text-black'><a href='#' class=' text-black'>{$product['type']}</a></span>
-                                                    <h5 class='title'>
-                                                        <a href='singleProduct?product-id={$product['id']}' class='line-clamp-1 text-black px-3'>
-                                                            {$product['name']}
-                                                        </a>
-                                                    </h5>
-                                                    <span class='price'>
-                                                        <span class='new text-black'>{$product['dis_price']}</span>
-                                                    </span>
-                                                </div>
-                                                <div class='actions items-center'>
-                                                    <button title='Add To Cart' class='action add-to-cart' data-bs-toggle='modal' data-bs-target='#exampleModal-Cart' onClick='addToCart({$product['id']});'>
-                                                        <i class='pe-7s-shopbag'></i>
-                                                    </button>
-                                                   <button class='action wishlist' title='Wishlist' data-bs-toggle='modal' data-bs-target='#exampleModal-Wishlist' onClick='addToWishlist({$product['id']});'>
-                                                        <i class='pe-7s-like'></i>
-                                                    </button>
-                                                    <button class='action quickview' data-link-action='quickview' title='Quick view' data-bs-toggle='modal' data-bs-target='#exampleModal'
-                                                            data-product-id='{$product['id']}'
-                                                            data-product-name='{$product['name']}'
-                                                            data-product-image='{$product['image']}'
-                                                            data-product-type='{$product['type']}'
-                                                            data-product-distription='{$product['description'] }'
-                                                            data-product-price='{$product['dis_price']}'>
-                                                        <i class='pe-7s-look'></i>
-                                                    </button>
-
-                                                </div>
-                                            </div>
-                                        </div>";
-                                }
-                                ?>
-                            </div>
-                            <!-- Add Arrows -->
-                            <div class="swiper-buttons">
-                                <div class="swiper-button-next"></div>
-                                <div class="swiper-button-prev"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         <!-- Footer Area Start -->
         @include('layouts.footer2')
 
@@ -764,23 +1108,21 @@ function fetchReviews(productId) {
                     const bgColor = colors[colorIndex];
 
                     const reviewHtml = `
-                        <div class="single-review">
-                            <div class="review-img">
-                                <div class="initials-avatar" style="background-color: ${bgColor}">${firstLetter}</div>
+                        <div class="single-review bg-white rounded-md shadow-sm p-2 flex gap-2 hover:shadow-md transition-shadow duration-200 max-w-lg mx-auto">
+                            <div class="review-img flex-shrink-0">
+                                <div class="initials-avatar text-white font-medium text-sm rounded-full flex items-center justify-center w-8 h-8" style="background-color: ${bgColor};">
+                                    ${firstLetter}
+                                </div>
                             </div>
-                            <div class="review-content">
-                                <div class="review-top-wrap">
-                                    <div class="review-left">
-                                        <div class="review-name">
-                                            <h4 class="text-black">${review.name}</h4>
-                                        </div>
-                                        <div class="rating-product">
-                                            ${stars}
-                                        </div>
+                            <div class="review-content flex-1">
+                                <div class="review-top-wrap flex justify-between items-center flex-wrap gap-1">
+                                        <h4 class="text-gray-800 font-small m-0" style="font-family: 'Orbitron', sans-serif; font-size: 14px;">${review.name}</h4>
+                                    <div class="rating-product flex items-center gap-0.5">
+                                        ${stars}
                                     </div>
                                 </div>
-                                <div class="review-bottom">
-                                    <p class="text-black text-justify">${review.message}</p>
+                                <div class="review-bottom mt-1">
+                                    <p class="text-gray-600 text-[0.65rem] text-justify m-0" style="font-family: 'Orbitron', sans-serif;">${review.message}</p>
                                 </div>
                             </div>
                         </div>
@@ -796,3 +1138,52 @@ function fetchReviews(productId) {
 }
 });
 </script>
+
+
+<script>
+        function showTab(tabName) {
+            // Hide all tab panels
+            const panels = document.querySelectorAll('.tab-panel');
+            panels.forEach(panel => panel.classList.remove('active'));
+            
+            // Remove active class from all tab buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected tab panel
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+
+
+
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const animateElements = document.querySelectorAll('.feature-item, .info-item');
+            animateElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>

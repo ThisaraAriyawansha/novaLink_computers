@@ -169,11 +169,11 @@
     align-items: center;
 }
 
-.btn-primary {
+.btn-primaryy {
     background: linear-gradient(135deg, #2c2c3e 0%, #3f3f5e 100%);
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 9px 16px;
     border-radius: 8px;
     font-size: 0.9rem;
     font-weight: 500;
@@ -183,7 +183,7 @@
     overflow: hidden;
 }
 
-.btn-primary::before {
+.btn-primaryy::before {
     content: '';
     position: absolute;
     top: 0;
@@ -194,11 +194,11 @@
     transition: left 0.4s ease;
 }
 
-.btn-primary:hover::before {
+.btn-primaryy:hover::before {
     left: 100%;
 }
 
-.btn-primary:hover {
+.btn-primaryy:hover {
     transform: translateY(-1px);
 }
 
@@ -589,7 +589,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                                 <!-- Action Buttons -->
                                 <div class="action-buttons">
-                                    <button class="btn-primary" style="font-family: 'Orbitron', sans-serif; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart" onClick="addToCart({{ $product['id'] }});">
+                                    <button class="btn-primaryy" style="font-family: 'Orbitron', sans-serif; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart" onClick="addToCart({{ $product['id'] }});">
                                         Add to Cart
                                     </button>
                                     <button class="btn-secondary" style="font-family: 'Orbitron', sans-serif; color: black;" onclick="window.location='{{ route('cart') }}'">
@@ -1143,7 +1143,7 @@ function fetchReviews(productId) {
                             </div>
                             <div class="review-content flex-1">
                                 <div class="review-top-wrap flex justify-between items-center flex-wrap gap-1">
-                                    <h4 class="text-gray-800 font-medium text-sm m-0" style="font-family: 'Orbitron', sans-serif;">${review.name}</h4>
+                                        <h4 class="text-gray-800 font-small m-0" style="font-family: 'Orbitron', sans-serif; font-size: 14px;">${review.name}</h4>
                                     <div class="rating-product flex items-center gap-0.5">
                                         ${stars}
                                     </div>
