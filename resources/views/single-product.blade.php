@@ -628,45 +628,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
                                         <!-- Reviews Tab -->
                                         <div id="reviews" class="tab-panel">
-                                            
                                             <div class="review-form">
+                                            <input type="hidden" id="product-id" value="<?php echo $product['id']; ?>">
                                                 <h3 style="margin-bottom: 1.5rem; color: #374151;">Add a Review</h3>
-                                                <div class="ratting-form">
-                                                    <form id="review-form">
-                                                        @csrf
-                                                        <input type="hidden" id="product-id" value="1"> <!-- Replace with dynamic product ID -->
-                                                        <div class="star-box">
-                                                            <span class="text-black">Your rating:</span>
-                                                            <div class="rating-product">
-                                                                <select id="rating" name="rating">
-                                                                    <option value="1">1 Star</option>
-                                                                    <option value="2">2 Stars</option>
-                                                                    <option value="3">3 Stars</option>
-                                                                    <option value="4">4 Stars</option>
-                                                                    <option value="5">5 Stars</option>
-                                                                </select>
-                                                            </div>
+                                                <form id="review-form">
+                                                     @csrf
+
+                                                    <div class="form-group">
+                                                        <label class="form-label">Your Rating:</label>
+                                                        <select class="form-select" id="rating" name="rating" required>
+                                                            <option value="">Select Rating</option>
+                                                            <option value="5">⭐⭐⭐⭐⭐ (5 Stars)</option>
+                                                            <option value="4">⭐⭐⭐⭐ (4 Stars)</option>
+                                                            <option value="3">⭐⭐⭐ (3 Stars)</option>
+                                                            <option value="2">⭐⭐ (2 Stars)</option>
+                                                            <option value="1">⭐ (1 Star)</option>
+                                                        </select>
+                                                    </div>
+                                                    
+                                                    <div class="form-row">
+                                                        <div class="form-group">
+                                                            <label class="form-label">Name:</label>
+                                                            <input type="text" class="form-input" id="name" name="name" placeholder="Your name" required>
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="rating-form-style">
-                                                                    <input id="name" name="name" placeholder="Name" type="text" required />
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="rating-form-style">
-                                                                    <input id="email" name="email" placeholder="Email" type="email" required />
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <div class="rating-form-style form-submit">
-                                                                    <textarea id="message" name="message" placeholder="Message" required></textarea>
-                                                                    <button class="btn btn-primary btn-hover-color-primary" type="submit">Submit</button>
-                                                                </div>
-                                                            </div>
+                                                        <div class="form-group">
+                                                            <label class="form-label">Email:</label>
+                                                            <input type="email" class="form-input" id="email" name="email" placeholder="your@email.com" required>
                                                         </div>
-                                                    </form>
-                                                </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group">
+                                                        <label class="form-label">Review:</label>
+                                                        <textarea class="form-textarea" id="message" name="message" rows="4" placeholder="Share your experience..." required></textarea>
+                                                    </div>
+                                                    
+                                                    <button type="submit" class="btn-primary">Submit Review</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -1012,6 +1009,7 @@ function initializeSwiper() {
     fetchReviews(productId);
 
     // Handle form submission
+    $(document).ready(function () {
     $('#review-form').on('submit', function (e) {
         e.preventDefault();
 
@@ -1032,18 +1030,41 @@ function initializeSwiper() {
                 if (response.success) {
                     $('#review-form')[0].reset();
                     fetchReviews(productId); // Refresh reviews
+                    // Display custom success message
+                    const successMessage = $('<div>', {
+                        class: 'success-message bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-md mt-4 text-sm md:text-base',
+                        text: 'Your review has been submitted successfully!'
+                    });
+                    $('#review-form').after(successMessage);
+                    // Fade out and remove the message after 3 seconds
+                    setTimeout(() => {
+                        successMessage.fadeOut(500, () => {
+                            successMessage.remove();
+                        });
+                    }, 3000);
                 }
             },
             error: function (xhr) {
                 const errors = xhr.responseJSON.errors;
-                let errorMessage = 'Please fix the following errors:\n';
+                let errorMessage = $('<div>', {
+                    class: 'error-message bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-md mt-4 text-sm md:text-base'
+                });
+                errorMessage.append('<p>Please fix the following errors:</p>');
+                errorMessage.append('<ul class="list-disc pl-5"></ul>');
                 for (let key in errors) {
-                    errorMessage += `- ${errors[key][0]}\n`;
+                    errorMessage.find('ul').append(`<li>${errors[key][0]}</li>`);
                 }
-                alert(errorMessage);
+                $('#review-form').after(errorMessage);
+                // Fade out and remove the error message after 5 seconds
+                setTimeout(() => {
+                    errorMessage.fadeOut(500, () => {
+                        errorMessage.remove();
+                    });
+                }, 5000);
             },
         });
     });
+});
 
     // Function to fetch and display reviews
     // Function to fetch and display reviews
@@ -1120,39 +1141,7 @@ function fetchReviews(productId) {
 
 
 
-        function toggleWishlist() {
-            const btn = event.target;
-            if (btn.textContent === '♡') {
-                btn.textContent = '♥';
-                btn.style.color = '#f87171';
-            } else {
-                btn.textContent = '♡';
-                btn.style.color = '';
-            }
-        }
 
-        function submitReview(event) {
-            event.preventDefault();
-            
-            const btn = event.target.querySelector('button[type="submit"]');
-            const originalText = btn.textContent;
-            
-            btn.textContent = 'Submitting...';
-            btn.disabled = true;
-            
-            // Simulate form submission
-            setTimeout(() => {
-                btn.textContent = 'Review Submitted! ✓';
-                btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
-                
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.disabled = false;
-                    btn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-                    event.target.reset();
-                }, 2000);
-            }, 1500);
-        }
 
         // Add scroll animations
         const observerOptions = {
