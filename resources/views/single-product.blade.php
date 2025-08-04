@@ -570,7 +570,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <!-- Product Header -->
                             <div class="product-header">
                                 <h1 class="product-title" style="font-family: 'Orbitron', sans-serif; color: black;"><?php echo htmlspecialchars($product['name']); ?></h1>
-                                <div class="product-price" style="font-family: 'Roboto', sans-serif; color: black;"><?php echo $product['dis_price'] ?></div>
+                                <div class="product-price" style="font-family: 'Roboto', sans-serif; color: black;">Rs. <?php echo $product['dis_price'] ?></div>
                             </div>
 
                             <!-- Product Content -->

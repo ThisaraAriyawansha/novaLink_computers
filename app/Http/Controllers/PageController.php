@@ -169,8 +169,8 @@ class PageController extends Controller
             'brand'=>$product->brand,
             'tags' => $product->tags,
             'desc' => $product->description,
-            'dis_price' => $product->discounted_price . ' LKR',
-            'ret_price' => $product->retail_price . ' LKR',
+            'dis_price' => $product->discounted_price,
+            'ret_price' => $product->retail_price ,
             'features' => $product->features->map(function ($feature) {
                 return $feature->feature_name . ': ' . $feature->feature_value;
             })->toArray(),
