@@ -628,6 +628,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
                                         <!-- Reviews Tab -->
                                         <div id="reviews" class="tab-panel">
+                                            <div class="col-lg-12">
+                                                <div class="review-wrapper">
+                                                    <!-- Reviews will be appended here -->
+                                                </div>
+                                            </div>
                                             <div class="review-form">
                                             <input type="hidden" id="product-id" value="<?php echo $product['id']; ?>">
                                                 <h3 style="margin-bottom: 1.5rem; color: #374151;">Add a Review</h3>
@@ -1088,26 +1093,24 @@ function fetchReviews(productId) {
                     const bgColor = colors[colorIndex];
 
                     const reviewHtml = `
-                        <div class="single-review">
-                            <div class="review-img">
-                                <div class="initials-avatar" style="background-color: ${bgColor}">${firstLetter}</div>
-                            </div>
-                            <div class="review-content">
-                                <div class="review-top-wrap">
-                                    <div class="review-left">
-                                        <div class="review-name">
-                                            <h4 class="text-black">${review.name}</h4>
-                                        </div>
-                                        <div class="rating-product">
+                        <div class="single-review bg-white rounded-lg shadow-md p-4 flex gap-4 hover:shadow-lg transition-shadow duration-300 max-w-2xl mx-auto">
+                                <div class="review-img flex-shrink-0">
+                                    <div class="initials-avatar text-white font-semibold text-lg rounded-full flex items-center justify-center w-12 h-12" style="background-color: ${bgColor};">
+                                        ${firstLetter}
+                                    </div>
+                                </div>
+                                <div class="review-content flex-1">
+                                    <div class="review-top-wrap flex justify-between items-center flex-wrap gap-2">
+                                        <h4 class="text-gray-800 font-semibold text-lg md:text-xl m-0">${review.name}</h4>
+                                        <div class="rating-product flex items-center gap-1">
                                             ${stars}
                                         </div>
                                     </div>
-                                </div>
-                                <div class="review-bottom">
-                                    <p class="text-black text-justify">${review.message}</p>
+                                    <div class="review-bottom mt-2">
+                                        <p class="text-gray-600 text-sm md:text-base text-justify m-0">${review.message}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                     `;
                     reviewContainer.append(reviewHtml);
                 });
