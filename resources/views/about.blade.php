@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CoreX Computers | Best Computers for you</title>
     <meta name="robots" content="index, follow" />
-    <meta name="description" content="CoreX Computers offer the best computers available at the market">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/X_logo.jpg" />
-    <!-- CSS
+    <title>NovaLink Computers | Best Computers for you</title>
+    <meta name="description" content="NovaLink Computers offer the best computers available at the market">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/N_back.jpg" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">    <!-- CSS
     ============================================ -->
     <script src="assets/js/tailwind-cdn.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
@@ -31,32 +31,52 @@
     <div class="main-wrapper">
     @include('layouts.nav-2')
 
-        <div class="h-[10dvh]"></div>
-        <!-- breadcrumb-area start -->
-        
-        <!-- breadcrumb-area end -->
-        <!-- About section Start -->
-        <div class="about-area py-[50px]" style="height:fit-content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="about-wrapper text-center">
-                            <div class="about-contant">
-                                <h2 class="title">
-                                    <span>Next generation tech </span>
-                                    solutions & support
-                                </h2>
-                                <p>At CoreX Computers, located in Matara, you will find a wide range of hardware including Desktop Computers, Laptops, Gaming Laptops, and Branded Computer Accessories — all at the best prices in Sri Lanka. Our friendly, knowledgeable, and professional staff are committed to providing you with top-quality products focused on reliability, performance, and trusted brands.</p>
-                                <p class="max-[390px]:hidden">
-                                    Since our establishment in 2021, CoreX Computers has earned a solid reputation for delivering reliable products and exceptional customer service. With unmatched expertise in IT solutions, we are proud to have served thousands of satisfied customers from our Matara store.
-                                </p>
-                            </div>
+        <div class="product-area py-[180px] dark-blue-bg relative" 
+            style="background:url(assets/images/banner/versatility.jpg) no-repeat; background-position:center; background-size:cover; background-attachment: fixed; border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;">
+            
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-black opacity-70 z-0" style="border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;"></div>
 
-                        </div>
+            <div class="container h-100 relative z-10">
+                <div class="row justify-content-center align-items-center h-100">
+                    <div class="col-12 text-center">
+                        <h2 class="text-xl lg:text-4xl font-light text-white mb-2" 
+                            style="font-family: 'Orbitron', sans-serif;">
+                            Welcome to NovaLink Computers
+                        </h2>
+                        <p class="text-white text-sm" style="font-family: 'Orbitron', sans-serif;">Your ultimate source for cutting-edge technology solutions in Sri Lanka</p>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- breadcrumb-area start -->
+
+        <nav style="display: flex; align-items: center; padding: 16px 24px;    max-width: 1200px; margin: 10px auto;" aria-label="Breadcrumb">
+            <ol style="display: inline-flex; align-items: center; margin: 0; padding: 0; list-style: none; flex-wrap: wrap;">
+                <li style="display: inline-flex; align-items: center;">
+                    <a href="/home" style="display: inline-flex; align-items: center; font-size: 14px; font-family: 'Orbitron', sans-serif; font-weight: 500; color: #4b5563; text-decoration: none; transition: color 0.3s ease, transform 0.2s ease; padding: 6px 10px; border-radius: 6px;">
+                        <svg style="width: 18px; height: 18px; margin-right: 8px; fill: none; stroke: #6b7280; stroke-width: 2;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                        Home
+                    </a>
+                </li>
+
+                <li style="display: flex; align-items: center; margin: 0 6px;" aria-current="page">
+                    <svg style="width: 16px; height: 16px; color: #9ca3af; fill: none; stroke: currentColor; stroke-width: 2;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <span style="margin-left: 8px; font-size: 14px; font-weight: 600; color: #374151; padding: 6px 10px; border-radius: 6px; font-family: 'Orbitron', sans-serif;">About Us</span>
+                </li>
+            </ol>
+        </nav>
+
+        
+        <!-- breadcrumb-area end -->
+        <!-- About section Start -->
+            
+
         <!-- About section End -->
         <!-- Feature Area Srart -->
         <div class="feature-area py-[50px]">
@@ -66,11 +86,11 @@
                         <!-- single item -->
                         <div class="single-feature">
                             <div class="feature-icon">
-                                <img src="assets/images/icons/truck.webp" alt="">
+                                <img src="assets/images/icons/computer-icon-clipart-md.png" alt="">
                             </div>
                             <div class="feature-content">
-                                <h4 class="title">Free Shipping</h4>
-                                <span class="sub-title">Available in Matara</span>
+                                <h4 class="title">Premium Computers</h4>
+                                <span class="sub-title">High-Performance PCs</span>
                             </div>
                         </div>
                     </div>
@@ -78,11 +98,11 @@
                     <div class="single-feture-col mb-md-30px mb-lm-30px">
                         <div class="single-feature">
                             <div class="feature-icon">
-                                <img src="assets/images/icons/card.webp" alt="">
+                                <img src="assets/images/icons/images.png" alt="">
                             </div>
                             <div class="feature-content">
-                                <h4 class="title">Card Payments</h4>
-                                <span class="sub-title">12 Months Installments</span>
+                                <h4 class="title">Official Apple Products</h4>
+                                <span class="sub-title">iPhones, iPads & Accessories</span>
                             </div>
                         </div>
                     </div>
@@ -90,11 +110,11 @@
                     <div class="single-feture-col">
                         <div class="single-feature">
                             <div class="feature-icon">
-                                <img src="assets/images/icons/pkg.webp" alt="">
+                                <img src="assets/images/icons/1__2825_29.jpg" alt="">
                             </div>
                             <div class="feature-content">
-                                <h4 class="title">Easy Returns</h4>
-                                <span class="sub-title">Shop With Confidence</span>
+                                <h4 class="title">Expert Support</h4>
+                                <span class="sub-title">Personalized Tech Assistance</span>
                             </div>
                         </div>
                         <!-- single item -->
@@ -208,40 +228,49 @@
         </div>
 
         <!-- Blog area start from here -->
-        <div class="main-blog-area py-[50px] light-blue-bg">
-                <div class="container">
-                    <!-- section title start -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="section-title text-center mb-30px0px">
-                                <h2 class="title text-white">Latest Blogs</h2>
-                                <p class="text-white">Discover our latest articles and updates</p>
-                            </div>
-                        </div>
+                    <!-- Testimonial area start -->
+            <div class="blog-section py-16 bg-white">
+                <div class="container mx-auto px-4">
+                    <!-- Section Title -->
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl font-semibold text-black mb-2 flex items-center justify-center" style="font-family: 'Orbitron', sans-serif;">
+                            <i class="fas fa-lightbulb mr-2"></i> Latest Insights
+                        </h2>
+                        <p class="text-black" style="font-family: 'Orbitron', sans-serif;">Explore our newest articles and updates</p>
                     </div>
-                    <!-- section title start -->
-                    <div class="row">
+
+                    <!-- Blog Posts Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         @foreach ($blogs as $blog)
-                            <div class="col-lg-6 col-sm-6 mb-xs-30px">
-                                <div class="single-blog">
-                                    <div class="blog-image">
-                                        <a href="{{ route('blog.show') . '?blog-id=' . $blog['id'] }}"><img src="{{ $blog['image'] }}" class="img-responsive w-100" alt="{{ $blog['title'] }}"></a>
+                            <div class="blog-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+                                <div class="blog-image-container">
+                                    <a href="{{ route('blog.show') . '?blog-id=' . $blog['id'] }}">
+                                        <img src="{{ $blog['image'] }}" alt="{{ $blog['title'] }}" class="w-full h-96 object-cover">
+                                    </a>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex items-center text-sm text-black mb-3">
+                                        <span class="flex items-center mr-4">
+                                            <i class="fas fa-calendar-alt w-4 h-4 mr-1 text-black"></i>
+                                            {{ $blog['date'] }}
+                                        </span>
+
                                     </div>
-                                    <div class="lg:pl-3 max-lg:pt-3 flex flex-col gap-2 justify-center">
-                                        <div class="blog-athor-date line-height-1">
-                                            <span class="blog-date text-white"><i class="fa fa-calendar text-white" aria-hidden="true"></i> {{ $blog['date'] }}</span>
-                                            <span><a class="blog-author text-white" href="#"><i class="fa fa-user text-white" aria-hidden="true"></i> Admin</a></span>
-                                        </div>
-                                        <h5 class="blog-heading mt-2"><a class="blog-heading-link text-white" href="{{ route('blog.show') . '?blog-id=' . $blog['id'] }}">{{ $blog['title'] }}</a></h5>
-                                        <h5 class="blog-heading"><a class="blog-heading-link text-white text-sm" href="{{ route('blog.show') . '?blog-id=' . $blog['id'] }}">{{ $blog['description'] }}</a></h5>
-                                        <a href="{{ route('blog.show') . '?blog-id=' . $blog['id'] }}" class="btn btn-primary blog-btn">Read More</a>
-                                    </div>
+                                    <h3 class="text-xl font-semibold text-black mb-2 hover:text-blue-600 transition-colors flex items-center">
+                                        <a class="text-black" href="{{ route('blog.show') . '?blog-id=' . $blog['id'] }}" style="font-family: 'Orbitron', sans-serif;">{{ $blog['title'] }}</a>
+                                    </h3>
+                                    <p class="text-black mb-4" >{{ $blog['description'] }}</p>
+                                    <a href="{{ route('blog.show') . '?blog-id=' . $blog['id'] }}" class="inline-flex items-center text-black hover:text-blue-800 font-medium transition-colors" style="font-family: 'Orbitron', sans-serif;">
+                                        Read more
+                                        <i class="fas fa-arrow-right w-4 h-4 ml-1"></i>
+                                    </a>
                                 </div>
                             </div>
                         @endforeach
+                        
                         @if($blogs->isEmpty())
-                            <div class="col-12 text-center">
-                                <p class="text-white">No blogs available at the moment.</p>
+                            <div class="col-span-full text-center py-12">
+                                <p class="text-black">No articles available at this time.</p>
                             </div>
                         @endif
                     </div>

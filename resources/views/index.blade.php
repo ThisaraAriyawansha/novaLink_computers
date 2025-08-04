@@ -487,10 +487,7 @@
                                             <i class="fas fa-calendar-alt w-4 h-4 mr-1 text-black"></i>
                                             {{ $blog['date'] }}
                                         </span>
-                                        <span class="flex items-center">
-                                            <i class="fas fa-user w-4 h-4 mr-1 text-black"></i>
-                                            Admin
-                                        </span>
+
                                     </div>
                                     <h3 class="text-xl font-semibold text-black mb-2 hover:text-blue-600 transition-colors flex items-center">
                                         <a class="text-black" href="{{ route('blog.show') . '?blog-id=' . $blog['id'] }}" style="font-family: 'Orbitron', sans-serif;">{{ $blog['title'] }}</a>
