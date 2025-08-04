@@ -10,6 +10,9 @@
     <title>NovaLink Computers | Best Computers for you</title>
     <meta name="description" content="NovaLink Computers offer the best computers available at the market">
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/N_back.jpg" />    <!-- Favicon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+
     <!-- CSS
     ============================================ -->
     <script src="assets/js/tailwind-cdn.js"></script>
@@ -45,13 +48,13 @@
 <style>
 
 
+
         .product-container {
             max-width: 1200px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
             border-radius: 24px;
-            box-shadow: 0 32px 64px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             animation: slideUp 0.8s ease-out;
         }
@@ -68,7 +71,6 @@
         }
 
         .product-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 40px;
             color: white;
             position: relative;
@@ -137,7 +139,7 @@
             top: 0;
             width: 4px;
             height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1f1f2e 0%, #2c2c3e 100%);
             transform: scaleY(0);
             transition: transform 0.3s ease;
         }
@@ -173,7 +175,7 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1f1f2e 0%, #2c2c3e 100%);
             color: white;
             border: none;
             padding: 16px 32px;
@@ -203,13 +205,13 @@
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 16px 32px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(135deg, #1f1f2e 0%, #2c2c3e 100%);
         }
 
         .btn-secondary {
             background: white;
-            color: #667eea;
-            border: 2px solid #667eea;
+            color: #000000ff;
+            border: 2px solid #000000ff;
             padding: 14px 28px;
             border-radius: 12px;
             font-size: 1.1rem;
@@ -219,7 +221,7 @@
         }
 
         .btn-secondary:hover {
-            background: #667eea;
+            background: #75777dff;
             color: white;
             transform: translateY(-2px);
             box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
@@ -282,7 +284,7 @@
             transform: translateX(-50%);
             width: 50px;
             height: 3px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1f1f2e 0%, #2c2c3e 100%);
             border-radius: 2px;
         }
 
@@ -320,7 +322,7 @@
             padding: 1.5rem;
             background: #f9fafb;
             border-radius: 12px;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid #000000ff;
         }
 
         .info-label {
@@ -366,6 +368,7 @@
             border-radius: 8px;
             font-size: 1rem;
             transition: border-color 0.3s ease;
+            
         }
 
         .form-input:focus, .form-textarea:focus, .form-select:focus {
@@ -543,6 +546,22 @@ document.addEventListener('DOMContentLoaded', function() {
     max-width: 100%;
 }
 </style>
+
+<div class="container mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
+
+        <!-- Reviews Section -->
+        <div class="bg-white text-black rounded-xl p-6  w-full">
+            <h3 class="text-xl font-bold mb-4" style="font-family: 'Orbitron', sans-serif;">Reviews</h3>
+            <div class="review-wrapper space-y-4">
+                <!-- Reviews will be appended here -->
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
                     </div>
                     <!-- prod data -->
                     <div class="col-lg-6 col-sm-12 col-xs-12" data-aos="fade-up" data-aos-delay="200">
@@ -550,8 +569,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="product-container">
                             <!-- Product Header -->
                             <div class="product-header">
-                                <h1 class="product-title"><?php echo htmlspecialchars($product['name']); ?></h1>
-                                <div class="product-price"><?php echo $product['dis_price'] ?></div>
+                                <h1 class="product-title" style="font-family: 'Orbitron', sans-serif; color: black;"><?php echo htmlspecialchars($product['name']); ?></h1>
+                                <div class="product-price" style="font-family: 'Roboto', sans-serif; color: black;"><?php echo $product['dis_price'] ?></div>
                             </div>
 
                             <!-- Product Content -->
@@ -566,8 +585,8 @@ document.addEventListener('DOMContentLoaded', function() {
                                                 [$featureName, $featureValue] = explode(':', $feature, 2);
                                             @endphp
                                             <div class="feature-item">
-                                                <span class="feature-label">{{ trim($featureName) }}:</span>
-                                                <span class="feature-value">{{ trim($featureValue) }}</span>
+                                                <span class="feature-label" style="font-family: 'Orbitron', sans-serif; color: black;" >{{ trim($featureName) }}:</span>
+                                                <span class="feature-value" style="font-family: 'Orbitron', sans-serif; color: black;">{{ trim($featureValue) }}</span>
                                             </div>
                                         @endforeach
                                     @endif
@@ -576,10 +595,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
                                 <!-- Action Buttons -->
                                 <div class="action-buttons">
-                                    <button class="btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart" onClick="addToCart({{ $product['id'] }});">
+                                    <button class="btn-primary" style="font-family: 'Orbitron', sans-serif; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart" onClick="addToCart({{ $product['id'] }});">
                                         Add to Cart
                                     </button>
-                                    <button class="btn-secondary" onclick="window.location='{{ route('cart') }}'">
+                                    <button class="btn-secondary" style="font-family: 'Orbitron', sans-serif; color: black;" onclick="window.location='{{ route('cart') }}'">
                                         Buy Now
                                     </button>
 
@@ -591,9 +610,9 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <!-- Tabs Section -->
                                 <div class="tabs-section">
                                     <div class="tabs-nav">
-                                        <button class="tab-btn active" onclick="showTab('information')">Information</button>
-                                        <button class="tab-btn" onclick="showTab('description')">Description</button>
-                                        <button class="tab-btn" onclick="showTab('reviews')">Reviews</button>
+                                        <button class="tab-btn active" style="font-family: 'Orbitron', sans-serif; color: black;"  onclick="showTab('information')">Information</button>
+                                        <button class="tab-btn" style="font-family: 'Orbitron', sans-serif; color: black;" onclick="showTab('description')">Description</button>
+                                        <button class="tab-btn" style="font-family: 'Orbitron', sans-serif; color: black;" onclick="showTab('reviews')">Reviews</button>
                                     </div>
 
                                     <div class="tab-content">
@@ -601,73 +620,69 @@ document.addEventListener('DOMContentLoaded', function() {
                                         <div id="information" class="tab-panel active">
                                             <div class="info-grid">
                                                 <div class="info-item">
-                                                    <div class="info-label">Brand</div>
-                                                    <div class="info-value"><?php echo $product['brand'] ?></div>
+                                                    <div class="info-label" style="font-family: 'Orbitron', sans-serif;">Brand</div>
+                                                    <div class="info-value" style="font-family: 'Orbitron', sans-serif;"><?php echo $product['brand'] ?></div>
                                                 </div>
                                                 <div class="info-item">
-                                                    <div class="info-label">Product Type</div>
-                                                    <div class="info-value"><?php echo $product['type'] ?></div>
+                                                    <div class="info-label" style="font-family: 'Orbitron', sans-serif;">Product Type</div>
+                                                    <div class="info-value" style="font-family: 'Orbitron', sans-serif;"><?php echo $product['type'] ?></div>
                                                 </div>
                                                 <div class="info-item">
-                                                    <div class="info-label">Warranty</div>
-                                                    <div class="info-value"><?php echo $product['warranty'] ?></div>
+                                                    <div class="info-label" style="font-family: 'Orbitron', sans-serif;">Warranty</div>
+                                                    <div class="info-value" style="font-family: 'Orbitron', sans-serif;"><?php echo $product['warranty'] ?></div>
                                                 </div>
                                                 <div class="info-item">
-                                                    <div class="info-label">Availability</div>
-                                                    <div class="info-value"><?php echo $product['in_stock'] ?></div>
+                                                    <div class="info-label" style="font-family: 'Orbitron', sans-serif;">Availability</div>
+                                                    <div class="info-value" style="font-family: 'Orbitron', sans-serif;"><?php echo $product['in_stock'] ?></div>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <!-- Description Tab -->
                                         <div id="description" class="tab-panel">
-                                            <p class="description-text">
+                                            <p class="description-text" style="font-family: 'Orbitron', sans-serif;">
                                                 <?php echo $product['desc'] ?>
                                             </p>
                                         </div>
 
                                         <!-- Reviews Tab -->
                                         <div id="reviews" class="tab-panel">
-                                            <div class="col-lg-12">
-                                                <div class="review-wrapper">
-                                                    <!-- Reviews will be appended here -->
-                                                </div>
-                                            </div>
+
                                             <div class="review-form">
                                             <input type="hidden" id="product-id" value="<?php echo $product['id']; ?>">
-                                                <h3 style="margin-bottom: 1.5rem; color: #374151;">Add a Review</h3>
+                                                <h3 style="margin-bottom: 1.5rem; color: #374151; font-family: 'Orbitron', sans-serif;">Add a Review</h3>
                                                 <form id="review-form">
                                                      @csrf
 
                                                     <div class="form-group">
-                                                        <label class="form-label">Your Rating:</label>
-                                                        <select class="form-select" id="rating" name="rating" required>
-                                                            <option value="">Select Rating</option>
-                                                            <option value="5">⭐⭐⭐⭐⭐ (5 Stars)</option>
-                                                            <option value="4">⭐⭐⭐⭐ (4 Stars)</option>
-                                                            <option value="3">⭐⭐⭐ (3 Stars)</option>
-                                                            <option value="2">⭐⭐ (2 Stars)</option>
-                                                            <option value="1">⭐ (1 Star)</option>
+                                                        <label class="form-label" style="font-family: 'Orbitron', sans-serif;">Your Rating:</label>
+                                                        <select class="form-select" id="rating" name="rating" style="font-family: 'Orbitron', sans-serif;" required>
+                                                            <option value="" >Select Rating</option>
+                                                            <option value="5" >⭐⭐⭐⭐⭐</option>
+                                                            <option value="4" >⭐⭐⭐⭐</option>
+                                                            <option value="3">⭐⭐⭐</option>
+                                                            <option value="2">⭐⭐</option>
+                                                            <option value="1">⭐</option>
                                                         </select>
                                                     </div>
                                                     
                                                     <div class="form-row">
                                                         <div class="form-group">
-                                                            <label class="form-label">Name:</label>
-                                                            <input type="text" class="form-input" id="name" name="name" placeholder="Your name" required>
+                                                            <label class="form-label" style="font-family: 'Orbitron', sans-serif;">Name:</label>
+                                                            <input type="text" style="font-family: 'Orbitron', sans-serif;" class="form-input" id="name" name="name" placeholder="Your name" required>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="form-label">Email:</label>
-                                                            <input type="email" class="form-input" id="email" name="email" placeholder="your@email.com" required>
+                                                            <label class="form-label" style="font-family: 'Orbitron', sans-serif;">Email:</label>
+                                                            <input type="email" style="font-family: 'Orbitron', sans-serif;" class="form-input" id="email" name="email" placeholder="your@email.com" required>
                                                         </div>
                                                     </div>
                                                     
                                                     <div class="form-group">
                                                         <label class="form-label">Review:</label>
-                                                        <textarea class="form-textarea" id="message" name="message" rows="4" placeholder="Share your experience..." required></textarea>
+                                                        <textarea class="form-textarea" style="font-family: 'Orbitron', sans-serif;" id="message" name="message" rows="4" placeholder="Share your experience..." required></textarea>
                                                     </div>
                                                     
-                                                    <button type="submit" class="btn-primary">Submit Review</button>
+                                                    <button type="submit" style="font-family: 'Orbitron', sans-serif;" class="btn-primary">Submit Review</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -679,17 +694,33 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         </div>
+
+
+        <div class="product-area py-[100px] dark-blue-bg relative" 
+            style="background:url(assets/images/3292900-gaming-laptops-banner.avif) no-repeat; background-position:center; background-size:cover; background-attachment: fixed;">
+            
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-black opacity-60 z-0"></div>
+
+            <div class="container h-100 relative z-10">
+                <div class="row justify-content-center align-items-center h-100">
+                    <div class="col-12 text-center">
+                        <h2 class="text-2xl lg:text-5xl font-light text-white mb-2" 
+                            style="font-family: 'Orbitron', sans-serif;">
+                           Related Products
+                        </h2>
+                        <p class="text-white" style="font-family: 'Orbitron', sans-serif;">There are many related products available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Product Area Start -->
         <div class="product-area related-product single-prod-bg border-t-2 pt-[30px]">
             <div class="container">
                 <!-- Section Title & Tab Start -->
                 <div class="row">
-                    <div class="col-12">
-                        <div class="section-title text-center m-0">
-                            <h2 class="title text-black">Related Products</h2>
-                            <p class="text-black">There are many related products available</p>
-                        </div>
-                    </div>
+
                 </div>
                 <!-- Section Title & Tab End -->
                 <div class="row">
@@ -1101,13 +1132,13 @@ function fetchReviews(productId) {
                                 </div>
                                 <div class="review-content flex-1">
                                     <div class="review-top-wrap flex justify-between items-center flex-wrap gap-2">
-                                        <h4 class="text-gray-800 font-semibold text-lg md:text-xl m-0">${review.name}</h4>
+                                        <h4 class="text-gray-800 font-semibold text-lg md:text-xl m-0" style="font-family: 'Orbitron', sans-serif;">${review.name}</h4>
                                         <div class="rating-product flex items-center gap-1">
                                             ${stars}
                                         </div>
                                     </div>
                                     <div class="review-bottom mt-2">
-                                        <p class="text-gray-600 text-sm md:text-base text-justify m-0">${review.message}</p>
+                                        <p class="text-gray-600 text-sm md:text-base text-justify m-0" style="font-family: 'Orbitron', sans-serif;">${review.message}</p>
                                     </div>
                                 </div>
                             </div>
