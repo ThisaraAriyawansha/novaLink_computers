@@ -64,7 +64,7 @@
 }
 
 .product-header {
-    padding: 24px;
+    padding: 12px;
     color: white;
     position: relative;
     overflow: hidden;
@@ -87,16 +87,16 @@
 }
 
 .product-title {
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin-bottom: 0.8rem;
+    font-size: 1.3rem;
+    font-weight: 200;
+    margin-bottom: 0.2rem;
     position: relative;
     z-index: 2;
 }
 
 .product-price {
-    font-size: 1.5rem;
-    font-weight: 500;
+    font-size: 1.3rem;
+    font-weight: 100;
     color: #ffd700;
     margin-bottom: 1.5rem;
     position: relative;
@@ -542,13 +542,13 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 </style>
 
-<div class="container mx-auto px-4 py-8">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
-
+<div class="container mx-auto px-3 py-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
+    
         <!-- Reviews Section -->
-        <div class="bg-white text-black rounded-xl p-6  w-full">
-            <h3 class="text-xl font-bold mb-4" style="font-family: 'Orbitron', sans-serif;">Reviews</h3>
-            <div class="review-wrapper space-y-4">
+        <div class="bg-white text-black rounded-lg p-4 w-full">
+            <h3 class="text-lg font-semibold mb-3" style="font-family: 'Orbitron', sans-serif;">Reviews</h3>
+            <div class="review-wrapper space-y-3">
                 <!-- Reviews will be appended here -->
             </div>
         </div>
@@ -564,8 +564,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="product-container">
                             <!-- Product Header -->
                             <div class="product-header ">
-                                <h1 class="product-title" style="font-family: 'Orbitron', sans-serif; color: black;"><?php echo htmlspecialchars($product['name']); ?></h1>
-                                <div class="product-price" style="font-family: 'Orbitron', sans-serif; color: black;">Rs. <?php echo $product['dis_price'] ?></div>
+                                <h1 class="product-title" style="font-family: 'Orbitron', sans-serif; color: black;">Product Features :</h1>
                             </div>
 
                             <!-- Product Content -->
@@ -613,6 +612,10 @@ document.addEventListener('DOMContentLoaded', function() {
                                     <div class="tab-content">
                                         <!-- Information Tab -->
                                         <div id="information" class="tab-panel active">
+                                                <div class="product-header ">
+                                                    <h1 class="product-title" style="font-family: 'Orbitron', sans-serif; color: black;"><?php echo htmlspecialchars($product['name']); ?></h1>
+                                                    <div class="product-price" style="font-family: 'Orbitron', sans-serif; color: black;">Rs. <?php echo $product['dis_price'] ?></div>
+                                                </div>
                                             <div class="info-grid">
                                                 <div class="info-item">
                                                     <div class="info-label" style="font-family: 'Orbitron', sans-serif;">Brand</div>
@@ -691,8 +694,8 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
 
 
-        <div class="product-area py-[100px] dark-blue-bg relative" 
-            style="background:url(assets/images/3292900-gaming-laptops-banner.avif) no-repeat; background-position:center; background-size:cover; background-attachment: fixed;">
+        <div class="product-area py-[150px] dark-blue-bg relative" 
+            style="background:url(assets/images/banner/14__ioPort.jpg) no-repeat; background-position:center; background-size:cover; background-attachment: fixed;">
             
             <!-- Overlay -->
             <div class="absolute inset-0 bg-black opacity-60 z-0"></div>
@@ -702,9 +705,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="col-12 text-center">
                         <h2 class="text-2xl lg:text-5xl font-light text-white mb-2" 
                             style="font-family: 'Orbitron', sans-serif;">
-                           Related Products
+                           You Might Also Like
                         </h2>
-                        <p class="text-white" style="font-family: 'Orbitron', sans-serif;">There are many related products available</p>
+                        <p class="text-white" style="font-family: 'Orbitron', sans-serif;">Explore similar items tailored for you</p>
                     </div>
                 </div>
             </div>
@@ -715,7 +718,10 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="container">
                 <!-- Section Title & Tab Start -->
                 <div class="row">
-
+                <div class="text-center ">
+                    <h2 class="text-2xl font-light text-black " style="font-family: 'Orbitron', sans-serif;">Related Products</h2>
+                    <div class="w-30 h-px bg-black mx-auto"></div>
+                </div>
                 </div>
                 <!-- Section Title & Tab End -->
                 <div class="row">
@@ -1129,21 +1135,21 @@ function fetchReviews(productId) {
                     const bgColor = colors[colorIndex];
 
                     const reviewHtml = `
-                        <div class="single-review bg-white rounded-md shadow-sm p-3 flex gap-3 hover:shadow-md transition-shadow duration-200 max-w-xl mx-auto">
+                        <div class="single-review bg-white rounded-md shadow-sm p-2 flex gap-2 hover:shadow-md transition-shadow duration-200 max-w-lg mx-auto">
                             <div class="review-img flex-shrink-0">
-                                <div class="initials-avatar text-white font-medium text-base rounded-full flex items-center justify-center w-10 h-10" style="background-color: ${bgColor};">
+                                <div class="initials-avatar text-white font-medium text-sm rounded-full flex items-center justify-center w-8 h-8" style="background-color: ${bgColor};">
                                     ${firstLetter}
                                 </div>
                             </div>
                             <div class="review-content flex-1">
                                 <div class="review-top-wrap flex justify-between items-center flex-wrap gap-1">
-                                    <h4 class="text-gray-800 font-medium text-base m-0" style="font-family: 'Orbitron', sans-serif;">${review.name}</h4>
+                                    <h4 class="text-gray-800 font-medium text-sm m-0" style="font-family: 'Orbitron', sans-serif;">${review.name}</h4>
                                     <div class="rating-product flex items-center gap-0.5">
                                         ${stars}
                                     </div>
                                 </div>
                                 <div class="review-bottom mt-1">
-                                    <p class="text-gray-600 text-xs text-justify m-0" style="font-family: 'Orbitron', sans-serif;">${review.message}</p>
+                                    <p class="text-gray-600 text-[0.65rem] text-justify m-0" style="font-family: 'Orbitron', sans-serif;">${review.message}</p>
                                 </div>
                             </div>
                         </div>
