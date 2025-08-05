@@ -45,11 +45,11 @@
                         <div class="col-lg-6">
                             <div class="product-details-section">
                                 <div class="product-details-content quickview-content">
-                                    <h2 style="font-family: 'Orbitron', sans-serif; padding: 1px; font-size: 1rem;">New Laptops</h2>
+                                    <h2 style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; padding: 1px; font-size: 1rem;">New Laptops</h2>
                                     
                                     <div class="pricing-meta">
                                         <ul class="d-flex">
-                                            <li class="new-price" style="font-family: 'Poppins', sans-serif;" >From 125,000 LKR</li><li class="new-price" style="font-family: 'Poppins', sans-serif;" > LKR</li>
+                                            <li class="new-price" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;" >From 125,000 LKR</li><li class="new-price" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;" > LKR</li>
                                         </ul>
                                     </div>
 
@@ -66,7 +66,7 @@
                                         </span>
                                     </div>
 
-                                    <p class="product-description" >
+                                    <p class="product-description" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">
                                         At Udarata Computers, we bring you an extensive range of laptops designed to meet every need and budget. Whether you're a gamer seeking high-performance machines, a professional looking for reliable work laptops, or a student in need of a lightweight device for studies, we have the perfect laptop for you.
                                     </p>
 
