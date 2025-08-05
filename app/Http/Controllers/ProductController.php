@@ -102,7 +102,7 @@ class ProductController extends Controller
         }
 
         // Apply pagination (12 items per page)
-        $products = $products->paginate(12);
+        $products = $products->paginate(15);
 
         // Modify products to change 'discounted_price' to 'dis_price'
         $products->setCollection(
