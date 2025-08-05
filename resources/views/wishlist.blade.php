@@ -167,7 +167,7 @@
         
         .modal-btn {
             padding: 10px 24px;
-            background-color: #3b82f6;
+            background-color: #000000ff;
             color: white;
             border: none;
             border-radius: 6px;
@@ -177,7 +177,7 @@
         }
         
         .modal-btn:hover {
-            background-color: #2563eb;
+            background-color: #191a1bff;
         }
         
         .close-modal {
@@ -324,7 +324,7 @@
                     <td class="product-thumbnail" data-label="Product">
                         <a href="singleProduct?product-id=${item.id}" class="flex items-center">
                             <img src="${item.image}" alt="${item.name}" class="mr-4">
-                            <span class="product-name" style=" color: black;">${item.name}</span>
+                            <span class="product-name" style=" color: black; ">${item.name}</span>
                         </a>
                     </td>
                     <td class="product-price" data-label="Price">
@@ -332,7 +332,7 @@
                     </td>
                     <td data-label="Actions">
                         <div class="action-buttons">
-                            <button class="action-btn add-cart-btn" data-product-id="${item.id}">
+                            <button class="action-btn add-cart-btn bg-black" data-product-id="${item.id}">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                                 </svg>

@@ -328,21 +328,21 @@
                     <td class="product-thumbnail" data-label="Product">
                         <a href="singleProduct?product-id=${item.id}" class="flex items-center">
                             <img src="${item.image}" alt="${item.name}" class="mr-4" >
-                            <span class="product-name" style=" color: black; ">${item.name}</span>
+                            <span class="product-name" style=" color: black; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">${item.name}</span>
                         </a>
                     </td>
                     <td class="product-price" data-label="Price">
-                        <span class="amount">${item.price}</span>
+                        <span class="amount" style=" color: black; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">${item.price}</span>
                     </td>
                     <td class="product-quantity" data-label="Quantity">
                         <div class="quantity-control">
                             <button type="button" class="quantity-btn dec" data-product-id="${item.id}">-</button>
                             <input type="text" class="quantity-input" value="${item.quantity}" 
-                                   data-product-id="${item.id}">
+                                   data-product-id="${item.id}" >
                             <button type="button" class="quantity-btn inc" data-product-id="${item.id}">+</button>
                         </div>
                     </td>
-                    <td class="product-subtotal" data-label="Subtotal">${formatPrice(subtotal)}</td>
+                    <td class="product-subtotal" data-label="Subtotal" style=" color: black; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">${formatPrice(subtotal)}</td>
                     <td data-label="Remove">
                         <button type="button" class="remove-btn" data-product-id="${item.id}">×</button>
                     </td>
