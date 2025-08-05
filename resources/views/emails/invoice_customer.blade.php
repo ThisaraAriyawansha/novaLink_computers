@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Your Invoice from CoreX Computers</title>
+    <title>Your Invoice from NovaLink Computers</title>
     <script src="assets/js/tailwind-cdn.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/css/font.awesome.css" />
@@ -25,7 +25,7 @@
             padding: 20px;
         }
         .header {
-            background-color: #1f2937;
+            background-color: #000000ff;
             color: white;
             padding: 15px;
             text-align: center;
@@ -41,7 +41,7 @@
             border-radius: 5px;
         }
         .footer {
-            background-color: #1f2937;
+            background-color: #000000ff;
             color: white;
             padding: 10px;
             text-align: center;
@@ -61,11 +61,11 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Your Invoice from CoreX Computers</h1>
+            <h1>Your Invoice from NovaLink Computers</h1>
         </div>
         <div class="content">
             <p>Dear {{ $customerName }},</p>
-            <p>Thank you for your purchase at CoreX Computers. Please find your invoice attached to this email.</p>
+            <p>Thank you for your purchase at NovaLink Computers. Please find your invoice attached to this email.</p>
             
             <div class="invoice-details">
                 <p><strong>Invoice Number:</strong> {{ $invoiceNumber }}</p>
@@ -74,14 +74,14 @@
                 <p><strong>Total Amount:</strong> {{ $total }}</p>
             </div>
             
-            <p>If you have any questions regarding your invoice or purchase, please don't hesitate to contact our support team at support@corexcomputers.com or call +94 (77) 453-5643.</p>
+            <p>If you have any questions regarding your invoice or purchase, please don't hesitate to contact our support team at novaLinkcomputers@gmail.com or call +94 (76) 941-7154.</p>
             
             <p>We appreciate your business!</p>
-            <p>Best regards,<br>CoreX Computers Team</p>
+            <p>Best regards,<br>NovaLink Computers Team</p>
         </div>
         <div class="footer">
-            <p>CoreX Computers - Computer Arcade & Technologies (PVT) Ltd</p>
-            <p>+94 5656 67890 | www.corexcomputers.lk</p>
+            <p>NovaLink Computers - Computer Arcade & Technologies (PVT) Ltd</p>
+            <p>+94 (76) 941-7154 | www.novaLinkcomputers.lk</p>
         </div>
     </div>
 </body>

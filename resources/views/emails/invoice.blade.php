@@ -25,7 +25,7 @@
             padding: 20px;
         }
         .header {
-            background-color: #1f2937;
+            background-color: #000000ff;
             color: white;
             padding: 15px;
             text-align: center;
@@ -41,7 +41,7 @@
             border-radius: 5px;
         }
         .footer {
-            background-color: #1f2937;
+            background-color: #000000ff;
             color: white;
             padding: 10px;
             text-align: center;
@@ -67,11 +67,11 @@
             </div>
             
             <p>Please find the attached PDF for the complete invoice details.</p>
-            <p>Best regards,<br>CoreX Computers System</p>
+            <p>Best regards,<br>NovaLink Computers System</p>
         </div>
         <div class="footer">
-            <p>CoreX Computers - Computer Arcade & Technologies (PVT) Ltd</p>
-            <p>+94 5454 78907 | www.corexcomputers.lk</p>
+            <p>NovaLink Computers - Computer Arcade & Technologies (PVT) Ltd</p>
+            <p>+94 (76) 941-7154 | www.novaLinkcomputers.lk</p>
         </div>
     </div>
 </body>

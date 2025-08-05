@@ -33,7 +33,7 @@
 
         /* Header Section */
         .email-header {
-            background-color: #003366; /* Dark Blue */
+            background-color: #000000ff; /* Dark Blue */
             color: white;
             padding: 40px 20px;
             text-align: center;
@@ -143,24 +143,24 @@
     <!-- Body Section -->
     <div class="email-body">
         <p>Dear {{ $username }},</p>
-        <p>Thank you for registering with <span class="highlight">CoreX Computers</span>! We're thrilled to have you as part of our growing community. Our team is here to help you make the most out of your experience.</p>
-        <p>If you have any questions or need assistance, don't hesitate to <a href="mailto:support@corexcomputers.com" style="color: #003366; text-decoration: none;">contact our support team</a> anytime.</p>
+        <p>Thank you for registering with <span class="highlight">NovaLink Computers</span>! We're thrilled to have you as part of our growing community. Our team is here to help you make the most out of your experience.</p>
+        <p>If you have any questions or need assistance, don't hesitate to <a href="mailto:novaLinkcomputers@gmail.com" style="color: #003366; text-decoration: none;">contact our support team</a> anytime.</p>
 
         <!-- Call to Action Button -->
-        <a href="https://corexcomputers.com/" class="cta-button">Visit Our Website</a>
+        <a href="https://novaLinkcomputers.com/" class="cta-button">Visit Our Website</a>
     </div>
 
     <!-- Additional Info Section -->
     <div class="additional-info">
         <h3>Next Steps</h3>
         <p><strong>Account Activation:</strong> Your account is now active! You can log in anytime using your credentials. If you haven't already, please complete your profile on our website.</p>
-        <p><strong>Explore Our Products:</strong> Check out our latest products and services on <a href="https://corexcomputers.com" style="color: #003366; text-decoration: none;">CoreX Computers</a>.</p>
-        <p><strong>Need Help?</strong> Our dedicated support team is available for any questions. <a href="mailto:support@corexcomputers.com" style="color: #003366; text-decoration: none;">Contact Support</a></p>
+        <p><strong>Explore Our Products:</strong> Check out our latest products and services on <a href="https://novaLinkcomputers.com" style="color: #003366; text-decoration: none;">NovaLink Computers</a>.</p>
+        <p><strong>Need Help?</strong> Our dedicated support team is available for any questions. <a href="mailto:novaLinkcomputers@gmail.com" style="color: #003366; text-decoration: none;">Contact Support</a></p>
     </div>
 
     <!-- Footer Section -->
     <div class="email-footer">
-        <p>&copy; 2025 All Rights Reserved | CoreX Computers.</p>
+        <p>&copy; 2025 All Rights Reserved | NovaLink Computers.</p>
     </div>
 </div>
 
