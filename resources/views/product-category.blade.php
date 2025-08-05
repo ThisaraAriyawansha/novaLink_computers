@@ -272,6 +272,16 @@
             animation: fadeInUp 0.6s ease-out;
         }
 
+        .col-xl-5th {
+            flex: 0 0 auto;
+            width: 20%;
+        }
+
+        @media (max-width: 1199.98px) {
+            .col-xl-5th {
+                width: 25%; /* Falls back to 4 items per row on lg screens */
+            }
+        }
         
         
 </style>
@@ -438,8 +448,7 @@
                                         <div class="tab-pane fade show active" id="shop-grid">
                                             <div class="row mb-n-20px">
                                                 @foreach ($products as $product)
-                                                    <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-4 bg-transparent">
-                                                        <!-- Single Product -->
+                                                    <div class="col-xl-5th col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-20px bg-transparent">                                                        <!-- Single Product -->
                                                         <div class="product bg-white p-2 rounded-md shadow-sm hover:shadow-md transition-shadow">
 
                                                             <span class='badges'>
@@ -471,15 +480,11 @@
                                                                     </a>
                                                                 </h5>
                                                                 
-                                                                <div class="price flex items-baseline gap-1.5 justify-center">
+                                                                <div class="price flex flex-col gap-0.5 justify-start">
                                                                     <span class="new text-sm font-medium text-black" style="font-family: 'Poppins', sans-serif;">
                                                                         Rs. {{ $product['discounted_price'] }}
                                                                     </span>
-                                                                    @if (isset($product['retail_price']) && $product['discounted_price'] !== $product['retail_price'])
-                                                                        <span class="old text-xs text-gray-500 line-through" style="font-family: 'Roboto', sans-serif;">
-                                                                            Rs. {{ $product['retail_price'] }}
-                                                                        </span>
-                                                                    @endif
+
                                                                 </div>
                                                             </div>
                                                             
