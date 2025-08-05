@@ -456,7 +456,7 @@
                                                             
                                                             <div class="content bg-transparent px-1 py-2">
                                                                 <div class='flex justify-end mb-1.5'>
-                                                                    <span class='font-medium text-2xs p-0.5 rounded-sm bg-white text-black border border-black'>
+                                                                    <span class='font-medium text-2xs p-0.5 rounded-sm bg-white text-black border border-black' >
                                                                         {{ $product['in_stock'] }}
                                                                     </span>
                                                                 </div>
