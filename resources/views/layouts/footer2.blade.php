@@ -234,7 +234,7 @@
         <div class="footer-bottom border-t border-gray-600 py-6 bg-black">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center">
-                    <p class="text-sm text-white">© 2025 NovaLink Computers. All rights reserved.</p>
+                    <p class="text-sm text-white" style="font-family: 'Orbitron', sans-serif; color: white;">© 2025 NovaLink Computers. All rights reserved.</p>
                 </div>
             </div>
         </div>
