@@ -336,23 +336,23 @@
 
                     <!-- Price Range Filter -->
                     <div class="mb-3">
-                        <h5 class="text-sm font-medium mb-1 text-black" style="font-family: 'Orbitron', sans-serif;">Price Range</h5>
+                        <h5 class="text-sm font-medium mb-1 text-black" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Price Range</h5>
                         <div class="flex flex-col space-y-1">
-                            <span class="text-xs text-black" style="font-family: 'Orbitron', sans-serif;">Min: Rs. <span id="minPrice" style="font-family: 'Poppins', sans-serif;"><?php echo htmlspecialchars($_GET['price_min'] ?? '0'); ?></span></span>
+                            <span class="text-xs text-black" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Min: Rs. <span id="minPrice" style="font-family: 'Poppins', sans-serif;"><?php echo htmlspecialchars($_GET['price_min'] ?? '0'); ?></span></span>
                             <input type="range" name="price_min" min="0" max="2000000" step="1000" value="<?php echo htmlspecialchars($_GET['price_min'] ?? '0'); ?>" class="w-full" oninput="document.getElementById('minPrice').textContent = this.value">
-                            <span class="text-xs text-black" style="font-family: 'Orbitron', sans-serif;">Max: Rs. <span id="maxPrice" style="font-family: 'Poppins', sans-serif;"><?php echo htmlspecialchars($_GET['price_max'] ?? '2000000'); ?></span></span>
+                            <span class="text-xs text-black" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Max: Rs. <span id="maxPrice" style="font-family: 'Poppins', sans-serif;"><?php echo htmlspecialchars($_GET['price_max'] ?? '2000000'); ?></span></span>
                             <input type="range" name="price_max" min="0" max="2000000" step="1000" value="<?php echo htmlspecialchars($_GET['price_max'] ?? '2000000'); ?>" class="w-full" style="background-color: #000000;" oninput="document.getElementById('maxPrice').textContent = this.value">
                         </div>
                     </div>
 
                     <!-- Warranty Filter -->
                     <div class="mb-3">
-                        <h5 class="text-sm font-medium mb-1 text-black" style="font-family: 'Orbitron', sans-serif;">Warranty</h5>
+                        <h5 class="text-sm font-medium mb-1 text-black" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Warranty</h5>
                         <div class="">
                             @foreach(['all' => 'All', '1 year Warranty' => '1 Year', '2 year Warranty' => '2 Year', '3 year Warranty' => '3 Year', '1 months warranty' => '1 Month', '3 months warranty' => '3 Month', '6 months warranty' => '6 Month'] as $value => $label)
                                 <label class="flex items-center space-x-1">
                                     <input type="radio" name="warranty" value="{{ $value }}" {{ ($warranty ?? 'all') === $value ? 'checked' : '' }} style="width: 12px; height: 12px; accent-color: #000000; cursor: pointer;">
-                                    <span class="text-xs text-black" style="font-family: 'Orbitron', sans-serif;">{{ $label }}</span>
+                                    <span class="text-xs text-black" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">{{ $label }}</span>
                                 </label>
                             @endforeach
                         </div>
@@ -360,12 +360,12 @@
 
                     <!-- Stock Status Filter -->
                     <div class="mb-3">
-                        <h5 class="text-sm font-medium mb-1 text-black" style="font-family: 'Orbitron', sans-serif;">Stock Status</h5>
+                        <h5 class="text-sm font-medium mb-1 text-black" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Stock Status</h5>
                         <div class="space-y-1">
                             @foreach(['ALL' => 'All', 'In Stock' => 'In Stock', 'Out of Stock' => 'Out of Stock', 'Used' => 'Used'] as $value => $label)
                                 <label class="flex items-center space-x-1">
                                     <input type="radio" name="stock" value="{{ $value }}" {{ ($stock ?? 'ALL') === $value ? 'checked' : '' }} style="width: 12px; height: 12px; accent-color: #000000; cursor: pointer;">
-                                    <span class="text-xs text-black" style="font-family: 'Orbitron', sans-serif;">{{ $label }}</span>
+                                    <span class="text-xs text-black" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">{{ $label }}</span>
                                 </label>
                             @endforeach
                         </div>
@@ -375,12 +375,12 @@
                     @if(isset($productFeatures) && $productFeatures->isNotEmpty())
                         @foreach($productFeatures as $featureName => $values)
                             <div class="mb-3">
-                                <h5 class="text-sm font-medium mb-1 text-black" style="font-family: 'Orbitron', sans-serif;">{{ ucwords(str_replace('_', ' ', $featureName)) }}</h5>
+                                <h5 class="text-sm font-medium mb-1 text-black" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">{{ ucwords(str_replace('_', ' ', $featureName)) }}</h5>
                                 <div class="space-y-1 flex flex-col">
                                     @foreach($values as $value)
                                         <label class="flex items-center space-x-1">
                                             <input type="checkbox" name="features[{{ $featureName }}][]" value="{{ $value }}" {{ in_array($value, request()->input("features.$featureName", [])) ? 'checked' : '' }} style="width: 12px; height: 12px; accent-color: black;">
-                                            <span class="text-xs text-black" style="font-family: 'Orbitron', sans-serif;">{{ $value }}</span>
+                                            <span class="text-xs text-black" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">{{ $value }}</span>
                                         </label>
                                     @endforeach
                                 </div>
@@ -436,84 +436,82 @@
                                 <div class="col">
                                     <div class="tab-content">
                                         <div class="tab-pane fade show active" id="shop-grid">
-                                            <div class="row mb-n-30px">
+                                            <div class="row mb-n-20px">
                                                 @foreach ($products as $product)
-                                                    <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px bg-transparent">
+                                                    <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-4 bg-transparent">
                                                         <!-- Single Product -->
-                                                        <div class="product bg-white">
-                                                            <span class="badges">
-                                                                <span class="sale"  style="font-family: 'Orbitron', sans-serif;">Sale</span>
-                                                                @if ($product['tags'][0] == "New Arrivals")
-                                                                    <span class="new">New</span>
+                                                        <div class="product bg-white p-2 rounded-md shadow-sm hover:shadow-md transition-shadow">
+
+                                                            <span class='badges'>
+                                                                @if(isset($product['tags'][0]) && $product['tags'] == "New Arrivals")
+                                                                    <span class='new text-xs border border-black text-black bg-transparent px-1.5 py-0.5' style="font-family: 'Inter', sans-serif;">New</span>
                                                                 @endif
                                                             </span>
 
-                                                                    <span class='badges'>
-                                                                        @if(isset($product['tags'][0]) && $product['tags'] == "New Arrivals")
-                                                                            <span class='new w-fit border-1 border-black text-white'  style="font-family: 'Orbitron', sans-serif;">New</span>
-                                                                        @endif
-                                                                    </span>
-
                                                             <div class="thumb">
-                                                                <a href="{{ route('singleProduct', ['product-id' => $product['id']]) }}" class="image">
-                                                                    <img src="{{ $product['image'] }}" class="aspect-square object-contain object-center" alt="Product" />
-                                                                    <img class="hover-image" src="{{ $product['image'] }}" alt="Product" />
+                                                                <a href="{{ route('singleProduct', ['product-id' => $product['id']]) }}" class="image block">
+                                                                    <img src="{{ $product['image'] }}" class="w-full aspect-square object-contain object-center" alt="Product" />
                                                                 </a>
                                                             </div>
-                                                            <div class="content bg-transparent">
-                                                                <div class='flex w-full justify-end px-2 mb-3'>
-                                                                <span class='font-bold w-fit p-1 rounded-md text-xs bg-white text-black border-1 border-black'>
-                                                                    <a href="#" class="text-black"  style="font-family: 'Orbitron', sans-serif;">{{ $product['in_stock'] }}</a>
-                                                                </span>
-
+                                                            
+                                                            <div class="content bg-transparent px-1 py-2">
+                                                                <div class='flex justify-end mb-1.5'>
+                                                                    <span class='font-medium text-2xs p-0.5 rounded-sm bg-white text-black border border-black'>
+                                                                        {{ $product['in_stock'] }}
+                                                                    </span>
                                                                 </div>
-                                                                <span class="category">
-                                                                    <a href="#" class="text-black"  style="font-family: 'Orbitron', sans-serif;" >{{ $product['type'] }}</a>
+                                                                
+                                                                <span class="category block text-xs text-gray-600 mb-0.5" style="font-family: 'Inter', sans-serif;">
+                                                                    {{ $product['type'] }}
                                                                 </span>
-                                                                <h5 class="title">
-                                                                    <a href="{{ route('singleProduct', ['product-id' => $product['id']]) }}" class="text-black line-clamp-1 text-center px-3"  style="font-family: 'Orbitron', sans-serif;">
+                                                                
+                                                                <h5 class="title mb-1">
+                                                                    <a href="{{ route('singleProduct', ['product-id' => $product['id']]) }}" class="text-black line-clamp-1 text-xs text-center font-medium" style="font-family: 'Inter', sans-serif;">
                                                                         {{ $product['name'] }}
                                                                     </a>
                                                                 </h5>
-                                                                <span class="price">
-                                                                    <span class="new text-black"  style="font-family: 'Poppins', sans-serif;">Rs. {{ $product['discounted_price'] }}</span>
-                                                                </span>
-                                                                <span class="price">
-                                                                @if (isset($product['retail_price']) && $product['discounted_price'] !== $product['ret_price'])
-                                                                    <span class="line-through text-sm text-gray-700"  style="font-family: 'Roboto', sans-serif;">Rs. {{ $product['retail_price'] }}</span>
-                                                                @endif
-                                                                </span>
-                                                            </div>
-                                                            <!-- Actions -->
-                                                            <div class="p-4 pt-0 flex justify-between items-center">
-                                                                <a 
-                                                                    class="bg-black text-white text-sm font-medium px-4 py-2 rounded-md hover:bg-gray-800 transition-all duration-300"  style="font-family: 'Orbitron', sans-serif;"
-                                                                    href="javascript:void(0);"
-                                                                    data-bs-toggle="modal" 
-                                                                    data-bs-target="#exampleModal-Cart"
-                                                                    onclick="addToCartProduct({{ $product['id'] }});"
-                                                                >
-                                                                    Buy Now
-                                                                </a>
-                                                                <div class="flex gap-2">
-                                                                    <button class="text-gray-600 hover:text-gray-900"  title="Add to Cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart" onclick="addToCartProduct({{ $product['id'] }});">
-                                                                        <i class="pe-7s-cart"></i>
-                                                                    </button>
-                                                                    <button class="text-gray-600 hover:text-gray-900" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist" onclick="addToWishlistProduct({{ $product['id'] }});">
-                                                                        <i class="pe-7s-like"></i>
-                                                                    </button>
-                                                                <button class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal" 
-                                                                        data-product-id="{{ $product['id'] }}" 
-                                                                        data-product-name="{{ $product['name'] }}" 
-                                                                        data-product-image="{{ $product['image'] }}" 
-                                                                        data-product-type="{{ $product['type'] }}" 
-                                                                        data-product-distription="{{ $product['description'] }}" 
-                                                                        data-product-price="{{ $product['discounted_price'] }}">
-                                                                    <i class="pe-7s-look"></i>
-                                                                </button>
+                                                                
+                                                                <div class="price flex items-baseline gap-1.5 justify-center">
+                                                                    <span class="new text-sm font-medium text-black" style="font-family: 'Poppins', sans-serif;">
+                                                                        Rs. {{ $product['discounted_price'] }}
+                                                                    </span>
+                                                                    @if (isset($product['retail_price']) && $product['discounted_price'] !== $product['retail_price'])
+                                                                        <span class="old text-xs text-gray-500 line-through" style="font-family: 'Roboto', sans-serif;">
+                                                                            Rs. {{ $product['retail_price'] }}
+                                                                        </span>
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                             
+                                                            <!-- Actions -->
+                                                            <div class="px-2 pb-1 pt-0 flex justify-between items-center">
+                                                                <a href="javascript:void(0);"
+                                                                    class="bg-black text-white text-xs font-medium px-3 py-1.5 rounded-sm hover:bg-gray-800 transition-all"
+                                                                    style="font-family: 'Orbitron', sans-serif;"
+                                                                    data-bs-toggle="modal" 
+                                                                    data-bs-target="#exampleModal-Cart"
+                                                                    onclick="addToCartProduct({{ $product['id'] }});">
+                                                                    Buy Now
+                                                                </a>
+                                                                
+                                                                <div class="flex gap-1.5">
+                                                                    <button class="text-gray-500 hover:text-black text-sm" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart" onclick="addToCartProduct({{ $product['id'] }});">
+                                                                        <i class="pe-7s-cart"></i>
+                                                                    </button>
+                                                                    <button class="text-gray-500 hover:text-black text-sm" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist" onclick="addToWishlistProduct({{ $product['id'] }});">
+                                                                        <i class="pe-7s-like"></i>
+                                                                    </button>
+                                                                    <button class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                                        data-product-id="{{ $product['id'] }}"
+                                                                        data-product-name="{{ $product['name'] }}"
+                                                                        data-product-image="{{ $product['image'] }}"
+                                                                        data-product-type="{{ $product['type'] }}"
+                                                                        data-product-distription="{{ $product['description'] }}"
+                                                                        data-product-price="{{ $product['discounted_price'] }}">
+                                                                        <i class="pe-7s-look"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 @endforeach
