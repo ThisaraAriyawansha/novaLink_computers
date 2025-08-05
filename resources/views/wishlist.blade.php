@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zxx" dir="ltr">
 
@@ -6,16 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CoreX Computers | Best Computers for you</title>
     <meta name="robots" content="index, follow" />
-    <meta name="description" content="CoreX Computers offer the best computers available at the market">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/X_logo.jpg" />
-
-
-    <!-- CSS
+    <title>NovaLink Computers | Your Wishlist</title>
+    <meta name="description" content="NovaLink Computers offer the best computers available at the market">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/N_back.jpg" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">    <!-- CSS
     ============================================ -->
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="assets/js/tailwind-cdn.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/css/font.awesome.css" />
     <link rel="stylesheet" href="assets/css/pe-icon-7-stroke.css" />
@@ -25,155 +22,262 @@
     <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
     <!-- Style CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Custom Styles -->
+    <style>
+
+        
+        .wishlist-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .wishlist-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .wishlist-table th {
+            background-color: #f1f5f9;
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+            color: #475569;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .wishlist-table td {
+            padding: 16px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: middle;
+        }
+        
+        .product-thumbnail img {
+            width: 80px;
+            height: auto;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+        
+        .product-name a {
+            color: #1e293b;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .product-name a:hover {
+            color: #3b82f6;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .action-btn {
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .add-cart-btn {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+        }
+        
+        .add-cart-btn:hover {
+            background-color: #2563eb;
+        }
+        
+        .remove-btn {
+            background-color: #f1f5f9;
+            color: #64748b;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .remove-btn:hover {
+            background-color: #fee2e2;
+            color: #dc2626;
+            border-color: #fecaca;
+        }
+        
+        .empty-wishlist {
+            text-align: center;
+            padding: 60px 0;
+            color: #64748b;
+        }
+        
+        .page-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 24px;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 50;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+            backdrop-filter: blur(2px);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 32px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-message {
+            font-size: 18px;
+            color: #1e293b;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+        
+        .modal-btn {
+            padding: 10px 24px;
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .modal-btn:hover {
+            background-color: #2563eb;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-size: 24px;
+            color: #94a3b8;
+            cursor: pointer;
+        }
+        
+        .close-modal:hover {
+            color: #64748b;
+        }
+        
+        @media (max-width: 768px) {
+            .wishlist-table thead {
+                display: none;
+            }
+            
+            .wishlist-table tr {
+                display: block;
+                margin-bottom: 20px;
+                border: 1px solid #e2e8f0;
+                border-radius: 8px;
+            }
+            
+            .wishlist-table td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: none;
+            }
+            
+            .wishlist-table td::before {
+                content: attr(data-label);
+                font-weight: 500;
+                color: #64748b;
+                margin-right: 16px;
+            }
+            
+            .action-buttons {
+                justify-content: flex-end;
+                width: 100%;
+            }
+        }
+    </style>
 </head>
-<style>
-/* Modal styles */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5); /* Darkened background */
-    padding-top: 60px;
-}
 
-.modal-content {
-    background-color: white;
-    margin: 5% auto;
-    padding: 30px;
-    border: 1px solid #ddd; /* Light border for subtle separation */
-    width: 80%;
-    max-width: 500px;
-    position: relative;
-    text-align: center;
-    border-radius: 15px; /* Rounded corners for modern look */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    transform: translateY(-100px);
-    animation: modalAppear 0.3s ease-out forwards;
-}
-
-/* Fade-in animation */
-@keyframes modalAppear {
-    from {
-        transform: translateY(-100px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-.close {
-    color: #aaa;
-    font-size: 28px;
-    font-weight: bold;
-    position: absolute;
-    top: 0;
-    right: 10px;
-    cursor: pointer;
-}
-
-.close:hover,
-.close:focus {
-    color: #333;
-    text-decoration: none;
-}
-
-.modal-btn {
-    padding: 12px 25px;
-    background-color: rgb(49, 64, 106);
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    display: inline-block;
-    margin-top: 20px;
-    border-radius: 8px; /* Rounded corners for button */
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.modal-btn:hover {
-    transform: scale(1.05); /* Slight scale effect on hover */
-}
-
-.modal-btn:focus {
-    outline: none;
-}
-
-/* Styling for the message text */
-#modalMessage {
-    font-size: 18px;
-    color: #333;
-    margin-bottom: 20px;
-    font-weight: 600;
-}
-</style>
 <body>
     <div class="main-wrapper">
-    @include('layouts.nav-2')
+        @include('layouts.nav-2')
 
         <div class="h-[12dvh]"></div>
-        <!-- breadcrumb-area start -->
         
-        <!-- breadcrumb-area end -->
-        <!-- Wishlist Area Start -->
-        <div class="cart-main-area pt-100px pb-100px">
-            <div class="container">
-                <h3 class="cart-page-title">Your wishlist items</h3>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                        <form action="#">
-                            <div class="table-content table-responsive cart-table-content">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Image</th>
-                                            <th>Product Name</th>
-                                            <th>Until Price</th>
-                                            <th>Controls</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!--sample cart item-->
-                                        <tr class="hidden">
-                                            <td class="product-thumbnail">
-                                                <a href="#"><img class="img-responsive ml-15px" src="assets/images/product-image/1.webp" alt="" /></a>
-                                            </td>
-                                            <td class="product-name"><a href="#">Modern Smart Phone</a></td>
-                                            <td class="product-price-cart"><span class="amount">$60.00</span></td>
-                                            <td class="product-quantity">
-                                                <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
-                                                </div>
-                                            </td>
-                                            <td class="product-subtotal">$70.00</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </form>
-                    </div>
+        <!-- Main Wishlist Content -->
+        <div class="wishlist-container py-12 px-4 sm:px-6 lg:px-8">
+            <h1 class="page-title" style="font-family: 'Orbitron', sans-serif;  font-size: 20px;">Your Wishlist</h1>
+            
+            <div class="overflow-x-auto">
+                <table class="wishlist-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Sample wishlist item (hidden template) -->
+                        
+                    </tbody>
+                </table>
+                
+                <!-- Empty wishlist message (initially hidden) -->
+                <div class="empty-wishlist hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                    <h3 class="text-xl font-medium mb-2">Your wishlist is empty</h3>
+                    <p class="text-gray-500">Save your favorite products to view them later</p>
+                    <a href="/products" class="inline-block mt-4 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+                        Browse Products
+                    </a>
                 </div>
             </div>
         </div>
-        <!-- Wishlist Area End -->
-        <!-- footer -->
+
         @include('layouts.footer2')
 
+        <!-- Modal -->
         <div id="customAlert" class="modal">
-        <div class="modal-content">
-            <span id="closeModal" class="close">&times;</span>
-            <h2 id="modalMessage"></h2>
-            <button id="modalButton" class="modal-btn">OK</button>
+            <div class="modal-content">
+                <span id="closeModal" class="close-modal">&times;</span>
+                <div id="modalMessage" class="modal-message"></div>
+                <button id="modalButton" class="modal-btn">OK</button>
+            </div>
         </div>
     </div>
 
-    </div>
     <!-- Global Vendor, plugins JS -->
     <!-- JS Files
     ============================================ -->
@@ -187,15 +291,17 @@
     <script src="assets/js/plugins/venobox.min.js"></script>
     <script src="assets/js/plugins/jquery-ui.min.js"></script>
     <script src="assets/js/plugins/mailchimp-ajax.js"></script>
-
     <!--Main JS (Common Activation Codes)-->
     <script src="assets/js/main.js"></script>
 
+    <!-- Scripts -->
+    <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
     <script>
-        // Updated function to populate the cart table
-        function populateCartTable() {
-            const tableBody = document.querySelector('table tbody');
-            const cart = JSON.parse(localStorage.getItem('wishlist-items')) || [];
+        // Function to populate the wishlist table
+        function populateWishlist() {
+            const tableBody = document.querySelector('.wishlist-table tbody');
+            const emptyWishlistMessage = document.querySelector('.empty-wishlist');
+            const wishlist = JSON.parse(localStorage.getItem('wishlist-items')) || [];
 
             if (!tableBody) return;
 
@@ -203,115 +309,105 @@
             const existingRows = tableBody.querySelectorAll('tr:not(.hidden)');
             existingRows.forEach(row => row.remove());
 
-            // Add each cart item to the table
-            cart.forEach(item => {
+            // Show empty message if wishlist is empty
+            if (wishlist.length === 0) {
+                emptyWishlistMessage.classList.remove('hidden');
+                return;
+            } else {
+                emptyWishlistMessage.classList.add('hidden');
+            }
+
+            // Add each wishlist item to the table
+            wishlist.forEach(item => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
-            <td class="product-thumbnail">
-                <a href="single-product.php?product-id=${item.id}">
-                    <img class="img-responsive ml-15px" src="${item.image}" alt="${item.name}" />
-                </a>
-            </td>
-            <td class="product-name">
-                <a href="single-product.php?product-id=${item.id}">${item.name}</a>
-            </td>
-            <td class="product-price-cart">
-                <span class="amount">${item.price}</span>
-            </td>
-            <td class="product-remove">
-                <a href="#" class="add-to-cart" data-product-id="${item.id}">
-                    <i class="pe-7s-cart p-2 scale-110 bg-green-700 font-semibold rounded-md text-white"></i>
-                </a>
-                <a href="#" class="remove-item" data-product-id="${item.id}">
-                    <i class="pe-7s-trash p-2 scale-110 bg-red-700 font-semibold rounded-md text-white"></i>
-                </a>
-            </td>
-        `;
+                    <td class="product-thumbnail" data-label="Product">
+                        <a href="singleProduct?product-id=${item.id}" class="flex items-center">
+                            <img src="${item.image}" alt="${item.name}" class="mr-4">
+                            <span class="product-name" style=" color: black;">${item.name}</span>
+                        </a>
+                    </td>
+                    <td class="product-price" data-label="Price">
+                        <span class="amount">${item.price}</span>
+                    </td>
+                    <td data-label="Actions">
+                        <div class="action-buttons">
+                            <button class="action-btn add-cart-btn" data-product-id="${item.id}">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                                Add to Cart
+                            </button>
+                            <button class="action-btn remove-btn" data-product-id="${item.id}">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                                Remove
+                            </button>
+                        </div>
+                    </td>
+                `;
 
                 tableBody.appendChild(row);
             });
 
-            // Add event listeners for remove and add to cart buttons
+            // Add event listeners
             addButtonListeners();
-            updateCartTotal();
         }
+
         // Function to add item to cart
-// Function to add item to cart
-function addToCart(item) {
-    // Get the current product quantity from the server
-    fetch(`/product-quantity/${item.id}`)
-        .then(response => response.json())
-        .then(data => {
-            const productQuantity = data.qty;
+        function addToCart(item) {
+            fetch(`/product-quantity/${item.id}`)
+                .then(response => response.json())
+                .then(data => {
+                    const productQuantity = data.qty;
 
-            // Check if the requested quantity is available
-            if (productQuantity <= 0) {
-                alert('Sorry, this product is out of stock!');
-                return;
-            }
+                    if (productQuantity <= 0) {
+                        showModal('Sorry, this product is out of stock!');
+                        return;
+                    }
 
-            let cart = JSON.parse(localStorage.getItem('shopping-cart')) || [];
+                    let cart = JSON.parse(localStorage.getItem('shopping-cart')) || [];
+                    const existingItemIndex = cart.findIndex(cartItem => parseInt(cartItem.id) === parseInt(item.id));
 
-            // Check if item already exists in cart
-            const existingItemIndex = cart.findIndex(cartItem => parseInt(cartItem.id) === parseInt(item.id));
+                    if (existingItemIndex !== -1) {
+                        if (cart[existingItemIndex].quantity < productQuantity) {
+                            cart[existingItemIndex].quantity += 1;
+                        } else {
+                            showModal('Cannot add more of this item. Stock limit reached.');
+                            return;
+                        }
+                    } else {
+                        const newItem = {
+                            ...item,
+                            quantity: 1
+                        };
+                        cart.push(newItem);
+                    }
 
-            if (existingItemIndex !== -1) {
-                // If item exists, increment quantity only if stock is available
-                if (cart[existingItemIndex].quantity < productQuantity) {
-                    cart[existingItemIndex].quantity += 1;
-                } else {
-                    alert('Cannot add more of this item. Stock limit reached.');
-                    return;
-                }
-            } else {
-                // If item doesn't exist, add it with quantity 1
-                const newItem = {
-                    ...item,
-                    quantity: 1
-                };
-                cart.push(newItem);
-            }
-
-            localStorage.setItem('shopping-cart', JSON.stringify(cart));
-            showModal("Product added to cart successfully!");
-
-            setTimeout(() => {
-                window.location.reload();
-            }, 2000);
-        })
-        .catch(error => {
-            console.error('Error fetching product quantity:', error);
-            alert('An error occurred. Please try again later.');
-        });
-}
-
-
-        // Function to remove item from cart
-        function removeCartItem(productId) {
-            let cart = JSON.parse(localStorage.getItem('wishlist-items')) || [];
-            cart = cart.filter(item => parseInt(item.id) !== parseInt(productId));
-            localStorage.setItem('wishlist-items', JSON.stringify(cart));
-            populateCartTable(); // Refresh the table
+                    localStorage.setItem('shopping-cart', JSON.stringify(cart));
+                    showModal("Product added to cart successfully!");
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showModal('An error occurred. Please try again.');
+                });
         }
 
-        // Updated function to add button listeners
-        function addButtonListeners() {
-            // Remove button listeners
-            const removeButtons = document.querySelectorAll('.remove-item');
-            removeButtons.forEach(button => {
-                button.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const productId = button.getAttribute('data-product-id');
-                    removeCartItem(productId);
-                });
-            });
+        // Function to remove item from wishlist
+        function removeWishlistItem(productId) {
+            let wishlist = JSON.parse(localStorage.getItem('wishlist-items')) || [];
+            wishlist = wishlist.filter(item => parseInt(item.id) !== parseInt(productId));
+            localStorage.setItem('wishlist-items', JSON.stringify(wishlist));
+            populateWishlist();
+        }
 
-            // Add to cart button listeners
-            const addToCartButtons = document.querySelectorAll('.add-to-cart');
-            addToCartButtons.forEach(button => {
-                button.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const productId = button.getAttribute('data-product-id');
+        // Function to add button listeners
+        function addButtonListeners() {
+            // Add to cart buttons
+            document.querySelectorAll('.add-cart-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-product-id');
                     const wishlistItems = JSON.parse(localStorage.getItem('wishlist-items')) || [];
                     const item = wishlistItems.find(item => parseInt(item.id) === parseInt(productId));
 
@@ -320,53 +416,44 @@ function addToCart(item) {
                     }
                 });
             });
+
+            // Remove buttons
+            document.querySelectorAll('.remove-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-product-id');
+                    removeWishlistItem(productId);
+                });
+            });
         }
 
-        // Helper function to format price
-        function formatPrice(price) {
-            return price.toLocaleString() + ' LKR';
-        }
-
-        // Function to update cart total
-        function updateCartTotal() {
-            const cart = JSON.parse(localStorage.getItem('wishlist-items')) || [];
-            const total = cart.reduce((sum, item) => {
-                const price = parseFloat(item.price.replace(/[^0-9.-]+/g, ''));
-                return sum + (price * item.quantity);
-            }, 0);
-
-            const totalElement = document.querySelector('.cart-total-amount');
-            if (totalElement) {
-                totalElement.textContent = formatPrice(total);
+        // Modal functions
+        function showModal(message) {
+            const modal = document.getElementById('customAlert');
+            const modalMessage = document.getElementById('modalMessage');
+            
+            modalMessage.textContent = message;
+            modal.style.display = "block";
+            
+            document.getElementById('closeModal').onclick = function() {
+                modal.style.display = "none";
+            }
+            
+            document.getElementById('modalButton').onclick = function() {
+                modal.style.display = "none";
+            }
+            
+            // Close when clicking outside modal
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
             }
         }
 
-        // Initialize table when page loads
+        // Initialize wishlist when page loads
         document.addEventListener('DOMContentLoaded', () => {
-            populateCartTable();
+            populateWishlist();
         });
     </script>
 </body>
-
 </html>
-
-
-<script>
-    function showModal(message) {
-    const modal = document.getElementById('customAlert');
-    const modalMessage = document.getElementById('modalMessage');
-    const closeModal = document.getElementById('closeModal');
-    const modalButton = document.getElementById('modalButton');
-
-    modalMessage.textContent = message;
-    modal.style.display = "block";
-
-    closeModal.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    modalButton.onclick = function() {
-        modal.style.display = "none";
-    }
-}
-</script>
