@@ -5,14 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CoreX Computers | Best Computers for you</title>
     <meta name="robots" content="index, follow" />
-    <meta name="description" content="CoreX Computers offer the best computers available at the market">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/X_logo.jpg" />
-
-
-    <!-- CSS
+    <title>NovaLink Computers | Best Computers for you</title>
+    <meta name="description" content="NovaLink Computers offer the best computers available at the market">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/N_back.jpg" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">    <!-- CSS
     ============================================ -->
     <script src="assets/js/tailwind-cdn.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
@@ -24,152 +22,270 @@
     <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
     <!-- Style CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
-
+    <!-- Minify Version -->
+    <!-- <link rel="stylesheet" href="assets/css/plugins.min.css">
+    <link rel="stylesheet" href="assets/css/style.min.css"> -->
+    <!-- Tailwind CSS -->
+    
+    <!-- Custom Styles -->
     <style>
-    .checkout-container {
-        display: flex;
-        justify-content: center; /* Center horizontally */
-    }
 
-    .checkout-btn {
-        background-color: rgb(49, 64, 106); /* Dark blue */
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        width: 100%;
-        max-width: 200px; /* Adjust width for responsiveness */
-        text-align: center;
-        font-size: 16px;
-    }
-
-    @media (min-width: 640px) {
-        .checkout-btn {
-            width: auto;
+        
+        .cart-container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
-    }
-
-    .cart-total-label {
-    text-align: right;
-    font-weight: bold;
-    padding-right: 10px;
-}
-
-.cart-total-amount {
-    font-weight: bold;
-    color: rgb(49, 64, 106); /* Match checkout button color */
-    text-align: left;
-}
-</style>
-
+        
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .cart-table th {
+            background-color: #f1f5f9;
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+            color: #475569;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .cart-table td {
+            padding: 16px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: middle;
+        }
+        
+        .product-thumbnail img {
+            width: 80px;
+            height: auto;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+        
+        .product-name a {
+            color: #1e293b;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .product-name a:hover {
+            color: #3b82f6;
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+        }
+        
+        .quantity-btn {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f1f5f9;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #475569;
+            border-radius: 4px;
+        }
+        
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            margin: 0 8px;
+            padding: 4px;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+        }
+        
+        .remove-btn {
+            color: #ef4444;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            transition: transform 0.2s;
+        }
+        
+        .remove-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .cart-summary {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 24px;
+        }
+        
+        .total-box {
+            background: white;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            width: 300px;
+        }
+        
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        
+        .total-label {
+            font-weight: 500;
+            color: #64748b;
+        }
+        
+        .total-amount {
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .grand-total {
+            border-top: 1px solid #e2e8f0;
+            padding-top: 12px;
+            margin-top: 12px;
+            font-size: 1.1rem;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #000000ff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 16px;
+        }
+        
+        .checkout-btn:hover {
+            background-color: #292a2cff;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 60px 0;
+            color: #64748b;
+        }
+        
+        @media (max-width: 768px) {
+            .cart-table thead {
+                display: none;
+            }
+            
+            .cart-table tr {
+                display: block;
+                margin-bottom: 20px;
+                border: 1px solid #e2e8f0;
+                border-radius: 8px;
+            }
+            
+            .cart-table td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: none;
+            }
+            
+            .cart-table td::before {
+                content: attr(data-label);
+                font-weight: 500;
+                color: #64748b;
+                margin-right: 16px;
+            }
+            
+            .total-box {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 
 <body>
     <div class="main-wrapper">
-    @include('layouts.nav-2')
+        @include('layouts.nav-2')
 
         <div class="h-[10dvh]"></div>
-        <!-- breadcrumb-area start -->
         
-        <!-- breadcrumb-area end -->
-        <!-- Wishlist Area Start -->
-        <div class="cart-main-area pt-100px pb-100px">
-            <div class="container">
-                <h3 class="cart-page-title">Your cart items</h3>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                    <form action="{{ route('checkOut') }}" method="POST" name="checkout">
-                    @csrf
-                    <div class="table-content table-responsive cart-table-content">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Image</th>
-                                            <th>Product Name</th>
-                                            <th>Until Price</th>
-                                            <th>Qty</th>
-                                            <th>Subtotal</th>
-                                            <th>Controls</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!--sample cart item-->
-                                        <tr class="hidden">
-                                            <td class="product-thumbnail">
-                                                <a href="#"><img class="img-responsive ml-15px" src="assets/images/product-image/1.webp" alt="" /></a>
-                                            </td>
-                                            <td class="product-name"><a href="#">Modern Smart Phone</a></td>
-                                            <td class="product-price-cart"><span class="amount">$60.00</span></td>
-                                            <td class="product-quantity">
-                                                <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
-                                                </div>
-                                            </td>
-                                            <td class="product-subtotal">$70.00</td>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot>
-            <tr>
-                <td colspan="4"></td>
-                <td class="cart-total-label"><strong>Total:</strong></td>
-                <td class="cart-total-amount">0 LKR</td>
-            </tr>
-        </tfoot>
-                                </table>
-                                <br/>
-
-                                <input type="hidden" name="cartData" id="cartDataInput">
-                                <div class="checkout-container">
-
-                                <button type="submit" class="checkout-btn">CheckOut</button>
-                                            </div>
-                            </div>
-                        </form>
+        <!-- Main Cart Content -->
+        <div class="cart-container py-12 px-4 sm:px-6 lg:px-8">
+            <h1 class="text-sm font-bold text-gray-900 " style="font-family: 'Orbitron', sans-serif;  font-size: 20px; margin-bottom: 15px;">Your Shopping Cart</h1>
+            
+            <form action="{{ route('checkOut') }}" method="POST" name="checkout">
+                @csrf
+                <div class="overflow-x-auto">
+                    <table class="cart-table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Subtotal</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Sample cart item (hidden template) -->
+                            
+                        </tbody>
+                    </table>
+                    
+                    <!-- Empty cart message (initially hidden) -->
+                    <div class="empty-cart hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        <h3 class="text-lg font-medium mb-2">Your cart is empty</h3>
+                        <p class="text-gray-500">Start shopping to add items to your cart</p>
                     </div>
                 </div>
-
                 
-
-
-
-<script>
-    // Populate the hidden input with cart data before form submission
-    document.forms["checkout"].addEventListener("submit", function () {
-        const cart = JSON.parse(localStorage.getItem("shopping-cart")) || [];
-        document.getElementById("cartDataInput").value = JSON.stringify(cart);
-    });
-</script>
-
-            </div>
-
+                <!-- Cart Summary -->
+                <div class="cart-summary">
+                    <div class="total-box">
+                        <div class="total-row">
+                            <span class="total-label">Subtotal</span>
+                            <span class="total-amount subtotal">0 LKR</span>
+                        </div>
+                        <div class="total-row">
+                            <span class="total-label">Shipping</span>
+                            <span class="total-amount">Calculated at checkout</span>
+                        </div>
+                        <div class="total-row grand-total">
+                            <span class="total-label">Total</span>
+                            <span class="total-amount cart-total">0 LKR</span>
+                        </div>
+                        
+                        <input type="hidden" name="cartData" id="cartDataInput">
+                        <button type="submit" class="checkout-btn" style="font-family: 'Orbitron', sans-serif;"> Checkout</button>
+                    </div>
+                </div>
+            </form>
         </div>
-        <!-- Wishlist Area End -->
-        <!-- footer -->
+
         @include('layouts.footer2')
-
     </div>
-    <!-- Global Vendor, plugins JS -->
-    <!-- JS Files
-    ============================================ -->
-    <script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
+
+    <!-- Scripts -->
     <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
-    <script src="assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
-    <script src="assets/js/vendor/modernizr-3.11.2.min.js"></script>
-    <script src="assets/js/plugins/jquery.countdown.min.js"></script>
-    <script src="assets/js/plugins/swiper-bundle.min.js"></script>
-    <script src="assets/js/plugins/scrollUp.js"></script>
-    <script src="assets/js/plugins/venobox.min.js"></script>
-    <script src="assets/js/plugins/jquery-ui.min.js"></script>
-    <script src="assets/js/plugins/mailchimp-ajax.js"></script>
-
-    <!--Main JS (Common Activation Codes)-->
-    <script src="assets/js/main.js"></script>
-
     <script>
         // Function to populate the cart table from localStorage
         function populateCartTable() {
             const tableBody = document.querySelector('table tbody');
+            const emptyCartMessage = document.querySelector('.empty-cart');
             const cart = JSON.parse(localStorage.getItem('shopping-cart')) || [];
 
             if (!tableBody) return;
@@ -178,41 +294,49 @@
             const existingRows = tableBody.querySelectorAll('tr:not(.hidden)');
             existingRows.forEach(row => row.remove());
 
+            // Show empty message if cart is empty
+            if (cart.length === 0) {
+                emptyCartMessage.classList.remove('hidden');
+                document.querySelector('.cart-summary').classList.add('hidden');
+                return;
+            } else {
+                emptyCartMessage.classList.add('hidden');
+                document.querySelector('.cart-summary').classList.remove('hidden');
+            }
+
             // Add each cart item to the table
             cart.forEach(item => {
                 const row = document.createElement('tr');
                 const subtotal = parseFloat(item.price.replace(/[^0-9.-]+/g, '')) * item.quantity;
 
                 row.innerHTML = `
-            <td class="product-thumbnail">
-                <a href="single-product.php?product-id=${item.id}">
-                    <img class="img-responsive ml-15px" src="${item.image}" alt="${item.name}" />
-                </a>
-            </td>
-            <td class="product-name">
-                <a href="single-product.php?product-id=${item.id}">${item.name}</a>
-            </td>
-            <td class="product-price-cart">
-                <span class="amount">${item.price}</span>
-            </td>
-            <td class="product-quantity">
-                <div class="cart-plus-minus">
-                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="${item.quantity}" 
-                           data-product-id="${item.id}" />
-                    <div class="dec qtybutton">-</div>
-                    <div class="inc qtybutton">+</div>
-                </div>
-            </td>
-            <td class="product-subtotal">${formatPrice(subtotal)}</td>
-            <td class="product-remove">
-                <a href="#" class="remove-item" data-product-id="${item.id}"><i class="pe-7s-trash p-2 scale-110 bg-red-700 font-semibold rounded-md text-white"></i></a>
-            </td>
-        `;
+                    <td class="product-thumbnail" data-label="Product">
+                        <a href="singleProduct?product-id=${item.id}" class="flex items-center">
+                            <img src="${item.image}" alt="${item.name}" class="mr-4" >
+                            <span class="product-name" style=" color: black; ">${item.name}</span>
+                        </a>
+                    </td>
+                    <td class="product-price" data-label="Price">
+                        <span class="amount">${item.price}</span>
+                    </td>
+                    <td class="product-quantity" data-label="Quantity">
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn dec" data-product-id="${item.id}">-</button>
+                            <input type="text" class="quantity-input" value="${item.quantity}" 
+                                   data-product-id="${item.id}">
+                            <button type="button" class="quantity-btn inc" data-product-id="${item.id}">+</button>
+                        </div>
+                    </td>
+                    <td class="product-subtotal" data-label="Subtotal">${formatPrice(subtotal)}</td>
+                    <td data-label="Remove">
+                        <button type="button" class="remove-btn" data-product-id="${item.id}">×</button>
+                    </td>
+                `;
 
                 tableBody.appendChild(row);
             });
 
-            // Add event listeners for quantity controls and remove buttons
+            // Add event listeners
             addQuantityControlListeners();
             addRemoveButtonListeners();
             updateCartTotal();
@@ -255,27 +379,32 @@
         }
 
         // Function to add quantity control listeners
-        // Function to add quantity control listeners
         function addQuantityControlListeners() {
-            const quantityInputs = document.querySelectorAll('.cart-plus-minus-box');
-
-            quantityInputs.forEach(input => {
-                const productId = input.getAttribute('data-product-id');
-                const decrementBtn = input.parentElement.querySelector('.dec');
-                const incrementBtn = input.parentElement.querySelector('.inc');
-
-                decrementBtn.addEventListener('click', () => {
+            // Decrement buttons
+            document.querySelectorAll('.dec').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-product-id');
+                    const input = this.parentElement.querySelector('.quantity-input');
                     const currentValue = parseInt(input.value);
                     updateQuantity(productId, currentValue - 1);
                 });
+            });
 
-                incrementBtn.addEventListener('click', () => {
+            // Increment buttons
+            document.querySelectorAll('.inc').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-product-id');
+                    const input = this.parentElement.querySelector('.quantity-input');
                     const currentValue = parseInt(input.value);
                     updateQuantity(productId, currentValue + 1);
                 });
+            });
 
-                input.addEventListener('change', (e) => {
-                    const newValue = parseInt(e.target.value);
+            // Input changes
+            document.querySelectorAll('.quantity-input').forEach(input => {
+                input.addEventListener('change', function() {
+                    const productId = this.getAttribute('data-product-id');
+                    const newValue = parseInt(this.value);
                     if (!isNaN(newValue)) {
                         updateQuantity(productId, newValue);
                     }
@@ -285,12 +414,12 @@
 
         // Function to add remove button listeners
         function addRemoveButtonListeners() {
-            const removeButtons = document.querySelectorAll('.remove-item');
-            removeButtons.forEach(button => {
-                button.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const productId = button.getAttribute('data-product-id');
-                    removeCartItem(productId);
+            document.querySelectorAll('.remove-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-product-id');
+                    if (confirm('Are you sure you want to remove this item from your cart?')) {
+                        removeCartItem(productId);
+                    }
                 });
             });
         }
@@ -301,25 +430,28 @@
         }
 
         // Function to update cart total
-// Function to update cart total
-function updateCartTotal() {
-    const cart = JSON.parse(localStorage.getItem('shopping-cart')) || [];
-    const total = cart.reduce((sum, item) => {
-        const price = parseFloat(item.price.replace(/[^0-9.-]+/g, ''));
-        return sum + (price * item.quantity);
-    }, 0);
+        function updateCartTotal() {
+            const cart = JSON.parse(localStorage.getItem('shopping-cart')) || [];
+            const subtotal = cart.reduce((sum, item) => {
+                const price = parseFloat(item.price.replace(/[^0-9.-]+/g, ''));
+                return sum + (price * item.quantity);
+            }, 0);
 
-    const totalElement = document.querySelector('.cart-total-amount');
-    if (totalElement) {
-        totalElement.textContent = formatPrice(total);
-    }
-}
+            // Update subtotal and total display
+            document.querySelector('.subtotal').textContent = formatPrice(subtotal);
+            document.querySelector('.cart-total').textContent = formatPrice(subtotal);
+        }
 
-        // Initialize table when page loads
+        // Initialize cart when page loads
         document.addEventListener('DOMContentLoaded', () => {
             populateCartTable();
+            
+            // Populate hidden input with cart data before form submission
+            document.forms["checkout"].addEventListener("submit", function() {
+                const cart = JSON.parse(localStorage.getItem("shopping-cart")) || [];
+                document.getElementById("cartDataInput").value = JSON.stringify(cart);
+            });
         });
     </script>
 </body>
-
 </html>
