@@ -547,7 +547,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
         <!-- Reviews Section -->
         <div class="bg-white text-black rounded-lg p-4 w-full">
-            <h3 class="text-lg font-semibold mb-3" style="font-family: 'Orbitron', sans-serif;">Reviews</h3>
+            <h3 class="text-lg font-semibold mb-3" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Reviews</h3>
             <div class="review-wrapper space-y-3">
                 <!-- Reviews will be appended here -->
             </div>
@@ -564,7 +564,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="product-container">
                             <!-- Product Header -->
                             <div class="product-header ">
-                                <h1 class="product-title" style="font-family: 'Orbitron', sans-serif; color: black;">Product Features :</h1>
+                                <h1 class="product-title" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: black;">Product Features :</h1>
                             </div>
 
                             <!-- Product Content -->
@@ -579,8 +579,8 @@ document.addEventListener('DOMContentLoaded', function() {
                                                 [$featureName, $featureValue] = explode(':', $feature, 2);
                                             @endphp
                                             <div class="feature-item">
-                                                <span class="feature-label" style="font-family: 'Orbitron', sans-serif; color: black;" >{{ trim($featureName) }}:</span>
-                                                <span class="feature-value" style="font-family: 'Orbitron', sans-serif; color: black;">{{ trim($featureValue) }}</span>
+                                                <span class="feature-label" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: black;" >{{ trim($featureName) }}:</span>
+                                                <span class="feature-value" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: black;">{{ trim($featureValue) }}</span>
                                             </div>
                                         @endforeach
                                     @endif
@@ -589,10 +589,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
                                 <!-- Action Buttons -->
                                 <div class="action-buttons">
-                                    <button class="btn-primaryy" style="font-family: 'Orbitron', sans-serif; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart" onClick="addToCart({{ $product['id'] }});">
+                                    <button class="btn-primaryy" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart" onClick="addToCart({{ $product['id'] }});">
                                         Add to Cart
                                     </button>
-                                    <button class="btn-secondary" style="font-family: 'Orbitron', sans-serif; color: black;" onclick="window.location='{{ route('cart') }}'">
+                                    <button class="btn-secondary" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: black;" onclick="window.location='{{ route('cart') }}'">
                                         Buy Now
                                     </button>
 
@@ -604,41 +604,41 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <!-- Tabs Section -->
                                 <div class="tabs-section">
                                     <div class="tabs-nav">
-                                        <button class="tab-btn active" style="font-family: 'Orbitron', sans-serif; color: black;"  onclick="showTab('information')">Information</button>
-                                        <button class="tab-btn" style="font-family: 'Orbitron', sans-serif; color: black;" onclick="showTab('description')">Description</button>
-                                        <button class="tab-btn" style="font-family: 'Orbitron', sans-serif; color: black;" onclick="showTab('reviews')">Reviews</button>
+                                        <button class="tab-btn active" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: black;"  onclick="showTab('information')">Information</button>
+                                        <button class="tab-btn" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: black;" onclick="showTab('description')">Description</button>
+                                        <button class="tab-btn" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: black;" onclick="showTab('reviews')">Reviews</button>
                                     </div>
 
                                     <div class="tab-content">
                                         <!-- Information Tab -->
                                         <div id="information" class="tab-panel active">
                                                 <div class="product-header ">
-                                                    <h1 class="product-title" style="font-family: 'Orbitron', sans-serif; color: black;"><?php echo htmlspecialchars($product['name']); ?></h1>
-                                                    <div class="product-price" style="font-family: 'Orbitron', sans-serif; color: black;">Rs. <?php echo $product['dis_price'] ?></div>
+                                                    <h1 class="product-title" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: black;"><?php echo htmlspecialchars($product['name']); ?></h1>
+                                                    <div class="product-price" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: black;">Rs. <?php echo $product['dis_price'] ?></div>
                                                 </div>
                                             <div class="info-grid">
                                                 <div class="info-item">
-                                                    <div class="info-label" style="font-family: 'Orbitron', sans-serif;">Brand</div>
-                                                    <div class="info-value" style="font-family: 'Orbitron', sans-serif;"><?php echo $product['brand'] ?></div>
+                                                    <div class="info-label" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Brand</div>
+                                                    <div class="info-value" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;"><?php echo $product['brand'] ?></div>
                                                 </div>
                                                 <div class="info-item">
-                                                    <div class="info-label" style="font-family: 'Orbitron', sans-serif;">Product Type</div>
-                                                    <div class="info-value" style="font-family: 'Orbitron', sans-serif;"><?php echo $product['type'] ?></div>
+                                                    <div class="info-label" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Product Type</div>
+                                                    <div class="info-value" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;"><?php echo $product['type'] ?></div>
                                                 </div>
                                                 <div class="info-item">
-                                                    <div class="info-label" style="font-family: 'Orbitron', sans-serif;">Warranty</div>
-                                                    <div class="info-value" style="font-family: 'Orbitron', sans-serif;"><?php echo $product['warranty'] ?></div>
+                                                    <div class="info-label" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Warranty</div>
+                                                    <div class="info-value" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;"><?php echo $product['warranty'] ?></div>
                                                 </div>
                                                 <div class="info-item">
-                                                    <div class="info-label" style="font-family: 'Orbitron', sans-serif;">Availability</div>
-                                                    <div class="info-value" style="font-family: 'Orbitron', sans-serif;"><?php echo $product['in_stock'] ?></div>
+                                                    <div class="info-label" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Availability</div>
+                                                    <div class="info-value" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;"><?php echo $product['in_stock'] ?></div>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <!-- Description Tab -->
                                         <div id="description" class="tab-panel">
-                                            <p class="description-text" style="font-family: 'Orbitron', sans-serif;">
+                                            <p class="description-text" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">
                                                 <?php echo $product['desc'] ?>
                                             </p>
                                         </div>
@@ -648,13 +648,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
                                             <div class="review-form">
                                             <input type="hidden" id="product-id" value="<?php echo $product['id']; ?>">
-                                                <h3 style="margin-bottom: 1.5rem; color: #374151; font-family: 'Orbitron', sans-serif;">Add a Review</h3>
+                                                <h3 style="margin-bottom: 1.5rem; color: #374151; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Add a Review</h3>
                                                 <form id="review-form">
                                                      @csrf
 
                                                     <div class="form-group">
-                                                        <label class="form-label" style="font-family: 'Orbitron', sans-serif;">Your Rating:</label>
-                                                        <select class="form-select" id="rating" name="rating" style="font-family: 'Orbitron', sans-serif;" required>
+                                                        <label class="form-label" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Your Rating:</label>
+                                                        <select class="form-select" id="rating" name="rating" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;" required>
                                                             <option value="" >Select Rating</option>
                                                             <option value="5" >⭐⭐⭐⭐⭐</option>
                                                             <option value="4" >⭐⭐⭐⭐</option>
@@ -666,21 +666,21 @@ document.addEventListener('DOMContentLoaded', function() {
                                                     
                                                     <div class="form-row">
                                                         <div class="form-group">
-                                                            <label class="form-label" style="font-family: 'Orbitron', sans-serif;">Name:</label>
-                                                            <input type="text" style="font-family: 'Orbitron', sans-serif;" class="form-input" id="name" name="name" placeholder="Your name" required>
+                                                            <label class="form-label" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Name:</label>
+                                                            <input type="text" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;" class="form-input" id="name" name="name" placeholder="Your name" required>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="form-label" style="font-family: 'Orbitron', sans-serif;">Email:</label>
-                                                            <input type="email" style="font-family: 'Orbitron', sans-serif;" class="form-input" id="email" name="email" placeholder="your@email.com" required>
+                                                            <label class="form-label" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Email:</label>
+                                                            <input type="email" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;" class="form-input" id="email" name="email" placeholder="your@email.com" required>
                                                         </div>
                                                     </div>
                                                     
                                                     <div class="form-group">
                                                         <label class="form-label">Review:</label>
-                                                        <textarea class="form-textarea" style="font-family: 'Orbitron', sans-serif;" id="message" name="message" rows="4" placeholder="Share your experience..." required></textarea>
+                                                        <textarea class="form-textarea" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;" id="message" name="message" rows="4" placeholder="Share your experience..." required></textarea>
                                                     </div>
                                                     
-                                                    <button type="submit" style="font-family: 'Orbitron', sans-serif;" class="btn-primary">Submit Review</button>
+                                                    <button type="submit" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;" class="btn-primary bg-black text-white">Submit Review</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -1137,19 +1137,19 @@ function fetchReviews(productId) {
                     const reviewHtml = `
                         <div class="single-review bg-white rounded-md shadow-sm p-2 flex gap-2 hover:shadow-md transition-shadow duration-200 max-w-lg mx-auto">
                             <div class="review-img flex-shrink-0">
-                                <div class="initials-avatar text-white font-medium text-sm rounded-full flex items-center justify-center w-8 h-8" style="background-color: ${bgColor};">
+                                <div class="initials-avatar text-white font-medium text-sm rounded-full flex items-center justify-center w-8 h-8" style="background-color: ${bgColor}; ">
                                     ${firstLetter}
                                 </div>
                             </div>
                             <div class="review-content flex-1">
                                 <div class="review-top-wrap flex justify-between items-center flex-wrap gap-1">
-                                        <h4 class="text-gray-800 font-small m-0" style="font-family: 'Orbitron', sans-serif; font-size: 14px;">${review.name}</h4>
+                                        <h4 class="text-gray-800 font-small m-0" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 14px;">${review.name}</h4>
                                     <div class="rating-product flex items-center gap-0.5">
                                         ${stars}
                                     </div>
                                 </div>
                                 <div class="review-bottom mt-1">
-                                    <p class="text-gray-600 text-[0.65rem] text-justify m-0" style="font-family: 'Orbitron', sans-serif;">${review.message}</p>
+                                    <p class="text-gray-600 text-[0.65rem] text-justify m-0" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">${review.message}</p>
                                 </div>
                             </div>
                         </div>
