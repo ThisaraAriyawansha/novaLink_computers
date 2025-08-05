@@ -616,6 +616,12 @@ document.addEventListener('DOMContentLoaded', function() {
                                                 <div class="product-header ">
                                                     <h1 class="product-title" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: black;"><?php echo htmlspecialchars($product['name']); ?></h1>
                                                     <div class="product-price" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: black;">Rs. <?php echo $product['dis_price'] ?></div>
+                                                        @if (isset($product['ret_price']) && $product['dis_price'] !== $product['ret_price'])
+                                                        <div class=" -mt-6 text-sm line-through text-gray-500"
+                                                            style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">
+                                                            Rs. <?php echo $product['ret_price'] ?>
+                                                        </div>
+                                                        @endif
                                                 </div>
                                             <div class="info-grid">
                                                 <div class="info-item">

@@ -448,14 +448,28 @@
                                         <div class="tab-pane fade show active" id="shop-grid">
                                             <div class="row mb-n-20px">
                                                 @foreach ($products as $product)
-                                                    <div class="col-xl-5th col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-20px bg-transparent">                                                        <!-- Single Product -->
+                                                    <div class="col-xl-5th col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-4 bg-transparent">                                                        <!-- Single Product -->
                                                         <div class="product bg-white p-2 rounded-md shadow-sm hover:shadow-md transition-shadow">
 
-                                                            <span class='badges'>
-                                                                @if(isset($product['tags'][0]) && $product['tags'] == "New Arrivals")
-                                                                    <span class='new text-xs border border-black text-black bg-transparent px-1.5 py-0.5' style="font-family: 'Inter', sans-serif;">New</span>
-                                                                @endif
-                                                            </span>
+                                                        <span class='badges'>
+                                                            @php
+                                                                $retail_price_clean = preg_replace('/[^0-9.]/', '', $product['retail_price']);
+                                                                $discount_price_clean = preg_replace('/[^0-9.]/', '', $product['discounted_price']);
+                                                                $retail_price_numeric = (float) $retail_price_clean;
+                                                                $discount_price_numeric = (float) $discount_price_clean;
+                                                                $discount = $retail_price_numeric - $discount_price_numeric;
+                                                            @endphp
+
+                                                            @if($discount > 0)
+                                                                <span class='discount-badge text-[10px] border border-black text-black bg-white px-1 py-0.5 leading-none' style="font-family: 'Inter', sans-serif;">
+                                                                    Save {{ number_format($discount) }} LKR
+                                                                </span>
+                                                            @elseif(isset($product['tags'][0]) && $product['tags'] == "New Arrivals")
+                                                                <span class='new-arrival-badge text-[10px] border border-black text-black bg-transparent px-1 py-0.5 leading-none' style="font-family: 'Inter', sans-serif;">
+                                                                    New
+                                                                </span>
+                                                            @endif
+                                                        </span>
 
                                                             <div class="thumb">
                                                                 <a href="{{ route('singleProduct', ['product-id' => $product['id']]) }}" class="image block">
