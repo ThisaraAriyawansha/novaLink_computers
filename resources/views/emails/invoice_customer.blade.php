@@ -25,7 +25,7 @@
             padding: 20px;
         }
         .header {
-            background-color: #000000ff;
+            background-color: #003366;
             color: white;
             padding: 15px;
             text-align: center;
@@ -41,7 +41,7 @@
             border-radius: 5px;
         }
         .footer {
-            background-color: #000000ff;
+            background-color: #003366;
             color: white;
             padding: 10px;
             text-align: center;

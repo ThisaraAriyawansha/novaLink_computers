@@ -33,7 +33,7 @@
 
         /* Header Section */
         .email-header {
-            background-color: #000000ff; /* Dark Blue */
+            background-color: #003366; /* Dark Blue */
             color: white;
             padding: 40px 20px;
             text-align: center;
