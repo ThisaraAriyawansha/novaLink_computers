@@ -25,7 +25,88 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <style>
-/* Modal styles */
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        
+        .checkout-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.375rem;
+            background-color: #fff;
+            transition: border-color 0.2s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 1px #6366f1;
+        }
+        
+        .order-summary {
+            background-color: #fff;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+        
+        .order-item {
+            border-bottom: 1px solid #f1f5f9;
+            padding: 1rem 0;
+        }
+        
+        .btn-primary {
+            background-color: #4f46e5;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            transition: background-color 0.2s;
+            width: 100%;
+        }
+        
+        .btn-primary:hover {
+            background-color: #4338ca;
+        }
+        
+        .btn-primary:disabled {
+            background-color: #c7d2fe;
+            cursor: not-allowed;
+        }
+        
+        .payment-method {
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.375rem;
+            margin-top: 1rem;
+        }
+        
+        .payment-option {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .payment-option:hover {
+            background-color: #f8fafc;
+        }
+        
+        .payment-option input {
+            margin-right: 0.75rem;
+        }
+        
+        /* Modal styles */
 .modal {
     display: none;
     position: fixed;
@@ -110,9 +191,7 @@
     margin-bottom: 20px;
     font-weight: 600;
 }
-
-
-</style>
+    </style>
 <body>
     <div class="main-wrapper">
     @include('layouts.nav-2')
@@ -128,118 +207,119 @@
         @endif
         <!-- breadcrumb-area end -->
         <!-- checkout area start -->
-        <div class="checkout-area pt-100px pb-100px">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-7">
-                        <div class="billing-info-wrap">
-                            <h3>Billing Details</h3>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="billing-info mb-4">
-                                        <label>First Name</label>
-                                        <input type="text" name="fname" value="{{ $customer->fname ?? '' }}" />
+        <main class="flex-grow py-8">
+            <div class="checkout-container px-4">
+                <h1 class="text-2xl md:text-3xl font-semibold text-gray-800 mb-8">Checkout</h1>
+                
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <!-- Billing Information -->
+                    <div class="lg:w-7/12">
+                        <div class="bg-white rounded-lg shadow-sm p-6">
+                            <h2 class="text-xl font-semibold mb-6">Billing Information</h2>
+                            
+                            <form id="checkoutForm">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                                        <input type="text" name="fname" value="{{ $customer->fname ?? '' }}" 
+                                            class="form-input" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                                        <input type="text" name="lname" value="{{ $customer->lname ?? '' }}" 
+                                            class="form-input" required>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="billing-info mb-4">
-                                        <label>Last Name</label>
-                                        <input type="text" name="lname" value="{{ $customer->lname ?? '' }}" />
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                                        <input type="tel" name="phone" value="{{ $customer->phone ?? '' }}" 
+                                            class="form-input" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                        <input type="email" name="email" value="{{ $customer->email ?? '' }}" 
+                                            class="form-input" required>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="billing-info mb-4">
-                                        <label>Phone</label>
-                                        <input type="text" name="phone" value="{{ $customer->phone ?? '' }}" />
+                                
+                                <div class="mb-4">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Address Line 1</label>
+                                    <input type="text" name="address1" value="{{ $customer->address_line1 ?? '' }}" 
+                                        class="form-input" required>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Address Line 2</label>
+                                    <input type="text" name="address2" value="{{ $customer->address_line2 ?? '' }}" 
+                                        class="form-input">
+                                </div>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">City</label>
+                                        <input type="text" name="city" value="{{ $customer->city ?? '' }}" 
+                                            class="form-input" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Postal Code</label>
+                                        <input type="text" name="postal_code" value="{{ $customer->postal_code ?? '' }}" 
+                                            class="form-input" required>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="billing-info mb-4">
-                                        <label>Email Address</label>
-                                        <input type="text" name="email" value="{{ $customer->email ?? '' }}" />
-                                    </div>
+                                
+                                <div class="mb-2">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Order Notes</label>
+                                    <textarea name="message" rows="3" 
+                                        class="form-input" 
+                                        placeholder="Special instructions or notes about your order"></textarea>
                                 </div>
-                                <!-- Address Fields -->
-                                <div class="col-lg-12">
-                                    <div class="billing-info mb-4">
-                                        <label>Address Line 1</label>
-                                        <input type="text" name="address1" value="{{ $customer->address_line1 ?? '' }}" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="billing-info mb-4">
-                                        <label>Address Line 2</label>
-                                        <input type="text" name="address2" value="{{ $customer->address_line2 ?? '' }}" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="billing-info mb-4">
-                                        <label>City</label>
-                                        <input type="text" name="city" value="{{ $customer->city ?? '' }}" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="billing-info mb-4">
-                                        <label>Postal Code</label>
-                                        <input type="text" name="postal_code" value="{{ $customer->postal_code ?? '' }}" />
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Additional info section -->
-                            <div class="additional-info-wrap">
-                                <h4>Additional information</h4>
-                                <div class="additional-info">
-                                    <label>Order notes</label>
-                                    <textarea placeholder="Notes about your order, e.g. special notes for delivery." name="message"></textarea>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
-
-                    <!-- Product and Cart Details -->
-                    <div class="col-lg-5 mt-md-30px mt-lm-30px ">
-                        <div class="your-order-area">
-                            <h3>Your order</h3>
-                            <div class="your-order-wrap gray-bg-4">
-                                <!-- Display Cart Products -->
-                                <div class="your-order-product-info">
-                                    <div class="your-order-top">
-                                        <ul>
-                                            <li>Product</li>
-                                            <li>Total</li>
-                                        </ul>
-                                    </div>
-                                    <div class="your-order-middle">
-                                        <ul>
-                                        @foreach($cartProducts as $cartProduct)
-                                            <li style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                                                <span class="order-middle-left" style="flex-grow: 1; text-align: left;">{{ $cartProduct['name'] }} X {{ $cartProduct['quantity'] }}</span>
-                                                <span class="order-price" style="text-align: right;">
+                    
+                    <!-- Order Summary -->
+                    <div class="lg:w-5/12">
+                        <div class="order-summary p-6">
+                            <h2 class="text-xl font-semibold mb-6">Order Summary</h2>
+                            
+                            <div class="mb-6">
+                                @foreach($cartProducts as $cartProduct)
+                                <div class="order-item">
+                                    <div class="flex justify-between items-center">
+                                        <div>
+                                            <h3 class="font-medium">{{ $cartProduct['name'] }}</h3>
+                                            <p class="text-sm text-gray-500">Qty: {{ $cartProduct['quantity'] }}</p>
+                                        </div>
+                                        <div class="font-medium">
                                                     @php
                                                         // Calculate the total for each product (price * quantity)
                                                         $totalPrice = $cartProduct['quantity'] * (float)filter_var($cartProduct['price'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
                                                     @endphp
-                                                    {{ $totalPrice }}
-                                                </span>
-                                            </li>
-                                        @endforeach
-                                        </ul>
-                                    </div>
-                                    <div class="your-order-bottom">
-                                        <ul>
-                                            <li class="your-order-shipping">Shipping</li>
-                                            <li>Free shipping</li>
-                                        </ul>
-                                    </div>
-                                    <div class="your-order-total">
-                                        <ul>
-                                            <li class="order-total">Total</li>
-                                            <li>{{ $totalAmount }}</li> <!-- Assuming you calculate the total -->
-                                        </ul>
+                                                    {{ $totalPrice }}LKR
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="payment-method">
+                                @endforeach
+                            </div>
+                            
+                            <div class="border-t border-gray-200 pt-4 mb-6">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-600">Subtotal</span>
+                                    <span class="font-medium">{{$totalAmount}}</span>
+                                </div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-600">Shipping</span>
+                                    <span class="font-medium text-green-600">Free</span>
+                                </div>
+                                <div class="flex justify-between text-lg font-semibold mt-4">
+                                    <span>Total</span>
+                                    <span>{{$totalAmount}}</span>
+                                </div>
+                            </div>
+                            
+                                <div class="payment-method mb-2">
                                     <div class="payment-accordion element-mrg">
                                         <div id="faq" class="panel-group">
                                         <label hidden class="d-flex gap-2 items-center space-x-2">
@@ -265,17 +345,19 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="Place-order mt-25">
-                                <a class="btn-hover" href="#" id="placeOrderBtn">Place Order</a>
-                                <div id="loadingIndicator" style="display: none; font-size: 16px; color: #003366; margin-top: 10px;">Processing...</div>
-                            </div>
+                            
+                            <button id="placeOrderBtn" class="btn-primary mt-6">
+                                <span id="buttonText">Place Order</span>
+                                <span id="loadingIndicator" class="hidden">
+                                    <span class="loading-spinner"></span>
+                                    Processing...
+                                </span>
+                            </button>
                         </div>
                     </div>
-
                 </div>
             </div>
-        </div>
+        </main>
 
         <!-- checkout area end -->
         <!-- footer -->
