@@ -24,8 +24,8 @@
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.3/cdn.min.js"></script>
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
+            --primary: #000000ff;
+            --primary-dark: #151516ff;
         }
         body {
             font-family: 'Orbitron', sans-serif;
@@ -39,10 +39,12 @@
         }
         .auth-image {
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+                        url('assets/images/auth/hero-image.fit_lim.v1738941897.webp');
             background-size: cover;
             background-position: center;
         }
+
+        
         .auth-tabs {
             border-bottom: 2px solid #e2e8f0;
         }
@@ -92,30 +94,50 @@
 <body>
 @include('layouts.nav-2')
 
-    <div class="h-[13dvh]"></div>
+    <div class="h-[12dvh]"></div>
+
+        <nav style="display: flex; align-items: center; padding: 1px 4px;    max-width: 1200px; margin: 10px auto;" aria-label="Breadcrumb">
+            <ol style="display: inline-flex; align-items: center; margin: 0; padding: 0; list-style: none; flex-wrap: wrap;">
+                <li style="display: inline-flex; align-items: center;">
+                    <a href="/home" style="display: inline-flex; align-items: center; font-size: 14px; font-family: 'Orbitron', sans-serif; font-weight: 500; color: #4b5563; text-decoration: none; transition: color 0.3s ease, transform 0.2s ease; padding: 6px 10px; border-radius: 6px;">
+                        <svg style="width: 18px; height: 18px; margin-right: 8px; fill: none; stroke: #6b7280; stroke-width: 2;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                        Home
+                    </a>
+                </li>
+
+                <li style="display: flex; align-items: center; margin: 0 6px;" aria-current="page">
+                    <svg style="width: 16px; height: 16px; color: #9ca3af; fill: none; stroke: currentColor; stroke-width: 2;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <span style="margin-left: 8px; font-size: 14px; font-weight: 600; color: #374151; padding: 6px 10px; border-radius: 6px; font-family: 'Orbitron', sans-serif;">Login</span>
+                </li>
+            </ol>
+        </nav>
 
 
-<div class="min-h-[calc(100vh-12dvh)] flex items-center justify-center p-4">
+<div class="min-h-[calc(100vh-12dvh)] flex items-center justify-center p-2 -mt-6">
     <div class="auth-container bg-white w-full">
         <div class="grid grid-cols-1 lg:grid-cols-2">
             <!-- Left Side - Image -->
             <div class="auth-image hidden lg:flex flex-col justify-between p-10 text-white">
                 <div>
-                    <h2 class="text-3xl font-bold mb-4">NovaLink Computers</h2>
-                    <p class="text-lg">Premium computing solutions for professionals and enthusiasts</p>
+                    <h2 class="text-3xl font-bold mb-4 text-white" style="font-family: 'Orbitron', sans-serif;">NovaLink Computers</h2>
+                    <p class="text-lg" style="font-family: 'Orbitron', sans-serif;">Premium computing solutions for professionals and enthusiasts</p>
                 </div>
                 <div class="flex space-x-6">
                     <div>
                         <div class="w-12 h-12 bg-black bg-opacity-20 rounded-full flex items-center justify-center mb-2">
                             <i class="fas fa-bolt text-xl"></i>
                         </div>
-                        <p>High Performance</p>
+                        <p style="font-family: 'Orbitron', sans-serif;">High Performance</p>
                     </div>
                     <div>
                         <div class="w-12 h-12 bg-black bg-opacity-20 rounded-full flex items-center justify-center mb-2">
                             <i class="fas fa-shield-alt text-xl"></i>
                         </div>
-                        <p>Reliable Hardware</p>
+                        <p style="font-family: 'Orbitron', sans-serif;">Reliable Hardware</p>
                     </div>
                 </div>
             </div>
@@ -125,12 +147,12 @@
                 <div x-data="{ tab: 'login' }">
                     <!-- Tab buttons -->
                     <div class="auth-tabs flex mb-8">
-                        <button @click="tab = 'login'" 
+                        <button @click="tab = 'login'"  style="font-family: 'Orbitron', sans-serif;"
                                 :class="tab === 'login' ? 'active' : 'text-gray-500 hover:text-gray-700'"
                                 class="auth-tab">
                             Login
                         </button>
-                        <button @click="tab = 'register'" 
+                        <button @click="tab = 'register'"  style="font-family: 'Orbitron', sans-serif;"
                                 :class="tab === 'register' ? 'active' : 'text-gray-500 hover:text-gray-700'"
                                 class="auth-tab">
                             Register
@@ -146,25 +168,25 @@
 
                     <!-- Login Form -->
                     <div x-show="tab === 'login'" x-transition>
-                        <h3 class="text-2xl font-bold mb-6 text-gray-800">Welcome Back</h3>
+                        <h3 class="text-2xl font-bold mb-6 text-gray-800" style="font-family: 'Orbitron', sans-serif;">Welcome Back</h3>
                         @if(session('customer_id'))
                             <script>window.location.href = "{{ route('customer.dashboard') }}";</script>
                         @else
                             <form action="{{ url('/loginCustomer') }}" method="POST" class="space-y-4">
                                 @csrf
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                                    <input type="text" name="email" placeholder="Email" required
+                                    <label class="block text-sm font-medium text-gray-700 mb-1" style="font-family: 'Orbitron', sans-serif;">Email</label>
+                                    <input type="text" name="email" placeholder="Email" required style="font-family: 'Orbitron', sans-serif;"
                                            class="form-input w-full rounded-lg">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                                    <input type="password" name="user-password" placeholder="Password" required
+                                    <label class="block text-sm font-medium text-gray-700 mb-1" style="font-family: 'Orbitron', sans-serif;">Password</label>
+                                    <input type="password" name="user-password" placeholder="Password" required style="font-family: 'Orbitron', sans-serif;"
                                            class="form-input w-full rounded-lg">
                                 </div>
                                 
                                 <button type="submit" 
-                                        class="btn-primary w-full text-white py-3 px-4 rounded-lg font-medium mt-4">
+                                        class="btn-primary w-full text-white py-3 px-4 rounded-lg font-medium mt-4" style="font-family: 'Orbitron', sans-serif;">
                                     LOGIN
                                 </button>
                             </form>
@@ -173,57 +195,57 @@
 
                     <!-- Register Form -->
                     <div x-show="tab === 'register'" x-transition>
-                        <h3 class="text-2xl font-bold mb-6 text-gray-800">Create Account</h3>
+                        <h3 class="text-2xl font-bold mb-6 text-gray-800" style="font-family: 'Orbitron', sans-serif;">Create Account</h3>
                         <form action="{{ route('customer.register') }}" method="POST" class="space-y-4">
                             @csrf
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Username</label>
-                                <input type="text" name="user-name" placeholder="Username" value="{{ old('user-name') }}" required
+                                <label class="block text-sm font-medium text-gray-700 mb-1" style="font-family: 'Orbitron', sans-serif;">Username</label>
+                                <input type="text" name="user-name" placeholder="Username" value="{{ old('user-name') }}" required style="font-family: 'Orbitron', sans-serif;"
                                        class="form-input w-full rounded-lg">
                                 @error('user-name') <div class="text-red-500 text-sm mt-1">{{ $message }}</div> @enderror
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
-                                    <input type="text" name="fname" placeholder="First Name" value="{{ old('fname') }}" required
+                                    <label class="block text-sm font-medium text-gray-700 mb-1" style="font-family: 'Orbitron', sans-serif;">First Name</label>
+                                    <input type="text" name="fname" style="font-family: 'Orbitron', sans-serif;" placeholder="First Name" value="{{ old('fname') }}" required 
                                            class="form-input w-full rounded-lg">
                                     @error('fname') <div class="text-red-500 text-sm mt-1">{{ $message }}</div> @enderror
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
-                                    <input type="text" name="lname" placeholder="Last Name" value="{{ old('lname') }}" required
+                                    <label class="block text-sm font-medium text-gray-700 mb-1" style="font-family: 'Orbitron', sans-serif;">Last Name</label>
+                                    <input type="text" name="lname" placeholder="Last Name" value="{{ old('lname') }}" required style="font-family: 'Orbitron', sans-serif;"
                                            class="form-input w-full rounded-lg">
                                     @error('lname') <div class="text-red-500 text-sm mt-1">{{ $message }}</div> @enderror
                                 </div>
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-                                <input type="text" name="phone" placeholder="Phone" value="{{ old('phone') }}" required
+                                <label class="block text-sm font-medium text-gray-700 mb-1" style="font-family: 'Orbitron', sans-serif;">Phone</label>
+                                <input type="text" name="phone" placeholder="Phone" value="{{ old('phone') }}" required style="font-family: 'Orbitron', sans-serif;"
                                        class="form-input w-full rounded-lg">
                                 @error('phone') <div class="text-red-500 text-sm mt-1">{{ $message }}</div> @enderror
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                                <input type="password" name="user-password" placeholder="Password" required
+                                <label class="block text-sm font-medium text-gray-700 mb-1" style="font-family: 'Orbitron', sans-serif;">Password</label>
+                                <input type="password" name="user-password" placeholder="Password" required style="font-family: 'Orbitron', sans-serif;"
                                        class="form-input w-full rounded-lg">
                                 @error('user-password') <div class="text-red-500 text-sm mt-1">{{ $message }}</div> @enderror
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                                <input type="email" name="user-email" placeholder="Email" value="{{ old('user-email') }}" required
+                                <label class="block text-sm font-medium text-gray-700 mb-1" style="font-family: 'Orbitron', sans-serif;">Email</label>
+                                <input type="email" name="user-email" placeholder="Email" value="{{ old('user-email') }}" required style="font-family: 'Orbitron', sans-serif;"
                                        class="form-input w-full rounded-lg">
                                 @error('user-email') <div class="text-red-500 text-sm mt-1">{{ $message }}</div> @enderror
                             </div>
                             <button type="submit" 
-                                    class="btn-primary w-full text-white py-3 px-4 rounded-lg font-medium mt-4">
+                                    class="btn-primary w-full text-white py-3 px-4 rounded-lg font-medium mt-4" style="font-family: 'Orbitron', sans-serif;">
                                 REGISTER
                             </button>
                         </form>
-                        <div class="mt-6 text-center text-sm text-gray-600">
+                        <div class="mt-6 text-center text-sm text-gray-600" style="font-family: 'Orbitron', sans-serif;">
                             By registering, you agree to our
-                            <a href="#" class="font-medium text-blue-600 hover:text-blue-500">Terms of Service</a>
+                            <a href="#" class="font-medium text-blue-600 hover:text-blue-500" style="font-family: 'Orbitron', sans-serif;">Terms of Service</a>
                             and
-                            <a href="#" class="font-medium text-blue-600 hover:text-blue-500">Privacy Policy</a>.
+                            <a href="#" class="font-medium text-blue-600 hover:text-blue-500" style="font-family: 'Orbitron', sans-serif;">Privacy Policy</a>.
                         </div>
                     </div>
                 </div>
