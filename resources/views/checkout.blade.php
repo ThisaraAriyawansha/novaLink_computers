@@ -198,6 +198,31 @@
 
         <div class="h-[10dvh]"></div>
         <!-- breadcrumb-area start -->
+
+        <nav style="display: flex; align-items: center; padding: 16px 24px;    max-width: 1200px; margin: 10px auto;" aria-label="Breadcrumb">
+            <ol style="display: inline-flex; align-items: center; margin: 0; padding: 0; list-style: none; flex-wrap: wrap;">
+                <li style="display: inline-flex; align-items: center;">
+                    <a href="/home" style="display: inline-flex; align-items: center; font-size: 14px; font-family: 'Orbitron', sans-serif; font-weight: 500; color: #4b5563; text-decoration: none; transition: color 0.3s ease, transform 0.2s ease; padding: 6px 10px; border-radius: 6px;">
+                        <svg style="width: 18px; height: 18px; margin-right: 8px; fill: none; stroke: #6b7280; stroke-width: 2;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                        Home
+                    </a>
+                </li>
+                <li style="display: flex; align-items: center; margin: 0 6px;">
+                    <svg style="width: 16px; height: 16px; color: #9ca3af; fill: none; stroke: currentColor; stroke-width: 2;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <a href="/cart" style="margin-left: 8px; font-size: 14px; font-weight: 500; color: #4b5563; text-decoration: none; transition: color 0.3s ease, transform 0.2s ease; padding: 6px 10px; border-radius: 6px; font-family: 'Orbitron', sans-serif;">Shopping Cart</a>
+                </li>
+                <li style="display: flex; align-items: center; margin: 0 6px;" aria-current="page">
+                    <svg style="width: 16px; height: 16px; color: #9ca3af; fill: none; stroke: currentColor; stroke-width: 2;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <span style="margin-left: 8px; font-size: 14px; font-weight: 600; color: #374151; padding: 6px 10px; border-radius: 6px; font-family: 'Orbitron', sans-serif;">CheckOut</span>
+                </li>
+            </ol>
+        </nav>
         
         @if(session('customer_id'))  <!-- Check if the customer is logged in via session -->
             @php
@@ -210,7 +235,10 @@
         <main class="flex-grow py-6 bg-white">
             <div class="checkout-container px-3 max-w-7xl mx-auto">
                 <div class="flex items-center justify-between mb-6 border-b border-gray-100 pb-4">
-                    <h1 class="text-xl font-medium text-gray-900 tracking-tight">CHECKOUT</h1>
+                    <h1 class="text-gray-900 tracking-tight"
+                        style="font-family: 'Orbitron', sans-serif; font-size: 22px;">
+                        CHECKOUT
+                    </h1>
                     <div class="text-xs text-gray-500 flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -223,31 +251,42 @@
                     <!-- Order Summary - Left Side -->
                     <div class="lg:w-5/12">
                         <div class="border border-gray-150 rounded-sm p-4 bg-gray-50">
-                            <h2 class="text-sm font-medium text-gray-900 uppercase tracking-wider mb-4">Your Order</h2>
                             
-                            <div class="mb-5 space-y-4">
-                                @foreach($cartProducts as $cartProduct)
-                                <div class="flex justify-between items-start">
-                                    <div class="flex items-start space-x-3">
-                                        <div class="bg-white border border-gray-200 p-1 rounded-sm flex-shrink-0">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <h3 class="text-sm font-normal text-gray-800 leading-tight">{{ $cartProduct['name'] }}</h3>
-                                            <p class="text-xs text-gray-500 mt-1">Qty: {{ $cartProduct['quantity'] }}</p>
-                                        </div>
-                                    </div>
-                                    <div class="text-sm font-medium text-gray-900">
-                                        @php
-                                            $totalPrice = $cartProduct['quantity'] * (float)filter_var($cartProduct['price'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-                                        @endphp
-                                        {{ $totalPrice }} LKR
-                                    </div>
-                                </div>
-                                @endforeach
+                    <div class="mb-5 space-y-4">
+                        @foreach($cartProducts as $cartProduct)
+                        <div class="flex justify-between items-center">
+                            <!-- Left side: Icon + Name + Qty -->
+                            <div class="flex items-start space-x-3">
+                                <!-- Icon -->
+                            <div class="bg-white border border-gray-200 p-1 rounded-sm flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V5a4 4 0 00-8 0v6m-4 0h16l-1.5 9h-13L4 11z" />
+                                </svg>
                             </div>
+
+
+                                <!-- Name & Qty -->
+                                <div class="leading-snug">
+                                    <h3 class="text-gray-800 truncate max-w-[150px] sm:max-w-[300px]" 
+                                        style="font-size: 14px; font-weight: 500; ">
+                                        {{ $cartProduct['name'] }}
+                                    </h3>
+
+                                    <p class="text-[11px] text-gray-500 mt-0.5">Qty: {{ $cartProduct['quantity'] }}</p>
+                                </div>
+                            </div>
+
+                            <!-- Right side: Price -->
+                            <div class="text-sm font-semibold text-gray-900 whitespace-nowrap">
+                                @php
+                                    $totalPrice = $cartProduct['quantity'] * (float)filter_var($cartProduct['price'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+                                @endphp
+                                {{ number_format($totalPrice, 2) }} LKR
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+
                             
                             <div class="border-t border-gray-200 pt-4 space-y-2">
                                 <div class="flex justify-between text-sm">
@@ -260,13 +299,13 @@
                                 </div>
                                 <div class="flex justify-between text-base font-medium pt-3 border-t border-gray-200">
                                     <span>Total</span>
-                                    <span>{{$totalAmount}}</span>
+                                    <span style="font-size: 20px; font-weight: 800; ">{{$totalAmount}}</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="mt-4 border border-gray-150 rounded-sm p-4 bg-gray-50">
-                            <h3 class="text-sm font-medium text-gray-900 uppercase tracking-wider mb-3">Payment Method</h3>
+                            <h3 class="text-sm font-medium text-gray-900 uppercase tracking-wider mb-3" style="font-size: 18px; font-weight: 500; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Payment Method</h3>
                             <div class="space-y-2">
                                 <!-- Disabled Card Payment Option -->
                                 <label class="flex items-center space-x-3 p-2 border border-gray-200 bg-white rounded-sm opacity-60 cursor-not-allowed">
@@ -299,7 +338,7 @@
                     <div class="lg:w-7/12">
                         <div class="border border-gray-150 rounded-sm">
                             <div class="border-b border-gray-150 px-4 py-3 bg-gray-50">
-                                <h2 class="text-sm font-medium text-gray-900 uppercase tracking-wider">Billing Details</h2>
+                                <h2 class="text-sm font-medium text-gray-900 uppercase tracking-wider" style="font-size: 20px; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; ">Billing Details</h2>
                             </div>
                             
                             <div class="p-4">
