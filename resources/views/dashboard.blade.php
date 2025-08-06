@@ -27,8 +27,8 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
         :root {
-            --primary-color: #2563eb;
-            --primary-hover: #1d4ed8;
+            --primary-color: #000000ff;
+            --primary-hover: #353535ff;
             --success-color: #10b981;
             --warning-color: #f59e0b;
             --danger-color: #ef4444;
@@ -598,9 +598,12 @@
                                         @endif
                                         
                                         <div class="dashboard-welcome">
-                                            <h1 class="welcome-title">Welcome back, {{ $customer->fname ?? 'User' }}!</h1>
-                                            <p class="welcome-subtitle mb-0">Manage your account, view orders, and track your bidding activity from your personal dashboard.</p>
+                                            <h1 class="welcome-title text-white">Hey {{ $customer->fname ?? 'User' }}, great to see you!</h1>
+                                            <p class="welcome-subtitle mb-0">
+                                                Let’s get things done — manage your account, track your orders, and stay on top of your bids right from here.
+                                            </p>
                                         </div>
+
 
                                         <div class="row">
                                             <div class="col-md-6">
@@ -608,20 +611,34 @@
                                                     <div class="card-body p-4">
                                                         <h6 class="text-muted mb-2">Quick Actions</h6>
                                                         <div class="d-flex flex-column gap-2">
-                                                            <a href="#" class="btn-modern-outline btn-modern-sm">
-                                                                <i class="pe-7s-bag me-2"></i>View Recent Orders
+
+                                                            <!-- View Recent Orders (Triggers Orders Tab) -->
+                                                            <a href="#nav-orders"
+                                                            onclick="handleNavClick(); document.getElementById('nav-orders-tab').click();"
+                                                            style="padding: 6px 12px; font-size: 13px; border: 1px solid black; background: transparent; color: black; border-radius: 4px; text-decoration: none; display: inline-flex; align-items: center;">
+                                                                <i class="pe-7s-bag me-2" style="font-size: 16px;"></i>View Recent Orders
                                                             </a>
-                                                            <a href="#" class="btn-modern-outline btn-modern-sm">
-                                                                <i class="pe-7s-hammer me-2"></i>Check Active Bids
+
+                                                            <!-- Check Active Bids (Triggers Bids Tab) -->
+                                                            <a href="#nav-bidding"
+                                                            onclick="handleNavClick(); document.getElementById('nav-bidding-tab').click();"
+                                                            style="padding: 6px 12px; font-size: 13px; border: 1px solid black; background: transparent; color: black; border-radius: 4px; text-decoration: none; display: inline-flex; align-items: center;">
+                                                                <i class="pe-7s-hammer me-2" style="font-size: 16px;"></i>Check Active Bids
                                                             </a>
-                                                            <a href="#" class="btn-modern-outline btn-modern-sm">
-                                                                <i class="pe-7s-user me-2"></i>Update Profile
+
+                                                            <!-- Update Profile (Triggers Account Details Tab) -->
+                                                            <a href="#nav-details"
+                                                            onclick="handleNavClick(); document.getElementById('nav-details-tab').click();"
+                                                            style="padding: 6px 12px; font-size: 13px; border: 1px solid black; background: transparent; color: black; border-radius: 4px; text-decoration: none; display: inline-flex; align-items: center;">
+                                                                <i class="pe-7s-user me-2" style="font-size: 16px;"></i>Update Profile
                                                             </a>
+
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
 
                                     <!-- Bidding Tab -->
@@ -673,9 +690,10 @@
                                                                         </a>
                                                                     @elseif (!$dealExpired)
                                                                         <a href="{{ url('biddings?product-id=' . $bid->product->id) }}"
-                                                                            class="btn-modern-outline btn-modern-sm">
-                                                                            Update Bid
+                                                                        style="padding: 4px 8px; font-size: 12px; border: 1px solid black; background: transparent; color: black; border-radius: 4px; text-decoration: none; display: inline-block;">
+                                                                        Update Bid
                                                                         </a>
+
                                                                     @else
                                                                         <span class="badge bg-secondary">Bidding Closed</span>
                                                                     @endif
@@ -852,8 +870,10 @@
                     <h5 class="modal-title" id="bitOrderModalLabel{{ $payment->id }}">
                         <i class="pe-7s-note me-2"></i>Order Details #{{ $payment->id }}
                     </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+                <button type="button" data-bs-dismiss="modal" style="padding: 8px 16px; background: black; color: white; border: 1px solid white; border-radius: 6px; font-size: 14px; display: inline-flex; align-items: center;">
+                    <i class="pe-7s-close me-2" style="color: white; font-size: 16px;"></i>
+                </button>
+                            </div>
                 <div class="modal-body">
                     <div class="order-section">
                         <h6 class="section-title">Order Items</h6>
@@ -934,12 +954,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn-modern-outline" data-bs-dismiss="modal">
-                        <i class="pe-7s-close me-2"></i>Close
-                    </button>
-                    <button type="button" class="btn-modern">
-                        <i class="pe-7s-print me-2"></i>Print Order
-                    </button>
+                <button type="button" data-bs-dismiss="modal" style="padding: 8px 16px; background: black; color: white; border: 1px solid white; border-radius: 6px; font-size: 14px; display: inline-flex; align-items: center;">
+                    <i class="pe-7s-power me-2" style="color: white; font-size: 16px;"></i>Close
+                </button>
+
                 </div>
             </div>
         </div>

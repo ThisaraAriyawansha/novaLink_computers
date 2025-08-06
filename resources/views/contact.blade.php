@@ -105,29 +105,31 @@
                     <div class="col-lg-6">
                         <div class="contact-form p-4 h-100">
                             <div class="contact-title mb-4">
-                                <h2 class="title" style="font-family: 'Orbitron', sans-serif;">Send A Request</h2>
-                                <p class="text-muted" style="font-family: 'Orbitron', sans-serif;">Fill out the form and we'll get back to you soon</p>
+                            <h2 class="title" style="font-family: 'Orbitron', sans-serif; font-size: 26px;">
+                                Send A Request
+                            </h2>                              
+                              <p class="text-muted" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Fill out the form and we'll get back to you soon</p>
                             </div>
                             <form class="contact-form-style" id="contact-form" action="{{ route('contact.submit') }}" method="POST">
                                 @csrf
                                 <div class="row g-3">
                                     <div class="col-md-6">
-                                        <input name="name" class="form-control" placeholder="Name*" type="text" style="font-family: 'Orbitron', sans-serif;" required />
+                                        <input name="name" class="form-control" placeholder="Name*" type="text" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;;" required />
                                     </div>
                                     <div class="col-md-6">
-                                        <input name="email" class="form-control" placeholder="Email*" type="email"  style="font-family: 'Orbitron', sans-serif;"required />
+                                        <input name="email" class="form-control" placeholder="Email*" type="email"  style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;"required />
                                     </div>
                                     <div class="col-md-6">
-                                        <input name="tel" class="form-control" placeholder="Telephone Number*" style="font-family: 'Orbitron', sans-serif;" type="text" required />
+                                        <input name="tel" class="form-control" placeholder="Telephone Number*" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;" type="text" required />
                                     </div>
                                     <div class="col-md-6">
-                                        <input name="subject" class="form-control" placeholder="Subject*" type="text" style="font-family: 'Orbitron', sans-serif;" required />
+                                        <input name="subject" class="form-control" placeholder="Subject*" type="text" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;" required />
                                     </div>
                                     <div class="col-12">
-                                        <textarea name="message" class="form-control" placeholder="Your Message*" rows="5" style="font-family: 'Orbitron', sans-serif;" required></textarea>
+                                        <textarea name="message" class="form-control" placeholder="Your Message*" rows="5" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;" required></textarea>
                                     </div>
                                     <div class="col-12 text-center">
-                                        <button class="btn btn-primary px-4 py-2" type="submit" style="font-family: 'Orbitron', sans-serif;" id="submit-btn">Send Message</button>
+                                        <button class="btn btn-primary px-4 py-2" type="submit" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;" id="submit-btn">Send Message</button>
                                     </div>
                                 </div>
                             </form>
@@ -164,7 +166,7 @@
                                         </div>
                                         <div class="info-box">
                                             <h5 class="title" style="font-family: 'Orbitron', sans-serif;">Address</h5>
-                                            <p class="mb-0" style="font-family: 'Orbitron', sans-serif;">NovaLink Computers,<br>No. 12/B, Galle Road,<br>Matara</p>
+                                            <p class="mb-0" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">NovaLink Computers,<br>No. 12/B, Galle Road,<br>Matara</p>
                                         </div>
                                     </div>
                                 </div>
@@ -175,8 +177,8 @@
                                         </div>
                                         <div class="info-box">
                                             <h5 class="title" style="font-family: 'Orbitron', sans-serif;">Phone No</h5>
-                                            <p class="mb-0" ><a href="tel:0769417154" style="font-family: 'Orbitron', sans-serif; color: black;">0769417154</a></p>
-                                            <p class="mb-0"><a href="tel:+94412223454" style="font-family: 'Orbitron', sans-serif; color: black;">0412223454</a></p>
+                                            <p class="mb-0" ><a href="tel:0769417154" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: black;">0769417154</a></p>
+                                            <p class="mb-0"><a href="tel:+94412223454" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: black;">0412223454</a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -187,7 +189,7 @@
                                         </div>
                                         <div class="info-box">
                                             <h5 class="title" style="font-family: 'Orbitron', sans-serif;">Email</h5>
-                                            <p class="mb-0"><a href="mailto:novaLinkcomputers@gmail.com" style="font-family: 'Orbitron', sans-serif; color: black;">novaLinkcomputers@gmail.com</a></p>
+                                            <p class="mb-0"><a href="mailto:novaLinkcomputers@gmail.com" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: black;">novaLinkcomputers@gmail.com</a></p>
                                         </div>
                                     </div>
                                 </div>

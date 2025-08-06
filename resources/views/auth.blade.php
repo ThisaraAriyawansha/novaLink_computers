@@ -175,18 +175,18 @@
                             <form action="{{ url('/loginCustomer') }}" method="POST" class="space-y-4">
                                 @csrf
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1" style="font-family: 'Orbitron', sans-serif;">Email</label>
-                                    <input type="text" name="email" placeholder="Email" required style="font-family: 'Orbitron', sans-serif;"
+                                    <label class="block text-sm font-medium text-gray-700 mb-1" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Email</label>
+                                    <input type="text" name="email" placeholder="Email" required style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;"
                                            class="form-input w-full rounded-lg">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1" style="font-family: 'Orbitron', sans-serif;">Password</label>
-                                    <input type="password" name="user-password" placeholder="Password" required style="font-family: 'Orbitron', sans-serif;"
+                                    <label class="block text-sm font-medium text-gray-700 mb-1" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Password</label>
+                                    <input type="password" name="user-password" placeholder="Password" required style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;"
                                            class="form-input w-full rounded-lg">
                                 </div>
                                 
                                 <button type="submit" 
-                                        class="btn-primary w-full text-white py-3 px-4 rounded-lg font-medium mt-4" style="font-family: 'Orbitron', sans-serif;">
+                                        class="btn-primary w-full text-white py-3 px-4 rounded-lg font-medium mt-4" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">
                                     LOGIN
                                 </button>
                             </form>
@@ -199,53 +199,53 @@
                         <form action="{{ route('customer.register') }}" method="POST" class="space-y-4">
                             @csrf
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1" style="font-family: 'Orbitron', sans-serif;">Username</label>
-                                <input type="text" name="user-name" placeholder="Username" value="{{ old('user-name') }}" required style="font-family: 'Orbitron', sans-serif;"
+                                <label class="block text-sm font-medium text-gray-700 mb-1" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Username</label>
+                                <input type="text" name="user-name" placeholder="Username" value="{{ old('user-name') }}" required style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;"
                                        class="form-input w-full rounded-lg">
                                 @error('user-name') <div class="text-red-500 text-sm mt-1">{{ $message }}</div> @enderror
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1" style="font-family: 'Orbitron', sans-serif;">First Name</label>
-                                    <input type="text" name="fname" style="font-family: 'Orbitron', sans-serif;" placeholder="First Name" value="{{ old('fname') }}" required 
+                                    <label class="block text-sm font-medium text-gray-700 mb-1" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">First Name</label>
+                                    <input type="text" name="fname" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;" placeholder="First Name" value="{{ old('fname') }}" required 
                                            class="form-input w-full rounded-lg">
                                     @error('fname') <div class="text-red-500 text-sm mt-1">{{ $message }}</div> @enderror
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1" style="font-family: 'Orbitron', sans-serif;">Last Name</label>
-                                    <input type="text" name="lname" placeholder="Last Name" value="{{ old('lname') }}" required style="font-family: 'Orbitron', sans-serif;"
+                                    <label class="block text-sm font-medium text-gray-700 mb-1" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Last Name</label>
+                                    <input type="text" name="lname" placeholder="Last Name" value="{{ old('lname') }}" required style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;"
                                            class="form-input w-full rounded-lg">
                                     @error('lname') <div class="text-red-500 text-sm mt-1">{{ $message }}</div> @enderror
                                 </div>
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1" style="font-family: 'Orbitron', sans-serif;">Phone</label>
-                                <input type="text" name="phone" placeholder="Phone" value="{{ old('phone') }}" required style="font-family: 'Orbitron', sans-serif;"
+                                <label class="block text-sm font-medium text-gray-700 mb-1" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Phone</label>
+                                <input type="text" name="phone" placeholder="Phone" value="{{ old('phone') }}" required style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;"
                                        class="form-input w-full rounded-lg">
                                 @error('phone') <div class="text-red-500 text-sm mt-1">{{ $message }}</div> @enderror
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1" style="font-family: 'Orbitron', sans-serif;">Password</label>
-                                <input type="password" name="user-password" placeholder="Password" required style="font-family: 'Orbitron', sans-serif;"
+                                <label class="block text-sm font-medium text-gray-700 mb-1" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Password</label>
+                                <input type="password" name="user-password" placeholder="Password" required style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;"
                                        class="form-input w-full rounded-lg">
                                 @error('user-password') <div class="text-red-500 text-sm mt-1">{{ $message }}</div> @enderror
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1" style="font-family: 'Orbitron', sans-serif;">Email</label>
-                                <input type="email" name="user-email" placeholder="Email" value="{{ old('user-email') }}" required style="font-family: 'Orbitron', sans-serif;"
+                                <label class="block text-sm font-medium text-gray-700 mb-1" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Email</label>
+                                <input type="email" name="user-email" placeholder="Email" value="{{ old('user-email') }}" required style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;"
                                        class="form-input w-full rounded-lg">
                                 @error('user-email') <div class="text-red-500 text-sm mt-1">{{ $message }}</div> @enderror
                             </div>
                             <button type="submit" 
-                                    class="btn-primary w-full text-white py-3 px-4 rounded-lg font-medium mt-4" style="font-family: 'Orbitron', sans-serif;">
+                                    class="btn-primary w-full text-white py-3 px-4 rounded-lg font-medium mt-4" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">
                                 REGISTER
                             </button>
                         </form>
-                        <div class="mt-6 text-center text-sm text-gray-600" style="font-family: 'Orbitron', sans-serif;">
+                        <div class="mt-6 text-center text-sm text-gray-600" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">
                             By registering, you agree to our
-                            <a href="#" class="font-medium text-blue-600 hover:text-blue-500" style="font-family: 'Orbitron', sans-serif;">Terms of Service</a>
+                            <a href="#" class="font-medium text-blue-600 hover:text-blue-500" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Terms of Service</a>
                             and
-                            <a href="#" class="font-medium text-blue-600 hover:text-blue-500" style="font-family: 'Orbitron', sans-serif;">Privacy Policy</a>.
+                            <a href="#" class="font-medium text-blue-600 hover:text-blue-500" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Privacy Policy</a>.
                         </div>
                     </div>
                 </div>
