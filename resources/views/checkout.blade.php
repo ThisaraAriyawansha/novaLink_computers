@@ -207,152 +207,173 @@
         @endif
         <!-- breadcrumb-area end -->
         <!-- checkout area start -->
-        <main class="flex-grow py-8">
-            <div class="checkout-container px-4">
-                <h1 class="text-2xl md:text-3xl font-semibold text-gray-800 mb-8">Checkout</h1>
-                
-                <div class="flex flex-col lg:flex-row gap-8">
-                    <!-- Billing Information -->
-                    <div class="lg:w-7/12">
-                        <div class="bg-white rounded-lg shadow-sm p-6">
-                            <h2 class="text-xl font-semibold mb-6">Billing Information</h2>
-                            
-                            <form id="checkoutForm">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
-                                        <input type="text" name="fname" value="{{ $customer->fname ?? '' }}" 
-                                            class="form-input" required>
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
-                                        <input type="text" name="lname" value="{{ $customer->lname ?? '' }}" 
-                                            class="form-input" required>
-                                    </div>
-                                </div>
-                                
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-                                        <input type="tel" name="phone" value="{{ $customer->phone ?? '' }}" 
-                                            class="form-input" required>
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                                        <input type="email" name="email" value="{{ $customer->email ?? '' }}" 
-                                            class="form-input" required>
-                                    </div>
-                                </div>
-                                
-                                <div class="mb-4">
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Address Line 1</label>
-                                    <input type="text" name="address1" value="{{ $customer->address_line1 ?? '' }}" 
-                                        class="form-input" required>
-                                </div>
-                                
-                                <div class="mb-4">
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Address Line 2</label>
-                                    <input type="text" name="address2" value="{{ $customer->address_line2 ?? '' }}" 
-                                        class="form-input">
-                                </div>
-                                
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">City</label>
-                                        <input type="text" name="city" value="{{ $customer->city ?? '' }}" 
-                                            class="form-input" required>
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Postal Code</label>
-                                        <input type="text" name="postal_code" value="{{ $customer->postal_code ?? '' }}" 
-                                            class="form-input" required>
-                                    </div>
-                                </div>
-                                
-                                <div class="mb-2">
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Order Notes</label>
-                                    <textarea name="message" rows="3" 
-                                        class="form-input" 
-                                        placeholder="Special instructions or notes about your order"></textarea>
-                                </div>
-                            </form>
-                        </div>
+        <main class="flex-grow py-6 bg-white">
+            <div class="checkout-container px-3 max-w-7xl mx-auto">
+                <div class="flex items-center justify-between mb-6 border-b border-gray-100 pb-4">
+                    <h1 class="text-xl font-medium text-gray-900 tracking-tight">CHECKOUT</h1>
+                    <div class="text-xs text-gray-500 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                        SECURE CHECKOUT
                     </div>
-                    
-                    <!-- Order Summary -->
+                </div>
+                
+                <div class="flex flex-col lg:flex-row gap-5">
+                    <!-- Order Summary - Left Side -->
                     <div class="lg:w-5/12">
-                        <div class="order-summary p-6">
-                            <h2 class="text-xl font-semibold mb-6">Order Summary</h2>
+                        <div class="border border-gray-150 rounded-sm p-4 bg-gray-50">
+                            <h2 class="text-sm font-medium text-gray-900 uppercase tracking-wider mb-4">Your Order</h2>
                             
-                            <div class="mb-6">
+                            <div class="mb-5 space-y-4">
                                 @foreach($cartProducts as $cartProduct)
-                                <div class="order-item">
-                                    <div class="flex justify-between items-center">
+                                <div class="flex justify-between items-start">
+                                    <div class="flex items-start space-x-3">
+                                        <div class="bg-white border border-gray-200 p-1 rounded-sm flex-shrink-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                                            </svg>
+                                        </div>
                                         <div>
-                                            <h3 class="font-medium">{{ $cartProduct['name'] }}</h3>
-                                            <p class="text-sm text-gray-500">Qty: {{ $cartProduct['quantity'] }}</p>
+                                            <h3 class="text-sm font-normal text-gray-800 leading-tight">{{ $cartProduct['name'] }}</h3>
+                                            <p class="text-xs text-gray-500 mt-1">Qty: {{ $cartProduct['quantity'] }}</p>
                                         </div>
-                                        <div class="font-medium">
-                                                    @php
-                                                        // Calculate the total for each product (price * quantity)
-                                                        $totalPrice = $cartProduct['quantity'] * (float)filter_var($cartProduct['price'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-                                                    @endphp
-                                                    {{ $totalPrice }}LKR
-                                        </div>
+                                    </div>
+                                    <div class="text-sm font-medium text-gray-900">
+                                        @php
+                                            $totalPrice = $cartProduct['quantity'] * (float)filter_var($cartProduct['price'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+                                        @endphp
+                                        {{ $totalPrice }} LKR
                                     </div>
                                 </div>
                                 @endforeach
                             </div>
                             
-                            <div class="border-t border-gray-200 pt-4 mb-6">
-                                <div class="flex justify-between mb-2">
+                            <div class="border-t border-gray-200 pt-4 space-y-2">
+                                <div class="flex justify-between text-sm">
                                     <span class="text-gray-600">Subtotal</span>
                                     <span class="font-medium">{{$totalAmount}}</span>
                                 </div>
-                                <div class="flex justify-between mb-2">
+                                <div class="flex justify-between text-sm">
                                     <span class="text-gray-600">Shipping</span>
-                                    <span class="font-medium text-green-600">Free</span>
+                                    <span class="font-medium">Free</span>
                                 </div>
-                                <div class="flex justify-between text-lg font-semibold mt-4">
+                                <div class="flex justify-between text-base font-medium pt-3 border-t border-gray-200">
                                     <span>Total</span>
                                     <span>{{$totalAmount}}</span>
                                 </div>
                             </div>
-                            
-                                <div class="payment-method mb-2">
-                                    <div class="payment-accordion element-mrg">
-                                        <div id="faq" class="panel-group">
-                                        <label hidden class="d-flex gap-2 items-center space-x-2">
-                                                <input
-                                                    type="radio"
-                                                    name="payment"
-                                                    value="all"
-                                                    
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
-                                                    style="width: 15px; height: 15px;">
-                                                <span>Direct Bank Transfer</span>
-                                            </label>
+                        </div>
 
-                                            <label class="d-flex gap-2 items-center space-x-2">
-                                                <input
-                                                    type="radio"
-                                                    name="payment"
-                                                    value="all"
-                                                    checked
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500" style="width: 15px; height: 15px;">
-                                                <span>Cash On Delivery</span>
-                                            </label>
+                        <div class="mt-4 border border-gray-150 rounded-sm p-4 bg-gray-50">
+                            <h3 class="text-sm font-medium text-gray-900 uppercase tracking-wider mb-3">Payment Method</h3>
+                            <div class="space-y-2">
+                                <!-- Disabled Card Payment Option -->
+                                <label class="flex items-center space-x-3 p-2 border border-gray-200 bg-white rounded-sm opacity-60 cursor-not-allowed">
+                                    <input type="radio" name="payment" value="card" disabled
+                                        style="width: 12px; height: 12px;"
+                                        class="text-gray-800 border-gray-300">
+                                    <div>
+                                        <span class="block text-sm line-through text-gray-700">Credit/Debit Card (Coming Soon)</span>
+                                        <span class="block text-xs text-red-500 mt-0.5">Currently not available</span>
+                                    </div>
+                                </label>
+
+                                <!-- Active COD Option -->
+                                <label class="flex items-center space-x-3 p-2 border border-gray-200 bg-white rounded-sm cursor-pointer">
+                                    <input type="radio" name="payment" value="cod" checked
+                                        style="width: 12px; height: 12px;"
+                                        class="text-gray-800 border-gray-300 focus:ring-gray-400">
+                                    <div>
+                                        <span class="block text-sm">Cash On Delivery</span>
+                                        <span class="block text-xs text-gray-500 mt-0.5">Pay when you receive</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    
+                    <!-- Billing Information - Right Side -->
+                    <div class="lg:w-7/12">
+                        <div class="border border-gray-150 rounded-sm">
+                            <div class="border-b border-gray-150 px-4 py-3 bg-gray-50">
+                                <h2 class="text-sm font-medium text-gray-900 uppercase tracking-wider">Billing Details</h2>
+                            </div>
+                            
+                            <div class="p-4">
+                                <form id="checkoutForm" class="space-y-4">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-xs font-medium text-gray-700 mb-1 uppercase tracking-wider">First Name</label>
+                                            <input type="text" name="fname" value="{{ $customer->fname ?? '' }}" 
+                                                class="w-full px-3 py-2 text-xs border border-gray-200 rounded-sm focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400 bg-white" required>
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-medium text-gray-700 mb-1 uppercase tracking-wider">Last Name</label>
+                                            <input type="text" name="lname" value="{{ $customer->lname ?? '' }}" 
+                                                class="w-full px-3 py-2 text-xs border border-gray-200 rounded-sm focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400 bg-white" required>
                                         </div>
                                     </div>
-                                </div>
-                            
-                            <button id="placeOrderBtn" class="btn-primary mt-6">
-                                <span id="buttonText">Place Order</span>
-                                <span id="loadingIndicator" class="hidden">
-                                    <span class="loading-spinner"></span>
-                                    Processing...
-                                </span>
-                            </button>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-xs font-medium text-gray-700 mb-1 uppercase tracking-wider">Phone</label>
+                                            <input type="tel" name="phone" value="{{ $customer->phone ?? '' }}" 
+                                                class="w-full px-3 py-2 text-xs border border-gray-200 rounded-sm focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400 bg-white" required>
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-medium text-gray-700 mb-1 uppercase tracking-wider">Email</label>
+                                            <input type="email" name="email" value="{{ $customer->email ?? '' }}" 
+                                                class="w-full px-3 py-2 text-xs border border-gray-200 rounded-sm focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400 bg-white" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="block text-xs font-medium text-gray-700 mb-1 uppercase tracking-wider">Address Line 1</label>
+                                        <input type="text" name="address1" value="{{ $customer->address_line1 ?? '' }}" 
+                                            class="w-full px-3 py-2 text-xs border border-gray-200 rounded-sm focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400 bg-white" required>
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="block text-xs font-medium text-gray-700 mb-1 uppercase tracking-wider">Address Line 2</label>
+                                        <input type="text" name="address2" value="{{ $customer->address_line2 ?? '' }}" 
+                                            class="w-full px-3 py-2 text-xs border border-gray-200 rounded-sm focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400 bg-white">
+                                    </div>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-xs font-medium text-gray-700 mb-1 uppercase tracking-wider">City</label>
+                                            <input type="text" name="city" value="{{ $customer->city ?? '' }}" 
+                                                class="w-full px-3 py-2 text-xs border border-gray-200 rounded-sm focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400 bg-white" required>
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-medium text-gray-700 mb-1 uppercase tracking-wider">Postal Code</label>
+                                            <input type="text" name="postal_code" value="{{ $customer->postal_code ?? '' }}" 
+                                                class="w-full px-3 py-2 text-xs border border-gray-200 rounded-sm focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400 bg-white" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="pt-2">
+                                        <label class="block text-xs font-medium text-gray-700 mb-1 uppercase tracking-wider">Order Notes</label>
+                                        <textarea name="message" rows="2" 
+                                            class="w-full px-3 py-2 text-xs border border-gray-200 rounded-sm focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400 bg-white" 
+                                            placeholder="Special instructions"></textarea>
+                                    </div>
+
+                                    <div class="Place-order mt-2">
+                                        <a class="w-full bg-black hover:bg-gray-800 text-white text-xs font-medium py-3 px-4 rounded-sm uppercase tracking-wider mt-6 flex items-center justify-center focus:outline-none focus:ring-1 focus:ring-gray-700" href="#" id="placeOrderBtn" >Place Order</a>
+                                        <div id="loadingIndicator" style="display: none; font-size: 16px; color: #000000ff; margin-top: 10px;">Processing...</div>
+                                    </div>
+                                    <div class="text-center text-xs text-gray-500 mt-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 inline-block mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                        </svg>
+                                        Secure checkout. Your information is protected.
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
