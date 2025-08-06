@@ -220,8 +220,30 @@
 
         <div class="h-[10dvh]"></div>
         
+
+        <nav style="display: flex; align-items: center; padding: 16px 24px;    max-width: 1200px; margin: 10px auto;" aria-label="Breadcrumb">
+            <ol style="display: inline-flex; align-items: center; margin: 0; padding: 0; list-style: none; flex-wrap: wrap;">
+                <li style="display: inline-flex; align-items: center;">
+                    <a href="/home" style="display: inline-flex; align-items: center; font-size: 14px; font-family: 'Orbitron', sans-serif; font-weight: 500; color: #4b5563; text-decoration: none; transition: color 0.3s ease, transform 0.2s ease; padding: 6px 10px; border-radius: 6px;">
+                        <svg style="width: 18px; height: 18px; margin-right: 8px; fill: none; stroke: #6b7280; stroke-width: 2;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                        Home
+                    </a>
+                </li>
+
+                <li style="display: flex; align-items: center; margin: 0 6px;" aria-current="page">
+                    <svg style="width: 16px; height: 16px; color: #9ca3af; fill: none; stroke: currentColor; stroke-width: 2;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <span style="margin-left: 8px; font-size: 14px; font-weight: 600; color: #374151; padding: 6px 10px; border-radius: 6px; font-family: 'Orbitron', sans-serif;">Cart</span>
+                </li>
+            </ol>
+        </nav>
+
+        
         <!-- Main Cart Content -->
-        <div class="cart-container py-12 px-4 sm:px-6 lg:px-8">
+        <div class="cart-container py-2 px-4 sm:px-6 lg:px-8">
             <h1 class="text-sm font-bold text-gray-900 " style="font-family: 'Orbitron', sans-serif;  font-size: 20px; margin-bottom: 15px;">Your Shopping Cart</h1>
             
             <form action="{{ route('checkOut') }}" method="POST" name="checkout">
