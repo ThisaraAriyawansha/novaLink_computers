@@ -499,6 +499,7 @@
         @include('layouts.nav-2')
         <div class="h-[13dvh]"></div>
 
+
         <!-- Account Page Area -->
         <div class="account-page-area py-12">
             <div class="container">
