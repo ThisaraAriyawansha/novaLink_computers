@@ -124,7 +124,7 @@
             <div class="auth-image hidden lg:flex flex-col justify-between p-10 text-white">
                 <div>
                     <h2 class="text-3xl font-bold mb-4 text-white" style="font-family: 'Orbitron', sans-serif;">NovaLink Computers</h2>
-                    <p class="text-lg" style="font-family: 'Orbitron', sans-serif;">Premium computing solutions for professionals and enthusiasts</p>
+                    <p class="text-lg" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Premium computing solutions for professionals and enthusiasts</p>
                 </div>
                 <div class="flex space-x-6">
                     <div>

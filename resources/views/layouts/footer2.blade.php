@@ -195,15 +195,15 @@
                         <div class="space-y-3 text-gray-300">
                             <div>
                                 <strong class="block text-sm text-blue-400" style="font-family: 'Orbitron', sans-serif; color: white;">Address:</strong>
-                                <p class="text-sm" style="font-family: 'Orbitron', sans-serif; color: white;">NovaLink Computers,<br>No. 12/B,<br>Galle Road,<br>Matara.</p>
+                                <p class="text-sm" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: white;">NovaLink Computers,<br>No. 12/B,<br>Galle Road,<br>Matara.</p>
                             </div>
                             <div>
                                 <strong class="block text-sm text-blue-400" style="font-family: 'Orbitron', sans-serif; color: white;">Phone:</strong>
-                                <a href="tel:0769417154" class="hover:text-blue-400 transition-colors duration-300" style="font-family: 'Orbitron', sans-serif; color: white;">0769417154</a>
+                                <a href="tel:0769417154" class="hover:text-blue-400 transition-colors duration-300" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: white;">0769417154</a>
                             </div>
                             <div>
                                 <strong class="block text-sm text-blue-400" style="font-family: 'Orbitron', sans-serif; color: white;">Email:</strong>
-                                <a href="mailto:novaLinkcomputers@gmail.com" class="hover:text-blue-400 transition-colors duration-300" style="font-family: 'Orbitron', sans-serif; color: white;">novaLinkcomputers@gmail.com</a>
+                                <a href="mailto:novaLinkcomputers@gmail.com" class="hover:text-blue-400 transition-colors duration-300" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: white;">novaLinkcomputers@gmail.com</a>
                             </div>
                         </div>
                         <div class="pt-4">
@@ -234,7 +234,7 @@
         <div class="footer-bottom border-t border-gray-600 py-6 bg-black">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center">
-                    <p class="text-sm text-white" style="font-family: 'Orbitron', sans-serif; color: white;">© 2025 NovaLink Computers. All rights reserved.</p>
+                    <p class="text-sm text-white" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">© 2025 NovaLink Computers. All rights reserved.</p>
                 </div>
             </div>
         </div>
