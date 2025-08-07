@@ -105,45 +105,41 @@ class PageController extends Controller
 
     public function blogSingleShow()
     {
-        // Get the blog-id from the query parameter
-        $blogId = request()->query('blog-id');
-
-        // Fetch the blog post by ID or throw 404 if not found
-        $blog = Blog::findOrFail($blogId);
-
-        // Fetch products (consistent with homeShow and blogShow)
-        $products = Product::with(['features'])
-            ->where('status_id', 1)
-            ->get()
-            ->map(function ($product) {
+        // Fetch all blog posts
+            $blogs = Blog::all()->map(function ($blog) {
                 return [
-                    'id' => $product->id,
-                    'name' => $product->name,
-                    'type' => $product->type,
-                    'tags' => $product->tags,
-                    'desc' => $product->description,
-                    'dis_price' => $product->discounted_price . ' LKR',
-                    'ret_price' => $product->retail_price . ' LKR',
-                    'features' => $product->features->pluck('feature')->toArray(),
-                    'warranty' => $product->warranty,
-                    'in_stock' => $product->in_stock,
-                    'image' => asset($product->image),
+                    'id' => $blog->id,
+                    'image' => asset($blog->image),
+                    'date' => $blog->date->format('d, M Y'),
+                    'title' => $blog->title,
+                    'description' => $blog->description,
+                    'tag' => $blog->tag ? explode(',', $blog->tag) : [],
                 ];
             });
 
-        // Format blog data
-        $blogData = [
-            'id' => $blog->id,
-            'image' => asset($blog->image),
-            'date' => $blog->date->format('d, M Y'),
-            'title' => $blog->title,
-            'description' => $blog->description,
-            'tag' => $blog->tag ? explode(',', $blog->tag) : [],
-        ];
+            // Fetch products (consistent with your original method)
+            $products = Product::with(['features'])
+                ->where('status_id', 1)
+                ->get()
+                ->map(function ($product) {
+                    return [
+                        'id' => $product->id,
+                        'name' => $product->name,
+                        'type' => $product->type,
+                        'tags' => $product->tags,
+                        'desc' => $product->description,
+                        'dis_price' => $product->discounted_price . ' LKR',
+                        'ret_price' => $product->retail_price . ' LKR',
+                        'features' => $product->features->pluck('feature')->toArray(),
+                        'warranty' => $product->warranty,
+                        'in_stock' => $product->in_stock,
+                        'image' => asset($product->image),
+                    ];
+                });
 
-        // Pass blog and products data to the 'blog-single' view
-        return view('blog', ['blog' => $blogData, 'products' => $products]);
-    }
+            // Pass blogs and products data to the 'blog' view
+            return view('blog', ['blogs' => $blogs, 'products' => $products]);
+            }
     
     public function singleProduct(Request $request)
     {

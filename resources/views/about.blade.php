@@ -401,10 +401,10 @@
 
                                     </div>
                                     <h3 class="text-xl font-semibold text-black mb-2 hover:text-blue-600 transition-colors flex items-center">
-                                        <a class="text-black" href="{{ route('blog.show') . '?blog-id=' . $blog['id'] }}" style="font-family: 'Orbitron', sans-serif;">{{ $blog['title'] }}</a>
+                                        <a class="text-black" href="{{ route('blog.show') . '?blog-id=' . $blog['id'] }}" style="font-family: 'Orbitron', sans-serif; font-size: 20px;">{{ $blog['title'] }}</a>
                                     </h3>
                                     <p class="text-black mb-4" >{{ $blog['description'] }}</p>
-                                    <a href="{{ route('blog.show') . '?blog-id=' . $blog['id'] }}" class="inline-flex items-center text-black hover:text-blue-800 font-medium transition-colors" style="font-family: 'Orbitron', sans-serif;">
+                                    <a href="{{ route('blog.show') . '?blog-id=' . $blog['id'] }}" class="inline-flex items-center text-black hover:text-blue-800 font-medium transition-colors" style="font-family: 'Orbitron', sans-serif; font-size: 14px;">
                                         Read more
                                         <i class="fas fa-arrow-right w-4 h-4 ml-1"></i>
                                     </a>
