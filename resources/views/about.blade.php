@@ -388,7 +388,7 @@
                         @foreach ($blogs as $blog)
                             <div class="blog-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
                                 <div class="blog-image-container">
-                                    <a href="{{ route('blog.show') . '?blog-id=' . $blog['id'] }}">
+                                    <a href="{{ route('blog.show')}}">
                                         <img src="{{ $blog['image'] }}" alt="{{ $blog['title'] }}" class="w-full h-96 object-cover">
                                     </a>
                                 </div>
@@ -401,10 +401,10 @@
 
                                     </div>
                                     <h3 class="text-xl font-semibold text-black mb-2 hover:text-blue-600 transition-colors flex items-center">
-                                        <a class="text-black" href="{{ route('blog.show') . '?blog-id=' . $blog['id'] }}" style="font-family: 'Orbitron', sans-serif; font-size: 20px;">{{ $blog['title'] }}</a>
+                                        <a class="text-black" href="{{ route('blog.show')}}" style="font-family: 'Orbitron', sans-serif; font-size: 20px;">{{ $blog['title'] }}</a>
                                     </h3>
                                     <p class="text-black mb-4" >{{ $blog['description'] }}</p>
-                                    <a href="{{ route('blog.show') . '?blog-id=' . $blog['id'] }}" class="inline-flex items-center text-black hover:text-blue-800 font-medium transition-colors" style="font-family: 'Orbitron', sans-serif; font-size: 14px;">
+                                    <a href="{{ route('blog.show')}}" class="inline-flex items-center text-black hover:text-blue-800 font-medium transition-colors" style="font-family: 'Orbitron', sans-serif; font-size: 14px;">
                                         Read more
                                         <i class="fas fa-arrow-right w-4 h-4 ml-1"></i>
                                     </a>

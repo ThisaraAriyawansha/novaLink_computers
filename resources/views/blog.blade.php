@@ -25,6 +25,24 @@
 
     <style>
 
+        :root {
+            --primary-color: #0f172a;
+            --secondary-color: #334155;
+            --accent-color: #4b4b4bff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --surface: #ffffff;
+            --surface-secondary: #f8fafc;
+            --border-color: #e2e8f0;
+            --border-light: #f1f5f9;
+            --shadow-subtle: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-large: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --gradient-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+
 
         .main-wrapper {
             min-height: 100vh;
@@ -172,7 +190,6 @@
 
         .blog-post {
             background: white;
-            border-radius: 1rem;
             border: 1px solid var(--border-color);
             overflow: hidden;
             transition: all 0.3s ease;
@@ -183,7 +200,6 @@
         .blog-post:hover {
             transform: translateY(-4px);
             box-shadow: var(--shadow-large);
-            border-color: var(--accent-color);
         }
 
         .blog-image {
@@ -430,47 +446,47 @@
 
         <!-- Blog Area Start -->
         <!-- blog.blade.php -->
-<!-- blog.blade.php -->
-<div class="blog-section">
-    <div class="blog-container">
-        <div class="blog-posts">
-            @forelse ($blogs as $blog)
-                <article class="blog-post fade-up">
-                    <div class="blog-image">
-                        <img src="{{ $blog['image'] }}" alt="{{ $blog['title'] }}" />
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <div class="blog-date">
-                                <i class="fa fa-calendar" aria-hidden="true"></i>
-                                {{ $blog['date'] }}
+        <!-- blog.blade.php -->
+        <div class="blog-section">
+            <div class="blog-container">
+                <div class="blog-posts">
+                    @forelse ($blogs as $blog)
+                        <article class="blog-post fade-up">
+                            <div class="blog-image">
+                                <img src="{{ $blog['image'] }}" alt="{{ $blog['title'] }}" />
                             </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <div class="blog-date">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                        {{ $blog['date'] }}
+                                    </div>
+                                </div>
+                                <h2 class="blog-title">
+                                    <a href="#" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">{{ $blog['title'] }}</a>
+                                </h2>
+                                <p class="blog-description" >
+                                    {{ $blog['description'] }}
+                                </p>
+                                <div class="blog-tags">
+                                    <span class="tags-label">Tags:</span>
+                                    <ul class="tag-list">
+                                        @foreach ($blog['tag'] as $tag)
+                                            <li class="tag-item"><a href="#">{{ $tag }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        </article>
+                    @empty
+                        <div class="no-posts fade-up">
+                            <div class="no-posts-icon">📝</div>
+                            <p>No blog posts available at the moment.</p>
                         </div>
-                        <h2 class="blog-title">
-                            <a href="#">{{ $blog['title'] }}</a>
-                        </h2>
-                        <p class="blog-description">
-                            {{ $blog['description'] }}
-                        </p>
-                        <div class="blog-tags">
-                            <span class="tags-label">Tags:</span>
-                            <ul class="tag-list">
-                                @foreach ($blog['tag'] as $tag)
-                                    <li class="tag-item"><a href="#">{{ $tag }}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                </article>
-            @empty
-                <div class="no-posts fade-up">
-                    <div class="no-posts-icon">📝</div>
-                    <p>No blog posts available at the moment.</p>
+                    @endforelse
                 </div>
-            @endforelse
+            </div>
         </div>
-    </div>
-</div>
         <!-- Blog Area End -->
 
         <!-- footer -->
