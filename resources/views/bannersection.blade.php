@@ -2,7 +2,7 @@
 <div style="background-color: #000000; min-height: 100vh; margin: 0; padding: 0;">   
     <div style="display: flex; align-items: flex-start; max-width: 1200px; margin: 0 auto; gap: 30px; background-color: #000000; flex-direction: row;">
         <div style="flex: 1;">
-            <img src="assets/images/banner/jghiu.png" alt="Custom PC Build" style="max-width: 100%; max-height: 100vh; border-radius: 8px;">
+            <img src="assets/images/banner/jhjggg.png" alt="Custom PC Build" style="max-width: 100%; max-height: 100vh; border-radius: 8px;">
         </div>
         <div style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 10%; margin-left: 2%;">
             <div style="padding: 0; margin: 0;">

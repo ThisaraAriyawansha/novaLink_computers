@@ -236,7 +236,7 @@
                 <div class="flex flex-col sm:flex-row justify-between items-center">
                 <!-- Left side -->
                 <p class="text-sm text-white font-inter mb-2 sm:mb-0" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: white;">
-                    © 2025 NovaLink Computers. All rights reserved.
+                    © 2025 All rights reserved by NovaLink Computers.
                 </p>
 
                 <!-- Right side -->
