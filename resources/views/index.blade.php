@@ -457,7 +457,9 @@
                 </div>
             </div>
 
+            @include('bannersection')
 
+             
 
 
             

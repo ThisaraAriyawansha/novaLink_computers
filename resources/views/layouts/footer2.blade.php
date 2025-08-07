@@ -231,13 +231,23 @@
         </div>
 
         <!-- Footer Bottom -->
-        <div class="footer-bottom border-t border-gray-600 py-6 bg-black">
+            <div class="footer-bottom border-t border-gray-600 py-6 bg-black">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center">
-                    <p class="text-sm text-white" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">© 2025 NovaLink Computers. All rights reserved.</p>
+                <div class="flex flex-col sm:flex-row justify-between items-center">
+                <!-- Left side -->
+                <p class="text-sm text-white font-inter mb-2 sm:mb-0" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: white;">
+                    © 2025 NovaLink Computers. All rights reserved.
+                </p>
+
+                <!-- Right side -->
+                <div class="space-x-4 text-sm text-white font-inter">
+                    <a href="#" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: white;">Privacy Policy</a>
+                    <a href="#"style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: white;" >Terms of Use</a>
+                </div>
                 </div>
             </div>
-        </div>
+            </div>
+
     </div>
 </div>
 <!-- Footer Area End -->
