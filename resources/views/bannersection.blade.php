@@ -4,33 +4,46 @@
         <div style="flex: 1;">
             <img src="assets/images/banner/jhjggg.png" alt="Custom PC Build" style="max-width: 100%; max-height: 100vh; border-radius: 8px;">
         </div>
-        <div style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 10%; margin-left: 2%;">
-            <div style="padding: 0; margin: 0;">
-                <h3 style="margin-top: 0; color: #ffffff; font-size: 18px; display: flex; align-items: center; gap: 10px; font-family: 'Orbitron', sans-serif;">
-                    <i class="fas fa-tools" style="color: #ffffff; font-size: 30px; "></i> Custom PC Builds
-                </h3>
-                <p style="color: #8b8b8b; line-height: 1.5; margin-bottom: 0; font-size: 15px; padding-left: 30px;">We offer custom PCs tailored to your needs, whether you're a gamer, designer, or just need a reliable workstation. Choose your components and we'll handle the rest!</p>
-            </div>
-            <div style="padding: 0; margin: 0;">
-                <h3 style="margin-top: 0; color: #ffffff; font-size: 18px; display: flex; align-items: center; gap: 10px; font-family: 'Orbitron', sans-serif;">
-                    <i class="fas fa-microchip" style="color: #ffffff; font-size: 30px;"></i> High-Quality Components
-                </h3>
-                <p style="color: #8b8b8b; line-height: 1.5; margin-bottom: 0; font-size: 15px; padding-left: 30px;">We stock the latest and greatest in computer hardware, from CPUs and GPUs to SSDs and motherboards, ensuring your build has the best components available.</p>
-            </div>
-            <div style="padding: 0; margin: 0;">
-                <h3 style="margin-top: 0; color: #ffffff; font-size: 18px; display: flex; align-items: center; gap: 10px; font-family: 'Orbitron', sans-serif;">
-                    <i class="fas fa-headset" style="color: #ffffff; font-size: 30px;"></i> Expert Support
-                </h3>
-                <p style="color: #8b8b8b; line-height: 1.5; margin-bottom: 0; font-size: 15px; padding-left: 30px;">Our team of experts is here to help you every step of the way, from choosing the right parts to troubleshooting and support after your purchase.</p>
+            <div style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 10%; margin-left: 2%;">
+                
+                <div style="padding: 5%; margin: 0;">
+                    <h3 style="margin-top: 0; color: #ffffff; font-size: 18px; display: flex; align-items: center; gap: 10px; font-family: 'Orbitron', sans-serif;">
+                        <i class="fas fa-tools" style="color: #ffffff; font-size: 30px;"></i> Custom PC Solutions
+                    </h3>
+                    <p style="color: #8b8b8b; line-height: 1.5; margin-bottom: 0; font-size: 15px; padding-left: 20px;">
+                        From gaming rigs to professional workstations, we build PCs tailored to your exact needs. Pick your dream specs and let us bring it to life.
+                    </p>
+                </div>
+
+                <div style="padding: 5%; margin: 0;">
+                    <h3 style="margin-top: 0; color: #ffffff; font-size: 18px; display: flex; align-items: center; gap: 10px; font-family: 'Orbitron', sans-serif;">
+                        <i class="fas fa-microchip" style="color: #ffffff; font-size: 30px;"></i> Premium Hardware
+                    </h3>
+                    <p style="color: #8b8b8b; line-height: 1.5; margin-bottom: 0; font-size: 15px; padding-left: 20px;">
+                        We source only the latest and most reliable components — ensuring maximum performance, durability, and future-ready upgrades.
+                    </p>
+                </div>
+
+                <div style="padding: 5%; margin: 0;">
+                    <h3 style="margin-top: 0; color: #ffffff; font-size: 18px; display: flex; align-items: center; gap: 10px; font-family: 'Orbitron', sans-serif;">
+                        <i class="fas fa-headset" style="color: #ffffff; font-size: 30px;"></i> Dedicated Support
+                    </h3>
+                    <p style="color: #8b8b8b; line-height: 1.5; margin-bottom: 0; font-size: 15px; padding-left: 20px;">
+                        Our experts are ready to assist you — from choosing parts to post-purchase troubleshooting — so you can enjoy a smooth tech journey.
+                    </p>
+                </div>
+
+                <div style="padding: 5%; margin: 0;">
+                    <h3 style="margin-top: 0; color: #ffffff; font-size: 18px; display: flex; align-items: center; gap: 10px; font-family: 'Orbitron', sans-serif;">
+                        <i class="fas fa-shield-alt" style="color: #ffffff; font-size: 30px;"></i> Trusted Warranty
+                    </h3>
+                    <p style="color: #8b8b8b; line-height: 1.5; margin-bottom: 0; font-size: 15px; padding-left: 20px;">
+                        Enjoy peace of mind with Sri Lanka’s most reliable warranty service. Track claims in real-time for a fast, hassle-free experience.
+                    </p>
+                </div>
+
             </div>
 
-            <div style="padding: 0; margin: 0;">
-                <h3 style="margin-top: 0; color: #ffffff; font-size: 18px; display: flex; align-items: center; gap: 10px; font-family: 'Orbitron', sans-serif;">
-                    <i class="fas fa-shield-alt" style="color: #ffffff; font-size: 30px;"></i> Warranty Support
-                </h3>
-                <p style="color: #8b8b8b; line-height: 1.5; margin-bottom: 0; font-size: 15px; padding-left: 30px;">Experience Sri Lanka's No.1 warranty support with our user-friendly ticket system. Simply submit your warranty claim, receive an email confirmation, and follow the status of your claim in real time for hassle-free experience.</p>
-            </div>
-        </div>
     </div>
 
     <style>
