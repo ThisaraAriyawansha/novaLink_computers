@@ -457,6 +457,9 @@
                 </div>
             </div>
 
+
+            @include('categorysection')
+
             @include('bannersection')
 
              
