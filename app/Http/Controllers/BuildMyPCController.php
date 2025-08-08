@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Log;
 
 class BuildMyPCController extends Controller
 {
-    public function buildMyPC()
-    {
-        $products = Product::with(['features'])
+public function buildMyPC()
+{
+    $products = Product::with(['features'])
         ->where('status_id', 1)
         ->get()
         ->map(function ($product) {
@@ -34,8 +34,24 @@ class BuildMyPCController extends Controller
             ];
         });
 
-        return view('buildMyPC', ['products' => $products]);
-    }
+    // Define PC build categories based on your product categories
+    $pcBuildCategories = [
+        ['name' => 'Processors', 'value' => 'PROCESSOR', 'icon' => 'fas fa-microchip'],
+        ['name' => 'Motherboards', 'value' => 'MOTHERBOARD', 'icon' => 'fas fa-memory'],
+        ['name' => 'RAM', 'value' => 'RAM', 'icon' => 'fas fa-memory'],
+        ['name' => 'Graphics Cards', 'value' => 'GRAPHIC CARDS', 'icon' => 'fas fa-tv'],
+        ['name' => 'STORAGE & NAS', 'value' => 'STORAGE & NAS', 'icon' => 'fas fa-hdd'],
+        ['name' => 'Power Supply', 'value' => 'POWER SUPPLY', 'icon' => 'fas fa-plug'],
+        ['name' => 'PC Cases', 'value' => 'CASINGS', 'icon' => 'fas fa-cube'],
+        ['name' => 'COOLING & LIGHTING', 'value' => 'COOLING & LIGHTING', 'icon' => 'fas fa-fan'],
+        ['name' => 'MONITORS & ACCESSORIES', 'value' => 'MONITORS & ACCESSORIES', 'icon' => 'fas fa-desktop'],
+    ];
+
+    return view('buildMyPC', [
+        'products' => $products,
+        'pcBuildCategories' => $pcBuildCategories
+    ]);
+}
 
 
 
