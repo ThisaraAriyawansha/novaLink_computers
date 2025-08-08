@@ -257,51 +257,52 @@
 
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2" id="products-grid">
-                    @foreach($products as $product)
-                    <div class="product-card bg-white rounded-md border border-slate-300 overflow-hidden hover:shadow-sm transition-shadow duration-200"
-                        data-type="{{ $product['type'] }}"
-                        data-id="{{ $product['id'] }}">
-                        <div class="p-2">
-                            <div class="flex justify-between items-start mb-1">
-                                <span class="bg-gray-200 text-black text-[9px] font-semibold px-1.5 py-0.5 rounded">{{ $product['type'] }}</span>
-                                <button class="text-slate-400 hover:text-red-500 wishlist-btn" data-id="{{ $product['id'] }}">
-                                    <i class="far fa-heart text-[10px]"></i>
-                                </button>
-                            </div>
-                            <img src="{{ $product['image'] }}" alt="{{ $product['name'] }}" class="w-full h-20 object-contain mb-2">
-                            <h4 class="font-semibold text-slate-800 text-xs mb-0.5 truncate">{{ $product['name'] }}</h4>
-                            <div class="flex items-center mb-1">
-                                <div class="flex text-yellow-400 mr-1 text-[10px]">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                </div>
-                                <span class="text-slate-500 text-[10px]">(24)</span>
-                            </div>
-
-                            <div class="flex justify-between items-center">
-                                <div>
-                                    <p class="text-sm font-bold text-black leading-tight">Rs. {{ number_format($product['dis_price']) }}</p>
-                                    @if($product['dis_price'] != $product['ret_price'])
-                                    <p class="text-[10px] text-slate-400 line-through">Rs. {{ number_format($product['ret_price']) }}</p>
-                                    @endif
-                                </div>
-                                <button class="add-to-build-btn bg-black hover:bg-gray-100 text-white rounded px-2 py-0.5 text-[10px] font-medium transition-colors"
-                                        data-id="{{ $product['id'] }}"
-                                        data-type="{{ $product['type'] }}"
-                                        data-name="{{ $product['name'] }}"
-                                        data-price="{{ $product['dis_price'] }}"
-                                        data-image="{{ $product['image'] }}">
-                                    Add
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="products-grid">
+    @foreach($products as $product)
+    <div class="product-card bg-white rounded-lg border border-slate-200 overflow-hidden hover:shadow-md transition-shadow duration-300"
+         data-type="{{ $product['type'] }}"
+         data-id="{{ $product['id'] }}">
+        <div class="p-3">
+            <div class="flex justify-between items-start mb-2">
+                <span class="bg-gray-200 text-black text-[10px] font-semibold px-2 py-0.5 rounded">{{ $product['type'] }}</span>
+                <button class="text-slate-400 hover:text-red-500 wishlist-btn" data-id="{{ $product['id'] }}">
+                    <i class="far fa-heart text-xs"></i>
+                </button>
+            </div>
+            <img src="{{ $product['image'] }}" alt="{{ $product['name'] }}" class="w-full h-28 object-contain mb-3">
+            <h4 class="font-semibold text-slate-800 text-sm mb-1">{{ $product['name'] }}</h4>
+            <div class="flex items-center mb-1">
+                <div class="flex text-yellow-400 mr-2 text-xs">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
                 </div>
+                <span class="text-slate-500 text-xs">(24)</span>
+            </div>
+
+            <div class="flex justify-between items-center">
+                <div>
+                    <p class="text-base font-bold text-black">Rs. {{ number_format($product['dis_price']) }}</p>
+                    @if($product['dis_price'] != $product['ret_price'])
+                    <p class="text-xs text-slate-400 line-through">Rs. {{ number_format($product['ret_price']) }}</p>
+                    @endif
+                </div>
+                <button class="add-to-build-btn bg-black hover:bg-gray-100 text-white rounded-md px-2 py-1 text-xs font-medium transition-colors"
+                        data-id="{{ $product['id'] }}"
+                        data-type="{{ $product['type'] }}"
+                        data-name="{{ $product['name'] }}"
+                        data-price="{{ $product['dis_price'] }}"
+                        data-image="{{ $product['image'] }}">
+                    Add to Build
+                </button>
+            </div>
+        </div>
+    </div>
+    @endforeach
+</div>
+
 
             </div>
         </div>
