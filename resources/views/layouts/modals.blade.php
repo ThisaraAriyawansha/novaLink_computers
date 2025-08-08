@@ -96,7 +96,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; top: 8px; right: 8px; font-size: 1.2rem;">
                     <i class="pe-7s-close"></i>
                 </button>
-                <div class="tt-modal-messages" style="font-family: 'Orbitron', sans-serif; padding: 1px; font-size: 1rem;">
+                <div class="tt-modal-messages" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; padding: 1px; font-size: 1rem;">
                     <i class="pe-7s-check" style="font-size: 1rem;"></i> Added to cart successfully!
                 </div>
             </div>
@@ -112,7 +112,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; top: 8px; right: 8px; font-size: 1.2rem;">
                     <i class="pe-7s-close"></i>
                 </button>
-                <div class="tt-modal-messages" style="font-family: 'Orbitron', sans-serif; padding: 1px; font-size: 1rem;">
+                <div class="tt-modal-messages" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; padding: 1px; font-size: 1rem;">
                     <i class="pe-7s-check" style="font-size: 1rem;"></i> Added to Wishlist successfully!
                 </div>
             </div>
