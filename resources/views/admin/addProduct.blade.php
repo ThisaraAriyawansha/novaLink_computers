@@ -68,7 +68,6 @@
                                 <option value="UPS">UPS</option>
                                 <option value="TABLES">TABLES</option>
                                 <option value="THERMAL PASTE">THERMAL PASTE</option>
-                                <option value="COOLING AND LIGHTING">COOLING AND LIGHTING</option>
                                 <option value="COMMERCIAL SOLUTIONS">COMMERCIAL SOLUTIONS</option>
                                 <option value="COOLING & LIGHTING">COOLING & LIGHTING</option>
                                 <option value="STORAGE & NAS">STORAGE & NAS</option>

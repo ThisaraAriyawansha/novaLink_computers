@@ -97,7 +97,7 @@
                                 <option value="UPS" {{ $product->type == 'UPS' ? 'selected' : '' }}>UPS</option>
                                 <option value="TABLES" {{ $product->type == 'TABLES' ? 'selected' : '' }}>TABLES</option>
                                 <option value="THERMAL PASTE" {{ $product->type == 'THERMAL PASTE' ? 'selected' : '' }}>THERMAL PASTE</option>
-                                <option value="COOLING AND LIGHTING" {{ $product->type == 'COOLING AND LIGHTING' ? 'selected' : '' }}>COOLING AND LIGHTING</option>
+                                <option value="COOLING & LIGHTING" {{ $product->type == 'COOLING & LIGHTING' ? 'selected' : '' }}>COOLING & LIGHTING</option>
                                 <option value="COMMERCIAL SOLUTIONS" {{ $product->type == 'COMMERCIAL SOLUTIONS' ? 'selected' : '' }}>COMMERCIAL SOLUTIONS</option>
                                 <option value="STORAGE & NAS" {{ $product->type == 'STORAGE & NAS' ? 'selected' : '' }}>STORAGE & NAS</option>
                                 <option value="MONITORS & ACCESSORIES" {{ $product->type == 'MONITORS & ACCESSORIES' ? 'selected' : '' }}>MONITORS & ACCESSORIES</option>

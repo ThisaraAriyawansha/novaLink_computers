@@ -3,9 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Build My PC - CoreX Computers</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>NovaLink Computers | Best Computers for you</title>
+    <meta name="description" content="NovaLink Computers offer the best computers available at the market">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/N_back.jpg" />    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+        <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/font.awesome.css" />
+    <link rel="stylesheet" href="assets/css/pe-icon-7-stroke.css" />
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/venobox.css">
+    <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Import Orbitron font -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -172,290 +186,323 @@
         <!-- Main Content Area -->
         <div class="lg:w-4/6 w-full">
             <!-- Build Progress -->
-            <div class="glass-effect rounded-2xl p-6 mb-8">
-                <h2 class="text-2xl font-bold text-slate-800 mb-2">Build Your Dream PC</h2>
-                <p class="text-slate-600 mb-6">Select compatible components to build your perfect system</p>
-                
-                <div class="w-full bg-slate-200 rounded-full h-2.5 mb-2">
-                    <div class="progress-bar-fill bg-blue-600 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+            <div class="glass-effect  p-4 mb-4 fixed top-0 left-0 z-50 lg:w-4/6 w-full  bg-white shadow-none">
+                <!-- Top Row: Title + Buttons -->
+                <div class="flex items-center justify-between mb-2">
+                    <h2 class="text-xl font-bold text-slate-800" style="font-family: 'Orbitron', sans-serif; font-size: 18px;">Build Your Dream PC</h2>
+                    <div class="flex space-x-2">
+                        <!-- Home Button -->
+                        <a href="/home" class="flex items-center px-3 py-1.5 bg-slate-100 text-slate-700 rounded-lg 
+                            hover:bg-black hover:text-white transition-colors text-sm">
+                            <i class="fas fa-home mr-2"></i> Home
+                        </a>
+
+                        <!-- Cart Button -->
+                        <a href="/cart" class="flex items-center px-3 py-1.5 bg-black text-white rounded-lg hover:bg-gray-900 transition-colors text-sm">
+                            <i class="fas fa-shopping-cart mr-2"></i> Cart
+                        </a>
+                    </div>
                 </div>
-                <p class="progress-text text-sm text-slate-500 text-center">Select components to begin</p>
+
+                <p class="text-slate-600 mb-3 text-sm">Select compatible components to build your perfect system</p>
                 
-                <div class="flex justify-between text-sm text-slate-600 mt-4">
+                <!-- Progress Bar -->
+                <div class="w-full bg-slate-200 rounded-full h-2 mb-1">
+                    <div class="progress-bar-fill bg-blue-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+                <p class="progress-text text-xs text-slate-500 text-center">Select components to begin</p>
+                
+                <!-- Steps -->
+                <div class="flex justify-between text-xs text-slate-600 mt-2">
                     <span>1. Select Components</span>
                     <span>2. Review Build</span>
                     <span>3. Checkout</span>
                 </div>
             </div>
+
+
+            <div class="h-[24dvh]"></div>
             
             <!-- Component Categories -->
-            <div class="glass-effect rounded-2xl p-6 mb-8">
-                <h3 class="text-lg font-semibold text-slate-800 mb-6">Core Components</h3>
+            <div class="glass-effect rounded-2xl p-3 mb-6">
+                <h3 class="text-base font-semibold text-slate-800 mb-4" style="font-family: 'Orbitron', sans-serif; font-size: 16px;">
+                    Core Components
+                </h3>
                 
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
                     @foreach($pcBuildCategories as $category)
                     <button 
-                        class="component-category p-4 border border-slate-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 group"
+                        class="component-category p-2.5 border border-slate-300 rounded-lg hover:border-gray-500 hover:bg-gray-300 transition-all duration-300 group"
                         data-category="{{ $category['value'] }}"
                         onclick="filterProducts('{{ $category['value'] }}')"
                     >
                         <div class="text-center">
-                            <div class="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:bg-blue-500 transition-colors">
-                                <i class="{{ $category['icon'] }} text-slate-600 group-hover:text-white"></i>
+                            <div class="w-10 h-10 bg-slate-100 rounded-md flex items-center justify-center mx-auto mb-2.5 group-hover:bg-black transition-colors">
+                                <i class="{{ $category['icon'] }} text-slate-600 group-hover:text-white text-sm"></i>
                             </div>
-                            <p class="font-medium text-slate-800 text-sm">{{ $category['name'] }}</p>
+                            <p class="font-medium text-slate-800 text-xs leading-tight">{{ $category['name'] }}</p>
                         </div>
                     </button>
                     @endforeach
                 </div>
             </div>
+
+
+
             
             <!-- Products Grid -->
             <div class="glass-effect rounded-2xl p-6">
                 <div class="flex justify-between items-center mb-6">
-                    <h3 class="text-lg font-semibold text-slate-800" id="current-category">All Components</h3>
-                    <div class="relative">
-                        <select class="appearance-none bg-slate-100 border border-slate-200 rounded-lg py-2 pl-4 pr-8 text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                            <option>Sort by: Recommended</option>
-                            <option>Price: Low to High</option>
-                            <option>Price: High to Low</option>
-                            <option>Rating</option>
-                        </select>
-                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-700">
-                            <i class="fas fa-chevron-down text-sm"></i>
-                        </div>
-                    </div>
+                    <h3 class="text-lg font-semibold text-slate-800" id="current-category" style="font-family: 'Orbitron', sans-serif; font-size: 18px;">All Components</h3>
+
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="products-grid">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2" id="products-grid">
                     @foreach($products as $product)
-                    <div class="product-card bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300"
-                         data-type="{{ $product['type'] }}"
-                         data-id="{{ $product['id'] }}">
-                        <div class="p-4">
-                            <div class="flex justify-between items-start mb-3">
-                                <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">{{ $product['type'] }}</span>
+                    <div class="product-card bg-white rounded-md border border-slate-300 overflow-hidden hover:shadow-sm transition-shadow duration-200"
+                        data-type="{{ $product['type'] }}"
+                        data-id="{{ $product['id'] }}">
+                        <div class="p-2">
+                            <div class="flex justify-between items-start mb-1">
+                                <span class="bg-gray-200 text-black text-[9px] font-semibold px-1.5 py-0.5 rounded">{{ $product['type'] }}</span>
                                 <button class="text-slate-400 hover:text-red-500 wishlist-btn" data-id="{{ $product['id'] }}">
-                                    <i class="far fa-heart"></i>
+                                    <i class="far fa-heart text-[10px]"></i>
                                 </button>
                             </div>
-                            <img src="{{ $product['image'] }}" alt="{{ $product['name'] }}" class="w-full h-40 object-contain mb-4">
-                            <h4 class="font-semibold text-slate-800 mb-1">{{ $product['name'] }}</h4>
-                            <div class="flex items-center mb-2">
-                                <div class="flex text-yellow-400 mr-2">
+                            <img src="{{ $product['image'] }}" alt="{{ $product['name'] }}" class="w-full h-20 object-contain mb-2">
+                            <h4 class="font-semibold text-slate-800 text-xs mb-0.5 truncate">{{ $product['name'] }}</h4>
+                            <div class="flex items-center mb-1">
+                                <div class="flex text-yellow-400 mr-1 text-[10px]">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star-half-alt"></i>
                                 </div>
-                                <span class="text-slate-500 text-sm">(24)</span>
+                                <span class="text-slate-500 text-[10px]">(24)</span>
                             </div>
 
                             <div class="flex justify-between items-center">
                                 <div>
-                                    <p class="text-lg font-bold text-blue-600">Rs. {{ number_format($product['dis_price']) }}</p>
+                                    <p class="text-sm font-bold text-black leading-tight">Rs. {{ number_format($product['dis_price']) }}</p>
                                     @if($product['dis_price'] != $product['ret_price'])
-                                    <p class="text-sm text-slate-400 line-through">Rs. {{ number_format($product['ret_price']) }}</p>
+                                    <p class="text-[10px] text-slate-400 line-through">Rs. {{ number_format($product['ret_price']) }}</p>
                                     @endif
                                 </div>
-                                <button class="add-to-build-btn bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-3 py-1 text-sm font-medium transition-colors"
+                                <button class="add-to-build-btn bg-black hover:bg-gray-100 text-white rounded px-2 py-0.5 text-[10px] font-medium transition-colors"
                                         data-id="{{ $product['id'] }}"
                                         data-type="{{ $product['type'] }}"
                                         data-name="{{ $product['name'] }}"
                                         data-price="{{ $product['dis_price'] }}"
                                         data-image="{{ $product['image'] }}">
-                                    Add to Build
+                                    Add
                                 </button>
                             </div>
                         </div>
                     </div>
                     @endforeach
                 </div>
-                
-                <div class="mt-8 flex justify-center">
-                    <button class="bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 px-4 py-2 rounded-lg font-medium">
-                        Load More Components
-                    </button>
-                </div>
+
             </div>
         </div>
         
         <!-- Build Summary Sidebar -->
         <div class="lg:col-span-4">
-                <div class="glass-effect rounded-2xl p-6 fixed top-0 right-0 h-full max-h-screen overflow-auto lg:w-2/6 w-full z-50">
-                <h3 class="text-lg font-semibold text-slate-800 mb-6">Your Build</h3>
+            <div class="glass-effect p-6 fixed top-0 right-0 h-full max-h-screen overflow-auto lg:w-2/6 w-full z-50 bg-white shadow-none">
+                <h3 class="text-lg font-semibold text-slate-800 mb-6" style="font-family: 'Orbitron', sans-serif; font-size: 18px;">Your Build</h3>
                 
-                <div class="space-y-4 max-h-96 overflow-y-auto custom-scrollbar" id="build-components">
+                <div class="space-y-3 max-h-96 overflow-y-auto custom-scrollbar" id="build-components">
                     <!-- Essential Components -->
-                    <div class="component-item p-4 bg-slate-50 rounded-xl border-2 border-dashed border-slate-300" data-type="PROCESSOR">
+                    <div class="component-item p-3 bg-slate-50 rounded-xl border-2 border-dashed border-slate-300" data-type="PROCESSOR">
                         <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="component-icon">
-                                    <i class="fas fa-microchip text-slate-400"></i>
+                            <div class="flex items-center space-x-2">
+                                <div class="component-icon w-5 h-5">
+                                    <i class="fas fa-microchip text-slate-400 text-sm"></i>
                                 </div>
                                 <div>
-                                    <p class="font-medium text-slate-600">Processor</p>
-                                    <p class="text-sm text-slate-400">Not selected</p>
+                                    <p class="font-medium text-slate-600 text-sm">Processor</p>
+                                    <p class="text-xs text-slate-400">Not selected</p>
                                 </div>
                             </div>
-                            <button class="text-blue-500 text-sm font-medium hover:text-blue-600 select-component" data-type="PROCESSOR">Select</button>
+                            <button class="text-black text-xs font-medium hover:text-blue-600 select-component" data-type="PROCESSOR">Select</button>
                         </div>
                     </div>
                     
-                    <div class="component-item p-4 bg-slate-50 rounded-xl border-2 border-dashed border-slate-300" data-type="MOTHERBOARD">
+                    <div class="component-item p-3 bg-slate-50 rounded-xl border-2 border-dashed border-slate-300" data-type="MOTHERBOARD">
                         <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="component-icon">
-                                    <i class="fas fa-memory text-slate-400"></i>
+                            <div class="flex items-center space-x-2">
+                                <div class="component-icon w-5 h-5">
+                                    <i class="fas fa-memory text-slate-400 text-sm"></i>
                                 </div>
                                 <div>
-                                    <p class="font-medium text-slate-600">Motherboard</p>
-                                    <p class="text-sm text-slate-400">Not selected</p>
+                                    <p class="font-medium text-slate-600 text-sm">Motherboard</p>
+                                    <p class="text-xs text-slate-400">Not selected</p>
                                 </div>
                             </div>
-                            <button class="text-blue-500 text-sm font-medium hover:text-blue-600 select-component" data-type="MOTHERBOARD">Select</button>
+                            <button class="text-black text-xs font-medium hover:text-blue-600 select-component" data-type="MOTHERBOARD">Select</button>
                         </div>
                     </div>
                     
-                    <div class="component-item p-4 bg-slate-50 rounded-xl border-2 border-dashed border-slate-300" data-type="RAM">
+                    <div class="component-item p-3 bg-slate-50 rounded-xl border-2 border-dashed border-slate-300" data-type="RAM">
                         <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="component-icon">
-                                    <i class="fas fa-memory text-slate-400"></i>
+                            <div class="flex items-center space-x-2">
+                                <div class="component-icon w-5 h-5">
+                                    <i class="fas fa-memory text-slate-400 text-sm"></i>
                                 </div>
                                 <div>
-                                    <p class="font-medium text-slate-600">Memory (RAM)</p>
-                                    <p class="text-sm text-slate-400">Not selected</p>
+                                    <p class="font-medium text-slate-600 text-sm">Memory (RAM)</p>
+                                    <p class="text-xs text-slate-400">Not selected</p>
                                 </div>
                             </div>
-                            <button class="text-blue-500 text-sm font-medium hover:text-blue-600 select-component" data-type="RAM">Select</button>
+                            <button class="text-black text-xs font-medium hover:text-blue-600 select-component" data-type="RAM">Select</button>
                         </div>
                     </div>
                     
-                    <div class="component-item p-4 bg-slate-50 rounded-xl border-2 border-dashed border-slate-300" data-type="GRAPHIC CARDS">
+                    <div class="component-item p-3 bg-slate-50 rounded-xl border-2 border-dashed border-slate-300" data-type="GRAPHIC CARDS">
                         <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="component-icon">
-                                    <i class="fas fa-tv text-slate-400"></i>
+                            <div class="flex items-center space-x-2">
+                                <div class="component-icon w-5 h-5">
+                                    <i class="fas fa-tv text-slate-400 text-sm"></i>
                                 </div>
                                 <div>
-                                    <p class="font-medium text-slate-600">Graphics Card</p>
-                                    <p class="text-sm text-slate-400">Not selected</p>
+                                    <p class="font-medium text-slate-600 text-sm">Graphics Card</p>
+                                    <p class="text-xs text-slate-400">Not selected</p>
                                 </div>
                             </div>
-                            <button class="text-blue-500 text-sm font-medium hover:text-blue-600 select-component" data-type="GRAPHIC CARDS">Select</button>
+                            <button class="text-black text-xs font-medium hover:text-blue-600 select-component" data-type="GRAPHIC CARDS">Select</button>
                         </div>
                     </div>
                     
-                    <div class="component-item p-4 bg-slate-50 rounded-xl border-2 border-dashed border-slate-300" data-type="STORAGE & NAS">
+                    <div class="component-item p-3 bg-slate-50 rounded-xl border-2 border-dashed border-slate-300" data-type="STORAGE & NAS">
                         <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="component-icon">
-                                    <i class="fas fa-hdd text-slate-400"></i>
+                            <div class="flex items-center space-x-2">
+                                <div class="component-icon w-5 h-5">
+                                    <i class="fas fa-hdd text-slate-400 text-sm"></i>
                                 </div>
                                 <div>
-                                    <p class="font-medium text-slate-600">STORAGE & NAS</p>
-                                    <p class="text-sm text-slate-400">Not selected</p>
+                                    <p class="font-medium text-slate-600 text-sm">STORAGE & NAS</p>
+                                    <p class="text-xs text-slate-400">Not selected</p>
                                 </div>
                             </div>
-                            <button class="text-blue-500 text-sm font-medium hover:text-blue-600 select-component" data-type="STORAGE & NAS">Select</button>
+                            <button class="text-black text-xs font-medium hover:text-blue-600 select-component" data-type="STORAGE & NAS">Select</button>
                         </div>
                     </div>
                     
-                    <div class="component-item p-4 bg-slate-50 rounded-xl border-2 border-dashed border-slate-300" data-type="POWER SUPPLY">
+                    <div class="component-item p-3 bg-slate-50 rounded-xl border-2 border-dashed border-slate-300" data-type="POWER SUPPLY">
                         <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="component-icon">
-                                    <i class="fas fa-plug text-slate-400"></i>
+                            <div class="flex items-center space-x-2">
+                                <div class="component-icon w-5 h-5">
+                                    <i class="fas fa-plug text-slate-400 text-sm"></i>
                                 </div>
                                 <div>
-                                    <p class="font-medium text-slate-600">Power Supply</p>
-                                    <p class="text-sm text-slate-400">Not selected</p>
+                                    <p class="font-medium text-slate-600 text-sm">Power Supply</p>
+                                    <p class="text-xs text-slate-400">Not selected</p>
                                 </div>
                             </div>
-                            <button class="text-blue-500 text-sm font-medium hover:text-blue-600 select-component" data-type="POWER SUPPLY">Select</button>
+                            <button class="text-black text-xs font-medium hover:text-blue-600 select-component" data-type="POWER SUPPLY">Select</button>
                         </div>
                     </div>
                     
-                    <div class="component-item p-4 bg-slate-50 rounded-xl border-2 border-dashed border-slate-300" data-type="CASINGS">
+                    <div class="component-item p-3 bg-slate-50 rounded-xl border-2 border-dashed border-slate-300" data-type="CASINGS">
                         <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="component-icon">
-                                    <i class="fas fa-cube text-slate-400"></i>
+                            <div class="flex items-center space-x-2">
+                                <div class="component-icon w-5 h-5">
+                                    <i class="fas fa-cube text-slate-400 text-sm"></i>
                                 </div>
                                 <div>
-                                    <p class="font-medium text-slate-600">PC Case</p>
-                                    <p class="text-sm text-slate-400">Not selected</p>
+                                    <p class="font-medium text-slate-600 text-sm">PC Case</p>
+                                    <p class="text-xs text-slate-400">Not selected</p>
                                 </div>
                             </div>
-                            <button class="text-blue-500 text-sm font-medium hover:text-blue-600 select-component" data-type="CASINGS">Select</button>
+                            <button class="text-black text-xs font-medium hover:text-blue-600 select-component" data-type="CASINGS">Select</button>
                         </div>
                     </div>
                     
                     <!-- Optional Components -->
-                    <div class="component-item p-4 bg-slate-50 rounded-xl border-2 border-dashed border-slate-300" data-type="COOLING & LIGHTING">
+                    <div class="component-item p-3 bg-slate-50 rounded-xl border-2 border-dashed border-slate-300" data-type="COOLING & LIGHTING">
                         <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="component-icon">
-                                    <i class="fas fa-fan text-slate-400"></i>
+                            <div class="flex items-center space-x-2">
+                                <div class="component-icon w-5 h-5">
+                                    <i class="fas fa-fan text-slate-400 text-sm"></i>
                                 </div>
                                 <div>
-                                    <p class="font-medium text-slate-600">COOLING & LIGHTING</p>
-                                    <p class="text-sm text-slate-400">Optional</p>
+                                    <p class="font-medium text-slate-600 text-sm">COOLING & LIGHTING</p>
+                                    <p class="text-xs text-slate-400">Optional</p>
                                 </div>
                             </div>
-                            <button class="text-blue-500 text-sm font-medium hover:text-blue-600 select-component" data-type="COOLING & LIGHTING">Select</button>
+                            <button class="text-black text-xs font-medium hover:text-blue-600 select-component" data-type="COOLING & LIGHTING">Select</button>
                         </div>
                     </div>
                     
-                    <div class="component-item p-4 bg-slate-50 rounded-xl border-2 border-dashed border-slate-300" data-type="MONITORS & ACCESSORIES">
+                    <div class="component-item p-3 bg-slate-50 rounded-xl border-2 border-dashed border-slate-300" data-type="MONITORS & ACCESSORIES">
                         <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="component-icon">
-                                    <i class="fas fa-desktop text-slate-400"></i>
+                            <div class="flex items-center space-x-2">
+                                <div class="component-icon w-5 h-5">
+                                    <i class="fas fa-desktop text-slate-400 text-sm"></i>
                                 </div>
                                 <div>
-                                    <p class="font-medium text-slate-600">MONITORS & ACCESSORIES</p>
-                                    <p class="text-sm text-slate-400">Optional</p>
+                                    <p class="font-medium text-slate-600 text-sm">MONITORS & ACCESSORIES</p>
+                                    <p class="text-xs text-slate-400">Optional</p>
                                 </div>
                             </div>
-                            <button class="text-blue-500 text-sm font-medium hover:text-blue-600 select-component" data-type="MONITORS & ACCESSORIES">Select</button>
+                            <button class="text-black text-xs font-medium hover:text-blue-600 select-component" data-type="MONITORS & ACCESSORIES">Select</button>
                         </div>
                     </div>
                 </div>
+
                 
-                <div class="mt-6 pt-6 border-t border-slate-200">
-                    <div class="flex justify-between mb-4">
-                        <span class="text-slate-600">Subtotal</span>
-                        <span class="font-medium" id="build-subtotal">Rs. 0</span>
+                <div class="mt-4 pt-4 border-t border-slate-200">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-slate-600 text-sm">Subtotal</span>
+                        <span class="font-medium text-sm" id="build-subtotal">Rs. 0</span>
                     </div>
-                    <div class="flex justify-between mb-4">
-                        <span class="text-slate-600">Estimated Shipping</span>
-                        <span class="font-medium">Rs. 500</span>
+                    <div class="flex justify-between mb-2">
+                        <span class="text-slate-600 text-sm">Estimated Shipping</span>
+                        <span class="font-medium text-sm">Rs. 500</span>
                     </div>
-                    <div class="flex justify-between text-lg font-semibold text-slate-800 mb-6">
+                    <div class="flex justify-between text-base font-semibold text-slate-800 mb-4">
                         <span>Total</span>
                         <span id="build-total">Rs. 500</span>
                     </div>
                     
-                    <button class="w-full py-3 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium mb-3" id="add-to-cart-btn">
+                    <button class="w-full py-2 px-3 bg-black text-white rounded-lg hover:bg-blue-700 transition-colors font-medium mb-2 text-sm" id="add-to-cart-btn">
                         <i class="fas fa-shopping-cart mr-2"></i>
                         Add Build to Cart
                     </button>
                     
-                    <button class="w-full py-2 px-4 bg-slate-100 text-slate-600 rounded-lg hover:bg-slate-200 transition-colors font-medium" id="reset-build-btn">
+                    <button class="w-full py-1.5 px-3 bg-slate-100 text-slate-600 rounded-lg hover:bg-slate-200 transition-colors font-medium text-sm" id="reset-build-btn">
                         <i class="fas fa-refresh mr-2"></i>
                         Reset Build
                     </button>
                 </div>
+
             </div>
         </div>
     </div>
 </div>
 
+
+<div id="pcBuildSuccessModal" class="hidden fixed bottom-4 right-4 bg-white p-4 rounded-lg shadow-xl z-50 max-w-md border border-green-200">
+    <div class="flex items-center mb-3">
+        <div class="bg-green-100 p-2 rounded-full mr-3">
+            <i class="fas fa-check-circle text-green-500 text-xl"></i>
+        </div>
+        <div>
+            <h3 class="font-bold text-lg">PC Build Added to Cart!</h3>
+            <p class="text-sm text-gray-600">All components were successfully added</p>
+        </div>
+    </div>
+    <div class="build-items max-h-60 overflow-y-auto pr-2"></div>
+    <div class="mt-3 pt-3 border-t">
+        <a href="/cart" class="text-black hover:text-gray-400 font-medium text-sm">
+            <i class="fas fa-shopping-cart mr-1"></i> View Cart
+        </a>
+    </div>
+</div>
+
+
 <script>
-    // Current build state
+// Current build state
     let currentBuild = {
         'PROCESSOR': null,
         'MOTHERBOARD': null,
@@ -465,9 +512,11 @@
         'POWER SUPPLY': null,
         'CASINGS': null,
         'COOLING & LIGHTING': null,
-        'MONITORS': null
+        'MONITORS & ACCESSORIES': null
     };
     
+    let buildArray = [];
+
     // Initialize the page
     document.addEventListener('DOMContentLoaded', function() {
         // Filter products when category is clicked
@@ -484,13 +533,13 @@
                 const productId = this.getAttribute('data-id');
                 const productType = this.getAttribute('data-type');
                 const productName = this.getAttribute('data-name');
-                const productPrice = parseFloat(this.getAttribute('data-price'));
+                const productPrice = parseFloat(this.getAttribute('data-price')); // Ensure price is a number
                 const productImage = this.getAttribute('data-image');
                 
                 addToBuild(productType, {
                     id: productId,
                     name: productName,
-                    price: productPrice,
+                    dis_price: productPrice, // Store as number
                     image: productImage
                 });
             });
@@ -532,106 +581,117 @@
     }
     
     // Add a product to the build
-    let buildArray = [];
+    function addToBuild(type, product) {
+        // Validate product object
+        if (!product || !product.dis_price || !product.name || !product.id || !product.image) {
+            console.error('Invalid product object:', product);
+            alert('Error: Invalid product data. Please try again.');
+            return;
+        }
 
-function addToBuild(type, product) {
-    // Validate product object
-    if (!product || !product.price || !product.name || !product.id || !product.image) {
-        console.error('Invalid product object:', product);
-        alert('Error: Invalid product data. Please try again.');
-        return;
-    }
-
-    // Update current build state
-    currentBuild[type] = product;
-    
-    // Add to build array
-    const buildItem = {
-        id: product.id,
-        name: product.name,
-        price: product.price, // Use product.price consistently
-        image: product.image,
-        type: type
-    };
-    
-    // Update or add to buildArray
-    const existingIndex = buildArray.findIndex(item => item.type === type);
-    if (existingIndex !== -1) {
-        buildArray[existingIndex] = buildItem;
-    } else {
-        buildArray.push(buildItem);
-    }
-    
-    // Find or create the component item in the sidebar
-    let componentItem = document.querySelector(`.component-item[data-type="${type}"]`);
-    
-    if (!componentItem) {
-        // Create new component item if it doesn't exist (for optional components)
-        componentItem = document.createElement('div');
-        componentItem.className = 'component-item p-4 bg-blue-50 rounded-xl border border-solid border-blue-200';
-        componentItem.setAttribute('data-type', type);
-        document.getElementById('build-components').appendChild(componentItem);
-    }
-    
-    componentItem.innerHTML = `
-        <div class="flex items-start justify-between">
-            <div class="flex items-start space-x-3">
-                <img src="${product.image}" alt="${product.name}" class="w-12 h-12 object-contain rounded-lg">
+        // Update current build state
+        currentBuild[type] = product;
+        
+        // Add to build array
+        const buildItem = {
+            id: product.id,
+            name: product.name,
+            price: product.dis_price, // Store as number for calculations
+            image: product.image,
+            type: type
+        };
+        
+        // Update or add to buildArray
+        const existingIndex = buildArray.findIndex(item => item.type === type);
+        if (existingIndex !== -1) {
+            buildArray[existingIndex] = buildItem;
+        } else {
+            buildArray.push(buildItem);
+        }
+        
+        // Find or create the component item in the sidebar
+        let componentItem = document.querySelector(`.component-item[data-type="${type}"]`);
+        
+        if (!componentItem) {
+            // Create new component item if it doesn't exist (for optional components)
+            componentItem = document.createElement('div');
+            componentItem.className = 'component-item p-2 rounded-xl border border-solid';
+            componentItem.setAttribute('data-type', type);
+            document.getElementById('build-components').appendChild(componentItem);
+        }
+        
+        componentItem.innerHTML = `
+            <div class="flex items-start justify-between p-1">
+            <div class="flex items-start space-x-2">
+                <img src="${product.image}" alt="${product.name}" class="w-8 h-8 object-contain rounded-md">
                 <div>
-                    <p class="font-medium text-slate-600">${type}</p>
-                    <p class="text-sm text-slate-800">${product.name}</p>
-                    <p class="text-sm font-semibold text-blue-600 mt-1">Rs. ${product.price.toLocaleString()}</p>
+                <p class="font-medium text-slate-600 text-xs">${type}</p>
+                <p class="text-xs text-slate-800">${product.name}</p>
+                <p class="text-xs font-semibold text-black mt-0.5">Rs. ${product.dis_price.toLocaleString()}</p>
                 </div>
             </div>
-            <button class="text-red-500 hover:text-red-700 remove-component" data-type="${type}">
+            <button class="text-black hover:text-red-700 text-sm remove-component" data-type="${type}">
                 <i class="fas fa-times"></i>
             </button>
-        </div>
-    `;
-    
-    // Add event listener to remove button
-    componentItem.querySelector('.remove-component').addEventListener('click', function() {
-        removeFromBuild(type);
-    });
-    
-    // Update the build summary
-    updateBuildSummary();
-    updateProgressBar();
-    
-    // Change border color to indicate selected
-    componentItem.classList.remove('border-dashed', 'border-slate-300');
-    componentItem.classList.add('border-solid', 'border-blue-200', 'bg-blue-50');
-}
+            </div>
+
+        `;
+        
+        // Add event listener to remove button
+        componentItem.querySelector('.remove-component').addEventListener('click', function() {
+            removeFromBuild(type);
+        });
+        
+        // Update the build summary
+        updateBuildSummary();
+        updateProgressBar();
+        
+        // Change border color to indicate selected
+        componentItem.classList.remove('border-dashed', 'border-slate-300');
+        componentItem.classList.add('border-solid', 'border-gray-400', 'bg-gray-100');
+
+    }
     
     // Remove a product from the build
     function removeFromBuild(type) {
         // Update current build state
         currentBuild[type] = null;
         
+        // Remove from buildArray
+        buildArray = buildArray.filter(item => item.type !== type);
+        
         // Update the UI for this component
         const componentItem = document.querySelector(`.component-item[data-type="${type}"]`);
         
         // For optional components that might not have a default state, just remove them
-        if (!['PROCESSOR', 'MOTHERBOARD', 'RAM', 'GRAPHIC CARDS', 'STORAGE & NAS', 'POWER SUPPLY', 'CASINGS', 'COOLING & LIGHTING','MONITORS & ACCESSORIES'].includes(type)) {
+        if (!['PROCESSOR', 'MOTHERBOARD', 'RAM', 'GRAPHIC CARDS', 'STORAGE & NAS', 'POWER SUPPLY', 'CASINGS', 'COOLING & LIGHTING', 'MONITORS & ACCESSORIES'].includes(type)) {
             componentItem.remove();
             updateBuildSummary();
+            updateProgressBar();
             return;
         }
         
         // For essential components, reset to default state
         componentItem.innerHTML = `
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <div class="component-icon">
-                        <i class="${getIconForType(type)} text-slate-400"></i>
-                    </div>
-                    <div>
-                        <p class="font-medium text-slate-600">${getDisplayName(type)}</p>
-                        <p class="text-sm text-slate-400">${['FANS', 'MONITORS'].includes(type) ? 'Optional' : 'Not selected'}</p>
-                    </div>
+            <div class="flex items-center justify-between text-xs">
+            <div class="flex items-center space-x-1.5">
+                <div class="component-icon">
+                <i class="${getIconForType(type)} text-slate-400" style="font-size: 14px;"></i>
                 </div>
-                <button class="text-blue-500 text-sm font-medium hover:text-blue-600 select-component" data-type="${type}">Select</button>
+                <div>
+                <p class="font-medium text-slate-600 leading-tight">${getDisplayName(type)}</p>
+                <p class="text-[11px] text-slate-400 leading-tight">${['COOLING & LIGHTING', 'MONITORS & ACCESSORIES'].includes(type) ? 'Optional' : 'Not selected'}</p>
+                </div>
             </div>
+            <button 
+                class="text-black font-medium hover:text-blue-600 select-component"
+                data-type="${type}"
+                style="padding: 0.15rem 0.5rem; font-size: 12px; line-height: 1.2;"
+            >
+                Select
+            </button>
+            </div>
+
         `;
         
         // Add event listener to select button
@@ -642,62 +702,60 @@ function addToBuild(type, product) {
         
         // Update the build summary
         updateBuildSummary();
-            updateProgressBar();
-
+        updateProgressBar();
         
         // Reset border style
         componentItem.classList.add('border-dashed', 'border-slate-300');
         componentItem.classList.remove('border-solid', 'border-blue-200', 'bg-blue-50');
     }
 
-
     // Update the progress bar based on selected components
-function updateProgressBar() {
-    const progressBar = document.querySelector('.progress-bar-fill');
-    const progressText = document.querySelector('.progress-text');
-    
-    // Define essential and optional components
-    const essentialComponents = ['PROCESSOR', 'MOTHERBOARD', 'RAM', 'GRAPHIC CARDS', 'STORAGE & NAS', 'POWER SUPPLY', 'CASINGS'];
-    const optionalComponents = ['COOLING & LIGHTING', 'MONITORS'];
-    
-    // Count selected components
-    const selectedEssential = essentialComponents.filter(type => currentBuild[type]).length;
-    const selectedOptional = optionalComponents.filter(type => currentBuild[type]).length;
-    
-    // Calculate progress (80% for essential, 20% for optional)
-    const essentialProgress = (selectedEssential / essentialComponents.length) * 80;
-    const optionalProgress = (selectedOptional / optionalComponents.length) * 20;
-    const totalProgress = essentialProgress + optionalProgress;
-    
-    // Update progress bar width
-    progressBar.style.width = `${totalProgress}%`;
-    
-    // Update progress text based on completion level
-    let progressMessage = "Select components to begin";
-    
-    if (totalProgress >= 90) {
-        progressMessage = "Build complete! Ready to order";
-        progressBar.classList.remove('bg-blue-600');
-        progressBar.classList.add('bg-green-500');
-    } else if (totalProgress >= 70) {
-        progressMessage = "Almost there! Just a few more components";
-        progressBar.classList.remove('bg-green-500');
-        progressBar.classList.add('bg-blue-600');
-    } else if (totalProgress >= 40) {
-        progressMessage = "Good progress! Keep going";
-        progressBar.classList.remove('bg-green-500');
-        progressBar.classList.add('bg-blue-600');
-    } else if (totalProgress > 0) {
-        progressMessage = "Getting started - select more components";
-        progressBar.classList.remove('bg-green-500');
-        progressBar.classList.add('bg-blue-600');
-    } else {
-        progressBar.classList.remove('bg-green-500');
-        progressBar.classList.add('bg-blue-600');
+    function updateProgressBar() {
+        const progressBar = document.querySelector('.progress-bar-fill');
+        const progressText = document.querySelector('.progress-text');
+        
+        // Define essential and optional components
+        const essentialComponents = ['PROCESSOR', 'MOTHERBOARD', 'RAM', 'GRAPHIC CARDS', 'STORAGE & NAS', 'POWER SUPPLY', 'CASINGS'];
+        const optionalComponents = ['COOLING & LIGHTING', 'MONITORS & ACCESSORIES'];
+        
+        // Count selected components
+        const selectedEssential = essentialComponents.filter(type => currentBuild[type]).length;
+        const selectedOptional = optionalComponents.filter(type => currentBuild[type]).length;
+        
+        // Calculate progress (80% for essential, 20% for optional)
+        const essentialProgress = (selectedEssential / essentialComponents.length) * 80;
+        const optionalProgress = (selectedOptional / optionalComponents.length) * 20;
+        const totalProgress = essentialProgress + optionalProgress;
+        
+        // Update progress bar width
+        progressBar.style.width = `${totalProgress}%`;
+        
+        // Update progress text based on completion level
+        let progressMessage = "Select components to begin";
+        
+        if (totalProgress == 100) {
+            progressMessage = "Build complete! Ready to order";
+            progressBar.classList.remove('bg-black');
+            progressBar.classList.add('bg-green-500');
+        } else if (totalProgress >= 70) {
+            progressMessage = "Almost there! Just a few more components";
+            progressBar.classList.remove('bg-black');
+            progressBar.classList.add('bg-black');
+        } else if (totalProgress >= 40) {
+            progressMessage = "Good progress! Keep going";
+            progressBar.classList.remove('bg-black');
+            progressBar.classList.add('bg-black');
+        } else if (totalProgress > 0) {
+            progressMessage = "Getting started - select more components";
+            progressBar.classList.remove('bg-black');
+            progressBar.classList.add('bg-black');
+        } else {
+            progressBar.classList.remove('bg-green-500');
+            progressBar.classList.add('bg-black');
+        }
+        
+        progressText.textContent = progressMessage;
     }
-    
-    progressText.textContent = progressMessage;
-}
     
     // Helper function to get icon for component type
     function getIconForType(type) {
@@ -738,7 +796,7 @@ function updateProgressBar() {
         // Calculate subtotal
         for (const [type, product] of Object.entries(currentBuild)) {
             if (product) {
-                subtotal += product.price;
+                subtotal += product.dis_price; // Use dis_price (number)
             }
         }
         
@@ -755,13 +813,14 @@ function updateProgressBar() {
                     removeFromBuild(type);
                 }
             }
+            buildArray = []; // Clear buildArray as well
         }
     }
     
     // Add the complete build to cart
     function addBuildToCart() {
         // Check if essential components are selected
-        const essentialComponents = ['PROCESSOR', 'MOTHERBOARD', 'RAM', 'STORAGE & NAS', 'POWER SUPPLY', 'CASINGS','MONITORS & ACCESSORIES','COOLING & LIGHTING'];
+        const essentialComponents = ['PROCESSOR', 'MOTHERBOARD', 'RAM', 'STORAGE & NAS', 'POWER SUPPLY', 'CASINGS'];
         const missingComponents = essentialComponents.filter(type => !currentBuild[type]);
         
         if (missingComponents.length > 0) {
@@ -769,14 +828,66 @@ function updateProgressBar() {
             return;
         }
         
-        // Here you would typically make an AJAX call to your server
-        // to add all the components to the cart as a bundle
+        // Get existing cart or initialize new one
+        let cart = JSON.parse(localStorage.getItem('shopping-cart') || '[]');
         
-        // For demonstration, we'll just show an alert
-        alert('Your custom PC build has been added to your cart!');
+        // Add each item from buildArray to cart
+        buildArray.forEach(item => {
+            const existingCartItem = cart.find(cartItem => cartItem.id === item.id);
+            if (existingCartItem) {
+                existingCartItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: item.id,
+                    name: item.name,
+                    price: item.price.toString(), // Convert to string for /cart page compatibility
+                    image: item.image,
+                    quantity: 1
+                });
+            }
+        });
         
-        // You might want to redirect to the cart page
-        // window.location.href = '/cart';
+        // Save cart to localStorage
+        localStorage.setItem('shopping-cart', JSON.stringify(cart));
+        
+        // Show success modal
+        showSuccessModal();
+    }
+
+    // Show success modal
+    function showSuccessModal() {
+        const modal = document.getElementById('pcBuildSuccessModal');
+        if (!modal) {
+            console.error('Success modal not found in DOM. Ensure <div id="pcBuildSuccessModal"> is present in the HTML.');
+            alert('Your custom PC build has been added to your cart, but the success modal could not be displayed.');
+            return;
+        }
+        
+        const buildItemsContainer = modal.querySelector('.build-items');
+        if (!buildItemsContainer) {
+            console.error('Build items container (.build-items) not found in modal.');
+            alert('Your custom PC build has been added to your cart, but the success modal could not be displayed correctly.');
+            return;
+        }
+        
+        // Populate build items in modal
+        buildItemsContainer.innerHTML = buildArray.map(item => `
+            <div class="flex items-center py-2 border-b last:border-b-0">
+                <img src="${item.image}" alt="${item.name}" class="w-8 h-8 object-contain rounded mr-3">
+                <div>
+                    <p class="text-sm font-medium">${item.name}</p>
+                    <p class="text-xs text-gray-600">Rs. ${item.price.toLocaleString()}</p>
+                </div>
+            </div>
+        `).join('');
+        
+        // Show modal
+        modal.classList.remove('hidden');
+        
+        // Auto-hide after 5 seconds
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 5000);
     }
 </script>
 
@@ -808,3 +919,5 @@ function updateProgressBar() {
 </style>
 </body>
 </html>
+
+
