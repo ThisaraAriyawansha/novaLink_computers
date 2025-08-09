@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NovaLink Computers | Login</title>
     <meta name="description" content="NovaLink Computers offer the best computers available at the market">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/N_back.jpg" />
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/n_logo_remove_new.png" />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
@@ -118,19 +118,20 @@
         .logo {
             width: 120px;
             height: 120px;
-            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
             border-radius: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            font-weight: bold;
-            color: #000000;
-            margin-bottom: 2rem;
-            box-shadow: 
-                0 20px 40px rgba(255, 255, 255, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            margin: 0 auto 2rem; /* This centers the logo horizontally */
+
             transition: transform 0.3s ease;
+            overflow: hidden;
+            display: flex; /* Add this */
+            justify-content: center; /* Add this */
+            align-items: center; /* Add this */
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .logo:hover {
@@ -414,6 +415,9 @@
         <!-- Left Side - Logo Section -->
         <div class="logo-section">
             <div class="logo-content">
+                <div class="logo">
+                    <img src="assets/images/N_white.png" alt="NovaLink Logo">
+                </div>
                 <div class="company-name" style="font-family: 'Orbitron', sans-serif; ">NovaLink</div>
                 <div class="decorative-line"></div>
                 <div class="tagline">Premium Computing Solutions for Modern Businesses</div>
