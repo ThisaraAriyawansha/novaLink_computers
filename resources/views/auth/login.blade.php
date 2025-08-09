@@ -6,6 +6,8 @@
     <title>NovaLink Computers | Login</title>
     <meta name="description" content="NovaLink Computers offer the best computers available at the market">
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/N_back.jpg" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         * {
             margin: 0;
@@ -412,7 +414,7 @@
         <!-- Left Side - Logo Section -->
         <div class="logo-section">
             <div class="logo-content">
-                <div class="company-name">NovaLink</div>
+                <div class="company-name" style="font-family: 'Orbitron', sans-serif; ">NovaLink</div>
                 <div class="decorative-line"></div>
                 <div class="tagline">Premium Computing Solutions for Modern Businesses</div>
             </div>
@@ -421,7 +423,7 @@
         <!-- Right Side - Form Section -->
         <div class="form-section">
             <div class="login-header">
-                <h1 class="login-title">Welcome Back</h1>
+                <h1 class="login-title" style="font-family: 'Orbitron', sans-serif; font-size: 18px;">Welcome Back</h1>
                 <p class="login-subtitle">Sign in to access your account</p>
             </div>
 
@@ -464,12 +466,6 @@
                     </div>
                 </div>
 
-                <div class="form-options">
-                    <div class="checkbox-wrapper">
-                        <input type="checkbox" id="signed" name="signed" class="checkbox">
-                        <label for="signed" class="checkbox-label">Keep me signed in</label>
-                    </div>
-                </div>
 
                 <button type="submit" class="login-button" id="submitBtn">
                     Sign In
