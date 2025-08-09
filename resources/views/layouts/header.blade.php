@@ -458,14 +458,14 @@
 
             <nav class="nav-menu">
                 <div class="nav-item">
-                    <a href="#" class="nav-link active">
+                    <a href="{{ route('dashboard') }}" class="nav-link active">
                         <i class="fas fa-grid-2 nav-icon"></i>
                         <span class="nav-text">Dashboard</span>
                     </a>
                 </div>
                 
                 <div class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('addProduct') }}" class="nav-link">
                         <i class="fas fa-plus nav-icon"></i>
                         <span class="nav-text">Add New Product</span>
                     </a>
