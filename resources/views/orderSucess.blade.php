@@ -5,12 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Udarata Computers | Best Computers for you</title>
     <meta name="robots" content="index, follow" />
-    <meta name="description" content="Udarata Computers - Best Computers for you">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico" />
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" />
+    <title>NovaLink Computers | Your Wishlist</title>
+    <meta name="description" content="NovaLink Computers offer the best computers available at the market">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/n_logo_remove_new.png" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- CSS
     ============================================ -->

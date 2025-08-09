@@ -1,689 +1,273 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if IE 8 ]><html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+
+<!-- Mirrored from themesflat.co/html/remos/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 23 Dec 2024 18:12:21 GMT -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Basic Page Needs -->
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
     <title>NovaLink Computers | Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <meta name="description" content="NovaLink Computers offer the best computers available at the market">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/N_back.jpg" />
 
-        :root {
-            --primary-black: #000000;
-            --primary-white: #ffffff;
-            --light-gray: #f8f9fa;
-            --medium-gray: #e9ecef;
-            --dark-gray: #6c757d;
-            --border-color: #dee2e6;
-            --hover-gray: #f5f5f5;
-            --shadow: 0 2px 4px rgba(0,0,0,0.1);
-            --sidebar-width: 280px;
-            --sidebar-collapsed-width: 70px;
-            --header-height: 70px;
-            --transition: all 0.3s ease;
-        }
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: var(--light-gray);
-            color: var(--primary-black);
-            line-height: 1.6;
-        }
+    <meta name="author" content="themesflat.com">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-        .dashboard-container {
-            display: flex;
-            min-height: 100vh;
-        }
+    <!-- Theme Style -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/animate.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/animation.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstraps.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-select.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 
-        /* Sidebar Styles */
-        .sidebar {
-            width: var(--sidebar-width);
-            background-color: var(--primary-white);
-            border-right: 1px solid var(--border-color);
-            transition: var(--transition);
-            position: fixed;
-            height: 100vh;
-            z-index: 1000;
-            overflow-y: auto;
-        }
 
-        .sidebar.collapsed {
-            width: var(--sidebar-collapsed-width);
-        }
 
-        .sidebar::-webkit-scrollbar {
-            width: 4px;
-        }
+    <!-- Font -->
+    <link rel="stylesheet" href="{{ asset('fonts/fonts.css')}}">
 
-        .sidebar::-webkit-scrollbar-track {
-            background: var(--light-gray);
-        }
+    <!-- Icon -->
+    <link rel="stylesheet" href="{{ asset('icon/style.css')}}">
 
-        .sidebar::-webkit-scrollbar-thumb {
-            background: var(--medium-gray);
-            border-radius: 2px;
-        }
+    <!-- Favicon and Touch Icons  -->
 
-        .logo-section {
-            padding: 20px;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--primary-black);
-        }
-
-        .logo img {
-            width: 32px;
-            height: 32px;
-            border-radius: 4px;
-        }
-
-        .logo-text {
-            font-size: 18px;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .sidebar.collapsed .logo-text {
-            opacity: 0;
-            width: 0;
-            overflow: hidden;
-        }
-
-        .sidebar-toggle {
-            background: none;
-            border: none;
-            font-size: 18px;
-            cursor: pointer;
-            color: var(--dark-gray);
-            padding: 8px;
-            border-radius: 4px;
-            transition: var(--transition);
-        }
-
-        .sidebar-toggle:hover {
-            background-color: var(--hover-gray);
-            color: var(--primary-black);
-        }
-
-        /* Navigation Styles */
-        .nav-menu {
-            padding: 20px 0;
-        }
-
-        .nav-item {
-            margin: 4px 16px;
-        }
-
-        .nav-link {
-            display: flex;
-            align-items: center;
-            padding: 12px 16px;
-            color: var(--dark-gray);
-            text-decoration: none;
-            border-radius: 8px;
-            transition: var(--transition);
-            gap: 12px;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .nav-link:hover {
-            background-color: var(--hover-gray);
-            color: var(--primary-black);
-        }
-
-        .nav-link.active {
-            background-color: var(--primary-black);
-            color: var(--primary-white);
-        }
-
-        .nav-icon {
-            font-size: 18px;
-            min-width: 18px;
-            text-align: center;
-        }
-
-        .nav-text {
-            transition: var(--transition);
-        }
-
-        .sidebar.collapsed .nav-text {
-            opacity: 0;
-            width: 0;
-            overflow: hidden;
-        }
-
-        .sidebar.collapsed .nav-item {
-            margin: 4px 8px;
-        }
-
-        .sidebar.collapsed .nav-link {
-            justify-content: center;
-            padding: 12px 8px;
-        }
-
-        /* Main Content Styles */
-        .main-content {
-            flex: 1;
-            margin-left: var(--sidebar-width);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .main-content.expanded {
-            margin-left: var(--sidebar-collapsed-width);
-        }
-
-        /* Header Styles */
-        .header {
-            background-color: var(--primary-white);
-            border-bottom: 1px solid var(--border-color);
-            height: var(--header-height);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 24px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .mobile-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 20px;
-            cursor: pointer;
-            color: var(--dark-gray);
-            padding: 8px;
-        }
-
-        .header-title {
-            font-size: 24px;
-            font-weight: 600;
-            color: var(--primary-black);
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .user-menu {
-            position: relative;
-        }
-
-        .user-button {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 8px;
-            transition: var(--transition);
-        }
-
-        .user-button:hover {
-            background-color: var(--hover-gray);
-        }
-
-        .user-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background-color: var(--medium-gray);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            color: var(--primary-black);
-        }
-
-        .user-info {
-            text-align: left;
-        }
-
-        .user-name {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--primary-black);
-        }
-
-        .user-role {
-            font-size: 12px;
-            color: var(--dark-gray);
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: var(--primary-white);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            min-width: 200px;
-            margin-top: 8px;
-            display: none;
-            z-index: 1000;
-        }
-
-        .dropdown-menu.show {
-            display: block;
-        }
-
-        .dropdown-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 16px;
-            color: var(--dark-gray);
-            text-decoration: none;
-            transition: var(--transition);
-            font-size: 14px;
-        }
-
-        .dropdown-item:hover {
-            background-color: var(--hover-gray);
-            color: var(--primary-black);
-        }
-
-        /* Content Area */
-        .content-area {
-            flex: 1;
-            padding: 24px;
-            overflow-y: auto;
-        }
-
-        .content-card {
-            background: var(--primary-white);
-            border-radius: 12px;
-            padding: 24px;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border-color);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-                z-index: 1001;
-            }
-
-            .sidebar.mobile-open {
-                transform: translateX(0);
-            }
-
-            .main-content {
-                margin-left: 0;
-            }
-
-            .mobile-toggle {
-                display: block;
-            }
-
-            .header-title {
-                font-size: 20px;
-            }
-
-            .user-name {
-                display: none;
-            }
-
-            .content-area {
-                padding: 16px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .content-area {
-                padding: 12px;
-            }
-
-            .content-card {
-                padding: 16px;
-            }
-
-            .header {
-                padding: 0 16px;
-            }
-        }
-
-        /* Overlay for mobile */
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-        }
-
-        .overlay.show {
-            display: block;
-        }
-
-        /* Welcome Section */
-        .welcome-section {
-            margin-bottom: 24px;
-        }
-
-        .welcome-title {
-            font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--primary-black);
-        }
-
-        .welcome-subtitle {
-            color: var(--dark-gray);
-            font-size: 16px;
-        }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 24px;
-        }
-
-        .stat-card {
-            background: var(--primary-white);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .stat-icon {
-            font-size: 24px;
-            color: var(--primary-black);
-            margin-bottom: 12px;
-        }
-
-        .stat-number {
-            font-size: 24px;
-            font-weight: 600;
-            color: var(--primary-black);
-            margin-bottom: 4px;
-        }
-
-        .stat-label {
-            color: var(--dark-gray);
-            font-size: 14px;
-        }
-    </style>
 </head>
-<body>
-    <div class="overlay" id="overlay"></div>
-    
-    <div class="dashboard-container">
-        <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
-            <div class="logo-section">
-                <a href="#" class="logo">
-                    <img src="https://via.placeholder.com/32x32/000000/ffffff?text=N" alt="NovaLink">
-                    <span class="logo-text">NovaLink</span>
-                </a>
-                <button class="sidebar-toggle" id="sidebarToggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
 
-            <nav class="nav-menu">
-                <div class="nav-item">
-                    <a href="{{ route('dashboard') }}" class="nav-link active">
-                        <i class="fas fa-grid-2 nav-icon"></i>
-                        <span class="nav-text">Dashboard</span>
-                    </a>
-                </div>
-                
-                <div class="nav-item">
-                    <a href="{{ route('addProduct') }}" class="nav-link">
-                        <i class="fas fa-plus nav-icon"></i>
-                        <span class="nav-text">Add New Product</span>
-                    </a>
-                </div>
-                
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-image nav-icon"></i>
-                        <span class="nav-text">Add Images</span>
-                    </a>
-                </div>
-                
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-cogs nav-icon"></i>
-                        <span class="nav-text">Add Features</span>
-                    </a>
-                </div>
-                
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-edit nav-icon"></i>
-                        <span class="nav-text">Manage Product</span>
-                    </a>
-                </div>
-                
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-users nav-icon"></i>
-                        <span class="nav-text">Manage Customer</span>
-                    </a>
-                </div>
-                
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-receipt nav-icon"></i>
-                        <span class="nav-text">View Order</span>
-                    </a>
-                </div>
-                
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-pen nav-icon"></i>
-                        <span class="nav-text">Add Blog</span>
-                    </a>
-                </div>
-                
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-star nav-icon"></i>
-                        <span class="nav-text">Manage Review</span>
-                    </a>
-                </div>
-                
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-gear nav-icon"></i>
-                        <span class="nav-text">Manage Blog</span>
-                    </a>
-                </div>
-                
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-user nav-icon"></i>
-                        <span class="nav-text">Manage Profile</span>
-                    </a>
-                </div>
-                
-                <div class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-sign-out-alt nav-icon"></i>
-                        <span class="nav-text">Log Out</span>
-                    </a>
-                </div>
-            </nav>
-        </aside>
+<body class="body">
 
-        <!-- Main Content -->
-        <main class="main-content" id="mainContent">
-            <!-- Header -->
-            <header class="header">
-                <div class="header-left">
-                    <button class="mobile-toggle" id="mobileToggle">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <h1 class="header-title">Dashboard</h1>
+    <!-- #wrapper -->
+    <div id="wrapper">
+        <!-- #page -->
+        <div id="page" class="">
+            <!-- layout-wrap -->
+           <div class="layout-wrap">
+                <!-- preload -->
+                <div id="preload" class="preload-container hidden">
+                    <div class="preloading">
+                        <span></span>
+                    </div>
                 </div>
-                
-                <div class="header-right">
-                    <div class="user-menu">
-                        <button class="user-button" id="userButton">
-                            <div class="user-avatar">
-                                <i class="fas fa-user"></i>
+                <!-- /preload -->
+                 
+                <!-- section-menu-left -->
+                <div class="section-menu-left">
+                <div class="box-logo">
+                        <a href="#" id="site-logo-inner">
+                            <img class="logo" id="logo_header" alt="" src="{{ asset('assets/images/n_logo_remove_new.png')}}" data-light="{{ asset('assets/images/n_logo_remove_new.png')}}" data-dark="{{ asset('images/n_logo_remove_new.png')}}" >
+                        </a>
+                        <div class="button-show-hide">
+                            <i class="icon-menu-left"></i>
+                        </div>
+                    </div>
+
+                    <div class="section-menu-left-wrap">
+                        <div class="center">
+                            <div class="center-item">
+                                <ul class="menu-list">
+                                    <li class="menu-item">
+                                    <a href="{{ route('dashboard') }}" class="">
+                                            <div class="icon"><i class="icon-grid"></i></div>
+                                            <div class="text">Dashboard</div>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
-                            <div class="user-info">
-                                <div class="user-name">Admin User</div>
-                                <div class="user-role">Administrator</div>
+                            
+                            <div class="center-item">
+                                <ul class="menu-list">
+                                    <li class="menu-item">
+                                        <a class="menu-item-button" href="{{ route('addProduct') }}">
+                                            <div class="icon"><i class="fa-solid fa-plus"></i></div> <!-- Plus icon -->
+                                            <div class="text">Add New Product</div>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        
-                        <div class="dropdown-menu" id="userDropdown">
 
-                            <a href="#" class="dropdown-item">
-                                <i class="fas fa-sign-out-alt"></i>
-                                Log Out
-                            </a>
+
+                            <div class="center-item">
+                                <ul class="menu-list">
+                                    <li class="menu-item">
+                                        <a class="menu-item-button" href="{{ route('addImage') }}">
+                                            <div class="icon"><i class="fa-solid fa-image"></i></div> <!-- Image icon -->
+                                            <div class="text">Add Images</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="center-item">
+                                <ul class="menu-list">
+                                    <li class="menu-item">
+                                        <a class="menu-item-button" href="{{ route('addFeature') }}">
+                                            <div class="icon"><i class="fa-solid fa-cogs"></i></div> <!-- Cogs icon -->
+                                            <div class="text">Add Features</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="center-item">
+                                <ul class="menu-list">
+                                    <li class="menu-item">
+                                        <a class="menu-item-button" href="{{ route('manageProduct') }}">
+                                            <div class="icon"><i class="fa-solid fa-edit"></i></div> <!-- Edit icon -->
+                                            <div class="text">Manage Product</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="center-item">
+                                <ul class="menu-list">
+                                    <li class="menu-item">
+                                        <a class="menu-item-button" href="{{ route('manageCustomer') }}">
+                                            <div class="icon"><i class="fa-solid fa-users"></i></div> <!-- Users icon -->
+                                            <div class="text">Manage Customer</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="center-item ">
+                                <ul class="menu-list">
+                                    <li class="menu-item">
+                                        <a class="menu-item-button" href="{{ route('viewOrder') }}">
+                                            <div class="icon"><i class="fa-solid fa-receipt"></i></div> <!-- Changed to receipt icon -->
+                                            <div class="text">View Order</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="center-item ">
+                                <ul class="menu-list">
+                                    <li class="menu-item">
+                                        <a class="menu-item-button" href="{{ route('addBlog') }}">
+                                            <div class="icon"><i class="fa-solid fa-pen"></i></div> 
+                                            <div class="text">Add Blog</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="center-item ">
+                                <ul class="menu-list">
+                                    <li class="menu-item">
+                                        <a class="menu-item-button" href="{{ route('manageReview') }}">
+                                            <div class="icon"><i class="fa-solid fa-star"></i></div> 
+                                            <div class="text">Manage Review</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+
+
+                            <div class="center-item ">
+                                <ul class="menu-list">
+                                    <li class="menu-item">
+                                        <a class="menu-item-button" href="{{ route('manageBlog') }}">
+                                            <div class="icon"><i class="fa-solid fa-gear"></i></div> 
+                                            <div class="text">Manage Blog</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+
+                            <div class="center-item">
+                                <ul class="menu-list">
+                                    <li class="menu-item">
+                                        <a class="menu-item-button" href="{{ route('manageProfile') }}">
+                                            <!-- Changed icon to user -->
+                                            <div class="icon"><i class="fa-solid fa-user"></i></div> <!-- Updated icon -->
+                                            <div class="text">Manage Profile</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+
+
+                            <div class="center-item">
+                                <ul class="menu-list">
+                                    <li class="menu-item">
+                                        <a class="menu-item-button" href="{{ route('logoutAdmin') }}">
+                                            <div class="icon"><i class="fa-solid fa-sign-out-alt"></i></div> <!-- Logout icon -->
+                                            <div class="text">Log Out</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+
+                            
+                            
                         </div>
                     </div>
                 </div>
-            </header>
+                <!-- /section-menu-left -->
+          
 
-            <!-- Content Area -->
-            <div class="content-area">
-                <div class="welcome-section">
-                    <h2 class="welcome-title">Welcome back, Admin</h2>
-                    <p class="welcome-subtitle">Here's what's happening with your store today.</p>
-                </div>
+                <!-- /section-menu-left -->
+                  <!-- section-content-right -->
+                  <div class="section-content-right">
+                    <!-- header-dashboard -->
+                    <div class="header-dashboard">
+                        <div class="wrap">
+                            <div class="header-left">
+                                
+                                <div class="button-show-hide">
+                                    <i class="icon-menu-left"></i>
+                                </div>
+                            </div>
+                            <div class="header-grid">
 
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-shopping-cart"></i>
+                                <div class="popup-wrap user type-header">
+                                    <div class="dropdown">
+                                    @if (Auth::check())
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <span class="header-user wg-user">
+                                                <span class="image">
+                                                    <img src="{{ asset('images/avatar/user-1.png')}}" alt="">
+                                                </span>
+                                                <span class="flex flex-column">
+                                                    <span class="body-title mb-2">{{ Auth::user()->name }}</span>
+                                                </span>
+                                            </span>
+                                        </button>
+                                    @else
+                                        <script>
+                                            window.location.href = "{{ route('login') }}"; // Redirect to login page
+                                        </script>
+                                    @endif
+
+                                        <ul class="dropdown-menu dropdown-menu-end has-content" aria-labelledby="dropdownMenuButton3" >
+                                            <li>
+                                            <a href="{{ route('logoutAdmin') }}" class="user-item">
+                                            <div class="icon">
+                                                        <i class="icon-log-out"></i>
+                                                    </div>
+                                                    <div class="body-title-2">Log out</div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="stat-number">247</div>
-                        <div class="stat-label">Total Orders</div>
                     </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-boxes"></i>
-                        </div>
-                        <div class="stat-number">1,283</div>
-                        <div class="stat-label">Total Products</div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="stat-number">892</div>
-                        <div class="stat-label">Total Customers</div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-dollar-sign"></i>
-                        </div>
-                        <div class="stat-number">$24,580</div>
-                        <div class="stat-label">Total Revenue</div>
-                    </div>
-                </div>
-
-                <div class="content-card" style="margin-top: 24px;">
-                    <h3 style="margin-bottom: 16px; font-size: 20px; font-weight: 600;">Recent Activity</h3>
-                    <p style="color: var(--dark-gray);">Your dashboard content will appear here. This is a clean, minimal interface designed for optimal user experience and productivity.</p>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <script>
-        // Sidebar toggle functionality
-        const sidebar = document.getElementById('sidebar');
-        const mainContent = document.getElementById('mainContent');
-        const sidebarToggle = document.getElementById('sidebarToggle');
-        const mobileToggle = document.getElementById('mobileToggle');
-        const overlay = document.getElementById('overlay');
-
-        // Desktop sidebar toggle
-        sidebarToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('collapsed');
-            mainContent.classList.toggle('expanded');
-        });
-
-        // Mobile sidebar toggle
-        mobileToggle.addEventListener('click', () => {
-            sidebar.classList.add('mobile-open');
-            overlay.classList.add('show');
-        });
-
-        // Close mobile sidebar
-        overlay.addEventListener('click', () => {
-            sidebar.classList.remove('mobile-open');
-            overlay.classList.remove('show');
-        });
-
-        // User dropdown toggle
-        const userButton = document.getElementById('userButton');
-        const userDropdown = document.getElementById('userDropdown');
-
-        userButton.addEventListener('click', (e) => {
-            e.stopPropagation();
-            userDropdown.classList.toggle('show');
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', () => {
-            userDropdown.classList.remove('show');
-        });
-
-        // Navigation link active state
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                navLinks.forEach(l => l.classList.remove('active'));
-                link.classList.add('active');
-            });
-        });
-
-        // Auto-collapse sidebar on mobile when window is resized
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768) {
-                sidebar.classList.remove('mobile-open');
-                overlay.classList.remove('show');
-            }
-        });
-    </script>
-</body>
-</html>

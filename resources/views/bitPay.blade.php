@@ -7,7 +7,7 @@
     <meta name="robots" content="index, follow" />
     <title>NovaLink Computers | Best Computers for you</title>
     <meta name="description" content="NovaLink Computers offer the best computers available at the market">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/N_back.jpg" />
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/n_logo_remove_new.png" />
     <script src="assets/js/tailwind-cdn.js"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/css/font.awesome.css" />

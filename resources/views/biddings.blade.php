@@ -10,7 +10,7 @@
     <!-- Favicon -->
     <title>NovaLink Computers | Best Computers for you</title>
     <meta name="description" content="NovaLink Computers offer the best computers available at the market">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/N_back.jpg" />    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/n_logo_remove_new.png" />    <!-- Favicon -->
 
     <!-- CSS
     ============================================ -->

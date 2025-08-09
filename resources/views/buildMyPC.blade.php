@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NovaLink Computers | Best Computers for you</title>
     <meta name="description" content="NovaLink Computers offer the best computers available at the market">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/N_back.jpg" />    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/n_logo_remove_new.png" />    
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
         <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />

@@ -9,7 +9,7 @@
     <!-- Favicon -->
     <title>NovaLink Computers | Your Cart</title>
     <meta name="description" content="NovaLink Computers offer the best computers available at the market">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/N_back.jpg" />
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/n_logo_remove_new.png" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">    <!-- CSS
     ============================================ -->
     <script src="assets/js/tailwind-cdn.js"></script>

@@ -9,7 +9,7 @@
 
     <title>NovaLink Computers | Blog</title>
     <meta name="description" content="NovaLink Computers offer the best computers available at the market">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/N_back.jpg" />
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/n_logo_remove_new.png" />
     <!-- CSS -->
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />

@@ -9,7 +9,7 @@
     <!-- Favicon -->
     <title>NovaLink Computers | CheckOut</title>
     <meta name="description" content="NovaLink Computers offer the best computers available at the market">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/N_back.jpg" />
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/n_logo_remove_new.png" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- CSS
     ============================================ -->
