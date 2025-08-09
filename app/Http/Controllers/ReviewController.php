@@ -28,7 +28,7 @@ class ReviewController extends Controller
             'email' => $request->email,
             'rating' => $request->rating,
             'message' => $request->message,
-            'status' => 1, // Set default status here
+            'status' => 2, // Set default status here
         ]);
         
         return response()->json([
