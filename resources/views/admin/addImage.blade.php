@@ -59,6 +59,27 @@
         color: var(--text-color);
     }
 
+    .wg-box {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.last-updated {
+    background: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--gray-200);
+    font-size: 1.3rem;
+    color: var(--gray-600);
+}
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
 </style>
                     <!-- main-content -->
                     <div class="main-content">
@@ -66,39 +87,45 @@
                         <div class="main-content-inner">
                             <!-- main-content-wrap -->
                             <div class="main-content-wrap">
-                                <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-                                    <h3>Add a Image</h3>
-                                </div>
+
+
                                 <!-- new-category -->
                                 <div class="wg-box">
+                                <div class="admin-header">
+                                <h3 class="text-xl font-semibold" style=" font-size: 18px; font-family: 'Orbitron', sans-serif;">Add a Image</h3>
+                                    <div class="last-updated">
+                                        Last updated: {{ now()->format('M j, Y g:i A') }}
+                                    </div>
+                                </div>
                                 <form id="addItemForm" class="form-new-product form-style-1" method="POST" enctype="multipart/form-data" action="{{ route('storeImage') }}">
                                 {{ csrf_field() }}
 
                                 @if ($errors->any())
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <strong>Oops! There were some errors with your submission:</strong>
-                                        <ul class="mt-2">
+                                    <div style="background-color: #fff5f5; border-left: 4px solid #ff3b3b; color: #ff3b3b; padding: 16px; margin-bottom: 20px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                        <strong style="font-size: 16px; display: block; margin-bottom: 8px;">⚠️ Oops! There were some errors:</strong>
+                                        <ul style="margin: 0; padding-left: 20px; list-style-type: none;">
                                             @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
+                                                <li style="padding: 4px 0; display: flex; align-items: center;">
+                                                    <span style="display: inline-block; width: 6px; height: 6px; background-color: #ff3b3b; border-radius: 50%; margin-right: 8px;"></span>
+                                                    {{ $error }}
+                                                </li>
                                             @endforeach
                                         </ul>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>
                                 @endif
 
                                 @if (session('success'))
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <strong>Success! </strong> {{ session('success') }}
+                                    <div style="background-color: #f0fff4; border-left: 4px solid #38a169; color: #38a169; padding: 16px; margin-bottom: 20px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                        <div style="font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                                            <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            </svg>
+                                            <strong>Success!</strong>
+                                        </div>
+                                        <p style="margin: 8px 0 0 28px;">{{ session('success') }}</p>
                                     </div>
                                 @endif
 
-                                @if (session('error'))
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <strong>Error! </strong> {{ session('error') }}
-                                    </div>
-                                @endif
-
-                                        <h5>Add Image</h5>
                                         <fieldset class="category">
                                             <div class="body-title">Select Product</div>
                                             <div class="select flex-grow">
@@ -135,7 +162,22 @@
 
                                         <div class="bot">
                                             <div></div>
-                                            <button class="tf-button w208" type="submit" >Save</button>
+                                        <button type="submit" 
+                                            style="
+                                                display: block;
+                                                margin: 0 auto;
+                                                background-color: black;
+                                                color: white;
+                                                border: 1px solid black;
+                                                padding: 10px 20px;
+                                                cursor: pointer;
+                                                transition: all 0.3s ease;
+                                            "
+                                            onmouseover="this.style.backgroundColor='white'; this.style.color='black';"
+                                            onmouseout="this.style.backgroundColor='black'; this.style.color='white';"
+                                        >
+                                            Add Image
+                                        </button>                                            
                                         </div>
                                     </form>
                                 </div>
