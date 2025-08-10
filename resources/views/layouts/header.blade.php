@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
-        <link rel="shortcut icon" type="image/x-icon" href="../assets/images/n_logo_remove_new.png" />
+        <link rel="shortcut icon" type="image/x-icon" href="/n_logo_remove_new.png" />
 
 
     <meta name="author" content="themesflat.com">
@@ -42,7 +42,7 @@
                 <!-- Logo/Brand -->
             <div style="display: flex; align-items: center; gap: 12px;">
                 <div style=" padding: 0px;  display: flex; align-items: center; justify-content: center;">
-                    <img src="../assets/images/logo/N_white.png" alt="Admin Icon" style="width: 60px; height: 60px; object-fit: contain;">
+                    <img src="/N_white.png" alt="Admin Icon" style="width: 60px; height: 60px; object-fit: contain;">
                 </div>
                 <span style="color: white; font-weight: bold; font-size: 22px; font-family: 'Orbitron', sans-serif;">NovaLink</span>
             </div>

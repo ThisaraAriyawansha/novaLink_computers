@@ -80,6 +80,10 @@
     flex-wrap: wrap;
     gap: 1rem;
 }
+
+    .main-content {
+        min-height: 77vh;
+    }
 </style>
                     <!-- main-content -->
                     <div class="main-content">
@@ -184,6 +188,7 @@
                                 <!-- /new-category -->
                             </div>
                             <!-- /main-content-wrap -->
+                        </div>
                         </div>
 
 @include('layouts.footer')

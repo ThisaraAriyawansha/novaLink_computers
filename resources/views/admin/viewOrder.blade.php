@@ -72,13 +72,20 @@
     }
 
     .view-more-btn {
-        background-color: #2ecc71; /* Green color */
-        color: white;
+        background-color: #ffffffff; /* White background */
+        color: black;
         padding: 8px 12px;
-        border: none;
+        border: 1px solid black;
         cursor: pointer;
         border-radius: 5px;
+        transition: background-color 0.3s ease, color 0.3s ease;
     }
+
+    .view-more-btn:hover {
+        background-color: black;
+        color: white;
+    }
+
 
 
     
@@ -89,7 +96,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 400px;
+    max-width: 700px; /* increased width from 400px */
     margin: auto;
     padding: 10px;
     background: transparent;
@@ -108,13 +115,13 @@
 }
 
 .search-input:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    border-color: #000000ff;
+    box-shadow: 0 0 5px rgba(25, 26, 26, 0.5);
 }
 
 .search-button {
     padding: 10px 15px;
-    background: #007bff;
+    background: #000000ff;
     color: white;
     border: none;
     border-radius: 5px;
@@ -124,13 +131,15 @@
 }
 
 .search-button:hover {
-    background: #0056b3;
+    background: #262626ff;
 }
 
 /* Responsive Design */
 @media (max-width: 480px) {
     .search-form {
         flex-direction: column;
+        max-width: 100%;  /* full width on mobile */
+        padding: 5px;     /* reduce padding a bit */
     }
     
     .search-input, 
@@ -138,6 +147,37 @@
         width: 100%;
     }
 }
+
+
+.wg-box {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.last-updated {
+    background: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--gray-200);
+    font-size: 1.3rem;
+    color: var(--gray-600);
+}
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+    .wg-pagination li a:hover {
+        background-color: #333;    /* Darker shade on hover */
+    }
+    .wg-pagination li.active a {
+        background-color: #000000ff; /* Highlighted page */
+        color: black;
+    }
 </style>
 
 <!-- main-content -->
@@ -148,13 +188,17 @@
         <div class="main-content-wrap">
         <div class="wg-box">
 
-        <div class="title-box">
-            <div class="body-text">Payment Details</div>
-        </div>
+
+                <div class="admin-header">
+                <h3 class="text-xl font-semibold" style=" font-size: 18px; font-family: 'Orbitron', sans-serif;">Payment Details</h3>
+                    <div class="last-updated">
+                        Last updated: {{ now()->format('M j, Y g:i A') }}
+                    </div>
+                </div>
 
         <form method="GET" action="{{ route('viewOrder') }}" class="search-form">
                 <input type="text" name="search" value="{{ request('search') }}" class="search-input" placeholder="Search by customer name...">
-                <button type="submit" class="search-button">🔍 Search</button>
+                <button type="submit" class="search-button">Search</button>
             </form>
 
         <div class="wg-table">

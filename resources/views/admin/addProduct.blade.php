@@ -1,26 +1,26 @@
 @include('layouts.header')
 <style>
     .wg-box {
-    margin-left: 20px;
-    margin-right: 20px;
-}
+        margin-left: 20px;
+        margin-right: 20px;
+    }
 
-.last-updated {
-    background: var(--white);
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    border: 1px solid var(--gray-200);
-    font-size: 1.3rem;
-    color: var(--gray-600);
-}
-.admin-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
+    .last-updated {
+        background: var(--white);
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--gray-200);
+        font-size: 1.3rem;
+        color: var(--gray-600);
+    }
+    .admin-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
 
 </style>
 <div class="main-content">

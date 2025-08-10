@@ -89,14 +89,7 @@
 }
 
 
-.view-btn {
-    background-color: #3498db; /* Blue color */
-    color: white;
-    padding: 8px 12px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
+
 .status-btn{
     background-color: #e74c3c; /* Red color */
     color: white;
@@ -114,30 +107,29 @@
     cursor: pointer;
     border-radius: 5px;
 }/* View More Button Styles */
-.view-more-btn {
-    background-color: #2ecc71; /* Green color */
-    color: white;
-    padding: 8px 12px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
 
-/* Button Hover Effects */
-.view-btn:hover,
-.view-more-btn:hover {
-    opacity: 0.8; /* Slightly dim the button when hovered */
-}
-
-
+.view-more-btn,
+.view-btn,
 .update-btn {
-    background-color:rgb(135, 141, 137); /* Green color */
-    color: white;
+    background-color: white;   /* White background */
+    color: black;              /* Black text */
     padding: 8px 12px;
-    border: none;
+    border: 1px solid black;   /* Black border */
     cursor: pointer;
     border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
 }
+
+/* Hover: Black background, white text */
+.view-more-btn:hover,
+.view-btn:hover,
+.update-btn:hover {
+    background-color: black;
+    color: white;
+    opacity: 1;
+}
+
+
 .wg-table {
         width: 100%;
         overflow-x: auto;
@@ -214,11 +206,11 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    justify-content: center;
+    justify-content: flex-start; /* Aligns items to the left */
     align-items: center;
     width: 100%;
-    max-width: 400px;
-    margin: auto;
+    max-width: 800px; /* Increased width */
+    margin: 0; /* Remove auto-centering */
     padding: 10px;
     background: transparent;
     border-radius: 8px;
@@ -236,13 +228,13 @@
 }
 
 .search-input:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    border-color: #000000ff;
+    box-shadow: 0 0 5px rgba(28, 28, 28, 0.5);
 }
 
 .search-button {
     padding: 10px 15px;
-    background: #007bff;
+    background: #000000ff;
     color: white;
     border: none;
     border-radius: 5px;
@@ -252,13 +244,14 @@
 }
 
 .search-button:hover {
-    background: #0056b3;
+    background: #19191aff;
 }
 
 /* Responsive Design */
 @media (max-width: 480px) {
     .search-form {
         flex-direction: column;
+        max-width: 100%; /* Full width on mobile */
     }
     
     .search-input, 
@@ -267,6 +260,58 @@
     }
 }
 
+
+
+    .wg-box {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .last-updated {
+        background: var(--white);
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--gray-200);
+        font-size: 1.3rem;
+        color: var(--gray-600);
+    }
+    .admin-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .wg-pagination li a:hover {
+        background-color: #333;    /* Darker shade on hover */
+    }
+    .wg-pagination li.active a {
+        background-color: #000000ff; /* Highlighted page */
+        color: black;
+    }
+
+    .toast-alert {
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background-color: #336824ff; /* Highlighted page */
+        color: white;
+        padding: 12px 20px;
+        border-radius: 6px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        font-size: 14px;
+        z-index: 9999;
+        display: none;
+        animation: slideIn 0.3s ease-out;
+    }
+
+    @keyframes slideIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
 </style>
 <!-- main-content -->
 <div class="main-content">
@@ -274,10 +319,7 @@
     <div class="main-content-inner">
         <!-- main-content-wrap -->
         <div class="main-content-wrap">
-            <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-                <h3>View Product</h3>
 
-            </div>
             <!-- product-list -->
             <div class="wg-box">
                 @if ($errors->any())
@@ -303,14 +345,17 @@
                         <strong>Error! </strong> {{ session('error') }}
                     </div>
                 @endif
-                <div class="title-box">
-                    <div class="body-text">Manage Product</div>
+                <div class="admin-header">
+                <h3 class="text-xl font-semibold" style=" font-size: 18px; font-family: 'Orbitron', sans-serif;">Manage Products</h3>
+                    <div class="last-updated">
+                        Last updated: {{ now()->format('M j, Y g:i A') }}
+                    </div>
                 </div>
 
 
                 <form method="GET" action="{{ route('manageProduct') }}" class="search-form">
                     <input type="text" name="search" value="{{ request('search') }}" class="search-input" placeholder="Search product name...">
-                    <button type="submit" class="search-button">🔍 Search</button>
+                    <button type="submit" class="search-button">Search</button>
                 </form>
 
 
@@ -420,6 +465,8 @@
     @include('layouts.footer')
 </div>
 <!-- /main-content -->
+<!-- Custom Alert -->
+<div id="toast-alert" class="toast-alert"></div>
 
 <script>
     function showEntries() {
@@ -577,29 +624,45 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $(".status-btn").click(function() {
-            let productId = $(this).data("id");
 
-            $.ajax({
-                url: "{{ route('updateProductStatus') }}",
-                type: "POST",
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    id: productId
-                },
-                success: function(response) {
-                    if (response.success) {
-                        $("#status-" + productId).text(response.new_status);
-                        alert("Status Updated Successfully!");
-                    } else {
-                        alert("Error updating status!");
-                    }
-                },
-                error: function() {
-                    alert("Something went wrong!");
+
+$(document).ready(function() {
+    $(".status-btn").click(function() {
+        let productId = $(this).data("id");
+
+        $.ajax({
+            url: "{{ route('updateProductStatus') }}",
+            type: "POST",
+            data: {
+                _token: "{{ csrf_token() }}",
+                id: productId
+            },
+            success: function(response) {
+                if (response.success) {
+                    $("#status-" + productId).text(response.new_status);
+                    showToast("Status Updated Successfully!");
+                } else {
+                    showToast("Error updating status!");
                 }
-            });
+            },
+            error: function() {
+                showToast("Something went wrong!");
+            }
         });
     });
+});
+
+
+
+
+
+    function showToast(message) {
+        let toast = $("#toast-alert");
+        toast.text(message).fadeIn(200);
+
+        setTimeout(() => {
+            toast.fadeOut(200);
+        }, 2500); // hides after 2.5 seconds
+    }
+
 </script>

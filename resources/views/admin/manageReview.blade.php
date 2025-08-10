@@ -210,61 +210,136 @@
     }
     
 
-.search-form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 400px;
-    margin: auto;
-    padding: 10px;
-    background: transparent;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.search-input {
-    flex: 1;
-    padding: 10px;
-    border: 2px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
-    outline: none;
-    transition: all 0.3s ease-in-out;
-}
-
-.search-input:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-.search-button {
-    padding: 10px 15px;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background 0.3s ease-in-out;
-}
-
-.search-button:hover {
-    background: #0056b3;
-}
-
-/* Responsive Design */
-@media (max-width: 480px) {
     .search-form {
-        flex-direction: column;
-    }
-    
-    .search-input, 
-    .search-button {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
         width: 100%;
+        max-width: 700px; /* Increased from 400px */
+        margin: auto;
+        padding: 10px;
+        background: transparent;
+        border-radius: 8px;
     }
+
+    .search-input {
+        flex: 1;
+        padding: 10px;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        outline: none;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .search-input:focus {
+        border-color: #000000ff;
+        box-shadow: 0 0 5px rgba(42, 44, 46, 0.5);
+    }
+
+    .search-button {
+        padding: 10px 15px;
+        background: #000000ff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s ease-in-out;
+    }
+
+    .search-button:hover {
+        background: #2c2c2cff;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 480px) {
+        .search-form {
+            flex-direction: column;
+            max-width: 100%; /* Full width on small screens */
+        }
+        
+        .search-input, 
+        .search-button {
+            width: 100%;
+        }
+    }
+
+
+
+    .wg-box {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .last-updated {
+        background: var(--white);
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--gray-200);
+        font-size: 1.3rem;
+        color: var(--gray-600);
+    }
+    .admin-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .wg-pagination li a:hover {
+        background-color: #333;    /* Darker shade on hover */
+    }
+    .wg-pagination li.active a {
+        background-color: #000000ff; /* Highlighted page */
+        color: black;
+    }
+
+
+.btn {
+    display: inline-block;
+    font-weight: 600;
+    text-align: center;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border: none;
+    user-select: none;
+}
+
+.btn-sm {
+    padding: 4px 10px;
+    font-size: 13px;
+}
+
+/* White background, black text & border */
+.btn-success {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+
+.btn-success:hover {
+    background-color: black;
+    color: white;
+}
+
+/* Black background, white text (for danger) */
+.btn-danger {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+}
+
+.btn-danger:hover {
+    background-color: white;
+    color: black;
 }
 
 </style>
@@ -274,43 +349,45 @@
     <div class="main-content-inner">
         <!-- main-content-wrap -->
         <div class="main-content-wrap">
-            <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-                <h3>View Review</h3>
-
-            </div>
             <!-- product-list -->
             <div class="wg-box">
-                @if ($errors->any())
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong>Oops! There were some errors with your submission:</strong>
-                        <ul class="mt-2">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
+                    @if ($errors->any())
+                        <div style="background-color: #fff5f5; border-left: 4px solid #ff3b3b; color: #ff3b3b; padding: 16px; margin-bottom: 20px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <strong style="font-size: 16px; display: block; margin-bottom: 8px;">⚠️ Oops! There were some errors:</strong>
+                            <ul style="margin: 0; padding-left: 20px; list-style-type: none;">
+                                @foreach ($errors->all() as $error)
+                                    <li style="padding: 4px 0; display: flex; align-items: center;">
+                                        <span style="display: inline-block; width: 6px; height: 6px; background-color: #ff3b3b; border-radius: 50%; margin-right: 8px;"></span>
+                                        {{ $error }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
-                @if (session('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>Success! </strong> {{ session('success') }}
-                    </div>
-                @endif
+                    @if (session('success'))
+                        <div style="background-color: #f0fff4; border-left: 4px solid #38a169; color: #38a169; padding: 16px; margin-bottom: 20px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <div style="font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                                <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <strong>Success!</strong>
+                            </div>
+                            <p style="margin: 8px 0 0 28px;">{{ session('success') }}</p>
+                        </div>
+                    @endif
 
-                @if (session('error'))
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong>Error! </strong> {{ session('error') }}
+
+                 <div class="admin-header">
+                <h3 class="text-xl font-semibold" style=" font-size: 18px; font-family: 'Orbitron', sans-serif;">Manage Review</h3>
+                    <div class="last-updated">
+                        Last updated: {{ now()->format('M j, Y g:i A') }}
                     </div>
-                @endif
-                <div class="title-box">
-                    <div class="body-text">Manage Review</div>
                 </div>
-
 
                 <form method="GET" action="{{ route('manageReview') }}" class="search-form">
                     <input type="text" name="search" value="{{ request('search') }}" class="search-input" placeholder="Search product name...">
-                    <button type="submit" class="search-button">🔍 Search</button>
+                    <button type="submit" class="search-button">Search</button>
                 </form>
 
 

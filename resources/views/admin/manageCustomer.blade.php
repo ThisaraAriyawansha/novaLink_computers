@@ -72,6 +72,40 @@
         }
     }
     
+
+        .wg-box {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .last-updated {
+            background: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--gray-200);
+            font-size: 1.3rem;
+            color: var(--gray-600);
+        }
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+     .wg-pagination li a:hover {
+        background-color: #333;    /* Darker shade on hover */
+    }
+    .wg-pagination li.active a {
+        background-color: #000000ff; /* Highlighted page */
+        color: black;
+    } 
+    
+        .main-content {
+        min-height: 77vh;
+    }
 </style>
 <!-- main-content -->
 <div class="main-content">
@@ -79,9 +113,7 @@
     <div class="main-content-inner">
         <!-- main-content-wrap -->
         <div class="main-content-wrap">
-            <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-                <h3>View Customer</h3>
-            </div>
+
             <!-- product-list -->
             <div class="wg-box">
                 @if ($errors->any())
@@ -108,10 +140,14 @@
                     </div>
                 @endif
 
-                <div class="title-box">
-                    <div class="body-text">Manage Customer</div>
+                <div class="admin-header">
+                <h3 class="text-xl font-semibold" style=" font-size: 18px; font-family: 'Orbitron', sans-serif;">Manage Customer</h3>
+                    <div class="last-updated">
+                        Last updated: {{ now()->format('M j, Y g:i A') }}
+                    </div>
                 </div>
-
+                
+                
                 <div class="wg-table">
                 <ul class="table-title flex gap-4 mb-4 px-4 py-3">
                     <li><div class="body-title">First name</div></li>
@@ -188,8 +224,9 @@
         <!-- /main-content-wrap -->
     </div>
 
-    @include('layouts.footer')
 </div>
+    @include('layouts.footer')
+
 <!-- /main-content -->
 
 

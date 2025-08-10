@@ -1,189 +1,278 @@
 @include('layouts.header')
 
 <style>
-    /* Modern Styles */
+    :root {
+        --primary: #000000ff;
+        --primary-light: #000000ff;
+        --gray-100: #f3f4f6;
+        --gray-200: #e5e7eb;
+        --gray-300: #d1d5db;
+        --gray-600: #4b5563;
+        --gray-700: #374151;
+        --gray-900: #111827;
+        --white: #ffffff;
+        --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
+        --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+        --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+        --radius-sm: 0.25rem;
+        --radius: 0.375rem;
+        --radius-md: 0.5rem;
+    }
+
+    /* Base Styles with Larger Fonts */
+
+
     .main-content {
-        padding: 20px;
-        background-color: #f9fafb;
+        background-color: var(--gray-100);
+        min-height: 100vh;
+        padding: 1rem;
     }
 
-    .title-box {
-        margin-bottom: 20px;
+    .wg-box {
+        background: var(--white);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow);
+        padding: 2.5rem; /* Increased padding */
+        margin: 1rem auto;
+        max-width: 1200px;
     }
 
-    .title-box .body-text {
-        font-size: 24px;
+    .admin-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2.5rem; /* Increased spacing */
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    .admin-header h3 {
+        font-size: 2rem; /* Larger heading */
         font-weight: 600;
-        color:rgb(75, 88, 112);
+        color: var(--gray-900);
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        font-family: 'Orbitron', sans-serif;
     }
 
-    .wg-table {
-        background: transparent;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        margin-bottom: 20px;
+    .last-updated {
+        background: var(--white);
+        padding: 0.75rem 1.25rem;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--gray-200);
+        font-size: 1.1rem; /* Larger font */
+        color: var(--gray-600);
+        box-shadow: var(--shadow-sm);
     }
 
-    .payment-details, .order-details {
-        margin-bottom: 30px;
-    }
-
-    .payment-details h3, .order-details h3 {
-        font-size: 20px;
+    /* Section Styles */
+    .section-title {
+        font-size: 1.75rem; /* Larger section titles */
         font-weight: 600;
-        color: #2d3748;
-        margin-bottom: 15px;
+        color: var(--gray-900);
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-bottom: 0.75rem;
     }
 
-    .payment-details ul {
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 4rem; /* Wider underline */
+        height: 3px; /* Thicker underline */
+        background-color: var(--primary);
+    }
+
+    /* Payment Details */
+    .payment-details {
+        margin-bottom: 3rem; /* More spacing */
+    }
+
+    .detail-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Wider cards */
+        gap: 1.5rem; /* More gap between items */
         list-style: none;
         padding: 0;
+        margin: 0;
     }
 
-    .payment-details ul li {
-        font-size: 16px;
-        color: #4a5568;
-        margin-bottom: 10px;
+    .detail-item {
+        background: var(--gray-100);
+        padding: 1.5rem; /* More padding */
+        border-radius: var(--radius-sm);
+        border-left: 4px solid var(--primary); /* Thicker accent border */
     }
 
-    .payment-details ul li strong {
+    .detail-label {
+        font-size: 1.1rem; /* Larger label */
+        color: var(--gray-600);
+        font-weight: 500;
+        display: block;
+        margin-bottom: 0.5rem; /* More spacing */
+    }
+
+    .detail-value {
+        font-size: 1.3rem; /* Significantly larger values */
+        color: var(--gray-900);
         font-weight: 600;
-        color: #2d3748;
     }
 
-    .order-details table {
+    /* Order Table */
+    .order-table {
         width: 100%;
         border-collapse: collapse;
+        background: var(--white);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+        font-size: 1.1rem; /* Larger table font */
     }
 
-    .order-details table thead {
-        background-color: transparent;
+    .order-table thead {
+        background-color: var(--primary);
     }
 
-    .order-details table th, .order-details table td {
-        padding: 12px;
+    .order-table th {
+        padding: 1.25rem; /* More padding */
         text-align: left;
-        border-bottom: 1px solid #e2e8f0;
+        color: var(--white);
+        font-weight: 500;
+        text-transform: uppercase;
+        font-size: 1rem; /* Larger header */
+        letter-spacing: 0.05em;
     }
 
-    .order-details table th {
+    .order-table td {
+        padding: 1.25rem; /* More padding */
+        border-bottom: 1px solid var(--gray-200);
+        color: var(--gray-700);
+    }
+
+    .order-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    .order-table tr:hover {
+        background-color: var(--gray-50);
+    }
+
+    /* Status Badge */
+    .status-badge {
+        display: inline-block;
+        padding: 0.5rem 1rem; /* Larger badge */
+        border-radius: 9999px;
+        font-size: 1rem; /* Larger font */
         font-weight: 600;
-        color: #2d3748;
+        text-transform: uppercase;
     }
 
-    .order-details table td {
-        color: #4a5568;
+    .status-paid {
+        background-color: #dcfce7;
+        color: #166534;
     }
 
-    .btn-primary {
-        background-color: #4299e1;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 6px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    .btn-primary:hover {
-        background-color: #3182ce;
-    }
-
-    /* Responsive Design */
+    /* Responsive Adjustments */
     @media (max-width: 768px) {
-        .payment-details ul li, .order-details table th, .order-details table td {
-            font-size: 14px;
+        body {
+            font-size: 16px; /* Slightly smaller on mobile */
         }
 
-        .title-box .body-text {
-            font-size: 20px;
+        .wg-box {
+            padding: 1.75rem;
+            margin: 0.75rem;
         }
 
-        .btn-primary {
-            width: 100%;
-            text-align: center;
+        .admin-header h3 {
+            font-size: 1.75rem;
         }
-        
+
+        .section-title {
+            font-size: 1.5rem;
+        }
+
+        .detail-list {
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+
+        .detail-value {
+            font-size: 1.2rem;
+        }
+
+        .order-table th, 
+        .order-table td {
+            padding: 1rem;
+            font-size: 1rem;
+        }
     }
 
-/* Apply black border to all table elements */
-.order-details table {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid black; /* Outer border */
-}
+    @media (max-width: 480px) {
+        .admin-header h3 {
+            font-size: 1.5rem;
+        }
 
-.order-details table th, 
-.order-details table td {
-    padding: 12px;
-    text-align: left;
-    border: 1px solid black; /* Inner cell borders */
-    font-size: 18px; /* Adjusted for desktop */
-}
+        .section-title {
+            font-size: 1.3rem;
+        }
 
-/* Increase table font size on desktop */
-@media (min-width: 1024px) {
-    .order-details table th, 
-    .order-details table td {
-        font-size: 18px;
+        .detail-item {
+            padding: 1.25rem;
+        }
+
+        .detail-value {
+            font-size: 1.1rem;
+        }
     }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .payment-details ul li, 
-    .order-details table th, 
-    .order-details table td {
-        font-size: 10px; /* Reduced font size for mobile */
-    }
-
-    .title-box .body-text {
-        font-size: 20px;
-    }
-
-    .btn-primary {
-        width: 100%;
-        text-align: center;
-    }
-}
-
-
-    
 </style>
 
 <div class="main-content">
-    
     <div class="main-content-inner">
-    <div class="wg-box">
+        <div class="wg-box">
+            <div class="admin-header">
+                <h3>Order Details</h3>
+                <div class="last-updated">
+                    Last updated: {{ now()->format('M j, Y g:i A') }}
+                </div>
+            </div>
 
-        <div class="title-box">
-            <div class="body-text">Order Details</div>
-        </div>
-
-        <div class="wg-table">
-            
             <!-- Payment Details -->
             <div class="payment-details">
-                <h3>Payment Information</h3>
-                <ul>
-                    <li><strong>Customer:</strong> {{ $payment->customer->fname }} {{ $payment->customer->lname }}</li>
-                    <li><strong>Total Amount:</strong> Rs.{{ number_format($payment->total, 2) }}</li>
-                    <li><strong>Note:</strong> {{ $payment->note }}</li>
-                    <li><strong>Address Line 1:</strong> {{ $payment->address1 }}</li>
-                    <li><strong>Address Line 2:</strong> {{ $payment->address2 }}</li>
-                    <li><strong>City:</strong> {{ $payment->city }}</li>
-                    <li><strong>Postal Code:</strong> {{ $payment->postal_code }}</li>
-
-                    <li><strong>Payment Status:</strong> {{ $payment->paymentStatus->status_name }}</li>
+                <h3 class="section-title">Payment Information</h3>
+                <ul class="detail-list">
+                    <li class="detail-item">
+                        <span class="detail-label">Customer</span>
+                        <span class="detail-value">{{ $payment->customer->fname }} {{ $payment->customer->lname }}</span>
+                    </li>
+                    <li class="detail-item">
+                        <span class="detail-label">Total Amount</span>
+                        <span class="detail-value">Rs.{{ number_format($payment->total, 2) }}</span>
+                    </li>
+                    <li class="detail-item">
+                        <span class="detail-label">Note</span>
+                        <span class="detail-value">{{ $payment->note ?? 'N/A' }}</span>
+                    </li>
+                    <li class="detail-item">
+                        <span class="detail-label">Address</span>
+                        <span class="detail-value">
+                            {{ $payment->address1 }}<br>
+                            {{ $payment->address2 }}<br>
+                            {{ $payment->city }}, {{ $payment->postal_code }}
+                        </span>
+                    </li>
+                    <li class="detail-item">
+                        <span class="detail-label">Payment Status</span>
+                        <span class="detail-value status-badge status-paid">{{ $payment->paymentStatus->status_name }}</span>
+                    </li>
                 </ul>
             </div>
 
             <!-- Order Details -->
             <div class="order-details">
-                <h3>Ordered Products</h3>
-                <table class="table">
+                <h3 class="section-title">Ordered Products</h3>
+                <table class="order-table">
                     <thead>
                         <tr>
                             <th>Product</th>
@@ -203,12 +292,7 @@
                 </table>
             </div>
         </div>
-
-        <div class="divider"></div>
-        </div>
-
-
     </div>
-    @include('layouts.footer')
 </div>
 
+@include('layouts.footer')

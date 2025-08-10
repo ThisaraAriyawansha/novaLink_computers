@@ -81,7 +81,7 @@
 }
 
 .view-btn {
-    background-color: #3498db; /* Blue color */
+    background-color: #000000ff; /* Blue color */
     color: white;
     padding: 8px 12px;
     border: none;
@@ -122,7 +122,7 @@
 
 
 .update-btn {
-    background-color:rgb(26, 113, 55); /* Green color */
+    background-color:rgba(0, 0, 0, 1); /* Green color */
     color: white;
     padding: 8px 12px;
     border: none;
@@ -204,11 +204,11 @@
 /* Form Container */
 .inline-form {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start; /* Align left */
     align-items: center;
     width: 100%;
-    max-width: 500px;
-    margin: auto;
+    max-width: 800px; /* Increased max width */
+    margin: 0; /* Remove auto-centering */
 }
 
 /* Input and Button Wrapper */
@@ -237,7 +237,7 @@
 /* Upload Button */
 .upload-btn {
     padding: 10px 15px;
-    background: #007bff;
+    background: #000000ff;
     color: white;
     border: none;
     border-radius: 5px;
@@ -247,7 +247,7 @@
 }
 
 .upload-btn:hover {
-    background: #0056b3;
+    background: #2e2f30ff;
 }
 
 /* Responsive - Stack on small screens */
@@ -264,43 +264,81 @@
 }
 
 
+
+    .wg-box {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .last-updated {
+        background: var(--white);
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--gray-200);
+        font-size: 1.3rem;
+        color: var(--gray-600);
+    }
+    .admin-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+
+    .wg-pagination li a:hover {
+        background-color: #333;    /* Darker shade on hover */
+    }
+    .wg-pagination li.active a {
+        background-color: #000000ff; /* Highlighted page */
+        color: black;
+    }
 </style>
 <!-- main-content -->
 
 <div class="main-content">
     <div class="main-content-inner">
         <div class="main-content-wrap">
-            <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-                <h3>Product Details</h3>
-            </div>
+
 
             <div class="wg-box">
-                <div class="title-box">
-                    <div class="body-text">Product Information</div>
+
+
+                <div class="admin-header">
+                <h3 class="text-xl font-semibold" style=" font-size: 18px; font-family: 'Orbitron', sans-serif;">Product Information</h3>
+                    <div class="last-updated">
+                        Last updated: {{ now()->format('M j, Y g:i A') }}
+                    </div>
                 </div>
-                                @if ($errors->any())
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <strong>Oops! There were some errors with your submission:</strong>
-                                        <ul class="mt-2">
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                @endif
 
-                                @if (session('success'))
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <strong>Success! </strong> {{ session('success') }}
-                                    </div>
-                                @endif
+                    @if ($errors->any())
+                        <div style="background-color: #fff5f5; border-left: 4px solid #ff3b3b; color: #ff3b3b; padding: 16px; margin-bottom: 20px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <strong style="font-size: 16px; display: block; margin-bottom: 8px;">⚠️ Oops! There were some errors:</strong>
+                            <ul style="margin: 0; padding-left: 20px; list-style-type: none;">
+                                @foreach ($errors->all() as $error)
+                                    <li style="padding: 4px 0; display: flex; align-items: center;">
+                                        <span style="display: inline-block; width: 6px; height: 6px; background-color: #ff3b3b; border-radius: 50%; margin-right: 8px;"></span>
+                                        {{ $error }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
-                                @if (session('error'))
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <strong>Error! </strong> {{ session('error') }}
-                                    </div>
-                                @endif
+                    @if (session('success'))
+                        <div style="background-color: #f0fff4; border-left: 4px solid #38a169; color: #38a169; padding: 16px; margin-bottom: 20px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <div style="font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                                <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <strong>Success!</strong>
+                            </div>
+                            <p style="margin: 8px 0 0 28px;">{{ session('success') }}</p>
+                        </div>
+                    @endif
+                    
                 <div class="wg-table">
                     <ul class="table-title flex gap-4 mb-4 px-4 py-3">
                         <li><div class="body-title">Product Name</div></li>
