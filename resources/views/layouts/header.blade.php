@@ -259,7 +259,7 @@
     </div>
 
     <!-- Main Content Area -->
-    <div style="margin-top: 70px; padding: 30px 20px;">
+    <div style="margin-top: 40px; padding: 30px 20px;">
 
     </div>
 
