@@ -598,7 +598,7 @@
                                         @endif
                                         
                                         <div class="dashboard-welcome">
-                                            <h1 class="welcome-title text-white">Hey {{ $customer->fname ?? 'User' }}, great to see you!</h1>
+                                            <h1 class="welcome-title text-white ">Hey {{ $customer->fname ?? 'User' }}, great to see you!</h1>
                                             <p class="welcome-subtitle mb-0">
                                                 Let’s get things done — manage your account, track your orders, and stay on top of your bids right from here.
                                             </p>

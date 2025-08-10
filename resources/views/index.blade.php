@@ -129,8 +129,8 @@
     <div class="relative lg:h-[100dvh] w-full bg-dark-blue-bg background-container">
         <!-- Text Overlay -->
         <div class="absolute left-0 top-0 h-full flex flex-col justify-center pl-8 md:pl-16 text-white z-10 text-container">
-            <h1 class="text-3xl md:text-5xl font-bold text-white" style="font-family: 'Orbitron', sans-serif;">NovaLink Computers</h1>
-            <p class="text-lg md:text-xl mt-2" style="font-family: 'Orbitron', sans-serif;">Empowering Innovation with Advanced Technology</p>
+            <h1 class="text-3xl md:text-5xl font-bold text-white" style="font-family: 'Orbitron', sans-serif; font-size: 2.2rem;">NovaLink Computers</h1>
+            <p class="text-lg md:text-xl mt-2" style="font-family: 'Orbitron', sans-serif; font-size: 1.1rem;">Empowering Innovation with Advanced Technology</p>
         </div>
     </div>
 
