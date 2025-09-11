@@ -402,6 +402,44 @@
         grid-template-columns: 1fr;
     }
 }
+
+
+        .product-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 480px;
+            object-fit: contain;
+            background: white;
+            border-radius: 4px;
+            padding: 16px;
+            border: 1px solid #dfe0e1ff;
+        }
+        
+        .thumbnail-container {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .thumbnail {
+            width: 64px;
+            height: 64px;
+            object-fit: cover;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid var(--border-color);
+        }
+        
+        .thumbnail:hover, .thumbnail.active {
+            border-color: var(--accent);
+            opacity: 0.8;
+        }
     </style>
 <body>
     <div class="main-wrapper">
@@ -443,27 +481,20 @@
 
                         <!-- Swiper -->
                         <!-- Main Slider -->
-<div class="swiper-container zoom-top">
-    <div class="swiper-wrapper">
-        <div class="swiper-slide">
-            <img class="img-responsive m-auto" src="<?php echo $product['image'] ?>" alt="">
-            <a class="venobox full-preview" data-gall="myGallery" href="<?php echo $product['image'] ?>">
-                <i class="fa fa-arrows-alt" aria-hidden="true"></i>
-            </a>
-        </div>
-    </div>
-</div>
-
-<!-- Thumbnail Slider -->
-<div class="swiper-container mt-20px zoom-thumbs slider-nav-style-1 small-nav">
-    <div class="swiper-wrapper" id="small-slider-wrapper">
-        <!-- Images will be dynamically inserted here -->
-    </div>
-    <div class="swiper-buttons">
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-    </div>
-</div>
+                <div class="product-gallery">
+                    <!-- Main Product Image -->
+                    <img src="{{ $product['image'] }}" alt="{{ $product['name'] }}" class="main-image" id="mainImage">
+                    
+                    <!-- Thumbnail Gallery -->
+                    @if(count($product['additional_images']) > 0)
+                        <div class="thumbnail-container">
+                            <img src="{{ $product['image'] }}" alt="Main Image" class="thumbnail active" onclick="changeMainImage('{{ $product['image'] }}', this)">
+                            @foreach($product['additional_images'] as $image)
+                                <img src="{{ $image }}" alt="Product Image {{ $loop->iteration }}" class="thumbnail" onclick="changeMainImage('{{ $image }}', this)">
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -1220,4 +1251,19 @@ function fetchReviews(productId) {
                 observer.observe(el);
             });
         });
+    </script>
+
+
+    <script>
+        function changeMainImage(newSrc, thumbnailElement) {
+            document.getElementById('mainImage').src = newSrc;
+            
+            // Update active thumbnail
+            document.querySelectorAll('.thumbnail').forEach(thumb => {
+                thumb.classList.remove('active');
+            });
+            thumbnailElement.classList.add('active');
+        }
+        
+
     </script>

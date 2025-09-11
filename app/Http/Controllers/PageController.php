@@ -162,17 +162,20 @@ class PageController extends Controller
             'id' => $product->id,
             'name' => $product->name,
             'type' => $product->type,
-            'brand'=>$product->brand,
+            'brand' => $product->brand,
             'tags' => $product->tags,
             'desc' => $product->description,
             'dis_price' => $product->discounted_price,
-            'ret_price' => $product->retail_price ,
+            'ret_price' => $product->retail_price,
             'features' => $product->features->map(function ($feature) {
                 return $feature->feature_name . ': ' . $feature->feature_value;
             })->toArray(),
             'warranty' => $product->warranty,
             'in_stock' => $product->in_stock,
             'image' => asset($product->image),
+            'additional_images' => $product->images->map(function ($image) {
+                return asset($image->image_path);
+            })->toArray(),
         ];
 
         // Fetch all products for the slider
