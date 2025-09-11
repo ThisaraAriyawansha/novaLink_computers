@@ -165,7 +165,7 @@
 
 .modal-btn {
     padding: 12px 25px;
-    background-color: rgb(49, 64, 106);
+    background-color: black;
     color: white;
     border: none;
     cursor: pointer;
