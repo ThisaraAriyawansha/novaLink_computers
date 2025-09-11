@@ -442,7 +442,7 @@
         }
     </style>
 <body>
-    <div class="main-wrapper">
+    <div class="main-wrapper bg-white">
     @include('layouts.nav-2')
 
         <div class="h-[10dvh]"></div>
