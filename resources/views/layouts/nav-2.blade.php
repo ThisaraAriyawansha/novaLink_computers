@@ -10,7 +10,6 @@
             <div class="hidden lg:flex items-center space-x-6">
                 <a href="#" class="text-white uppercase font-bold text-center max-xl:text-sm" id="category-toggle">Category</a>
                 <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'ALL']) }}" class="text-white uppercase font-bold text-center max-xl:text-sm">Products</a>
-                <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'ALL']) }}" class="text-white uppercase font-bold text-center max-xl:text-sm">Accessories</a>
                 <a href="/products?filter=LAPTOPS&sort=name_asc" class="text-white uppercase font-bold text-center max-xl:text-sm">Laptops</a>
                 <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'APPLE PRODUCTS']) }}" class="text-white uppercase font-bold text-center max-xl:text-sm">Mobile</a>
                 <a href="{{ route('aboutUs') }}" class="text-white uppercase font-bold text-center max-xl:text-sm">About Us</a>
@@ -22,12 +21,7 @@
             <!-- Icons (Cart, Search, Wishlist) - Always visible -->
             <div class="flex items-center space-x-4">
                 <!-- Search Icon - Now visible on all screen sizes -->
-                <a data-bs-toggle="modal" data-bs-target="#exampleModal-search" class="text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                </a>
-                
+
                 <!-- Cart Icon with updated styling -->
                 <a href="#offcanvas-cart" class="text-white offcanvas-toggle relative group">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 group-hover:text-gray-300 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -73,7 +67,6 @@
             </div>
             <a href="#" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white" id="mobile-category-toggle">Category</a>
             <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'ALL']) }}" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white">Products</a>
-            <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'ALL']) }}" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white">Accessories</a>
             <a href="/products?filter=LAPTOPS&sort=name_asc" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white">Laptops</a>
             <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'APPLE PRODUCTS']) }}" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white">Mobile</a>
             <a href="{{ route('aboutUs') }}" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white">About Us</a>

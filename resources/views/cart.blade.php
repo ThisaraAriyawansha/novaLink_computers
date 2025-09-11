@@ -22,15 +22,187 @@
     <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
     <!-- Style CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
-    <!-- Minify Version -->
-    <!-- <link rel="stylesheet" href="assets/css/plugins.min.css">
-    <link rel="stylesheet" href="assets/css/style.min.css"> -->
-    <!-- Tailwind CSS -->
-    
     <!-- Custom Styles -->
     <style>
+        /* Modern Alert Styles - Apple Inspired */
+        .alert-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-        
+        .alert-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .alert-dialog {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            max-width: 320px;
+            width: 90%;
+            overflow: hidden;
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .alert-overlay.active .alert-dialog {
+            transform: scale(1) translateY(0);
+        }
+
+        .alert-content {
+            padding: 24px 20px 16px;
+            text-align: center;
+        }
+
+        .alert-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .alert-icon.warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .alert-icon.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .alert-icon.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .alert-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .alert-message {
+            font-size: 13px;
+            color: #6e6e73;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+
+        .alert-buttons {
+            border-top: 0.5px solid #e5e5e7;
+            display: flex;
+        }
+
+        .alert-button {
+            flex: 1;
+            padding: 14px 16px;
+            background: none;
+            border: none;
+            font-size: 17px;
+            font-weight: 400;
+            cursor: pointer;
+            transition: background-color 0.15s ease;
+            position: relative;
+        }
+
+        .alert-button:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0.5px;
+            height: 100%;
+            background: #e5e5e7;
+        }
+
+        .alert-button:hover {
+            background: rgba(0, 0, 0, 0.04);
+        }
+
+        .alert-button:active {
+            background: rgba(0, 0, 0, 0.08);
+        }
+
+        .alert-button.primary {
+            color: #007AFF;
+            font-weight: 600;
+        }
+
+        .alert-button.destructive {
+            color: #FF3B30;
+            font-weight: 600;
+        }
+
+        .alert-button.cancel {
+            color: #1d1d1f;
+        }
+
+        /* Toast Alert Styles */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10001;
+            pointer-events: none;
+        }
+
+        .toast {
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            transform: translateX(400px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: auto;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            max-width: 300px;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast.success {
+            background: rgba(52, 199, 89, 0.95);
+        }
+
+        .toast.error {
+            background: rgba(255, 59, 48, 0.95);
+        }
+
+        .toast.warning {
+            background: rgba(255, 149, 0, 0.95);
+        }
+
         .cart-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -210,18 +382,57 @@
             .total-box {
                 width: 100%;
             }
+
+            .alert-dialog {
+                max-width: 280px;
+            }
+
+            .toast-container {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+            }
+
+            .toast {
+                max-width: none;
+                transform: translateY(-100px);
+            }
+
+            .toast.show {
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="main-wrapper">
+        <div class="main-wrapper">
         @include('layouts.nav-2')
+    <!-- Modern Alert Overlay -->
+    <div class="alert-overlay" id="alertOverlay">
+        <div class="alert-dialog">
+            <div class="alert-content">
+                <div class="alert-icon" id="alertIcon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="alert-title" id="alertTitle">Alert</div>
+                <div class="alert-message" id="alertMessage">This is an alert message.</div>
+            </div>
+            <div class="alert-buttons" id="alertButtons">
+                <button class="alert-button cancel" onclick="closeAlert()">Cancel</button>
+                <button class="alert-button destructive" onclick="confirmAction()">OK</button>
+            </div>
+        </div>
+    </div>
 
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="main-wrapper">
+        <!-- Include your nav here -->
         <div class="h-[10dvh]"></div>
         
-
-        <nav style="display: flex; align-items: center; padding: 16px 24px;    max-width: 1200px; margin: 10px auto;" aria-label="Breadcrumb">
+        <nav style="display: flex; align-items: center; padding: 16px 24px; max-width: 1200px; margin: 10px auto;" aria-label="Breadcrumb">
             <ol style="display: inline-flex; align-items: center; margin: 0; padding: 0; list-style: none; flex-wrap: wrap;">
                 <li style="display: inline-flex; align-items: center;">
                     <a href="/home" style="display: inline-flex; align-items: center; font-size: 14px; font-family: 'Orbitron', sans-serif; font-weight: 500; color: #4b5563; text-decoration: none; transition: color 0.3s ease, transform 0.2s ease; padding: 6px 10px; border-radius: 6px;">
@@ -241,10 +452,9 @@
             </ol>
         </nav>
 
-        
         <!-- Main Cart Content -->
         <div class="cart-container py-2 px-4 sm:px-6 lg:px-8">
-            <h1 class="text-sm font-bold text-gray-900 " style="font-family: 'Orbitron', sans-serif;  font-size: 20px; margin-bottom: 15px;">Your Shopping Cart</h1>
+            <h1 class="text-sm font-bold text-gray-900" style="font-family: 'Orbitron', sans-serif; font-size: 20px; margin-bottom: 15px;">Your Shopping Cart</h1>
             
             <form action="{{ route('checkOut') }}" method="POST" name="checkout">
                 @csrf
@@ -260,8 +470,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Sample cart item (hidden template) -->
-                            
+                            <!-- Cart items will be populated here -->
                         </tbody>
                     </table>
                     
@@ -292,17 +501,19 @@
                         </div>
                         
                         <input type="hidden" name="cartData" id="cartDataInput">
-                        <button type="submit" class="checkout-btn" style="font-family: 'Orbitron', sans-serif;"> Checkout</button>
+                        <button type="submit" class="checkout-btn" style="font-family: 'Orbitron', sans-serif;">Checkout</button>
                     </div>
                 </div>
             </form>
         </div>
 
-        @include('layouts.footer2')
+        <!-- Include your footer here -->
+    </div>
+            @include('layouts.footer2')
+        <!-- Include your footer here -->
     </div>
 
-    <!-- JS Files
-    ============================================ -->
+    <!-- JS Files -->
     <script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
     <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
     <script src="assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
@@ -313,12 +524,93 @@
     <script src="assets/js/plugins/venobox.min.js"></script>
     <script src="assets/js/plugins/jquery-ui.min.js"></script>
     <script src="assets/js/plugins/mailchimp-ajax.js"></script>
-    <!--Main JS (Common Activation Codes)-->
     <script src="assets/js/main.js"></script>
 
-        <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
-    <!-- Scripts -->
     <script>
+        // Modern Alert System
+        let currentAlertResolve = null;
+        
+        // Show modern alert dialog
+        function showAlert(title, message, type = 'warning', buttons = null) {
+            return new Promise((resolve) => {
+                currentAlertResolve = resolve;
+                
+                const overlay = document.getElementById('alertOverlay');
+                const titleEl = document.getElementById('alertTitle');
+                const messageEl = document.getElementById('alertMessage');
+                const iconEl = document.getElementById('alertIcon');
+                const buttonsEl = document.getElementById('alertButtons');
+                
+                titleEl.textContent = title;
+                messageEl.textContent = message;
+                
+                // Set icon based on type
+                iconEl.className = `alert-icon ${type}`;
+                if (type === 'warning') {
+                    iconEl.innerHTML = '<i class="fas fa-exclamation-triangle"></i>';
+                } else if (type === 'error') {
+                    iconEl.innerHTML = '<i class="fas fa-times-circle"></i>';
+                } else if (type === 'success') {
+                    iconEl.innerHTML = '<i class="fas fa-check-circle"></i>';
+                }
+                
+                // Set buttons
+                if (buttons) {
+                    buttonsEl.innerHTML = buttons;
+                } else {
+                    buttonsEl.innerHTML = `
+                        <button class="alert-button cancel" onclick="closeAlert(false)">Cancel</button>
+                        <button class="alert-button destructive" onclick="closeAlert(true)">OK</button>
+                    `;
+                }
+                
+                overlay.classList.add('active');
+            });
+        }
+        
+        function closeAlert(result = false) {
+            const overlay = document.getElementById('alertOverlay');
+            overlay.classList.remove('active');
+            
+            if (currentAlertResolve) {
+                currentAlertResolve(result);
+                currentAlertResolve = null;
+            }
+        }
+        
+        // Show toast notification
+        function showToast(message, type = 'success', duration = 3000) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            
+            toast.className = `toast ${type}`;
+            
+            let icon = '';
+            if (type === 'success') {
+                icon = '<i class="fas fa-check"></i>';
+            } else if (type === 'error') {
+                icon = '<i class="fas fa-times"></i>';
+            } else if (type === 'warning') {
+                icon = '<i class="fas fa-exclamation"></i>';
+            }
+            
+            toast.innerHTML = `${icon}${message}`;
+            container.appendChild(toast);
+            
+            // Trigger animation
+            setTimeout(() => toast.classList.add('show'), 100);
+            
+            // Remove toast after duration
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    if (container.contains(toast)) {
+                        container.removeChild(toast);
+                    }
+                }, 400);
+            }, duration);
+        }
+
         // Function to populate the cart table from localStorage
         function populateCartTable() {
             const tableBody = document.querySelector('table tbody');
@@ -350,11 +642,11 @@
                     <td class="product-thumbnail" data-label="Product">
                         <a href="singleProduct?product-id=${item.id}" class="flex items-center">
                             <img src="${item.image}" alt="${item.name}" class="mr-4" >
-                            <span class="product-name" style=" color: black; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">${item.name}</span>
+                            <span class="product-name" style="color: black; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">${item.name}</span>
                         </a>
                     </td>
                     <td class="product-price" data-label="Price">
-                        <span class="amount" style=" color: black; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">${item.price}</span>
+                        <span class="amount" style="color: black; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">${item.price}</span>
                     </td>
                     <td class="product-quantity" data-label="Quantity">
                         <div class="quantity-control">
@@ -364,7 +656,7 @@
                             <button type="button" class="quantity-btn inc" data-product-id="${item.id}">+</button>
                         </div>
                     </td>
-                    <td class="product-subtotal" data-label="Subtotal" style=" color: black; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">${formatPrice(subtotal)}</td>
+                    <td class="product-subtotal" data-label="Subtotal" style="color: black; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">${formatPrice(subtotal)}</td>
                     <td data-label="Remove">
                         <button type="button" class="remove-btn" data-product-id="${item.id}">×</button>
                     </td>
@@ -389,7 +681,12 @@
 
                 // Check if the new quantity exceeds available stock
                 if (newQuantity > availableQty) {
-                    alert(`Only ${availableQty} items are available in stock.`);
+                    await showAlert(
+                        'Stock Limit Exceeded',
+                        `Only ${availableQty} items are available in stock.`,
+                        'warning',
+                        '<button class="alert-button primary" onclick="closeAlert(true)">Got it</button>'
+                    );
                     return;
                 }
 
@@ -401,18 +698,31 @@
                     item.quantity = Math.max(1, newQuantity); // Ensure quantity is at least 1
                     localStorage.setItem('shopping-cart', JSON.stringify(cart));
                     populateCartTable(); // Refresh the table
+                    showToast('Quantity updated successfully', 'success');
                 }
             } catch (error) {
                 console.error('Error fetching product quantity:', error);
+                showToast('Error updating quantity', 'error');
             }
         }
 
         // Function to remove item from cart
-        function removeCartItem(productId) {
-            let cart = JSON.parse(localStorage.getItem('shopping-cart')) || [];
-            cart = cart.filter(item => parseInt(item.id) !== parseInt(productId));
-            localStorage.setItem('shopping-cart', JSON.stringify(cart));
-            populateCartTable(); // Refresh the table
+        async function removeCartItem(productId) {
+            const confirmed = await showAlert(
+                'Remove Item',
+                'Are you sure you want to remove this item from your cart?',
+                'warning',
+                `<button class="alert-button cancel" onclick="closeAlert(false)">Cancel</button>
+                 <button class="alert-button destructive" onclick="closeAlert(true)">Remove</button>`
+            );
+
+            if (confirmed) {
+                let cart = JSON.parse(localStorage.getItem('shopping-cart')) || [];
+                cart = cart.filter(item => parseInt(item.id) !== parseInt(productId));
+                localStorage.setItem('shopping-cart', JSON.stringify(cart));
+                populateCartTable(); // Refresh the table
+                showToast('Item removed from cart', 'success');
+            }
         }
 
         // Function to add quantity control listeners
@@ -454,9 +764,7 @@
             document.querySelectorAll('.remove-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const productId = this.getAttribute('data-product-id');
-                    if (confirm('Are you sure you want to remove this item from your cart?')) {
-                        removeCartItem(productId);
-                    }
+                    removeCartItem(productId);
                 });
             });
         }
@@ -488,7 +796,29 @@
                 const cart = JSON.parse(localStorage.getItem("shopping-cart")) || [];
                 document.getElementById("cartDataInput").value = JSON.stringify(cart);
             });
+
+            // Close alert when clicking overlay
+            document.getElementById('alertOverlay').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeAlert(false);
+                }
+            });
+
+            // Prevent alert dialog from closing when clicking inside
+            document.querySelector('.alert-dialog').addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+
+            // Handle keyboard events for alerts
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && document.getElementById('alertOverlay').classList.contains('active')) {
+                    closeAlert(false);
+                }
+            });
         });
+
+        // Example usage for testing (you can remove this)
+        // showToast('Welcome to your cart!', 'success');
     </script>
 </body>
 </html>
