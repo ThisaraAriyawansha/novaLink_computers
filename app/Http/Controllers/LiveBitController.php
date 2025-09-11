@@ -48,7 +48,10 @@ class LiveBitController extends Controller
             'warranty' => $product->warranty,
             'in_stock' => $product->in_stock,
             'image' => asset($product->image),
-            'deal_start' => $product->deal_start,
+            'additional_images' => $product->images->map(function ($image) {
+                return asset($image->image_path);
+            })->toArray(),
+             'deal_start' => $product->deal_start,
             'deal_end' => $product->deal_end,
         ];
 
