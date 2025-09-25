@@ -30,6 +30,8 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LoadingScreenController;
 
+use App\Http\Controllers\LLMController;
+
 
 
 
@@ -203,3 +205,10 @@ Route::patch('/admin/review/{id}/toggle', [ReviewController::class, 'toggleRevie
 
 //Contact Us
 Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit');
+
+
+// LLM Routes
+Route::get('/llm', [LLMController::class, 'show'])->name('llm');
+Route::post('/llm/chat', [LLMController::class, 'chat'])->name('llm.chat');
+Route::get('/llm/conversation', [LLMController::class, 'getConversationHistory'])->name('llm.conversation.history');
+Route::delete('/llm/conversation', [LLMController::class, 'clearConversation'])->name('llm.conversation.clear');
