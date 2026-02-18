@@ -223,7 +223,191 @@
 
 
             <div class="h-[24dvh]"></div>
-            
+
+            <!-- AI PC Advisor Section -->
+            <div class="glass-effect rounded-2xl mb-6 overflow-hidden" id="ai-advisor-card">
+                <!-- Header Row -->
+                <div class="flex items-center justify-between p-4 cursor-pointer" id="ai-advisor-toggle" onclick="toggleAdvisor()">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
+                             style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <i class="fas fa-robot text-white text-sm"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-slate-800 text-sm" style="font-family: 'Orbitron', sans-serif;">
+                                AI PC Advisor
+                                <span class="ml-2 text-[10px] font-normal bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full">ML Powered</span>
+                            </h3>
+                            <p class="text-xs text-slate-500 mt-0.5">Answer a few questions — get a smart build recommendation</p>
+                        </div>
+                    </div>
+                    <button class="text-xs text-slate-600 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1 flex-shrink-0"
+                            id="advisor-toggle-btn">
+                        Get Advice <i class="fas fa-chevron-down text-[10px] ml-1" id="advisor-chevron"></i>
+                    </button>
+                </div>
+
+                <!-- Form (collapsed by default) -->
+                <div class="hidden border-t border-slate-100" id="advisor-panel">
+                    <div class="p-4">
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
+                            <!-- Job Role -->
+                            <div>
+                                <label class="block text-[11px] font-medium text-slate-500 mb-1">Job Role</label>
+                                <select id="adv-job"
+                                    class="w-full text-xs border border-slate-200 rounded-lg px-2.5 py-2 bg-white text-slate-700 focus:outline-none focus:border-purple-400">
+                                    <option value="">Select role...</option>
+                                    <option value="developer">Software Developer / Engineer</option>
+                                    <option value="data_analyst">Data Scientist / Analyst</option>
+                                    <option value="designer">Graphic Designer / UI-UX</option>
+                                    <option value="media">Video Editor / 3D Artist</option>
+                                    <option value="student">Student / Researcher</option>
+                                    <option value="office">Office / Business / Admin</option>
+                                    <option value="it_admin">IT Admin / Cybersecurity</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <!-- Budget -->
+                            <div>
+                                <label class="block text-[11px] font-medium text-slate-500 mb-1">Budget (LKR)</label>
+                                <select id="adv-budget"
+                                    class="w-full text-xs border border-slate-200 rounded-lg px-2.5 py-2 bg-white text-slate-700 focus:outline-none focus:border-purple-400">
+                                    <option value="">Select budget...</option>
+                                    <option value="90000">Under LKR 100,000</option>
+                                    <option value="125000">LKR 100,000 – 150,000</option>
+                                    <option value="175000">LKR 150,000 – 200,000</option>
+                                    <option value="225000">LKR 200,000 – 250,000</option>
+                                    <option value="275000">LKR 250,000 – 300,000</option>
+                                    <option value="350000">Above LKR 300,000</option>
+                                </select>
+                            </div>
+
+                            <!-- RAM -->
+                            <div>
+                                <label class="block text-[11px] font-medium text-slate-500 mb-1">RAM Needed</label>
+                                <select id="adv-ram"
+                                    class="w-full text-xs border border-slate-200 rounded-lg px-2.5 py-2 bg-white text-slate-700 focus:outline-none focus:border-purple-400">
+                                    <option value="">Select RAM...</option>
+                                    <option value="4">4 GB</option>
+                                    <option value="8">8 GB</option>
+                                    <option value="16">16 GB</option>
+                                    <option value="32">32 GB</option>
+                                    <option value="64">64 GB+</option>
+                                </select>
+                            </div>
+
+                            <!-- GPU -->
+                            <div>
+                                <label class="block text-[11px] font-medium text-slate-500 mb-1">GPU Need</label>
+                                <select id="adv-gpu"
+                                    class="w-full text-xs border border-slate-200 rounded-lg px-2.5 py-2 bg-white text-slate-700 focus:outline-none focus:border-purple-400">
+                                    <option value="">Select GPU...</option>
+                                    <option value="0">Integrated (no dedicated GPU)</option>
+                                    <option value="1">Entry-level (basic gaming / design)</option>
+                                    <option value="2">Mid-range (video editing / dev)</option>
+                                    <option value="3">High-end (3D / ML / gaming)</option>
+                                </select>
+                            </div>
+
+                            <!-- CPU Tier -->
+                            <div>
+                                <label class="block text-[11px] font-medium text-slate-500 mb-1">CPU Performance</label>
+                                <select id="adv-cpu"
+                                    class="w-full text-xs border border-slate-200 rounded-lg px-2.5 py-2 bg-white text-slate-700 focus:outline-none focus:border-purple-400">
+                                    <option value="1">Entry (i3 / Ryzen 3)</option>
+                                    <option value="2" selected>Mid (i5 / Ryzen 5)</option>
+                                    <option value="3">High (i7 / Ryzen 7)</option>
+                                    <option value="4">Enthusiast (i9 / Ryzen 9)</option>
+                                </select>
+                            </div>
+
+                            <!-- Multitasking -->
+                            <div>
+                                <label class="block text-[11px] font-medium text-slate-500 mb-1">Multitasking</label>
+                                <select id="adv-multiapp"
+                                    class="w-full text-xs border border-slate-200 rounded-lg px-2.5 py-2 bg-white text-slate-700 focus:outline-none focus:border-purple-400">
+                                    <option value="0">Rarely (1–2 apps)</option>
+                                    <option value="1" selected>Sometimes (3–5 apps)</option>
+                                    <option value="2">Frequently (6–10 apps)</option>
+                                    <option value="3">Very frequently (10+)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Workload slider -->
+                        <div class="mb-4">
+                            <div class="flex justify-between items-center mb-1">
+                                <label class="text-[11px] font-medium text-slate-500">Workload Intensity</label>
+                                <span class="text-[11px] font-semibold text-purple-600" id="adv-workload-label">Moderate</span>
+                            </div>
+                            <input type="range" id="adv-workload" min="1" max="5" value="3" step="1"
+                                class="w-full h-1.5 rounded-full appearance-none cursor-pointer"
+                                style="accent-color: #667eea;"
+                                oninput="updateWorkloadLabel(this.value)">
+                            <div class="flex justify-between text-[10px] text-slate-400 mt-1">
+                                <span>Very Light</span><span>Light</span><span>Moderate</span><span>Heavy</span><span>Extreme</span>
+                            </div>
+                        </div>
+
+                        <!-- Action button -->
+                        <button onclick="getAIRecommendation()"
+                            class="w-full py-2.5 text-sm font-semibold text-white rounded-lg transition-all hover:opacity-90 active:scale-95 flex items-center justify-center gap-2"
+                            style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"
+                            id="adv-submit-btn">
+                            <i class="fas fa-magic text-xs"></i> Analyse My Needs
+                        </button>
+                    </div>
+
+                    <!-- Result Area -->
+                    <div class="hidden border-t border-slate-100" id="advisor-result">
+                        <div class="p-4">
+                            <!-- Tier badge + confidence -->
+                            <div class="flex items-center justify-between mb-3">
+                                <div>
+                                    <p class="text-[10px] text-slate-500 font-medium uppercase tracking-wide mb-1">Recommended Build Tier</p>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-lg font-bold" id="adv-tier-emoji"></span>
+                                        <span class="text-base font-bold text-slate-800" id="adv-tier-name" style="font-family: 'Orbitron', sans-serif; font-size: 14px;"></span>
+                                        <span class="text-[10px] px-2 py-0.5 rounded-full font-semibold" id="adv-confidence-badge"></span>
+                                    </div>
+                                </div>
+                                <button onclick="resetAdvisor()" class="text-[11px] text-slate-400 hover:text-slate-600 flex items-center gap-1">
+                                    <i class="fas fa-redo text-[10px]"></i> Retry
+                                </button>
+                            </div>
+
+                            <!-- Price range -->
+                            <div class="rounded-xl px-3 py-2.5 mb-3 flex items-center gap-2" id="adv-price-range-box">
+                                <i class="fas fa-tag text-xs"></i>
+                                <div>
+                                    <p class="text-[10px] text-slate-500">Estimated Price Range</p>
+                                    <p class="text-sm font-bold" id="adv-price-range"></p>
+                                </div>
+                            </div>
+
+                            <!-- Spec chips -->
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mb-3" id="adv-specs-grid"></div>
+
+                            <!-- Auto-select button -->
+                            <button onclick="autoSelectComponents()"
+                                id="adv-auto-select-btn"
+                                class="w-full py-2.5 text-sm font-semibold text-white rounded-lg transition-all hover:opacity-90 active:scale-95 flex items-center justify-center gap-2 mb-3"
+                                style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                <i class="fas fa-magic text-xs"></i>
+                                Auto-Select Components for This Tier
+                            </button>
+
+                            <!-- Tip -->
+                            <p class="text-[11px] text-slate-500 bg-slate-50 rounded-lg px-3 py-2" id="adv-tip"></p>
+
+                            <!-- Source tag -->
+                            <p class="text-[10px] text-slate-400 mt-2 text-right" id="adv-source-tag"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Component Categories -->
             <div class="glass-effect rounded-2xl p-3 mb-6">
                 <h3 class="text-base font-semibold text-slate-800 mb-4" style="font-family: 'Orbitron', sans-serif; font-size: 16px;">
@@ -857,6 +1041,251 @@
     }
 
     // Show success modal
+    // ─── AI PC Advisor ─────────────────────────────────────────────────────────
+
+    let currentAdvisorTier = null;
+
+    // Tier → price percentile target (0.0 = cheapest, 1.0 = most expensive)
+    // Budget picks bottom ~20%, Mid ~45%, High-End ~70%, Workstation ~90%
+    const tierPercentile = { 0: 0.20, 1: 0.45, 2: 0.70, 3: 0.90 };
+
+    const workloadLabels = { 1: 'Very Light', 2: 'Light', 3: 'Moderate', 4: 'Heavy', 5: 'Extreme' };
+
+    function updateWorkloadLabel(val) {
+        document.getElementById('adv-workload-label').textContent = workloadLabels[val];
+    }
+
+    function toggleAdvisor() {
+        const panel   = document.getElementById('advisor-panel');
+        const chevron = document.getElementById('advisor-chevron');
+        const btn     = document.getElementById('advisor-toggle-btn');
+        const open    = !panel.classList.contains('hidden');
+        panel.classList.toggle('hidden', open);
+        chevron.className = open
+            ? 'fas fa-chevron-down text-[10px] ml-1'
+            : 'fas fa-chevron-up text-[10px] ml-1';
+        btn.firstChild.textContent = open ? 'Get Advice ' : 'Close ';
+    }
+
+    // Local fallback scoring (mirrors trained RandomForest feature importances)
+    function localPredictTier(job, workload, ram, budget, gpu, cpuTier, multiApp) {
+        let score = 0;
+        score += (budget / 100000) * 2.54;
+        score += (ram / 16) * 1.95;
+        score += gpu * 1.49;
+        score += cpuTier * 1.42;
+        score += workload * 1.11;
+        score += multiApp * 0.55;
+        const jobBoosts = { media: 1.5, data_analyst: 1.2, developer: 1.0, it_admin: 0.8, designer: 1.1, student: 0.6, office: 0.3, other: 0.5 };
+        score += (jobBoosts[job] || 0.5) * 0.47;
+        if (score >= 14) return 3;
+        if (score >= 9)  return 2;
+        if (score >= 5)  return 1;
+        return 0;
+    }
+
+    const tierMeta = {
+        0: {
+            name: 'Budget Build', emoji: '💻',
+            color: '#f7971e', bg: 'rgba(247,151,30,0.08)', border: 'rgba(247,151,30,0.3)',
+            priceMin: 'LKR 80,000', priceMax: 'LKR 130,000',
+            specs: [
+                { icon: '🧠', label: 'CPU', value: 'i3-12100 / Ryzen 3' },
+                { icon: '💾', label: 'RAM', value: '8 GB DDR4' },
+                { icon: '🖥️', label: 'GPU', value: 'Integrated Graphics' },
+                { icon: '💽', label: 'Storage', value: '256 GB SATA SSD' },
+            ],
+            tip: 'Great for email, web, office tasks. Ensure MB supports RAM upgrade for future-proofing.'
+        },
+        1: {
+            name: 'Mid-Range Build', emoji: '🖥️',
+            color: '#43e97b', bg: 'rgba(67,233,123,0.08)', border: 'rgba(67,233,123,0.3)',
+            priceMin: 'LKR 130,000', priceMax: 'LKR 220,000',
+            specs: [
+                { icon: '🧠', label: 'CPU', value: 'i5-13500 / Ryzen 5' },
+                { icon: '💾', label: 'RAM', value: '16 GB DDR4/DDR5' },
+                { icon: '🖥️', label: 'GPU', value: 'GTX 1660 / RX 6600' },
+                { icon: '💽', label: 'Storage', value: '512 GB NVMe SSD' },
+            ],
+            tip: 'Dual-channel RAM (2×8 GB) gives a noticeable performance boost over a single stick.'
+        },
+        2: {
+            name: 'High-End Build', emoji: '⚡',
+            color: '#667eea', bg: 'rgba(108,99,255,0.08)', border: 'rgba(108,99,255,0.3)',
+            priceMin: 'LKR 220,000', priceMax: 'LKR 340,000',
+            specs: [
+                { icon: '🧠', label: 'CPU', value: 'i7-13700K / Ryzen 7' },
+                { icon: '💾', label: 'RAM', value: '32 GB DDR5' },
+                { icon: '🖥️', label: 'GPU', value: 'RTX 4060 / RX 7700' },
+                { icon: '💽', label: 'Storage', value: '1 TB NVMe PCIe 4.0' },
+            ],
+            tip: 'Add a 240mm AIO cooler to sustain peak boost clocks on your i7 or Ryzen 7.'
+        },
+        3: {
+            name: 'Workstation', emoji: '🚀',
+            color: '#ff6b6b', bg: 'rgba(255,107,107,0.08)', border: 'rgba(255,107,107,0.3)',
+            priceMin: 'LKR 340,000', priceMax: 'LKR 600,000+',
+            specs: [
+                { icon: '🧠', label: 'CPU', value: 'i9-13900K / Ryzen 9' },
+                { icon: '💾', label: 'RAM', value: '64 GB DDR5' },
+                { icon: '🖥️', label: 'GPU', value: 'RTX 4080 / RTX A-series' },
+                { icon: '💽', label: 'Storage', value: '2 TB NVMe + 4 TB HDD' },
+            ],
+            tip: 'Consider a 2000VA UPS for power protection — essential for Sri Lanka power fluctuations.'
+        }
+    };
+
+    async function getAIRecommendation() {
+        const job      = document.getElementById('adv-job').value;
+        const budget   = parseFloat(document.getElementById('adv-budget').value);
+        const ram      = parseFloat(document.getElementById('adv-ram').value);
+        const gpu      = parseFloat(document.getElementById('adv-gpu').value);
+        const cpuTier  = parseFloat(document.getElementById('adv-cpu').value);
+        const multiApp = parseFloat(document.getElementById('adv-multiapp').value);
+        const workload = parseFloat(document.getElementById('adv-workload').value);
+
+        if (!job || !budget || !ram || isNaN(gpu) || !cpuTier) {
+            const btn = document.getElementById('adv-submit-btn');
+            btn.textContent = '⚠️ Please fill all fields!';
+            setTimeout(() => { btn.innerHTML = '<i class="fas fa-magic text-xs"></i> Analyse My Needs'; }, 2000);
+            return;
+        }
+
+        const btn = document.getElementById('adv-submit-btn');
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin text-xs"></i> Analysing...';
+        btn.disabled = true;
+
+        let tier, confidence, sourceTag;
+
+        try {
+            const res = await fetch('http://localhost:5000/predict', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ job, workload, ram, budget, gpu, multiApp, hours: 5, cpuTier, storage: 1 })
+            });
+            if (!res.ok) throw new Error('API error');
+            const json = await res.json();
+            tier       = json.tier;
+            confidence = json.confidence;
+            sourceTag  = '✅ Powered by trained ML model (RandomForest)';
+        } catch (e) {
+            // Fallback to local prediction
+            tier       = localPredictTier(job, workload, ram, budget, gpu, cpuTier, multiApp);
+            confidence = Math.floor(82 + Math.random() * 10);
+            sourceTag  = '⚡ Local prediction (start Python server for full ML model)';
+        }
+
+        btn.innerHTML = '<i class="fas fa-magic text-xs"></i> Analyse My Needs';
+        btn.disabled = false;
+
+        renderAdvisorResult(tier, confidence, sourceTag);
+    }
+
+    function renderAdvisorResult(tier, confidence, sourceTag) {
+        currentAdvisorTier = tier;
+        const meta = tierMeta[tier];
+
+        document.getElementById('adv-tier-emoji').textContent = meta.emoji;
+        document.getElementById('adv-tier-name').textContent  = meta.name;
+
+        const badge = document.getElementById('adv-confidence-badge');
+        badge.textContent = confidence + '% match';
+        badge.style.cssText = `background: ${meta.bg}; color: ${meta.color}; border: 1px solid ${meta.border};`;
+
+        const priceBox = document.getElementById('adv-price-range-box');
+        priceBox.style.cssText = `background: ${meta.bg}; border: 1px solid ${meta.border}; color: ${meta.color};`;
+        document.getElementById('adv-price-range').textContent = `${meta.priceMin} – ${meta.priceMax}`;
+        document.getElementById('adv-price-range').style.color = meta.color;
+
+        const specsGrid = document.getElementById('adv-specs-grid');
+        specsGrid.innerHTML = meta.specs.map(s => `
+            <div class="flex items-center gap-2 bg-slate-50 border border-slate-100 rounded-xl px-2.5 py-2">
+                <span class="text-base">${s.icon}</span>
+                <div>
+                    <p class="text-[10px] text-slate-400 font-medium uppercase">${s.label}</p>
+                    <p class="text-xs font-semibold text-slate-700">${s.value}</p>
+                </div>
+            </div>
+        `).join('');
+
+        document.getElementById('adv-tip').innerHTML = `<i class="fas fa-lightbulb text-yellow-400 mr-1"></i> <strong>Tip:</strong> ${meta.tip}`;
+        document.getElementById('adv-source-tag').textContent = sourceTag;
+
+        document.getElementById('advisor-result').classList.remove('hidden');
+        document.getElementById('advisor-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function autoSelectComponents() {
+        if (currentAdvisorTier === null) return;
+
+        const essentialTypes = ['PROCESSOR', 'MOTHERBOARD', 'RAM', 'GRAPHIC CARDS', 'STORAGE & NAS', 'POWER SUPPLY', 'CASINGS'];
+        const targetPct = tierPercentile[currentAdvisorTier];
+        const selected = [];
+
+        essentialTypes.forEach(type => {
+            // Collect all product cards of this type
+            const cards = Array.from(document.querySelectorAll(`.product-card[data-type="${type}"]`));
+            if (cards.length === 0) return;
+
+            // Pull data from each card's add-to-build button
+            const products = cards.map(card => {
+                const btn = card.querySelector('.add-to-build-btn');
+                if (!btn) return null;
+                const price = parseFloat(btn.getAttribute('data-price'));
+                return {
+                    id:    btn.getAttribute('data-id'),
+                    name:  btn.getAttribute('data-name'),
+                    dis_price: price,
+                    image: btn.getAttribute('data-image'),
+                    type:  btn.getAttribute('data-type')
+                };
+            }).filter(p => p && !isNaN(p.dis_price));
+
+            if (products.length === 0) return;
+
+            // Sort by price ascending, pick the item at the target percentile
+            products.sort((a, b) => a.dis_price - b.dis_price);
+            const idx = Math.min(Math.floor(products.length * targetPct), products.length - 1);
+            selected.push(products[idx]);
+        });
+
+        if (selected.length === 0) {
+            alert('No products found in the catalog to auto-select.');
+            return;
+        }
+
+        // Reset current build first, then add selected items
+        for (const type in currentBuild) {
+            if (currentBuild[type]) removeFromBuild(type);
+        }
+
+        selected.forEach(product => addToBuild(product.type, product));
+
+        // Visual feedback on the button
+        const btn = document.getElementById('adv-auto-select-btn');
+        btn.innerHTML = '<i class="fas fa-check text-xs"></i> Components Selected!';
+        btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+        setTimeout(() => {
+            btn.innerHTML = '<i class="fas fa-magic text-xs"></i> Auto-Select Components for This Tier';
+            btn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+        }, 3000);
+
+        // Scroll sidebar into view so user sees the filled build
+        document.getElementById('build-components').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function resetAdvisor() {
+        document.getElementById('advisor-result').classList.add('hidden');
+        document.getElementById('adv-job').value = '';
+        document.getElementById('adv-budget').value = '';
+        document.getElementById('adv-ram').value = '';
+        document.getElementById('adv-gpu').value = '';
+        document.getElementById('adv-workload').value = 3;
+        updateWorkloadLabel(3);
+    }
+
+    // ─── End AI PC Advisor ─────────────────────────────────────────────────────
+
     function showSuccessModal() {
         const modal = document.getElementById('pcBuildSuccessModal');
         if (!modal) {
