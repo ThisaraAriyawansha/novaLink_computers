@@ -161,7 +161,7 @@
                         $showSpecs = in_array($product->type, $pcSpecTypes);
                     @endphp
                     <div id="pc-specs-section" style="{{ $showSpecs ? 'display:block' : 'display:none' }}; border:1px solid #e2e8f0; border-radius:8px; padding:20px; background:#f8fafc; margin-bottom:10px;">
-                        <div style="font-family:'Orbitron',sans-serif; font-size:15px; font-weight:600; margin-bottom:16px; color:#1e293b;">
+                        <div class="body-title">
                             PC Component Specifications
                         </div>
 
