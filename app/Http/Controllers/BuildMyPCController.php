@@ -15,8 +15,16 @@ class BuildMyPCController extends Controller
 {
 public function buildMyPC()
 {
+    $pcTypes = [
+        'PROCESSOR', 'MOTHERBOARD', 'RAM', 'GRAPHIC CARDS',
+        'STORAGE & NAS', 'SSD NVME', 'HARD DISK',
+        'POWER SUPPLY', 'CASINGS', 'COOLING & LIGHTING', 'FANS',
+        'MONITORS & ACCESSORIES',
+    ];
+
     $products = Product::with(['features'])
         ->where('status_id', 1)
+        ->whereIn('type', $pcTypes)
         ->get()
         ->map(function ($product) {
             return [
@@ -27,7 +35,7 @@ public function buildMyPC()
                 'desc' => $product->description,
                 'dis_price' => $product->discounted_price,
                 'ret_price' => $product->retail_price,
-                'features' => $product->features->pluck('feature')->toArray(),
+                'features' => $product->features->pluck('feature_value', 'feature_name')->toArray(),
                 'warranty' => $product->warranty,
                 'in_stock' => $product->in_stock,
                 'image' => asset($product->image),

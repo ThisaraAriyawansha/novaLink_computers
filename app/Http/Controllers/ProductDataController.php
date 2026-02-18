@@ -90,6 +90,19 @@ class ProductDataController extends Controller
         // Save the product to the database
         $product->save();
 
+        // Save PC component specs as product features
+        if ($request->has('specs')) {
+            foreach ($request->input('specs') as $featureName => $featureValue) {
+                if (!is_null($featureValue) && $featureValue !== '') {
+                    ProductFeature::create([
+                        'product_id'    => $product->id,
+                        'feature_name'  => $featureName,
+                        'feature_value' => $featureValue,
+                    ]);
+                }
+            }
+        }
+
         // Redirect back with success message
         return redirect()->back()->with('success', 'Product added successfully!');
     }
@@ -141,12 +154,34 @@ class ProductDataController extends Controller
 
     public function manageProduct(Request $request)
     {
+        $productTypes = [
+            'LAPTOPS', 'ASUS ROG', 'APPLE PRODUCTS', 'GAMING CONSOLE',
+            'PROCESSOR', 'MOTHERBOARD', 'RAM', 'GRAPHIC CARDS', 'CASINGS',
+            'POWER SUPPLY', 'SSD NVME', 'HARD DISK', 'FANS', 'MONITORS',
+            'ANTIVIRUS SOFTWARE', 'KEYBOARDS', 'MOUSE', 'MOUSE PAD',
+            'HEADSET', 'SPEAKERS', 'UPS', 'TABLES', 'THERMAL PASTE',
+            'COMMERCIAL SOLUTIONS', 'COOLING & LIGHTING', 'STORAGE & NAS',
+            'MONITORS & ACCESSORIES', 'OPTICAL DRIVERS & PRINTERS',
+            'SPEAKERS & HEADPHONES', 'KEYBOARDS, MOUSE & GAMEPADS',
+            'GRAPHICS TABLET / TAB', 'DESKTOP WORKSTATIONS', 'GAMING DESKTOPS',
+            'BUDGET DESKTOP COMPUTERS', 'CHAIRS', 'CABLES',
+            'LIVE STREAMING & RECORDING', 'EXPANSION CARDS & NETWORKING',
+            'GIFT VOUCHER',
+        ];
+
         $query = Product::query();
-        if ($request->has('search')) {
+
+        if ($request->filled('search')) {
             $query->where('name', 'LIKE', '%' . $request->search . '%');
         }
-        $product = $query->paginate(10);
-        return view('admin.manageProduct', compact('product'));
+
+        if ($request->filled('type')) {
+            $query->where('type', $request->type);
+        }
+
+        $product = $query->paginate(10)->appends($request->only(['search', 'type']));
+
+        return view('admin.manageProduct', compact('product', 'productTypes'));
     }
 
 
@@ -175,8 +210,9 @@ class ProductDataController extends Controller
 
     public function edit($id)
     {
-        $product = Product::findOrFail($id);
-        return view('admin.productUpdate', compact('product'));
+        $product = Product::with('features')->findOrFail($id);
+        $existingSpecs = $product->features->pluck('feature_value', 'feature_name')->toArray();
+        return view('admin.productUpdate', compact('product', 'existingSpecs'));
     }
 
     public function update(Request $request, $id)
@@ -250,6 +286,35 @@ class ProductDataController extends Controller
 
         // Save the updated product
         $product->save();
+
+        // Update PC component specs: delete old spec features and re-save
+        $specFeatureNames = [
+            'socket_type','compatible_ram_type','cores','threads','base_clock_ghz','boost_clock_ghz',
+            'form_factor','supported_ram_type','ram_slots','max_ram_gb','supported_ram_speed',
+            'm2_slots','sata_ports','usb_a_ports','usb_c_ports','pcie_x16_slots','wifi',
+            'ram_type','speed_mhz','capacity_gb','sticks_count',
+            'vram_gb','power_connector','hdmi_ports','displayport_ports',
+            'wattage_w','efficiency_rating','psu_form_factor','modular',
+            'storage_type','capacity','interface',
+            'form_factor_support','drive_bays',
+            'cooler_type','socket_compatibility','max_tdp_support','fan_count',
+            'power_consumption',
+        ];
+        ProductFeature::where('product_id', $id)
+            ->whereIn('feature_name', $specFeatureNames)
+            ->delete();
+
+        if ($request->has('specs')) {
+            foreach ($request->input('specs') as $featureName => $featureValue) {
+                if (!is_null($featureValue) && $featureValue !== '') {
+                    ProductFeature::create([
+                        'product_id'    => $id,
+                        'feature_name'  => $featureName,
+                        'feature_value' => $featureValue,
+                    ]);
+                }
+            }
+        }
 
         // Redirect back with success message
         return redirect()->back()->with('success', 'Product updated successfully!');

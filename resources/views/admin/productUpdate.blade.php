@@ -154,6 +154,347 @@
                         </div>
                     </fieldset><br/>
 
+                    <!-- ===== PC COMPONENT SPECIFICATIONS (dynamic, pre-filled from existing features) ===== -->
+                    @php
+                        $s = $existingSpecs ?? [];
+                        $pcSpecTypes = ['PROCESSOR','MOTHERBOARD','RAM','GRAPHIC CARDS','POWER SUPPLY','SSD NVME','HARD DISK','STORAGE & NAS','CASINGS','COOLING & LIGHTING','FANS'];
+                        $showSpecs = in_array($product->type, $pcSpecTypes);
+                    @endphp
+                    <div id="pc-specs-section" style="{{ $showSpecs ? 'display:block' : 'display:none' }}; border:1px solid #e2e8f0; border-radius:8px; padding:20px; background:#f8fafc; margin-bottom:10px;">
+                        <div style="font-family:'Orbitron',sans-serif; font-size:15px; font-weight:600; margin-bottom:16px; color:#1e293b;">
+                            PC Component Specifications
+                        </div>
+
+                        <!-- PROCESSOR -->
+                        <div id="spec-PROCESSOR" class="spec-group" style="{{ $product->type === 'PROCESSOR' ? 'display:block' : 'display:none' }}">
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                <fieldset>
+                                    <div class="body-title mb-10">CPU Socket Type</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[socket_type]">
+                                            <option value="">Select Socket</option>
+                                            @foreach(['LGA1700'=>'LGA1700 (Intel 12th/13th/14th Gen)','LGA1851'=>'LGA1851 (Intel Core Ultra 200)','AM5'=>'AM5 (AMD Ryzen 7000/9000)','AM4'=>'AM4 (AMD Ryzen 5000 & older)','TR5'=>'TR5 (AMD Threadripper)'] as $v=>$l)
+                                            <option value="{{ $v }}" {{ ($s['socket_type'] ?? '') === $v ? 'selected' : '' }}>{{ $l }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Compatible RAM Type</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[compatible_ram_type]">
+                                            <option value="">Select RAM Type</option>
+                                            @foreach(['DDR4','DDR5','DDR4/DDR5'] as $v)
+                                            <option value="{{ $v }}" {{ ($s['compatible_ram_type'] ?? '') === $v ? 'selected' : '' }}>{{ $v }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Cores</div>
+                                    <input type="number" name="specs[cores]" min="1" placeholder="e.g. 8" value="{{ $s['cores'] ?? '' }}">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Threads</div>
+                                    <input type="number" name="specs[threads]" min="1" placeholder="e.g. 16" value="{{ $s['threads'] ?? '' }}">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Base Clock (GHz)</div>
+                                    <input type="number" step="0.1" name="specs[base_clock_ghz]" placeholder="e.g. 3.4" value="{{ $s['base_clock_ghz'] ?? '' }}">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Boost Clock (GHz)</div>
+                                    <input type="number" step="0.1" name="specs[boost_clock_ghz]" placeholder="e.g. 5.2" value="{{ $s['boost_clock_ghz'] ?? '' }}">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Power Consumption / TDP (Watts)</div>
+                                    <input type="number" name="specs[power_consumption]" min="1" placeholder="e.g. 65" value="{{ $s['power_consumption'] ?? '' }}">
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <!-- MOTHERBOARD -->
+                        <div id="spec-MOTHERBOARD" class="spec-group" style="{{ $product->type === 'MOTHERBOARD' ? 'display:block' : 'display:none' }}">
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                <fieldset>
+                                    <div class="body-title mb-10">CPU Socket Type</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[socket_type]">
+                                            <option value="">Select Socket</option>
+                                            @foreach(['LGA1700'=>'LGA1700 (Intel 12th/13th/14th Gen)','LGA1851'=>'LGA1851 (Intel Core Ultra 200)','AM5'=>'AM5 (AMD Ryzen 7000/9000)','AM4'=>'AM4 (AMD Ryzen 5000 & older)','TR5'=>'TR5 (AMD Threadripper)'] as $v=>$l)
+                                            <option value="{{ $v }}" {{ ($s['socket_type'] ?? '') === $v ? 'selected' : '' }}>{{ $l }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Form Factor</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[form_factor]">
+                                            <option value="">Select Form Factor</option>
+                                            @foreach(['ATX','mATX','E-ATX','Mini-ITX'] as $v)
+                                            <option value="{{ $v }}" {{ ($s['form_factor'] ?? '') === $v ? 'selected' : '' }}>{{ $v }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Supported RAM Type</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[supported_ram_type]">
+                                            <option value="">Select RAM Type</option>
+                                            @foreach(['DDR4','DDR5'] as $v)
+                                            <option value="{{ $v }}" {{ ($s['supported_ram_type'] ?? '') === $v ? 'selected' : '' }}>{{ $v }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">RAM Slots</div>
+                                    <input type="number" name="specs[ram_slots]" min="1" max="8" placeholder="e.g. 4" value="{{ $s['ram_slots'] ?? '' }}">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Max RAM (GB)</div>
+                                    <input type="number" name="specs[max_ram_gb]" placeholder="e.g. 128" value="{{ $s['max_ram_gb'] ?? '' }}">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Supported RAM Speed (MHz)</div>
+                                    <input type="text" name="specs[supported_ram_speed]" placeholder="e.g. 3200, 4800, 5600" value="{{ $s['supported_ram_speed'] ?? '' }}">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">M.2 NVMe Slots</div>
+                                    <input type="number" name="specs[m2_slots]" min="0" placeholder="e.g. 2" value="{{ $s['m2_slots'] ?? '' }}">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">SATA Ports</div>
+                                    <input type="number" name="specs[sata_ports]" min="0" placeholder="e.g. 6" value="{{ $s['sata_ports'] ?? '' }}">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">USB-A Ports (Rear)</div>
+                                    <input type="number" name="specs[usb_a_ports]" min="0" placeholder="e.g. 4" value="{{ $s['usb_a_ports'] ?? '' }}">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">USB-C Ports (Rear)</div>
+                                    <input type="number" name="specs[usb_c_ports]" min="0" placeholder="e.g. 1" value="{{ $s['usb_c_ports'] ?? '' }}">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">PCIe x16 Slots</div>
+                                    <input type="number" name="specs[pcie_x16_slots]" min="0" placeholder="e.g. 1" value="{{ $s['pcie_x16_slots'] ?? '' }}">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Has Onboard Wi-Fi</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[wifi]">
+                                            <option value="">Select</option>
+                                            <option value="Yes" {{ ($s['wifi'] ?? '') === 'Yes' ? 'selected' : '' }}>Yes</option>
+                                            <option value="No" {{ ($s['wifi'] ?? '') === 'No' ? 'selected' : '' }}>No</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <!-- RAM -->
+                        <div id="spec-RAM" class="spec-group" style="{{ $product->type === 'RAM' ? 'display:block' : 'display:none' }}">
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                <fieldset>
+                                    <div class="body-title mb-10">RAM Type</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[ram_type]">
+                                            <option value="">Select Type</option>
+                                            @foreach(['DDR4','DDR5'] as $v)
+                                            <option value="{{ $v }}" {{ ($s['ram_type'] ?? '') === $v ? 'selected' : '' }}>{{ $v }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Speed (MHz)</div>
+                                    <input type="number" name="specs[speed_mhz]" placeholder="e.g. 3200" value="{{ $s['speed_mhz'] ?? '' }}">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Capacity per Stick (GB)</div>
+                                    <input type="number" name="specs[capacity_gb]" placeholder="e.g. 16" value="{{ $s['capacity_gb'] ?? '' }}">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Number of Sticks</div>
+                                    <input type="number" name="specs[sticks_count]" min="1" max="4" placeholder="e.g. 2" value="{{ $s['sticks_count'] ?? '' }}">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Power Consumption (Watts)</div>
+                                    <input type="number" name="specs[power_consumption]" min="1" placeholder="e.g. 5" value="{{ $s['power_consumption'] ?? '' }}">
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <!-- GRAPHIC CARDS -->
+                        <div id="spec-GRAPHIC_CARDS" class="spec-group" style="{{ $product->type === 'GRAPHIC CARDS' ? 'display:block' : 'display:none' }}">
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                <fieldset>
+                                    <div class="body-title mb-10">VRAM (GB)</div>
+                                    <input type="number" name="specs[vram_gb]" placeholder="e.g. 8" value="{{ $s['vram_gb'] ?? '' }}">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Power Consumption / TDP (Watts)</div>
+                                    <input type="number" name="specs[power_consumption]" placeholder="e.g. 200" value="{{ $s['power_consumption'] ?? '' }}">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Power Connector</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[power_connector]">
+                                            <option value="">Select</option>
+                                            @foreach(['No external','1x 8-pin','2x 8-pin','3x 8-pin','1x 16-pin'] as $v)
+                                            <option value="{{ $v }}" {{ ($s['power_connector'] ?? '') === $v ? 'selected' : '' }}>{{ $v }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">HDMI Ports</div>
+                                    <input type="number" name="specs[hdmi_ports]" min="0" placeholder="e.g. 1" value="{{ $s['hdmi_ports'] ?? '' }}">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">DisplayPort Ports</div>
+                                    <input type="number" name="specs[displayport_ports]" min="0" placeholder="e.g. 3" value="{{ $s['displayport_ports'] ?? '' }}">
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <!-- POWER SUPPLY -->
+                        <div id="spec-POWER_SUPPLY" class="spec-group" style="{{ $product->type === 'POWER SUPPLY' ? 'display:block' : 'display:none' }}">
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                <fieldset>
+                                    <div class="body-title mb-10">Wattage (W)</div>
+                                    <input type="number" name="specs[wattage_w]" placeholder="e.g. 750" value="{{ $s['wattage_w'] ?? '' }}">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Efficiency Rating</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[efficiency_rating]">
+                                            <option value="">Select Rating</option>
+                                            @foreach(['80+ White','80+ Bronze','80+ Silver','80+ Gold','80+ Platinum','80+ Titanium'] as $v)
+                                            <option value="{{ $v }}" {{ ($s['efficiency_rating'] ?? '') === $v ? 'selected' : '' }}>{{ $v }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Form Factor</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[psu_form_factor]">
+                                            <option value="">Select</option>
+                                            @foreach(['ATX','SFX','SFX-L'] as $v)
+                                            <option value="{{ $v }}" {{ ($s['psu_form_factor'] ?? '') === $v ? 'selected' : '' }}>{{ $v }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Modular</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[modular]">
+                                            <option value="">Select</option>
+                                            @foreach(['Non-Modular','Semi-Modular','Fully Modular'] as $v)
+                                            <option value="{{ $v }}" {{ ($s['modular'] ?? '') === $v ? 'selected' : '' }}>{{ $v }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <!-- STORAGE -->
+                        <div id="spec-STORAGE" class="spec-group" style="{{ in_array($product->type, ['SSD NVME','HARD DISK','STORAGE & NAS']) ? 'display:block' : 'display:none' }}">
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                <fieldset>
+                                    <div class="body-title mb-10">Storage Type</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[storage_type]">
+                                            <option value="">Select Type</option>
+                                            @foreach(['NVMe PCIe 4.0','NVMe PCIe 3.0','SATA SSD','HDD 7200 RPM','HDD 5400 RPM','NAS Drive'] as $v)
+                                            <option value="{{ $v }}" {{ ($s['storage_type'] ?? '') === $v ? 'selected' : '' }}>{{ $v }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Capacity</div>
+                                    <input type="text" name="specs[capacity]" placeholder="e.g. 1TB, 500GB" value="{{ $s['capacity'] ?? '' }}">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Interface</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[interface]">
+                                            <option value="">Select</option>
+                                            @foreach(['M.2 NVMe','M.2 SATA','2.5 SATA','3.5 SATA'] as $v)
+                                            <option value="{{ $v }}" {{ ($s['interface'] ?? '') === $v ? 'selected' : '' }}>{{ $v }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Power Consumption (Watts)</div>
+                                    <input type="number" name="specs[power_consumption]" placeholder="e.g. 5" value="{{ $s['power_consumption'] ?? '' }}">
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <!-- CASINGS -->
+                        <div id="spec-CASINGS" class="spec-group" style="{{ $product->type === 'CASINGS' ? 'display:block' : 'display:none' }}">
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                <fieldset>
+                                    <div class="body-title mb-10">Supported Motherboard Form Factor</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[form_factor_support]">
+                                            <option value="">Select</option>
+                                            @foreach(['Mini-ITX'=>'Mini-ITX only','mATX'=>'mATX & Mini-ITX','ATX'=>'ATX, mATX & Mini-ITX','E-ATX'=>'E-ATX, ATX, mATX & Mini-ITX'] as $v=>$l)
+                                            <option value="{{ $v }}" {{ ($s['form_factor_support'] ?? '') === $v ? 'selected' : '' }}>{{ $l }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Drive Bays</div>
+                                    <input type="text" name="specs[drive_bays]" placeholder="e.g. 2x 3.5, 2x 2.5" value="{{ $s['drive_bays'] ?? '' }}">
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <!-- COOLING & LIGHTING / FANS -->
+                        <div id="spec-COOLING" class="spec-group" style="{{ in_array($product->type, ['COOLING & LIGHTING','FANS']) ? 'display:block' : 'display:none' }}">
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                <fieldset>
+                                    <div class="body-title mb-10">Cooler Type</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[cooler_type]">
+                                            <option value="">Select Type</option>
+                                            @foreach(['Air Tower','Low-Profile Air','AIO 120mm','AIO 240mm','AIO 280mm','AIO 360mm','Case Fan'] as $v)
+                                            <option value="{{ $v }}" {{ ($s['cooler_type'] ?? '') === $v ? 'selected' : '' }}>{{ $v }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Socket Compatibility (comma separated)</div>
+                                    <input type="text" name="specs[socket_compatibility]" placeholder="e.g. LGA1700, AM5, AM4" value="{{ $s['socket_compatibility'] ?? '' }}">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Max TDP Support (Watts)</div>
+                                    <input type="number" name="specs[max_tdp_support]" placeholder="e.g. 250" value="{{ $s['max_tdp_support'] ?? '' }}">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Fan Count</div>
+                                    <input type="number" name="specs[fan_count]" min="1" placeholder="e.g. 3" value="{{ $s['fan_count'] ?? '' }}">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Power Consumption (Watts)</div>
+                                    <input type="number" name="specs[power_consumption]" placeholder="e.g. 10" value="{{ $s['power_consumption'] ?? '' }}">
+                                </fieldset>
+                            </div>
+                        </div>
+
+                    </div><!-- end pc-specs-section -->
+
                     <!-- Tags -->
                     <fieldset class="tags">
                         <div class="body-title">Select Tags Type</div>
@@ -370,7 +711,6 @@
         var dealStartField = document.getElementById("deal_start_field");
         var dealEndField = document.getElementById("deal_end_field");
 
-        // Show or hide Deal Start and End Date fields based on the selected tag
         if (selectedTag === "DEAL OF THE DAYS") {
             dealStartField.style.display = "block";
             dealEndField.style.display = "block";
@@ -380,6 +720,35 @@
         }
     }
 
-    // Ensure the function runs on page load if a tag is pre-selected
     window.onload = toggleDealDates;
+
+    const specGroupMap = {
+        'PROCESSOR':    'PROCESSOR',
+        'MOTHERBOARD':  'MOTHERBOARD',
+        'RAM':          'RAM',
+        'GRAPHIC CARDS':'GRAPHIC_CARDS',
+        'POWER SUPPLY': 'POWER_SUPPLY',
+        'SSD NVME':     'STORAGE',
+        'HARD DISK':    'STORAGE',
+        'STORAGE & NAS':'STORAGE',
+        'CASINGS':      'CASINGS',
+        'COOLING & LIGHTING': 'COOLING',
+        'FANS':         'COOLING',
+    };
+
+    document.getElementById('type').addEventListener('change', function() {
+        const selectedType = this.value;
+        const specSection = document.getElementById('pc-specs-section');
+        const groupId = specGroupMap[selectedType];
+
+        document.querySelectorAll('.spec-group').forEach(el => el.style.display = 'none');
+
+        if (groupId) {
+            specSection.style.display = 'block';
+            const group = document.getElementById('spec-' + groupId);
+            if (group) group.style.display = 'block';
+        } else {
+            specSection.style.display = 'none';
+        }
+    });
 </script>

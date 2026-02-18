@@ -479,7 +479,11 @@
                                         data-type="{{ $product['type'] }}"
                                         data-name="{{ $product['name'] }}"
                                         data-price="{{ $product['dis_price'] }}"
-                                        data-image="{{ $product['image'] }}">
+                                        data-image="{{ $product['image'] }}"
+                                        data-features="{{ json_encode($product['features']) }}">
+                                    @if(isset($product['features']['power_consumption']))
+                                    <span style="display:block; font-size:9px; color:#9ca3af; margin-top:2px;">{{ $product['features']['power_consumption'] }}W TDP</span>
+                                    @endif
                                     Add to Build
                                 </button>
                             </div>
@@ -637,7 +641,24 @@
                 </div>
 
                 
-                <div class="mt-4 pt-4 border-t border-slate-200">
+                <!-- Power Consumption Panel -->
+                <div class="mt-4 pt-3 border-t border-slate-200">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-slate-600 text-xs font-semibold flex items-center gap-1">
+                            <i class="fas fa-bolt text-yellow-500"></i> Power Estimate
+                        </span>
+                        <span class="text-xs font-bold text-slate-800" id="total-power-draw">0W</span>
+                    </div>
+                    <div class="w-full bg-slate-200 rounded-full h-1.5 mb-1">
+                        <div id="power-bar" class="h-1.5 rounded-full transition-all duration-300 bg-green-500" style="width:0%"></div>
+                    </div>
+                    <div id="psu-recommendation" class="text-xs text-slate-500 mb-2" style="display:none;">
+                        Recommended PSU: <span id="psu-rec-wattage" class="font-bold text-slate-700"></span>
+                    </div>
+                    <div id="compatibility-warnings" class="space-y-1 mb-2"></div>
+                </div>
+
+                <div class="mt-2 pt-2 border-t border-slate-200">
                     <div class="flex justify-between mb-2">
                         <span class="text-slate-600 text-sm">Subtotal</span>
                         <span class="font-medium text-sm" id="build-subtotal">Rs. 0</span>
@@ -719,14 +740,17 @@
                 const productId = this.getAttribute('data-id');
                 const productType = this.getAttribute('data-type');
                 const productName = this.getAttribute('data-name');
-                const productPrice = parseFloat(this.getAttribute('data-price')); // Ensure price is a number
+                const productPrice = parseFloat(this.getAttribute('data-price'));
                 const productImage = this.getAttribute('data-image');
-                
+                let productFeatures = {};
+                try { productFeatures = JSON.parse(this.getAttribute('data-features') || '{}'); } catch(e) {}
+
                 addToBuild(productType, {
                     id: productId,
                     name: productName,
-                    dis_price: productPrice, // Store as number
-                    image: productImage
+                    dis_price: productPrice,
+                    image: productImage,
+                    features: productFeatures
                 });
             });
         });
@@ -768,7 +792,6 @@
     
     // Add a product to the build
     function addToBuild(type, product) {
-        // Validate product object
         if (!product || !product.dis_price || !product.name || !product.id || !product.image) {
             console.error('Invalid product object:', product);
             alert('Error: Invalid product data. Please try again.');
@@ -827,11 +850,12 @@
         componentItem.querySelector('.remove-component').addEventListener('click', function() {
             removeFromBuild(type);
         });
-        
+
         // Update the build summary
         updateBuildSummary();
         updateProgressBar();
-        
+        updatePowerAndCompatibility();
+
         // Change border color to indicate selected
         componentItem.classList.remove('border-dashed', 'border-slate-300');
         componentItem.classList.add('border-solid', 'border-gray-400', 'bg-gray-100');
@@ -854,6 +878,7 @@
             componentItem.remove();
             updateBuildSummary();
             updateProgressBar();
+            updatePowerAndCompatibility();
             return;
         }
         
@@ -889,7 +914,8 @@
         // Update the build summary
         updateBuildSummary();
         updateProgressBar();
-        
+        updatePowerAndCompatibility();
+
         // Reset border style
         componentItem.classList.add('border-dashed', 'border-slate-300');
         componentItem.classList.remove('border-solid', 'border-blue-200', 'bg-blue-50');
@@ -991,6 +1017,157 @@
         document.getElementById('build-total').textContent = `Rs. ${(subtotal + 500).toLocaleString()}`;
     }
     
+    // ─── Power & Compatibility ─────────────────────────────────────────────────
+
+    // Standard PSU wattages to recommend
+    const psuSteps = [400, 450, 500, 550, 600, 650, 750, 850, 1000, 1200, 1600];
+
+    function recommendedPSU(totalWatts) {
+        const needed = Math.ceil(totalWatts * 1.3); // 30% headroom
+        return psuSteps.find(w => w >= needed) || psuSteps[psuSteps.length - 1];
+    }
+
+    function updatePowerAndCompatibility() {
+        // ── Power Calculation ──────────────────────────────────────────────────
+        let totalPower = 20; // base system (motherboard, misc)
+        const powerTypes = ['PROCESSOR', 'MOTHERBOARD', 'RAM', 'GRAPHIC CARDS',
+                            'STORAGE & NAS', 'SSD NVME', 'HARD DISK',
+                            'COOLING & LIGHTING', 'FANS'];
+
+        for (const [type, product] of Object.entries(currentBuild)) {
+            if (product && product.features) {
+                const tdp = parseFloat(product.features.power_consumption || 0);
+                if (tdp > 0) totalPower += tdp;
+            }
+        }
+
+        document.getElementById('total-power-draw').textContent = totalPower + 'W';
+
+        // Power bar (cap visual at 1000W for display)
+        const pct = Math.min((totalPower / 1000) * 100, 100);
+        const bar = document.getElementById('power-bar');
+        bar.style.width = pct + '%';
+        bar.className = 'h-1.5 rounded-full transition-all duration-300 ' +
+            (pct > 80 ? 'bg-red-500' : pct > 50 ? 'bg-yellow-500' : 'bg-green-500');
+
+        // PSU recommendation
+        const psuRec = document.getElementById('psu-recommendation');
+        const psuWatt = document.getElementById('psu-rec-wattage');
+        if (totalPower > 20) {
+            const rec = recommendedPSU(totalPower);
+            psuWatt.textContent = rec + 'W';
+            psuRec.style.display = 'block';
+
+            // Warn if selected PSU is underpowered
+            const psu = currentBuild['POWER SUPPLY'];
+            if (psu && psu.features && psu.features.wattage_w) {
+                const selectedWatt = parseInt(psu.features.wattage_w);
+                if (selectedWatt < totalPower * 1.2) {
+                    psuWatt.style.color = '#ef4444';
+                    psuWatt.textContent = rec + 'W ⚠ Selected PSU may be underpowered!';
+                } else {
+                    psuWatt.style.color = '';
+                }
+            }
+        } else {
+            psuRec.style.display = 'none';
+        }
+
+        // ── Compatibility Checks ───────────────────────────────────────────────
+        const warnings = [];
+        const cpu = currentBuild['PROCESSOR'];
+        const mobo = currentBuild['MOTHERBOARD'];
+        const ram = currentBuild['RAM'];
+        const cas = currentBuild['CASINGS'];
+        const cool = currentBuild['COOLING & LIGHTING'];
+
+        // CPU ↔ Motherboard socket
+        if (cpu && mobo) {
+            const cpuSocket = (cpu.features || {}).socket_type;
+            const moboSocket = (mobo.features || {}).socket_type;
+            if (cpuSocket && moboSocket && cpuSocket !== moboSocket) {
+                warnings.push({
+                    color: '#ef4444',
+                    icon: '⚠',
+                    msg: `Socket mismatch: CPU is <b>${cpuSocket}</b> but Motherboard supports <b>${moboSocket}</b>`
+                });
+            }
+        }
+
+        // RAM ↔ Motherboard RAM type
+        if (ram && mobo) {
+            const ramType = (ram.features || {}).ram_type;
+            const moboRam = (mobo.features || {}).supported_ram_type;
+            if (ramType && moboRam && ramType !== moboRam) {
+                warnings.push({
+                    color: '#ef4444',
+                    icon: '⚠',
+                    msg: `RAM type mismatch: RAM is <b>${ramType}</b> but Motherboard supports <b>${moboRam}</b>`
+                });
+            }
+        }
+
+        // RAM ↔ CPU compatible RAM type
+        if (ram && cpu) {
+            const ramType = (ram.features || {}).ram_type;
+            const cpuRam = (cpu.features || {}).compatible_ram_type;
+            if (ramType && cpuRam && !cpuRam.includes(ramType)) {
+                warnings.push({
+                    color: '#f59e0b',
+                    icon: 'ℹ',
+                    msg: `RAM type <b>${ramType}</b> may not be compatible with this CPU (supports <b>${cpuRam}</b>)`
+                });
+            }
+        }
+
+        // Case ↔ Motherboard form factor
+        if (cas && mobo) {
+            const moboForm = (mobo.features || {}).form_factor;
+            const caseSupport = (cas.features || {}).form_factor_support;
+            if (moboForm && caseSupport) {
+                const formRank = { 'Mini-ITX': 1, 'mATX': 2, 'ATX': 3, 'E-ATX': 4 };
+                const caseRankMap = { 'Mini-ITX': 1, 'mATX': 2, 'ATX': 3, 'E-ATX': 4 };
+                if ((caseRankMap[caseSupport] || 0) < (formRank[moboForm] || 0)) {
+                    warnings.push({
+                        color: '#ef4444',
+                        icon: '⚠',
+                        msg: `Case incompatible: supports up to <b>${caseSupport}</b> but Motherboard is <b>${moboForm}</b>`
+                    });
+                }
+            }
+        }
+
+        // Cooler ↔ CPU socket
+        if (cool && cpu) {
+            const cpuSocket = (cpu.features || {}).socket_type;
+            const coolSockets = (cool.features || {}).socket_compatibility || '';
+            if (cpuSocket && coolSockets && !coolSockets.includes(cpuSocket)) {
+                warnings.push({
+                    color: '#f59e0b',
+                    icon: '⚠',
+                    msg: `Cooler may not support CPU socket <b>${cpuSocket}</b>. Check compatibility.`
+                });
+            }
+        }
+
+        // Render warnings
+        const warnContainer = document.getElementById('compatibility-warnings');
+        warnContainer.innerHTML = '';
+        warnings.forEach(w => {
+            const div = document.createElement('div');
+            div.style.cssText = `font-size:11px; padding:4px 8px; border-radius:6px; background:${w.color}15; color:${w.color}; border:1px solid ${w.color}40;`;
+            div.innerHTML = `${w.icon} ${w.msg}`;
+            warnContainer.appendChild(div);
+        });
+
+        if (warnings.length === 0 && (cpu || mobo || ram)) {
+            const ok = document.createElement('div');
+            ok.style.cssText = 'font-size:11px; padding:4px 8px; border-radius:6px; background:#10b98115; color:#10b981; border:1px solid #10b98140;';
+            ok.textContent = '✓ No compatibility issues detected';
+            warnContainer.appendChild(ok);
+        }
+    }
+
     // Reset the entire build
     function resetBuild() {
         if (confirm('Are you sure you want to reset your build? All selected components will be removed.')) {

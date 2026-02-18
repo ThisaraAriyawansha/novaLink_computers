@@ -355,7 +355,16 @@
 
                 <form method="GET" action="{{ route('manageProduct') }}" class="search-form">
                     <input type="text" name="search" value="{{ request('search') }}" class="search-input" placeholder="Search product name...">
+                    <select name="type" class="search-input" style="flex:0 0 200px; cursor:pointer;">
+                        <option value="">All Categories</option>
+                        @foreach($productTypes as $type)
+                            <option value="{{ $type }}" {{ request('type') === $type ? 'selected' : '' }}>{{ $type }}</option>
+                        @endforeach
+                    </select>
                     <button type="submit" class="search-button">Search</button>
+                    @if(request('search') || request('type'))
+                        <a href="{{ route('manageProduct') }}" class="search-button" style="background:#555; text-decoration:none; display:inline-flex; align-items:center;">Clear</a>
+                    @endif
                 </form>
 
 

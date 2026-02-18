@@ -126,6 +126,359 @@
                         </div>
                     </fieldset><br/>
 
+                    <!-- ===== PC COMPONENT SPECIFICATIONS (shown based on type) ===== -->
+                    <div id="pc-specs-section" style="display:none; border:1px solid #e2e8f0; border-radius:8px; padding:20px; background:#f8fafc; margin-bottom:10px;">
+                        <div style="font-family:'Orbitron',sans-serif; font-size:15px; font-weight:600; margin-bottom:16px; color:#1e293b;">
+                            PC Component Specifications
+                        </div>
+
+                        <!-- PROCESSOR -->
+                        <div id="spec-PROCESSOR" class="spec-group" style="display:none;">
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                <fieldset>
+                                    <div class="body-title mb-10">CPU Socket Type</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[socket_type]">
+                                            <option value="">Select Socket</option>
+                                            <option value="LGA1700">LGA1700 (Intel 12th/13th/14th Gen)</option>
+                                            <option value="LGA1851">LGA1851 (Intel Core Ultra 200)</option>
+                                            <option value="AM5">AM5 (AMD Ryzen 7000/9000)</option>
+                                            <option value="AM4">AM4 (AMD Ryzen 5000 & older)</option>
+                                            <option value="TR5">TR5 (AMD Threadripper)</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Compatible RAM Type</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[compatible_ram_type]">
+                                            <option value="">Select RAM Type</option>
+                                            <option value="DDR4">DDR4</option>
+                                            <option value="DDR5">DDR5</option>
+                                            <option value="DDR4/DDR5">DDR4 / DDR5</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Cores</div>
+                                    <input type="number" name="specs[cores]" min="1" placeholder="e.g. 8">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Threads</div>
+                                    <input type="number" name="specs[threads]" min="1" placeholder="e.g. 16">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Base Clock (GHz)</div>
+                                    <input type="number" step="0.1" name="specs[base_clock_ghz]" placeholder="e.g. 3.4">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Boost Clock (GHz)</div>
+                                    <input type="number" step="0.1" name="specs[boost_clock_ghz]" placeholder="e.g. 5.2">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Power Consumption / TDP (Watts)</div>
+                                    <input type="number" name="specs[power_consumption]" min="1" placeholder="e.g. 65">
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <!-- MOTHERBOARD -->
+                        <div id="spec-MOTHERBOARD" class="spec-group" style="display:none;">
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                <fieldset>
+                                    <div class="body-title mb-10">CPU Socket Type</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[socket_type]">
+                                            <option value="">Select Socket</option>
+                                            <option value="LGA1700">LGA1700 (Intel 12th/13th/14th Gen)</option>
+                                            <option value="LGA1851">LGA1851 (Intel Core Ultra 200)</option>
+                                            <option value="AM5">AM5 (AMD Ryzen 7000/9000)</option>
+                                            <option value="AM4">AM4 (AMD Ryzen 5000 & older)</option>
+                                            <option value="TR5">TR5 (AMD Threadripper)</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Form Factor</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[form_factor]">
+                                            <option value="">Select Form Factor</option>
+                                            <option value="ATX">ATX</option>
+                                            <option value="mATX">Micro-ATX (mATX)</option>
+                                            <option value="E-ATX">Extended ATX (E-ATX)</option>
+                                            <option value="Mini-ITX">Mini-ITX</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Supported RAM Type</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[supported_ram_type]">
+                                            <option value="">Select RAM Type</option>
+                                            <option value="DDR4">DDR4</option>
+                                            <option value="DDR5">DDR5</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">RAM Slots</div>
+                                    <input type="number" name="specs[ram_slots]" min="1" max="8" placeholder="e.g. 4">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Max RAM (GB)</div>
+                                    <input type="number" name="specs[max_ram_gb]" placeholder="e.g. 128">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Supported RAM Speed (MHz)</div>
+                                    <input type="text" name="specs[supported_ram_speed]" placeholder="e.g. 3200, 4800, 5600">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">M.2 NVMe Slots</div>
+                                    <input type="number" name="specs[m2_slots]" min="0" placeholder="e.g. 2">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">SATA Ports</div>
+                                    <input type="number" name="specs[sata_ports]" min="0" placeholder="e.g. 6">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">USB-A Ports (Rear)</div>
+                                    <input type="number" name="specs[usb_a_ports]" min="0" placeholder="e.g. 4">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">USB-C Ports (Rear)</div>
+                                    <input type="number" name="specs[usb_c_ports]" min="0" placeholder="e.g. 1">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">PCIe x16 Slots</div>
+                                    <input type="number" name="specs[pcie_x16_slots]" min="0" placeholder="e.g. 1">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Has Onboard Wi-Fi</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[wifi]">
+                                            <option value="">Select</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <!-- RAM -->
+                        <div id="spec-RAM" class="spec-group" style="display:none;">
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                <fieldset>
+                                    <div class="body-title mb-10">RAM Type</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[ram_type]">
+                                            <option value="">Select Type</option>
+                                            <option value="DDR4">DDR4</option>
+                                            <option value="DDR5">DDR5</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Speed (MHz)</div>
+                                    <input type="number" name="specs[speed_mhz]" placeholder="e.g. 3200">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Capacity per Stick (GB)</div>
+                                    <input type="number" name="specs[capacity_gb]" placeholder="e.g. 16">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Number of Sticks</div>
+                                    <input type="number" name="specs[sticks_count]" min="1" max="4" placeholder="e.g. 2">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Power Consumption (Watts)</div>
+                                    <input type="number" name="specs[power_consumption]" min="1" placeholder="e.g. 5">
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <!-- GRAPHIC CARDS -->
+                        <div id="spec-GRAPHIC_CARDS" class="spec-group" style="display:none;">
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                <fieldset>
+                                    <div class="body-title mb-10">VRAM (GB)</div>
+                                    <input type="number" name="specs[vram_gb]" placeholder="e.g. 8">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Power Consumption / TDP (Watts)</div>
+                                    <input type="number" name="specs[power_consumption]" placeholder="e.g. 200">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Power Connector</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[power_connector]">
+                                            <option value="">Select</option>
+                                            <option value="No external">No external power</option>
+                                            <option value="1x 8-pin">1x 8-pin</option>
+                                            <option value="2x 8-pin">2x 8-pin</option>
+                                            <option value="3x 8-pin">3x 8-pin</option>
+                                            <option value="1x 16-pin">1x 16-pin (PCIe 5.0)</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">HDMI Ports</div>
+                                    <input type="number" name="specs[hdmi_ports]" min="0" placeholder="e.g. 1">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">DisplayPort Ports</div>
+                                    <input type="number" name="specs[displayport_ports]" min="0" placeholder="e.g. 3">
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <!-- POWER SUPPLY -->
+                        <div id="spec-POWER_SUPPLY" class="spec-group" style="display:none;">
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                <fieldset>
+                                    <div class="body-title mb-10">Wattage (W)</div>
+                                    <input type="number" name="specs[wattage_w]" placeholder="e.g. 750">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Efficiency Rating</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[efficiency_rating]">
+                                            <option value="">Select Rating</option>
+                                            <option value="80+ White">80+ White</option>
+                                            <option value="80+ Bronze">80+ Bronze</option>
+                                            <option value="80+ Silver">80+ Silver</option>
+                                            <option value="80+ Gold">80+ Gold</option>
+                                            <option value="80+ Platinum">80+ Platinum</option>
+                                            <option value="80+ Titanium">80+ Titanium</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Form Factor</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[psu_form_factor]">
+                                            <option value="">Select</option>
+                                            <option value="ATX">ATX</option>
+                                            <option value="SFX">SFX</option>
+                                            <option value="SFX-L">SFX-L</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Modular</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[modular]">
+                                            <option value="">Select</option>
+                                            <option value="Non-Modular">Non-Modular</option>
+                                            <option value="Semi-Modular">Semi-Modular</option>
+                                            <option value="Fully Modular">Fully Modular</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <!-- STORAGE (SSD NVME, HARD DISK, STORAGE & NAS) -->
+                        <div id="spec-STORAGE" class="spec-group" style="display:none;">
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                <fieldset>
+                                    <div class="body-title mb-10">Storage Type</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[storage_type]">
+                                            <option value="">Select Type</option>
+                                            <option value="NVMe PCIe 4.0">NVMe PCIe 4.0</option>
+                                            <option value="NVMe PCIe 3.0">NVMe PCIe 3.0</option>
+                                            <option value="SATA SSD">SATA SSD</option>
+                                            <option value="HDD 7200 RPM">HDD 7200 RPM</option>
+                                            <option value="HDD 5400 RPM">HDD 5400 RPM</option>
+                                            <option value="NAS Drive">NAS Drive</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Capacity</div>
+                                    <input type="text" name="specs[capacity]" placeholder="e.g. 1TB, 500GB">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Interface</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[interface]">
+                                            <option value="">Select</option>
+                                            <option value="M.2 NVMe">M.2 NVMe</option>
+                                            <option value="M.2 SATA">M.2 SATA</option>
+                                            <option value="2.5 SATA">2.5" SATA</option>
+                                            <option value="3.5 SATA">3.5" SATA</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Power Consumption (Watts)</div>
+                                    <input type="number" name="specs[power_consumption]" placeholder="e.g. 5">
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <!-- CASINGS -->
+                        <div id="spec-CASINGS" class="spec-group" style="display:none;">
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                <fieldset>
+                                    <div class="body-title mb-10">Supported Motherboard Form Factor</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[form_factor_support]">
+                                            <option value="">Select</option>
+                                            <option value="Mini-ITX">Mini-ITX only</option>
+                                            <option value="mATX">mATX & Mini-ITX</option>
+                                            <option value="ATX">ATX, mATX & Mini-ITX</option>
+                                            <option value="E-ATX">E-ATX, ATX, mATX & Mini-ITX</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Drive Bays</div>
+                                    <input type="text" name="specs[drive_bays]" placeholder="e.g. 2x 3.5, 2x 2.5">
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <!-- COOLING & LIGHTING / FANS -->
+                        <div id="spec-COOLING" class="spec-group" style="display:none;">
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                <fieldset>
+                                    <div class="body-title mb-10">Cooler Type</div>
+                                    <div class="select flex-grow">
+                                        <select name="specs[cooler_type]">
+                                            <option value="">Select Type</option>
+                                            <option value="Air Tower">Air Tower</option>
+                                            <option value="Low-Profile Air">Low-Profile Air</option>
+                                            <option value="AIO 120mm">AIO 120mm</option>
+                                            <option value="AIO 240mm">AIO 240mm</option>
+                                            <option value="AIO 280mm">AIO 280mm</option>
+                                            <option value="AIO 360mm">AIO 360mm</option>
+                                            <option value="Case Fan">Case Fan</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Socket Compatibility (comma separated)</div>
+                                    <input type="text" name="specs[socket_compatibility]" placeholder="e.g. LGA1700, AM5, AM4">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Max TDP Support (Watts)</div>
+                                    <input type="number" name="specs[max_tdp_support]" placeholder="e.g. 250">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Fan Count</div>
+                                    <input type="number" name="specs[fan_count]" min="1" placeholder="e.g. 3">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="body-title mb-10">Power Consumption (Watts)</div>
+                                    <input type="number" name="specs[power_consumption]" placeholder="e.g. 10">
+                                </fieldset>
+                            </div>
+                        </div>
+
+                    </div><!-- end pc-specs-section -->
+
                     <fieldset class="tags">
                         <div class="body-title">Select Tags Type</div>
                         <div class="select flex-grow">
@@ -308,7 +661,6 @@
         var dealStartField = document.getElementById("deal_start_field");
         var dealEndField = document.getElementById("deal_end_field");
 
-        // Show the Deal Start and End Date fields only if 'DEAL OF THE DAYS' is selected
         if (selectedTag === "DEAL OF THE DAYS") {
             dealStartField.style.display = "block";
             dealEndField.style.display = "block";
@@ -317,4 +669,36 @@
             dealEndField.style.display = "none";
         }
     }
+
+    // PC Spec groups keyed by product type value
+    const specGroupMap = {
+        'PROCESSOR':    'PROCESSOR',
+        'MOTHERBOARD':  'MOTHERBOARD',
+        'RAM':          'RAM',
+        'GRAPHIC CARDS':'GRAPHIC_CARDS',
+        'POWER SUPPLY': 'POWER_SUPPLY',
+        'SSD NVME':     'STORAGE',
+        'HARD DISK':    'STORAGE',
+        'STORAGE & NAS':'STORAGE',
+        'CASINGS':      'CASINGS',
+        'COOLING & LIGHTING': 'COOLING',
+        'FANS':         'COOLING',
+    };
+
+    document.getElementById('type').addEventListener('change', function() {
+        const selectedType = this.value;
+        const specSection = document.getElementById('pc-specs-section');
+        const groupId = specGroupMap[selectedType];
+
+        // Hide all spec groups
+        document.querySelectorAll('.spec-group').forEach(el => el.style.display = 'none');
+
+        if (groupId) {
+            specSection.style.display = 'block';
+            const group = document.getElementById('spec-' + groupId);
+            if (group) group.style.display = 'block';
+        } else {
+            specSection.style.display = 'none';
+        }
+    });
 </script>
