@@ -385,7 +385,7 @@
         @if(isset($productFeatures) && $productFeatures->isNotEmpty())
             @foreach($productFeatures as $featureName => $values)
                 @php $accordionId = 'feat_' . Str::slug($featureName); @endphp
-                <div class="mb-2 border border-gray-200 rounded">
+                <div class="mb-2 ">
                     <!-- Accordion Header -->
                     <button type="button"
                         onclick="
