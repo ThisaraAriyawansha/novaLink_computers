@@ -92,6 +92,34 @@
                         </div>
                     </div>
 
+                    <div style="position: relative; display: inline-block;" onmouseover="showDropdown('site-dropdown')" onmouseleave="hideDropdown('site-dropdown')">
+                        <button style="display: flex; align-items: center; padding: 12px 16px; border-radius: 6px; color: #ccc; background: none; border: none; cursor: pointer; font-family: inherit; font-size: 14px; transition: all 0.3s ease;" 
+                                onmouseover="this.style.color='white'; this.style.backgroundColor='#333';" 
+                                onmouseout="this.style.color='#ccc'; this.style.backgroundColor='transparent';">
+                            <i class="fas fa-blog" style="margin-right: 8px;"></i>
+                            Manage Site
+                            <i class="fas fa-chevron-down" style="margin-left: 6px; font-size: 12px;"></i>
+                        </button>
+                        <div id="site-dropdown" style="position: absolute; left: 0; top: 100%; margin-top: 5px; width: 180px; background-color: #2a2a2a; border-radius: 8px; box-shadow: 0 8px 25px rgba(0,0,0,0.4); opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease;">
+                            <a href="{{ route('manageCustomer') }}" style="display: block; padding: 12px 16px; color: #ccc; text-decoration: none; border-radius: 8px 8px 0 0; transition: all 0.2s ease;" 
+                               onmouseover="this.style.color='white'; this.style.backgroundColor='#444';" 
+                               onmouseout="this.style.color='#ccc'; this.style.backgroundColor='transparent';">
+                                <i class="fas fa-users" style="margin-right: 8px;"></i>Manage Customer
+                            </a>
+                            <a href="{{ route('admin.shops.index') }}" style="display: block; padding: 12px 16px; color: #ccc; text-decoration: none; border-radius: 0 0 8px 8px; transition: all 0.2s ease;" 
+                               onmouseover="this.style.color='white'; this.style.backgroundColor='#444';" 
+                               onmouseout="this.style.color='#ccc'; this.style.backgroundColor='transparent';">
+                                <i class="fas fa-store" style="margin-right: 8px;"></i>Manage Shops
+                            </a>
+                            <a href="{{ route('manageProfile') }}" style="display: block; padding: 12px 16px; color: #ccc; text-decoration: none; border-radius: 0 0 8px 8px; transition: all 0.2s ease;" 
+                               onmouseover="this.style.color='white'; this.style.backgroundColor='#444';" 
+                               onmouseout="this.style.color='#ccc'; this.style.backgroundColor='transparent';">
+                                <i class="fas fa-user-circle" style="margin-right: 8px;"></i>Manage Profile
+                            </a>
+                        </div>
+                    </div>
+
+                    <!--
                     <a href="{{ route('manageCustomer') }}" style="display: flex; align-items: center; padding: 12px 16px; border-radius: 6px; color: #ccc; text-decoration: none; transition: all 0.3s ease;"
                        onmouseover="this.style.color='white'; this.style.backgroundColor='#333'; this.style.transform='translateY(-2px)';"
                        onmouseout="this.style.color='#ccc'; this.style.backgroundColor='transparent'; this.style.transform='translateY(0)';">
@@ -99,12 +127,15 @@
                         Manage Customer
                     </a>
 
+
                     <a href="{{ route('admin.shops.index') }}" style="display: flex; align-items: center; padding: 12px 16px; border-radius: 6px; color: #ccc; text-decoration: none; transition: all 0.3s ease;"
                        onmouseover="this.style.color='white'; this.style.backgroundColor='#333'; this.style.transform='translateY(-2px)';"
                        onmouseout="this.style.color='#ccc'; this.style.backgroundColor='transparent'; this.style.transform='translateY(0)';">
                         <i class="fas fa-store" style="margin-right: 8px;"></i>
                         Shops
                     </a>
+                     -->
+
                     
                     <a href="{{ route('viewOrder') }}" style="display: flex; align-items: center; padding: 12px 16px; border-radius: 6px; color: #ccc; text-decoration: none; transition: all 0.3s ease;" 
                        onmouseover="this.style.color='white'; this.style.backgroundColor='#333'; this.style.transform='translateY(-2px)';" 
@@ -143,12 +174,14 @@
                         Manage Review
                     </a>
 
+                    <!--
                     <a href="{{ route('manageProfile') }}" style="display: flex; align-items: center; padding: 12px 16px; border-radius: 6px; color: #ccc; text-decoration: none; transition: all 0.3s ease;" 
                        onmouseover="this.style.color='white'; this.style.backgroundColor='#333'; this.style.transform='translateY(-2px)';" 
                        onmouseout="this.style.color='#ccc'; this.style.backgroundColor='transparent'; this.style.transform='translateY(0)';">
                         <i class="fas fa-user-circle" style="margin-right: 8px;"></i>
                         Manage Profile
                     </a>
+                    -->
 
                     <a href="{{ route('logoutAdmin') }}" style="display: flex; align-items: center; padding: 12px 16px; border-radius: 6px; color: #ff6b6b; text-decoration: none; transition: all 0.3s ease;" 
                        onmouseover="this.style.color='#ff5252'; this.style.backgroundColor='rgba(255,107,107,0.1)'; this.style.transform='translateY(-2px)';" 
@@ -217,6 +250,8 @@
                     Manage Product
                 </a>
             </div>
+
+            
 
             <a href="{{ route('manageCustomer') }}" style="display: flex; align-items: center; padding: 15px 0; color: #ccc; text-decoration: none; border-bottom: 1px solid #333; transition: color 0.2s ease;"
                onmouseover="this.style.color='white';" onmouseout="this.style.color='#ccc';">
