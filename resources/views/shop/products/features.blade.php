@@ -39,7 +39,7 @@
 .table-responsive { overflow-x:auto; margin:0 -20px; padding:0 20px; width:calc(100% + 40px); }
 @media(min-width:768px) { .table-responsive { margin:0; padding:0; width:100%; } }
 
-.shop-table { width:100%; border-collapse:collapse; font-size:13px; min-width:600px; }
+.shop-table { width:100%; border-collapse:collapse; font-size:13px; min-width:600px;border:none}
 @media(min-width:768px) { .shop-table { font-size:14px; min-width:0; } }
 
 .shop-table th { background:#f5f5f5; color:#000; font-weight:600; padding:12px 10px; text-align:left; border-bottom:2px solid #ccc; white-space:nowrap; }
