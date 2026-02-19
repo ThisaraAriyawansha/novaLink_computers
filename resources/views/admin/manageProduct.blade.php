@@ -377,6 +377,7 @@
                     <li><div class="body-title">Type</div></li>
                     <li><div class="body-title">Brand</div></li>
                     <li><div class="body-title">QTY</div></li>
+                    <li><div class="body-title">shop</div></li>
                     <li><div class="body-title">Status</div></li>
                     <li><div class="body-title">Action</div></li>
                 </ul>
@@ -400,6 +401,7 @@
 
             <div class="body-text flex-grow">{{ $item->qty }}</div>
 
+            <div class="body-text flex-grow">{{ $item->owner?->shop?->shop_name ?? '—' }}</div>
 
             <!-- Product Status -->
             <div class="body-text flex-grow">
