@@ -174,6 +174,11 @@
         color: #166534;
     }
 
+    .status-dropdown { padding:0.45rem 0.75rem; border:1.5px solid #d1d5db; border-radius:0.375rem; font-size:1rem; color:#374151; background:#fff; cursor:pointer; }
+    .btn-update-status { padding:0.45rem 1.1rem; background:#000; color:#fff; border:none; border-radius:0.375rem; font-size:1rem; font-weight:600; cursor:pointer; }
+    .btn-update-status:hover { background:#333; }
+    .shop-order-badge { padding:3px 10px; border-radius:12px; font-size:12px; font-weight:600; display:inline-block; }
+
     /* Responsive Adjustments */
     @media (max-width: 768px) {
         body {
@@ -264,7 +269,21 @@
                     </li>
                     <li class="detail-item">
                         <span class="detail-label">Payment Status</span>
-                        <span class="detail-value status-badge status-paid">{{ $payment->paymentStatus->status_name }}</span>
+                        @if(session('success'))
+                            <div style="color:#166534;font-size:0.95rem;margin-bottom:6px;">{{ session('success') }}</div>
+                        @endif
+                        <form method="POST" action="{{ route('order.updatePaymentStatus', $payment->id) }}" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:6px;">
+                            @csrf
+                            @method('PATCH')
+                            <select name="payment_status_id" class="status-dropdown">
+                                @foreach($statuses as $status)
+                                    <option value="{{ $status->id }}" {{ $payment->payment_status_id == $status->id ? 'selected' : '' }}>
+                                        {{ $status->status_name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <button type="submit" class="btn-update-status">Update</button>
+                        </form>
                     </li>
                 </ul>
             </div>
@@ -278,14 +297,24 @@
                             <th>Product</th>
                             <th>Quantity</th>
                             <th>Price</th>
+                            <th>Shop Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($payment->orders as $order)
+                            @php
+                                $statusKey = $order->shop_order_status ?? 'pending';
+                                $statusInfo = \App\Models\Order::STATUSES[$statusKey] ?? ['label' => ucfirst($statusKey), 'color' => '#555', 'bg' => '#eee'];
+                            @endphp
                             <tr>
                                 <td>{{ $order->product->name }}</td>
                                 <td>{{ $order->qty }}</td>
                                 <td>Rs.{{ number_format($order->product->discounted_price, 2) }}</td>
+                                <td>
+                                    <span class="shop-order-badge" style="background:{{ $statusInfo['bg'] }};color:{{ $statusInfo['color'] }};">
+                                        {{ $statusInfo['label'] }}
+                                    </span>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

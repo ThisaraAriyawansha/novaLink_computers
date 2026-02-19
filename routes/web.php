@@ -163,6 +163,7 @@ Route::get('admin/manageCustomer', [CustomerController::class, 'manageCustomer']
 Route::get('admin/viewOrder', [OrderController::class, 'viewOrder'])->name('viewOrder');
 
 Route::get('/order/view/{id}', [OrderController::class, 'viewOrderDetails'])->name('order.view');
+Route::patch('/order/{id}/payment-status', [OrderController::class, 'updatePaymentStatus'])->name('order.updatePaymentStatus');
 
 
 //Customer login

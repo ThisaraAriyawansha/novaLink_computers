@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Payment;
+use App\Models\PaymentStatus;
 
 
 class OrderController extends Controller
@@ -56,13 +57,26 @@ class OrderController extends Controller
 
     public function viewOrderDetails($id)
     {
-        // Fetch the payment with its related orders, customer, and payment status
         $payment = Payment::with(['customer', 'paymentStatus', 'orders.product'])
             ->findOrFail($id);
 
-        // Pass the payment data to the view
-        return view('admin.orderDetails', compact('payment'));
+        $statuses = PaymentStatus::all();
+
+        return view('admin.orderDetails', compact('payment', 'statuses'));
     }
 
-    
+    public function updatePaymentStatus(Request $request, $id)
+    {
+        $request->validate([
+            'payment_status_id' => 'required|exists:payment_statuses,id',
+        ]);
+
+        $payment = Payment::findOrFail($id);
+        $payment->payment_status_id = $request->payment_status_id;
+        $payment->save();
+
+        return back()->with('success', 'Payment status updated successfully.');
+    }
+
+
 }
