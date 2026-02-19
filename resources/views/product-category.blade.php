@@ -328,82 +328,101 @@
 
                 <!--filter controls-->
             <form class="bg-gray-10 p-2 rounded-md lg:w-1/5" method="GET" action="{{ route('product.category') }}">
-                <!-- Preserve existing filter and sort parameters -->
-                <input type="hidden" name="filter" value="<?php echo htmlspecialchars($_GET['filter'] ?? 'ALL'); ?>">
-                <input type="hidden" name="sort" value="<?php echo htmlspecialchars($_GET['sort'] ?? ''); ?>">
-                <input type="hidden" name="brand" value="<?php echo htmlspecialchars($_GET['brand'] ?? ''); ?>">
+    <!-- Preserve existing filter and sort parameters -->
+    <input type="hidden" name="filter" value="<?php echo htmlspecialchars($_GET['filter'] ?? 'ALL'); ?>">
+    <input type="hidden" name="sort" value="<?php echo htmlspecialchars($_GET['sort'] ?? ''); ?>">
+    <input type="hidden" name="brand" value="<?php echo htmlspecialchars($_GET['brand'] ?? ''); ?>">
 
-                <!-- Toggle Button -->
-                <button type="button" onclick="document.getElementById('expandable').classList.toggle('h-8'); document.getElementById('expandable').classList.toggle('h-fit');" class="lg:hidden absolute right-4 top-2 p-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
-                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
-                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
-                    </svg>
-                </button>
+    <!-- Toggle Button -->
+    <button type="button" onclick="document.getElementById('expandable').classList.toggle('h-8'); document.getElementById('expandable').classList.toggle('h-fit');" class="lg:hidden absolute right-4 top-2 p-1">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
+            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
+        </svg>
+    </button>
 
-                <div id="expandable" class="h-fit transition-[height] duration-300 ease-in-out overflow-hidden">
-                    <h3 class="text-base font-medium mb-2 text-black" style="font-family: 'Orbitron', sans-serif;">Filters</h3>
+    <div id="expandable" class="h-fit transition-[height] duration-300 ease-in-out overflow-hidden">
+        <h3 class="text-base font-medium mb-2 text-black" style="font-family: 'Orbitron', sans-serif;">Filters</h3>
 
-                    <!-- Price Range Filter -->
-                    <div class="mb-3">
-                        <h5 class="text-sm font-medium mb-1 text-black" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Price Range</h5>
-                        <div class="flex flex-col space-y-1">
-                            <span class="text-xs text-black" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Min: Rs. <span id="minPrice" style="font-family: 'Poppins', sans-serif;"><?php echo htmlspecialchars($_GET['price_min'] ?? '0'); ?></span></span>
-                            <input type="range" name="price_min" min="0" max="2000000" step="1000" value="<?php echo htmlspecialchars($_GET['price_min'] ?? '0'); ?>" class="w-full" oninput="document.getElementById('minPrice').textContent = this.value">
-                            <span class="text-xs text-black" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Max: Rs. <span id="maxPrice" style="font-family: 'Poppins', sans-serif;"><?php echo htmlspecialchars($_GET['price_max'] ?? '2000000'); ?></span></span>
-                            <input type="range" name="price_max" min="0" max="2000000" step="1000" value="<?php echo htmlspecialchars($_GET['price_max'] ?? '2000000'); ?>" class="w-full" style="background-color: #000000;" oninput="document.getElementById('maxPrice').textContent = this.value">
-                        </div>
-                    </div>
+        <!-- Price Range Filter -->
+        <div class="mb-3">
+            <h5 class="text-sm font-medium mb-1 text-black" style="font-family: 'Inter', sans-serif;">Price Range</h5>
+            <div class="flex flex-col space-y-1">
+                <span class="text-xs text-black">Min: Rs. <span id="minPrice"><?php echo htmlspecialchars($_GET['price_min'] ?? '0'); ?></span></span>
+                <input type="range" name="price_min" min="0" max="2000000" step="1000" value="<?php echo htmlspecialchars($_GET['price_min'] ?? '0'); ?>" class="w-full" oninput="document.getElementById('minPrice').textContent = this.value">
+                <span class="text-xs text-black">Max: Rs. <span id="maxPrice"><?php echo htmlspecialchars($_GET['price_max'] ?? '2000000'); ?></span></span>
+                <input type="range" name="price_max" min="0" max="2000000" step="1000" value="<?php echo htmlspecialchars($_GET['price_max'] ?? '2000000'); ?>" class="w-full" style="accent-color:#000;" oninput="document.getElementById('maxPrice').textContent = this.value">
+            </div>
+        </div>
 
-                    <!-- Warranty Filter -->
-                    <div class="mb-3">
-                        <h5 class="text-sm font-medium mb-1 text-black" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Warranty</h5>
-                        <div class="">
-                            @foreach(['all' => 'All', '1 year Warranty' => '1 Year', '2 year Warranty' => '2 Year', '3 year Warranty' => '3 Year', '1 months warranty' => '1 Month', '3 months warranty' => '3 Month', '6 months warranty' => '6 Month'] as $value => $label)
-                                <label class="flex items-center space-x-1">
-                                    <input type="radio" name="warranty" value="{{ $value }}" {{ ($warranty ?? 'all') === $value ? 'checked' : '' }} style="width: 12px; height: 12px; accent-color: #000000; cursor: pointer;">
-                                    <span class="text-xs text-black" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">{{ $label }}</span>
-                                </label>
-                            @endforeach
-                        </div>
-                    </div>
+        <!-- Warranty Filter -->
+        <div class="mb-3">
+            <h5 class="text-sm font-medium mb-1 text-black" style="font-family: 'Inter', sans-serif;">Warranty</h5>
+            <div class="grid grid-cols-2 gap-x-2 gap-y-1">
+                @foreach(['all' => 'All', '1 year Warranty' => '1 Year', '2 year Warranty' => '2 Year', '3 year Warranty' => '3 Year', '1 months warranty' => '1 Month', '3 months warranty' => '3 Month', '6 months warranty' => '6 Month'] as $value => $label)
+                    <label class="flex items-center space-x-1">
+                        <input type="radio" name="warranty" value="{{ $value }}" {{ ($warranty ?? 'all') === $value ? 'checked' : '' }} style="width: 12px; height: 12px; accent-color: #000; cursor: pointer;">
+                        <span class="text-xs text-black">{{ $label }}</span>
+                    </label>
+                @endforeach
+            </div>
+        </div>
 
-                    <!-- Stock Status Filter -->
-                    <div class="mb-3">
-                        <h5 class="text-sm font-medium mb-1 text-black" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">Stock Status</h5>
-                        <div class="space-y-1">
-                            @foreach(['ALL' => 'All', 'In Stock' => 'In Stock', 'Out of Stock' => 'Out of Stock', 'Used' => 'Used'] as $value => $label)
-                                <label class="flex items-center space-x-1">
-                                    <input type="radio" name="stock" value="{{ $value }}" {{ ($stock ?? 'ALL') === $value ? 'checked' : '' }} style="width: 12px; height: 12px; accent-color: #000000; cursor: pointer;">
-                                    <span class="text-xs text-black" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">{{ $label }}</span>
-                                </label>
-                            @endforeach
-                        </div>
-                    </div>
+        <!-- Stock Status Filter -->
+        <div class="mb-3">
+            <h5 class="text-sm font-medium mb-1 text-black" style="font-family: 'Inter', sans-serif;">Stock Status</h5>
+            <div class="grid grid-cols-2 gap-x-2 gap-y-1">
+                @foreach(['ALL' => 'All', 'In Stock' => 'In Stock', 'Out of Stock' => 'Out of Stock', 'Used' => 'Used'] as $value => $label)
+                    <label class="flex items-center space-x-1">
+                        <input type="radio" name="stock" value="{{ $value }}" {{ ($stock ?? 'ALL') === $value ? 'checked' : '' }} style="width: 12px; height: 12px; accent-color: #000; cursor: pointer;">
+                        <span class="text-xs text-black">{{ $label }}</span>
+                    </label>
+                @endforeach
+            </div>
+        </div>
 
-                    <!-- Dynamic Product Features Filter -->
-                    @if(isset($productFeatures) && $productFeatures->isNotEmpty())
-                        @foreach($productFeatures as $featureName => $values)
-                            <div class="mb-3">
-                                <h5 class="text-sm font-medium mb-1 text-black" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">{{ ucwords(str_replace('_', ' ', $featureName)) }}</h5>
-                                <div class="space-y-1 flex flex-col">
-                                    @foreach($values as $value)
-                                        <label class="flex items-center space-x-1">
-                                            <input type="checkbox" name="features[{{ $featureName }}][]" value="{{ $value }}" {{ in_array($value, request()->input("features.$featureName", [])) ? 'checked' : '' }} style="width: 12px; height: 12px; accent-color: black;">
-                                            <span class="text-xs text-black" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">{{ $value }}</span>
-                                        </label>
-                                    @endforeach
-                                </div>
-                            </div>
-                        @endforeach
-                    @endif
-
-                    <!-- Apply Filters Button -->
-                    <button type="submit" class="w-full py-1 px-3 rounded-md text-xs" style="background-color: #000000; color: #ffffff; font-family: 'Orbitron', sans-serif;">
-                        Apply
+        <!-- Dynamic Product Features — Collapsible Accordions -->
+        @if(isset($productFeatures) && $productFeatures->isNotEmpty())
+            @foreach($productFeatures as $featureName => $values)
+                @php $accordionId = 'feat_' . Str::slug($featureName); @endphp
+                <div class="mb-2 border border-gray-200 rounded">
+                    <!-- Accordion Header -->
+                    <button type="button"
+                        onclick="
+                            var p = document.getElementById('{{ $accordionId }}');
+                            var arrow = document.getElementById('arr_{{ $accordionId }}');
+                            p.classList.toggle('hidden');
+                            arrow.classList.toggle('rotate-180');
+                        "
+                        class="w-full flex items-center justify-between px-2 py-1 text-xs font-medium text-black bg-gray-50 hover:bg-gray-100 rounded"
+                        style="font-family: 'Inter', sans-serif;">
+                        <span>{{ ucwords(str_replace('_', ' ', $featureName)) }}</span>
+                        <svg id="arr_{{ $accordionId }}" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" viewBox="0 0 16 16" class="transition-transform duration-200 shrink-0">
+                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                        </svg>
                     </button>
+
+                    <!-- Accordion Body — scrollable if many values -->
+                    <div id="{{ $accordionId }}" class="hidden px-2 py-1 max-h-32 overflow-y-auto grid grid-cols-2 gap-x-2 gap-y-1">
+                        @foreach($values as $value)
+                            <label class="flex items-center space-x-1">
+                                <input type="checkbox" name="features[{{ $featureName }}][]" value="{{ $value }}"
+                                    {{ in_array($value, request()->input("features.$featureName", [])) ? 'checked' : '' }}
+                                    style="width: 11px; height: 11px; accent-color: black; cursor: pointer;">
+                                <span class="text-xs text-black truncate" title="{{ $value }}">{{ $value }}</span>
+                            </label>
+                        @endforeach
+                    </div>
                 </div>
-            </form>
+            @endforeach
+        @endif
+
+        <!-- Apply Filters Button -->
+        <button type="submit" class="w-full py-1 px-3 rounded-md text-xs mt-2" style="background-color: #000; color: #fff; font-family: 'Orbitron', sans-serif;">
+            Apply
+        </button>
+    </div>
+</form>
 
 
 
