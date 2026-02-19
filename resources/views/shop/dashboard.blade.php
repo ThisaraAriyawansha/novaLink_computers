@@ -4,15 +4,91 @@
 .shop-dash { max-width:1200px; margin:0 auto; padding:24px 16px 50px; }
 
 /* ── Hero ── */
-.shop-hero { position:relative; border-radius:14px; overflow:hidden; margin-bottom:24px; min-height:180px; background:#1a3a6b; }
-.shop-hero .cover { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.45; }
-.shop-hero-info { position:absolute; bottom:0; left:0; right:0; padding:20px 22px; background:linear-gradient(transparent,rgba(0,0,0,0.72)); display:flex; align-items:flex-end; gap:14px; flex-wrap:wrap; }
-.shop-logo-wrap { width:68px; height:68px; border-radius:10px; overflow:hidden; border:3px solid white; background:#fff; flex-shrink:0; }
-.shop-logo-wrap img { width:100%; height:100%; object-fit:cover; }
-.shop-logo-placeholder { width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#1a3a6b; color:white; font-size:26px; }
-.shop-hero-text { flex:1; min-width:0; }
-.shop-hero-text h2 { color:white; margin:0 0 3px; font-size:20px; font-weight:700; word-break:break-word; }
-.shop-hero-actions { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.shop-hero {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    min-height: 180px;
+    /* Removed background: #1a3a6b; */
+}
+
+.shop-hero .cover {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Removed opacity: 0.45; → image shows at full brightness */
+}
+
+.shop-hero-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 22px;
+    
+    /* Option 1: completely remove darkening gradient (recommended if you want pure image) */
+    background: transparent;
+    
+    /* Option 2: keep very light readable shadow if text is hard to read */
+    /* background: linear-gradient(transparent, rgba(0,0,0,0.45)); */
+    
+    display: flex;
+    align-items: flex-end;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.shop-logo-wrap {
+    width: 68px;
+    height: 68px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 3px solid white;
+    background: #fff;
+    flex-shrink: 0;
+}
+
+.shop-logo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.shop-logo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1a3a6b;
+    color: white;
+    font-size: 26px;
+}
+
+.shop-hero-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.shop-hero-text h2 {
+    color: white;
+    margin: 0 0 3px;
+    font-size: 20px;
+    font-weight: 700;
+    word-break: break-word;
+    /* Optional: add text shadow if text readability suffers on bright images */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+.shop-hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
 
 /* ── Stats ── */
 .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:24px; }
@@ -68,6 +144,53 @@
     .quick-links { grid-template-columns:repeat(2,1fr); gap:8px; }
     .quick-link-card { padding:11px 10px; gap:8px; }
     .quick-link-card > div:first-child { width:34px !important; height:34px !important; font-size:14px !important; }
+}
+
+/* ── Responsive: Mobile ── */
+@media (max-width: 480px) {
+    .shop-hero {
+        min-height: 200px; /* taller so stacked content fits */
+    }
+
+    .shop-hero-info {
+        position: relative;        /* take up natural space instead of overlapping */
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 12px 14px;
+        background: linear-gradient(transparent, rgba(0,0,0,0.6)); /* readable bg */
+    }
+
+    .shop-logo-wrap {
+        width: 52px;
+        height: 52px;
+    }
+
+    .shop-hero-text {
+        width: 100%;
+    }
+
+    .shop-hero-text h2 {
+        font-size: 15px;
+        white-space: normal;       /* allow wrapping on small screens */
+        word-break: break-word;
+    }
+
+    .shop-hero-text span {
+        font-size: 11px;
+    }
+
+    .shop-hero-actions {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .shop-hero-actions a {
+        font-size: 12px !important;
+        padding: 6px 10px !important;
+    }
 }
 </style>
 
@@ -155,8 +278,39 @@
     </div>
 
     {{-- ── Deal of the Day ── --}}
+    
+
+    <!-- Quick Links -->
+    <h4 style="margin-bottom:12px;color:#333;font-size:15px;font-weight:600;">Quick Actions</h4>
+    <div class="quick-links">
+        <a href="{{ route('shop.setup') }}" class="quick-link-card">
+            <div style="width:40px;height:40px;min-width:40px;background:#e3f2fd;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#1565c0;font-size:17px;"><i class="fas fa-store"></i></div>
+            <div><div style="font-weight:600;font-size:13px;">Shop Setup</div><div style="font-size:11px;color:#888;">Edit name, logo & contact</div></div>
+        </a>
+        <a href="{{ route('shop.products.create') }}" class="quick-link-card">
+            <div style="width:40px;height:40px;min-width:40px;background:#e8f5e9;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#2e7d32;font-size:17px;"><i class="fas fa-plus-circle"></i></div>
+            <div><div style="font-weight:600;font-size:13px;">Add Product</div><div style="font-size:11px;color:#888;">List a new product</div></div>
+        </a>
+        <a href="{{ route('shop.products.index') }}" class="quick-link-card">
+            <div style="width:40px;height:40px;min-width:40px;background:#fff3e0;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#e65100;font-size:17px;"><i class="fas fa-th-list"></i></div>
+            <div><div style="font-weight:600;font-size:13px;">My Products</div><div style="font-size:11px;color:#888;">Manage your listings</div></div>
+        </a>
+        <a href="{{ route('shop.orders.index') }}" class="quick-link-card">
+            <div style="width:40px;height:40px;min-width:40px;background:#fce4ec;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#c62828;font-size:17px;"><i class="fas fa-receipt"></i></div>
+            <div><div style="font-weight:600;font-size:13px;">Orders</div><div style="font-size:11px;color:#888;">View received orders</div></div>
+        </a>
+        <a href="{{ route('shop.reviews.index') }}" class="quick-link-card">
+            <div style="width:40px;height:40px;min-width:40px;background:#f3e8ff;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#7c3aed;font-size:17px;"><i class="fas fa-star"></i></div>
+            <div><div style="font-weight:600;font-size:13px;">Reviews</div><div style="font-size:11px;color:#888;">Manage reviews</div></div>
+        </a>
+        <a href="{{ route('shop.profile.edit') }}" class="quick-link-card">
+            <div style="width:40px;height:40px;min-width:40px;background:#f0fdf4;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#166534;font-size:17px;"><i class="fas fa-user-cog"></i></div>
+            <div><div style="font-weight:600;font-size:13px;">My Profile</div><div style="font-size:11px;color:#888;">Account & password</div></div>
+        </a>
+    </div>
+
     @if($dealProducts->count())
-    <div style="margin-bottom:24px;">
+    <div style="margin-top:24px;">
         <h4 style="margin-bottom:12px;color:#333;font-size:15px;font-weight:600;">
             <i class="fas fa-fire" style="color:#f59e0b;margin-right:7px;"></i>My Deal of the Day
             <span style="font-size:12px;color:#999;font-weight:400;margin-left:6px;">{{ $dealProducts->count() }} active</span>
@@ -192,35 +346,6 @@
         </div>
     </div>
     @endif
-
-    <!-- Quick Links -->
-    <h4 style="margin-bottom:12px;color:#333;font-size:15px;font-weight:600;">Quick Actions</h4>
-    <div class="quick-links">
-        <a href="{{ route('shop.setup') }}" class="quick-link-card">
-            <div style="width:40px;height:40px;min-width:40px;background:#e3f2fd;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#1565c0;font-size:17px;"><i class="fas fa-store"></i></div>
-            <div><div style="font-weight:600;font-size:13px;">Shop Setup</div><div style="font-size:11px;color:#888;">Edit name, logo & contact</div></div>
-        </a>
-        <a href="{{ route('shop.products.create') }}" class="quick-link-card">
-            <div style="width:40px;height:40px;min-width:40px;background:#e8f5e9;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#2e7d32;font-size:17px;"><i class="fas fa-plus-circle"></i></div>
-            <div><div style="font-weight:600;font-size:13px;">Add Product</div><div style="font-size:11px;color:#888;">List a new product</div></div>
-        </a>
-        <a href="{{ route('shop.products.index') }}" class="quick-link-card">
-            <div style="width:40px;height:40px;min-width:40px;background:#fff3e0;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#e65100;font-size:17px;"><i class="fas fa-th-list"></i></div>
-            <div><div style="font-weight:600;font-size:13px;">My Products</div><div style="font-size:11px;color:#888;">Manage your listings</div></div>
-        </a>
-        <a href="{{ route('shop.orders.index') }}" class="quick-link-card">
-            <div style="width:40px;height:40px;min-width:40px;background:#fce4ec;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#c62828;font-size:17px;"><i class="fas fa-receipt"></i></div>
-            <div><div style="font-weight:600;font-size:13px;">Orders</div><div style="font-size:11px;color:#888;">View received orders</div></div>
-        </a>
-        <a href="{{ route('shop.reviews.index') }}" class="quick-link-card">
-            <div style="width:40px;height:40px;min-width:40px;background:#f3e8ff;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#7c3aed;font-size:17px;"><i class="fas fa-star"></i></div>
-            <div><div style="font-weight:600;font-size:13px;">Reviews</div><div style="font-size:11px;color:#888;">Manage reviews</div></div>
-        </a>
-        <a href="{{ route('shop.profile.edit') }}" class="quick-link-card">
-            <div style="width:40px;height:40px;min-width:40px;background:#f0fdf4;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#166534;font-size:17px;"><i class="fas fa-user-cog"></i></div>
-            <div><div style="font-weight:600;font-size:13px;">My Profile</div><div style="font-size:11px;color:#888;">Account & password</div></div>
-        </a>
-    </div>
 
 </div>
 @include('layouts.shop_footer')
