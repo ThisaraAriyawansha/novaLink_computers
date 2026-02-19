@@ -6,10 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class BitOrder extends Model
 {
-    // Specify the table name
     protected $table = 'bitorders';
 
-    // Mass assignable fields
     protected $fillable = [
         'customer_id',
         'address_line1',
@@ -22,4 +20,19 @@ class BitOrder extends Model
         'price',
         'payment_status_id',
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function paymentStatus()
+    {
+        return $this->belongsTo(PaymentStatus::class);
+    }
 }

@@ -541,6 +541,12 @@
                                             <i class="pe-7s-cart me-2"></i>Orders
                                         </button>
 
+                                        <button onclick="handleNavClick()" class="nav-link" id="nav-bitorders-tab" data-bs-toggle="tab"
+                                            data-bs-target="#nav-bitorders" type="button" role="tab"
+                                            aria-controls="nav-bitorders" aria-selected="false">
+                                            <i class="pe-7s-hammer me-2"></i>Bid Orders
+                                        </button>
+
                                         <button onclick="handleNavClick()" class="nav-link" id="nav-details-tab" data-bs-toggle="tab"
                                             data-bs-target="#nav-details" type="button" role="tab"
                                             aria-controls="nav-details" aria-selected="false">
@@ -624,6 +630,13 @@
                                                             onclick="handleNavClick(); document.getElementById('nav-bidding-tab').click();"
                                                             style="padding: 6px 12px; font-size: 13px; border: 1px solid black; background: transparent; color: black; border-radius: 4px; text-decoration: none; display: inline-flex; align-items: center;">
                                                                 <i class="pe-7s-hammer me-2" style="font-size: 16px;"></i>Check Active Bids
+                                                            </a>
+
+                                                            <!-- View Bid Orders -->
+                                                            <a href="#nav-bitorders"
+                                                            onclick="handleNavClick(); document.getElementById('nav-bitorders-tab').click();"
+                                                            style="padding: 6px 12px; font-size: 13px; border: 1px solid black; background: transparent; color: black; border-radius: 4px; text-decoration: none; display: inline-flex; align-items: center;">
+                                                                <i class="pe-7s-hammer me-2" style="font-size: 16px;"></i>View Bid Orders
                                                             </a>
 
                                                             <!-- Update Profile (Triggers Account Details Tab) -->
@@ -787,6 +800,77 @@
                                                                     </div>
                                                                 </td>
                                                             </tr>
+                                                        @endforelse
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Bit Orders Tab -->
+                                    <div class="tab-pane fade" id="nav-bitorders" role="tabpanel"
+                                        aria-labelledby="nav-bitorders-tab">
+                                        <div class="page-header">
+                                            <h2 class="page-title">My Bid Orders</h2>
+                                            <p class="welcome-text">Orders placed after winning a bid</p>
+                                        </div>
+
+                                        <div class="data-table">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Order ID</th>
+                                                            <th>Product</th>
+                                                            <th>Bid Price</th>
+                                                            <th>Payment Status</th>
+                                                            <th>Date</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @forelse($bitOrders as $bitOrder)
+                                                        @php
+                                                            $ps = strtolower($bitOrder->paymentStatus->status_name ?? '');
+                                                            $isPaid = str_contains($ps,'paid')||str_contains($ps,'complet')||str_contains($ps,'success');
+                                                            $isCancelled = str_contains($ps,'cancel');
+                                                            $psBg    = $isPaid ? '#e8f5e9' : ($isCancelled ? '#ffebee' : '#fff3e0');
+                                                            $psColor = $isPaid ? '#2e7d32' : ($isCancelled ? '#c62828' : '#e65100');
+                                                        @endphp
+                                                        <tr>
+                                                            <td class="fw-semibold">#{{ $bitOrder->id }}</td>
+                                                            <td>
+                                                                <div class="product-info">
+                                                                    @if($bitOrder->product && $bitOrder->product->image)
+                                                                        <img src="{{ asset($bitOrder->product->image) }}" class="product-image" alt="">
+                                                                    @endif
+                                                                    <span class="product-name">{{ $bitOrder->product_name }}</span>
+                                                                </div>
+                                                            </td>
+                                                            <td class="fw-semibold">Rs.{{ number_format($bitOrder->price, 2) }}</td>
+                                                            <td>
+                                                                <span style="background:{{ $psBg }};color:{{ $psColor }};padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;white-space:nowrap;">
+                                                                    {{ $bitOrder->paymentStatus->status_name ?? 'Pending' }}
+                                                                </span>
+                                                            </td>
+                                                            <td>{{ \Carbon\Carbon::parse($bitOrder->created_at)->format('M d, Y') }}</td>
+                                                            <td>
+                                                                <button class="btn-modern btn-modern-sm"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#bitOrderDetailModal{{ $bitOrder->id }}">
+                                                                    <i class="pe-7s-look me-1"></i>View
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                        @empty
+                                                        <tr>
+                                                            <td colspan="6">
+                                                                <div class="empty-state">
+                                                                    <i class="pe-7s-hammer"></i>
+                                                                    <p class="mb-0">No bid orders found.</p>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
                                                         @endforelse
                                                     </tbody>
                                                 </table>
@@ -998,6 +1082,99 @@
     </div>
     @empty
     @endforelse
+
+    <!-- Bit Order Detail Modals -->
+    @foreach($bitOrders as $bitOrder)
+    @php
+        $ps2 = strtolower($bitOrder->paymentStatus->status_name ?? '');
+        $isPaid2 = str_contains($ps2,'paid')||str_contains($ps2,'complet')||str_contains($ps2,'success');
+        $isCancelled2 = str_contains($ps2,'cancel');
+        $psBg2    = $isPaid2 ? '#e8f5e9' : ($isCancelled2 ? '#ffebee' : '#fff3e0');
+        $psColor2 = $isPaid2 ? '#2e7d32' : ($isCancelled2 ? '#c62828' : '#e65100');
+    @endphp
+    <div class="modal fade" id="bitOrderDetailModal{{ $bitOrder->id }}" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="pe-7s-hammer me-2"></i>Bid Order #{{ $bitOrder->id }}
+                    </h5>
+                    <button type="button" data-bs-dismiss="modal" style="padding:8px 16px;background:black;color:white;border:1px solid white;border-radius:6px;font-size:14px;display:inline-flex;align-items:center;">
+                        <i class="pe-7s-close me-2" style="color:white;font-size:16px;"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="order-section">
+                        <h6 class="section-title">Product</h6>
+                        <div style="display:flex;align-items:center;gap:14px;padding:12px;background:var(--bg-gray-50);border-radius:var(--radius-md);border:1px solid var(--border-color);">
+                            @if($bitOrder->product && $bitOrder->product->image)
+                                <img src="{{ asset($bitOrder->product->image) }}" class="product-image" alt="">
+                            @endif
+                            <div>
+                                <div class="fw-semibold">{{ $bitOrder->product_name }}</div>
+                                @if($bitOrder->product)
+                                    <div style="font-size:12px;color:var(--text-muted);">{{ $bitOrder->product->type ?? '' }}</div>
+                                @endif
+                                <div class="fw-bold mt-1">Rs.{{ number_format($bitOrder->price, 2) }}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-section">
+                        <h6 class="section-title">Delivery Address</h6>
+                        <div class="address-card">
+                            <p class="address-line"><strong>{{ $bitOrder->address_line1 }}</strong></p>
+                            @if($bitOrder->address_line2)
+                                <p class="address-line">{{ $bitOrder->address_line2 }}</p>
+                            @endif
+                            <p class="address-line">{{ $bitOrder->city }}, {{ $bitOrder->postal_code }}</p>
+                        </div>
+                    </div>
+
+                    @if($bitOrder->additional_information)
+                    <div class="order-section">
+                        <h6 class="section-title">Additional Information</h6>
+                        <div class="note-card">
+                            <p class="note-content">{{ $bitOrder->additional_information }}</p>
+                        </div>
+                    </div>
+                    @endif
+
+                    <div class="order-section">
+                        <h6 class="section-title">Order Summary</h6>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="d-flex justify-content-between py-2 border-bottom">
+                                    <span>Order Date:</span>
+                                    <span class="fw-semibold">{{ \Carbon\Carbon::parse($bitOrder->created_at)->format('F d, Y') }}</span>
+                                </div>
+                                <div class="d-flex justify-content-between py-2 border-bottom">
+                                    <span>Payment Status:</span>
+                                    <span style="background:{{ $psBg2 }};color:{{ $psColor2 }};padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;">
+                                        {{ $bitOrder->paymentStatus->status_name ?? 'Pending' }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex justify-content-between py-2 border-bottom">
+                                    <span class="fw-semibold">Bid Price:</span>
+                                    <span class="fw-bold fs-5">Rs.{{ number_format($bitOrder->price, 2) }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-bs-dismiss="modal" style="padding:8px 16px;background:black;color:white;border:1px solid white;border-radius:6px;font-size:14px;display:inline-flex;align-items:center;">
+                        <i class="pe-7s-power me-2" style="color:white;font-size:16px;"></i>Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
 
     <!-- Include existing modals -->
     @include('layouts.modals')

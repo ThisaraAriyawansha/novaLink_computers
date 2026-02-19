@@ -124,7 +124,17 @@
                 </div>
 
                 <a href="{{ route('shop.reviews.index') }}" class="shop-nav-link"><i class="fas fa-star"></i>Reviews</a>
-                <a href="{{ route('shop.orders.index') }}" class="shop-nav-link"><i class="fas fa-shopping-cart"></i>Orders</a>
+
+                <div class="shop-dropdown">
+                    <button class="shop-trigger-btn">
+                        <i class="fas fa-shopping-cart"></i>Orders<i class="fas fa-chevron-down" style="font-size:10px;margin-left:3px;"></i>
+                    </button>
+                    <div class="shop-dropdown-menu">
+                        <a href="{{ route('shop.orders.index') }}"><i class="fas fa-receipt"></i>Normal Order</a>
+                        <div class="dd-divider"></div>
+                        <a href="{{ route('shop.bit-orders.index') }}"><i class="fas fa-gavel"></i>Bit Order</a>
+                    </div>
+                </div>
                 <a href="{{ route('shop.profile.edit') }}" class="shop-nav-link"><i class="fas fa-user-cog"></i>Profile</a>
 
                 <div style="width:1px;height:26px;background:#333;margin:0 5px;"></div>
@@ -150,7 +160,9 @@
         <a href="{{ route('shop.products.images') }}" class="mob-link" style="padding-left:34px;"><i class="fas fa-images" style="width:18px;"></i>Product Images</a>
         <a href="{{ route('shop.products.features') }}" class="mob-link" style="padding-left:34px;"><i class="fas fa-tags" style="width:18px;"></i>Product Features</a>
         <a href="{{ route('shop.reviews.index') }}" class="mob-link"><i class="fas fa-star" style="width:18px;"></i>Reviews</a>
-        <a href="{{ route('shop.orders.index') }}" class="mob-link"><i class="fas fa-shopping-cart" style="width:18px;"></i>Orders</a>
+        <div class="mob-section">Orders</div>
+        <a href="{{ route('shop.orders.index') }}" class="mob-link" style="padding-left:34px;"><i class="fas fa-receipt" style="width:18px;"></i>Normal Order</a>
+        <a href="{{ route('shop.bit-orders.index') }}" class="mob-link" style="padding-left:34px;"><i class="fas fa-gavel" style="width:18px;"></i>Bit Order</a>
         <a href="{{ route('shop.profile.edit') }}" class="mob-link"><i class="fas fa-user-cog" style="width:18px;"></i>Profile</a>
         <a href="{{ route('logoutAdmin') }}" class="mob-link" style="color:#e57373;"><i class="fas fa-sign-out-alt" style="width:18px;"></i>Log Out</a>
     </div>

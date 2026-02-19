@@ -39,6 +39,11 @@ class CustomerDashboardController extends Controller
         $bids = Bid::with('product')
             ->where('customer_id', $customerId)
             ->get();
+
+        $bitOrders = BitOrder::with(['product', 'paymentStatus'])
+            ->where('customer_id', $customerId)
+            ->orderByDesc('created_at')
+            ->get();
     
         // Retrieve customer from session
         $customer = Customer::find(Session::get('customer_id'));
@@ -53,7 +58,8 @@ class CustomerDashboardController extends Controller
             'products' => $products,
             'bids' => $bids,
             'customer' => $customer,
-            'payments' => $payments, // Add payments to the view
+            'payments' => $payments,
+            'bitOrders' => $bitOrders,
         ]);
     }
 

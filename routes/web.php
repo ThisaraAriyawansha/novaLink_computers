@@ -35,6 +35,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ShopDashboardController;
 use App\Http\Controllers\ShopProductController;
 use App\Http\Controllers\ShopOrderController;
+use App\Http\Controllers\ShopBitOrderController;
 use App\Http\Controllers\ShopReviewController;
 use App\Http\Controllers\ShopProfileController;
 
@@ -232,6 +233,10 @@ Route::middleware(['auth', 'shop_owner'])->prefix('shop')->name('shop.')->group(
     Route::get('/orders', [ShopOrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{id}', [ShopOrderController::class, 'show'])->name('orders.show');
     Route::patch('/order-lines/{orderId}/status', [ShopOrderController::class, 'updateStatus'])->name('orders.updateStatus');
+
+    // Shop Bid Orders
+    Route::get('/bit-orders', [ShopBitOrderController::class, 'index'])->name('bit-orders.index');
+    Route::patch('/bit-orders/{id}/payment-status', [ShopBitOrderController::class, 'updatePaymentStatus'])->name('bit-orders.updatePaymentStatus');
 
     // Product Features
     Route::get('/products/features', [ShopProductController::class, 'featuresIndex'])->name('products.features');
