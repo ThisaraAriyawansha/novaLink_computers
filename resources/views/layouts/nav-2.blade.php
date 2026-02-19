@@ -10,6 +10,7 @@
             <div class="hidden lg:flex items-center space-x-6">
                 <a href="#" class="text-white uppercase font-bold text-center max-xl:text-sm" id="category-toggle">Category</a>
                 <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'ALL']) }}" class="text-white uppercase font-bold text-center max-xl:text-sm">Products</a>
+                <a href="{{ route('ourShop') }}" class="text-white uppercase font-bold text-center max-xl:text-sm">Our Shop</a>
                 <a href="/products?filter=LAPTOPS&sort=name_asc" class="text-white uppercase font-bold text-center max-xl:text-sm">Laptops</a>
                 <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'APPLE PRODUCTS']) }}" class="text-white uppercase font-bold text-center max-xl:text-sm">Mobile</a>
                 <a href="{{ route('aboutUs') }}" class="text-white uppercase font-bold text-center max-xl:text-sm">About Us</a>
@@ -67,6 +68,7 @@
             </div>
             <a href="#" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white" id="mobile-category-toggle">Category</a>
             <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'ALL']) }}" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white">Products</a>
+            <a href="{{ route('ourShop') }}" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white">Our Shop</a>
             <a href="/products?filter=LAPTOPS&sort=name_asc" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white">Laptops</a>
             <a href="{{ route('product.category', ['sort' => 'name_asc', 'filter' => 'APPLE PRODUCTS']) }}" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white">Mobile</a>
             <a href="{{ route('aboutUs') }}" class="block py-3 px-4 uppercase font-bold hover:bg-gray-800 rounded-lg transition-colors duration-200 text-white">About Us</a>

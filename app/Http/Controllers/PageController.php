@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Product;
 use App\Models\Blog;
+use App\Models\Shop;
 
 
 class PageController extends Controller
@@ -141,6 +142,64 @@ class PageController extends Controller
             return view('blog', ['blogs' => $blogs, 'products' => $products]);
             }
     
+    public function ourShop(Request $request)
+    {
+        $shopId = $request->query('shop-id');
+
+        if ($shopId) {
+            $shop = Shop::where('id', $shopId)->where('is_active', true)->firstOrFail();
+
+            $shopProducts = Product::where('user_id', $shop->user_id)
+                ->where('status_id', 1)
+                ->get()
+                ->map(function ($product) {
+                    return [
+                        'id'               => $product->id,
+                        'name'             => $product->name,
+                        'type'             => $product->type,
+                        'description'      => $product->description,
+                        'discounted_price' => $product->discounted_price,
+                        'retail_price'     => $product->retail_price,
+                        'warranty'         => $product->warranty,
+                        'in_stock'         => $product->in_stock,
+                        'image'            => asset($product->image),
+                    ];
+                });
+
+            $products = Product::where('status_id', 1)
+                ->get()
+                ->map(function ($product) {
+                    return [
+                        'id'        => $product->id,
+                        'name'      => $product->name,
+                        'dis_price' => $product->discounted_price . ' LKR',
+                        'image'     => asset($product->image),
+                    ];
+                });
+
+            return view('single-shop', [
+                'shop'         => $shop,
+                'shopProducts' => $shopProducts,
+                'products'     => $products,
+            ]);
+        }
+
+        $shops = Shop::where('is_active', true)->withCount('products')->get();
+
+        $products = Product::where('status_id', 1)
+            ->get()
+            ->map(function ($product) {
+                return [
+                    'id'        => $product->id,
+                    'name'      => $product->name,
+                    'dis_price' => $product->discounted_price . ' LKR',
+                    'image'     => asset($product->image),
+                ];
+            });
+
+        return view('our-shop', ['shops' => $shops, 'products' => $products]);
+    }
+
     public function singleProduct(Request $request)
     {
         // Get the product ID from the URL

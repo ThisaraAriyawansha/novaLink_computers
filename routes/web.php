@@ -101,6 +101,7 @@ Route::get('/cart', [CartController::class, 'cartShow'])->name('cart');
 Route::get('/wishlist', [CartController::class, 'wishlistShow'])->name('wishlist');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::get('/singleProduct', [PageController::class, 'singleProduct'])->name('singleProduct');
+Route::get('/our-shop', [PageController::class, 'ourShop'])->name('ourShop');
 Route::get('/get-max-price', [ProductController::class, 'getMaxPrice']);
 Route::get('/api/product-images/{productId}', [ProductImageController::class, 'getProductImages']);
 Route::get('/api/product-images/singlepage/{productId}', [ProductImageController::class, 'getProductImages']);
