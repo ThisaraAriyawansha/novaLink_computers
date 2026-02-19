@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Product;
+use Illuminate\Validation\Rule;
 
 class ShopOrderController extends Controller
 {
@@ -43,5 +44,30 @@ class ShopOrderController extends Controller
         abort_if($shopOrders->isEmpty(), 403);
 
         return view('shop.orders.show', compact('payment', 'shopOrders'));
+    }
+
+    /**
+     * Update the shop_order_status for a specific order line.
+     * Only the shop owner who owns that product may update it.
+     */
+    public function updateStatus(Request $request, $orderId)
+    {
+        $request->validate([
+            'status' => ['required', Rule::in(array_keys(Order::STATUSES))],
+        ]);
+
+        $myProductIds = Product::where('user_id', Auth::id())->pluck('id');
+
+        // Load the order line and verify it belongs to this shop's product
+        $order = Order::whereIn('product_id', $myProductIds)->findOrFail($orderId);
+
+        $order->shop_order_status = $request->status;
+        $order->save();
+
+        if ($request->wantsJson()) {
+            return response()->json(['success' => true, 'status' => $request->status]);
+        }
+
+        return back()->with('success', 'Order item status updated to "' . Order::STATUSES[$request->status]['label'] . '".');
     }
 }

@@ -721,7 +721,8 @@
                                                         <tr>
                                                             <th>Order ID</th>
                                                             <th>Date</th>
-                                                            <th>Status</th>
+                                                            <th>Payment</th>
+                                                            <th>Fulfillment</th>
                                                             <th>Total</th>
                                                             <th>Action</th>
                                                         </tr>
@@ -731,6 +732,24 @@
                                                             @php
                                                                 $totalItems = $payment->orders->sum('qty');
                                                                 $totalAmount = $payment->total;
+                                                                $allStatuses = $payment->orders->pluck('shop_order_status')->unique()->values();
+                                                                // Determine overall fulfillment summary
+                                                                if ($allStatuses->every(fn($s) => $s === 'delivered')) {
+                                                                    $fulfillmentLabel = 'Delivered';
+                                                                    $fulfillmentColor = '#2e7d32'; $fulfillmentBg = '#e8f5e9';
+                                                                } elseif ($allStatuses->contains('cancelled') && $allStatuses->every(fn($s) => in_array($s, ['cancelled', 'delivered']))) {
+                                                                    $fulfillmentLabel = 'Cancelled';
+                                                                    $fulfillmentColor = '#c62828'; $fulfillmentBg = '#ffebee';
+                                                                } elseif ($allStatuses->contains('shipped')) {
+                                                                    $fulfillmentLabel = 'Shipped';
+                                                                    $fulfillmentColor = '#6a1b9a'; $fulfillmentBg = '#f3e5f5';
+                                                                } elseif ($allStatuses->contains('processing')) {
+                                                                    $fulfillmentLabel = 'Processing';
+                                                                    $fulfillmentColor = '#1565c0'; $fulfillmentBg = '#e3f2fd';
+                                                                } else {
+                                                                    $fulfillmentLabel = 'Pending';
+                                                                    $fulfillmentColor = '#e65100'; $fulfillmentBg = '#fff3e0';
+                                                                }
                                                             @endphp
                                                             <tr>
                                                                 <td class="fw-semibold">#{{ $payment->id }}</td>
@@ -738,6 +757,11 @@
                                                                 <td>
                                                                     <span class="badge bg-success">
                                                                         {{ $payment->paymentStatus->status_name ?? 'On Hold' }}
+                                                                    </span>
+                                                                </td>
+                                                                <td>
+                                                                    <span style="background:{{ $fulfillmentBg }};color:{{ $fulfillmentColor }};padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;white-space:nowrap;">
+                                                                        {{ $fulfillmentLabel }}
                                                                     </span>
                                                                 </td>
                                                                 <td>
@@ -885,14 +909,19 @@
                                         <th>Quantity</th>
                                         <th>Price</th>
                                         <th>Total</th>
+                                        <th>Fulfillment</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($payment->orders as $order)
+                                        @php
+                                            $sk = $order->shop_order_status ?? 'pending';
+                                            $sInfo = \App\Models\Order::STATUSES[$sk] ?? \App\Models\Order::STATUSES['pending'];
+                                        @endphp
                                         <tr>
                                             <td>
                                                 <div class="product-info">
-                                                    <img src="{{ asset($order->product->image) }}" 
+                                                    <img src="{{ asset($order->product->image) }}"
                                                          alt="{{ $order->product->name }}" class="product-image">
                                                     <span class="product-name">{{ $order->product->name }}</span>
                                                 </div>
@@ -900,6 +929,11 @@
                                             <td><span class="badge bg-secondary">{{ $order->qty }}</span></td>
                                             <td class="fw-semibold">Rs.{{ number_format($order->product->discounted_price, 2) }}</td>
                                             <td class="fw-semibold">Rs.{{ number_format($order->product->discounted_price * $order->qty, 2) }}</td>
+                                            <td>
+                                                <span style="background:{{ $sInfo['bg'] }};color:{{ $sInfo['color'] }};padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;white-space:nowrap;">
+                                                    {{ $sInfo['label'] }}
+                                                </span>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

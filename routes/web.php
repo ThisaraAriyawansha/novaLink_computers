@@ -230,6 +230,7 @@ Route::middleware(['auth', 'shop_owner'])->prefix('shop')->name('shop.')->group(
     // Shop Orders
     Route::get('/orders', [ShopOrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{id}', [ShopOrderController::class, 'show'])->name('orders.show');
+    Route::patch('/order-lines/{orderId}/status', [ShopOrderController::class, 'updateStatus'])->name('orders.updateStatus');
 
     // Product Features
     Route::get('/products/features', [ShopProductController::class, 'featuresIndex'])->name('products.features');
