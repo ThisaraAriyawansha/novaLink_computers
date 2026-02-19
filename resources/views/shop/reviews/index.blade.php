@@ -75,17 +75,17 @@
                             </td>
                             <td>
                                 @if($review->status == 2)
-                                    <span class="shop-badge-inactive">Hidden</span>
-                                @else
                                     <span class="shop-badge-active">Visible</span>
+                                @else
+                                    <span class="shop-badge-inactive">Hidden</span>
                                 @endif
                             </td>
                             <td>
                                 <form method="POST" action="{{ route('shop.reviews.toggle', $review->id) }}">
                                     @csrf @method('PATCH')
-                                    <button type="submit" class="shop-action-btn {{ $review->status == 2 ? 'shop-btn-edit' : 'shop-btn-danger' }}">
-                                        <i class="fas fa-{{ $review->status == 2 ? 'eye' : 'eye-slash' }}"></i>
-                                        {{ $review->status == 2 ? 'Show' : 'Hide' }}
+                                    <button type="submit" class="shop-action-btn {{ $review->status == 2 ? 'shop-btn-danger' : 'shop-btn-edit' }}">
+                                        <i class="fas fa-{{ $review->status == 2 ? 'eye-slash' : 'eye' }}"></i>
+                                        {{ $review->status == 2 ? 'Hide' : 'Show' }}
                                     </button>
                                 </form>
                             </td>
