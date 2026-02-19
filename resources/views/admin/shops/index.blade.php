@@ -37,7 +37,7 @@
 }
 
 /* ── Desktop table ── */
-.table-responsive { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+.table-responsive { overflow-x:auto; -webkit-overflow-scrolling:touch;  }
 
 .shops-table { width:100%; border-collapse:collapse; min-width:700px; border:none; }
 
@@ -45,10 +45,12 @@
     background:#f5f5f5; padding:11px 14px;
     text-align:left; font-size:12px; font-weight:600;
     color:#111; border-bottom:2px solid #ddd; white-space:nowrap;
+    border:none;
 }
 .shops-table td {
     padding:11px 14px; border-bottom:1px solid #f0f0f0;
     font-size:13px; color:#333; vertical-align:middle;
+    border:none;
 }
 .shops-table tr:last-child td { border-bottom:none; }
 .shops-table tr:hover td { background:#fafafa; }
