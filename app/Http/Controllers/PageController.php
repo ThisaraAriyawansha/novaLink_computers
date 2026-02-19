@@ -202,7 +202,14 @@ class PageController extends Controller
                 'dis_price' => $prod->discounted_price,
                 'image' => asset($prod->image),
             ];
-        });
+        })->prepend([
+            'id' => $productData['id'],
+            'name' => $productData['name'],
+            'type' => $productData['type'],
+            'description' => $productData['desc'],
+            'dis_price' => $productData['dis_price'],
+            'image' => $productData['image'],
+        ]);
 
         // Return view with product data
         return view('single-product', ['product' => $productData, 'products' => $products]);
