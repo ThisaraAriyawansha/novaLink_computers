@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TvTypeController;
 use App\Http\Controllers\ProductDataController;
 use App\Http\Controllers\ChatbotController;
 /*
@@ -20,9 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('viewImage/type1', [TvTypeController::class, 'apiViewImageType1']);
-Route::get('viewImage/type2', [TvTypeController::class, 'apiViewImageType2']);
-Route::get('viewImage/type3', [TvTypeController::class, 'apiViewImageType3']);
+
 
 Route::get('/productsData', [ProductDataController::class, 'getProducts']);
 
