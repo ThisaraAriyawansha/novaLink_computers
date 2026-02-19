@@ -178,14 +178,28 @@ class PageController extends Controller
             })->toArray(),
         ];
 
-        // Fetch all products for the slider
-        $products = Product::where('status_id', 1)->get()->map(function ($prod) {
+        // Fetch related products: same type, excluding current product
+        $relatedProducts = Product::where('status_id', 1)
+            ->where('type', $product->type)
+            ->where('id', '!=', $product->id)
+            ->limit(10)
+            ->get();
+
+        // If no same-category products found, fall back to other products
+        if ($relatedProducts->isEmpty()) {
+            $relatedProducts = Product::where('status_id', 1)
+                ->where('id', '!=', $product->id)
+                ->limit(10)
+                ->get();
+        }
+
+        $products = $relatedProducts->map(function ($prod) {
             return [
                 'id' => $prod->id,
                 'name' => $prod->name,
                 'type' => $prod->type,
                 'description' => $prod->description,
-                'dis_price' => $prod->discounted_price ,
+                'dis_price' => $prod->discounted_price,
                 'image' => asset($prod->image),
             ];
         });
