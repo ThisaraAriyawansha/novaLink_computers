@@ -79,6 +79,26 @@
                     <h4 class="stat-value">{{ number_format($productFeatureCount) }}</h4>
                 </div>
             </div>
+
+            <div class="stat-card">
+                <div class="stat-icon bg-dark">
+                    <i class="fas fa-store-alt"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-label">Shop Owners</div>
+                    <h4 class="stat-value">{{ number_format($shopOwnerCount) }}</h4>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon bg-dark">
+                    <i class="fas fa-store"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-label">Total Shops</div>
+                    <h4 class="stat-value">{{ number_format($shopCount) }}</h4>
+                </div>
+            </div>
         </div>
 
         <!-- Data Tables Row -->

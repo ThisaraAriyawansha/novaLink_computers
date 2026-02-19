@@ -9,6 +9,8 @@ use App\Models\ProductImage;
 use App\Models\Customer;
 use App\Models\Payment;
 use App\Models\Order;
+use App\Models\User; // Add this
+use App\Models\Shop; // Add this
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -23,6 +25,10 @@ class DashboardController extends Controller
             $productImageCount = ProductImage::count();
             $customerCount = Customer::count();
             $paymentCount = Payment::count();
+            
+            // Add shop owner and shop counts
+            $shopOwnerCount = User::where('role', 'shop_owner')->count();
+            $shopCount = Shop::count();
 
             // Revenue analytics - handle cases where payment_status_id might not exist
             $totalRevenue = Payment::sum('total') ?? 0;
@@ -128,6 +134,8 @@ class DashboardController extends Controller
                 'productImageCount', 
                 'customerCount', 
                 'paymentCount',
+                'shopOwnerCount', // Add this
+                'shopCount', // Add this
                 'totalRevenue',
                 'todayRevenue',
                 'monthlyRevenue',
@@ -148,6 +156,8 @@ class DashboardController extends Controller
                 'productImageCount' => ProductImage::count(),
                 'customerCount' => Customer::count(),
                 'paymentCount' => Payment::count(),
+                'shopOwnerCount' => User::where('role', 'shop_owner')->count(), // Add this
+                'shopCount' => Shop::count(), // Add this
                 'totalRevenue' => 0,
                 'todayRevenue' => 0,
                 'monthlyRevenue' => 0,
