@@ -92,11 +92,18 @@
                         </div>
                     </div>
 
-                    <a href="{{ route('manageCustomer') }}" style="display: flex; align-items: center; padding: 12px 16px; border-radius: 6px; color: #ccc; text-decoration: none; transition: all 0.3s ease;" 
-                       onmouseover="this.style.color='white'; this.style.backgroundColor='#333'; this.style.transform='translateY(-2px)';" 
+                    <a href="{{ route('manageCustomer') }}" style="display: flex; align-items: center; padding: 12px 16px; border-radius: 6px; color: #ccc; text-decoration: none; transition: all 0.3s ease;"
+                       onmouseover="this.style.color='white'; this.style.backgroundColor='#333'; this.style.transform='translateY(-2px)';"
                        onmouseout="this.style.color='#ccc'; this.style.backgroundColor='transparent'; this.style.transform='translateY(0)';">
                         <i class="fas fa-users" style="margin-right: 8px;"></i>
                         Manage Customer
+                    </a>
+
+                    <a href="{{ route('admin.shops.index') }}" style="display: flex; align-items: center; padding: 12px 16px; border-radius: 6px; color: #ccc; text-decoration: none; transition: all 0.3s ease;"
+                       onmouseover="this.style.color='white'; this.style.backgroundColor='#333'; this.style.transform='translateY(-2px)';"
+                       onmouseout="this.style.color='#ccc'; this.style.backgroundColor='transparent'; this.style.transform='translateY(0)';">
+                        <i class="fas fa-store" style="margin-right: 8px;"></i>
+                        Shops
                     </a>
                     
                     <a href="{{ route('viewOrder') }}" style="display: flex; align-items: center; padding: 12px 16px; border-radius: 6px; color: #ccc; text-decoration: none; transition: all 0.3s ease;" 
@@ -211,13 +218,19 @@
                 </a>
             </div>
 
-            <a href="{{ route('manageCustomer') }}" style="display: flex; align-items: center; padding: 15px 0; color: #ccc; text-decoration: none; border-bottom: 1px solid #333; transition: color 0.2s ease;" 
+            <a href="{{ route('manageCustomer') }}" style="display: flex; align-items: center; padding: 15px 0; color: #ccc; text-decoration: none; border-bottom: 1px solid #333; transition: color 0.2s ease;"
                onmouseover="this.style.color='white';" onmouseout="this.style.color='#ccc';">
                 <i class="fas fa-users" style="margin-right: 15px; width: 20px; color: #45b7d1;"></i>
                 Manage Customer
             </a>
-            
-            <a href="{{ route('viewOrder') }}" style="display: flex; align-items: center; padding: 15px 0; color: #ccc; text-decoration: none; border-bottom: 1px solid #333; transition: color 0.2s ease;" 
+
+            <a href="{{ route('admin.shops.index') }}" style="display: flex; align-items: center; padding: 15px 0; color: #ccc; text-decoration: none; border-bottom: 1px solid #333; transition: color 0.2s ease;"
+               onmouseover="this.style.color='white';" onmouseout="this.style.color='#ccc';">
+                <i class="fas fa-store" style="margin-right: 15px; width: 20px; color: #a29bfe;"></i>
+                Manage Shops
+            </a>
+
+            <a href="{{ route('viewOrder') }}" style="display: flex; align-items: center; padding: 15px 0; color: #ccc; text-decoration: none; border-bottom: 1px solid #333; transition: color 0.2s ease;"
                onmouseover="this.style.color='white';" onmouseout="this.style.color='#ccc';">
                 <i class="fas fa-shopping-cart" style="margin-right: 15px; width: 20px; color: #f39c12;"></i>
                 View Order

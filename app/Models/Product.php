@@ -12,6 +12,7 @@ class Product extends Model
     protected $table = 'products';
 
     protected $fillable = [
+        'user_id',
         'name',
         'brand',
         'type',
@@ -56,6 +57,12 @@ class Product extends Model
 
 
 
+
+    // Relationship with the shop owner (User)
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
     // Enable timestamps (created_at and updated_at)
     public $timestamps = true;

@@ -31,6 +31,12 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LoadingScreenController;
 
 use App\Http\Controllers\LLMController;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ShopDashboardController;
+use App\Http\Controllers\ShopProductController;
+use App\Http\Controllers\ShopOrderController;
+use App\Http\Controllers\ShopReviewController;
+use App\Http\Controllers\ShopProfileController;
 
 
 
@@ -206,6 +212,53 @@ Route::patch('/admin/review/{id}/toggle', [ReviewController::class, 'toggleRevie
 //Contact Us
 Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit');
 
+
+// ─── Shop Owner Routes ──────────────────────────────────────────────────────
+Route::middleware(['auth', 'shop_owner'])->prefix('shop')->name('shop.')->group(function () {
+    Route::get('/dashboard', [ShopDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/setup', [ShopController::class, 'setup'])->name('setup');
+    Route::post('/setup', [ShopController::class, 'store'])->name('store');
+
+    // Shop Products
+    Route::get('/products', [ShopProductController::class, 'index'])->name('products.index');
+    Route::get('/products/create', [ShopProductController::class, 'create'])->name('products.create');
+    Route::post('/products', [ShopProductController::class, 'store'])->name('products.store');
+    Route::get('/products/{id}/edit', [ShopProductController::class, 'edit'])->name('products.edit');
+    Route::put('/products/{id}', [ShopProductController::class, 'update'])->name('products.update');
+    Route::patch('/products/{id}/toggle-status', [ShopProductController::class, 'toggleStatus'])->name('products.toggleStatus');
+
+    // Shop Orders
+    Route::get('/orders', [ShopOrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{id}', [ShopOrderController::class, 'show'])->name('orders.show');
+
+    // Product Features
+    Route::get('/products/features', [ShopProductController::class, 'featuresIndex'])->name('products.features');
+    Route::post('/products/features', [ShopProductController::class, 'storeFeature'])->name('products.features.store');
+    Route::put('/products/features/{id}', [ShopProductController::class, 'updateFeature'])->name('products.features.update');
+    Route::delete('/products/features/{id}', [ShopProductController::class, 'deleteFeature'])->name('products.features.delete');
+
+    // Product Images
+    Route::get('/products/images', [ShopProductController::class, 'imagesIndex'])->name('products.images');
+    Route::post('/products/images', [ShopProductController::class, 'storeImage'])->name('products.images.store');
+    Route::delete('/products/images/{id}', [ShopProductController::class, 'deleteImage'])->name('products.images.delete');
+
+    // Reviews
+    Route::get('/reviews', [ShopReviewController::class, 'index'])->name('reviews.index');
+    Route::patch('/reviews/{id}/toggle', [ShopReviewController::class, 'toggle'])->name('reviews.toggle');
+
+    // Profile
+    Route::get('/profile', [ShopProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ShopProfileController::class, 'update'])->name('profile.update');
+    Route::patch('/profile/password', [ShopProfileController::class, 'updatePassword'])->name('profile.password');
+});
+
+// ─── Admin: Manage Shops ─────────────────────────────────────────────────────
+Route::middleware(['auth', 'agent'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/shops', [ShopController::class, 'adminIndex'])->name('shops.index');
+    Route::get('/shops/create', [ShopController::class, 'adminCreate'])->name('shops.create');
+    Route::post('/shops', [ShopController::class, 'adminStore'])->name('shops.store');
+    Route::patch('/shops/{id}/toggle', [ShopController::class, 'adminToggle'])->name('shops.toggle');
+});
 
 // LLM Routes
 Route::get('/llm', [LLMController::class, 'show'])->name('llm');

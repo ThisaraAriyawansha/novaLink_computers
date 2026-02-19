@@ -15,20 +15,17 @@ class AgentMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!empty(Auth::check()))
-        {
-            if(Auth::user()->user_type==1)
-            {
+        if (!empty(Auth::check())) {
+            if (Auth::user()->role === 'admin') {
                 return $next($request);
-            }
-            else
-            {
+            } elseif (Auth::user()->role === 'shop_owner') {
+                // Shop owners have their own dashboard
+                return redirect()->route('shop.dashboard');
+            } else {
                 Auth::logout();
                 return redirect(url(''));
             }
-        }
-        else
-        {
+        } else {
             Auth::logout();
             return redirect(url(''));
         }
