@@ -194,7 +194,8 @@
             overflow: hidden;
             transition: all 0.3s ease;
             box-shadow: var(--shadow-subtle);
-            height: fit-content;
+            display: flex;
+            flex-direction: column;
         }
 
         .blog-post:hover {
@@ -221,6 +222,9 @@
 
         .blog-content {
             padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
         }
 
         .blog-meta {
@@ -280,7 +284,7 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            margin-top: 1.25rem;
+            margin-top: auto;
             padding-top: 1.25rem;
             border-top: 1px solid var(--border-light);
         }
