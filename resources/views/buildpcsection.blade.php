@@ -1,280 +1,224 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Build My PC</title>
-</head>
-<body style="margin:0;padding:0;background:#fff;">
+<div style="margin:0;padding:0;background:#f8f9fb;">
 
-<section style="background:#fff;padding:60px 0 80px;font-family:system-ui,sans-serif;overflow:hidden;">
+<section style="background:#f8f9fb;padding:70px 0 90px;font-family:system-ui,sans-serif;overflow:hidden;">
 
-  <!-- Heading -->
-  <div style="text-align:center;margin-bottom:40px;">
-    <h2 style="color:#000;font-size:1.9rem;font-weight:700;margin:0 0 10px;">Build My PC</h2>
-    <span style="display:block;width:55px;height:3px;background:#00b4d8;margin:0 auto;border-radius:2px;"></span>
+  <div style="text-align:center;margin-bottom:50px;">
+    <h2 style="color:#111;font-size:2rem;font-weight:700;margin:0 0 12px;">Build My PC</h2>
+    <span style="display:block;width:52px;height:3px;background:#00b4d8;margin:0 auto;border-radius:2px;"></span>
   </div>
 
-  <!-- Stage: full width, items centered via JS -->
-  <div style="width:100%;overflow:hidden;">
-    <div id="stage" style="position:relative;width:1200px;height:460px;margin:0 auto;">
+  <p id="hint" style="text-align:center;color:rgba(0,0,0,.28);font-size:10.5px;letter-spacing:3px;text-transform:uppercase;margin:0 0 0;transition:opacity .4s;">HOVER TO ASSEMBLE YOUR SETUP</p>
+
+  <div style="width:100%;overflow:visible;">
+    <div id="stage" style="position:relative;width:1260px;height:500px;margin:0 auto;">
 
       <!-- HEADSET -->
-      <div id="w-headset" style="position:absolute;display:flex;flex-direction:column;align-items:center;bottom:40px;transition:left 0.75s cubic-bezier(0.65,0,0.35,1),bottom 0.75s cubic-bezier(0.65,0,0.35,1);">
-        <svg id="v-headset" width="175" height="210" viewBox="0 0 175 215" style="overflow:visible;transition:width 0.75s cubic-bezier(0.65,0,0.35,1),height 0.75s cubic-bezier(0.65,0,0.35,1);filter:drop-shadow(0 8px 24px rgba(80,40,180,0.18));">
+      <div id="w-headset" style="position:absolute;display:flex;flex-direction:column;align-items:center;transition:left .75s cubic-bezier(.65,0,.35,1),bottom .75s cubic-bezier(.65,0,.35,1);">
+        <svg id="v-headset" width="185" height="220" viewBox="0 0 180 225" style="transition:width .75s cubic-bezier(.65,0,.35,1),height .75s cubic-bezier(.65,0,.35,1);overflow:visible;filter:drop-shadow(0 12px 28px rgba(80,40,200,.22))">
           <defs>
-            <radialGradient id="hBG" cx="50%" cy="42%" r="60%"><stop offset="0%" stop-color="#22214a"/><stop offset="100%" stop-color="#0a0919"/></radialGradient>
-            <linearGradient id="hRGB" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00c8e8"/><stop offset="50%" stop-color="#cc30ff"/><stop offset="100%" stop-color="#4433ee"/></linearGradient>
+            <radialGradient id="hcup" cx="42%" cy="38%" r="62%"><stop offset="0%" stop-color="#28265a"/><stop offset="100%" stop-color="#0d0b1e"/></radialGradient>
+            <linearGradient id="hring" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00d0f0"/><stop offset="48%" stop-color="#c830ff"/><stop offset="100%" stop-color="#4420ee"/></linearGradient>
+            <linearGradient id="hband" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1c1a40"/><stop offset="100%" stop-color="#28265a"/></linearGradient>
           </defs>
-          <!-- Headband outer -->
-          <path d="M30,128 Q30,16 88,16 Q146,16 146,128" fill="none" stroke="#14132e" stroke-width="20" stroke-linecap="round"/>
-          <!-- Headband inner highlight -->
-          <path d="M30,128 Q30,16 88,16 Q146,16 146,128" fill="none" stroke="#22214a" stroke-width="13" stroke-linecap="round"/>
-          <!-- Cushion -->
-          <path d="M56,42 Q88,28 120,42" fill="none" stroke="#2a2848" stroke-width="11" stroke-linecap="round"/>
-          <!-- Left cup outer -->
-          <ellipse cx="22" cy="132" rx="28" ry="34" fill="url(#hBG)" stroke="#14132e" stroke-width="2"/>
-          <!-- Left cup RGB ring -->
-          <ellipse cx="22" cy="132" rx="25" ry="31" fill="none" stroke="url(#hRGB)" stroke-width="4" opacity="0.95"/>
-          <!-- Left cup inner -->
-          <ellipse cx="22" cy="132" rx="16" ry="20" fill="#080815"/>
-          <circle cx="22" cy="132" r="8" fill="#12113a"/>
-          <circle cx="22" cy="132" r="4" fill="#1a1858"/>
-          <!-- Right cup outer -->
-          <ellipse cx="154" cy="132" rx="28" ry="34" fill="url(#hBG)" stroke="#14132e" stroke-width="2"/>
-          <!-- Right cup RGB ring -->
-          <ellipse cx="154" cy="132" rx="25" ry="31" fill="none" stroke="url(#hRGB)" stroke-width="4" opacity="0.95"/>
-          <!-- Right cup inner -->
-          <ellipse cx="154" cy="132" rx="16" ry="20" fill="#080815"/>
-          <circle cx="154" cy="132" r="8" fill="#12113a"/>
-          <circle cx="154" cy="132" r="4" fill="#1a1858"/>
-          <!-- Mic boom arm -->
-          <path d="M22,160 Q8,188 16,200" fill="none" stroke="#14132e" stroke-width="5.5" stroke-linecap="round"/>
-          <rect x="9" y="193" width="16" height="12" rx="6" fill="#0a0919" stroke="#22214a" stroke-width="1"/>
+          <path d="M28,135 Q28,14 90,14 Q152,14 152,135" fill="none" stroke="#09081a" stroke-width="26" stroke-linecap="round"/>
+          <path d="M28,135 Q28,14 90,14 Q152,14 152,135" fill="none" stroke="url(#hband)" stroke-width="18" stroke-linecap="round"/>
+          <path d="M28,135 Q28,14 90,14 Q152,14 152,135" fill="none" stroke="#30305a" stroke-width="8" stroke-linecap="round"/>
+          <path d="M62,38 Q90,24 118,38" fill="none" stroke="#32305e" stroke-width="13" stroke-linecap="round"/>
+          <!-- Left cup -->
+          <ellipse cx="20" cy="142" rx="30" ry="37" fill="#09081a"/>
+          <ellipse cx="20" cy="142" rx="27" ry="34" fill="url(#hcup)"/>
+          <ellipse cx="20" cy="142" rx="27" ry="34" fill="none" stroke="url(#hring)" stroke-width="4.5" opacity=".98"/>
+          <ellipse cx="20" cy="142" rx="16" ry="20" fill="#060513"/>
+          <circle  cx="20" cy="142" r="9"  fill="#14124a"/>
+          <circle  cx="20" cy="142" r="5"  fill="#1e1c62"/>
+          <!-- Right cup -->
+          <ellipse cx="160" cy="142" rx="30" ry="37" fill="#09081a"/>
+          <ellipse cx="160" cy="142" rx="27" ry="34" fill="url(#hcup)"/>
+          <ellipse cx="160" cy="142" rx="27" ry="34" fill="none" stroke="url(#hring)" stroke-width="4.5" opacity=".98"/>
+          <ellipse cx="160" cy="142" rx="16" ry="20" fill="#060513"/>
+          <circle  cx="160" cy="142" r="9"  fill="#14124a"/>
+          <circle  cx="160" cy="142" r="5"  fill="#1e1c62"/>
+          <!-- Mic boom -->
+          <path d="M20,172 Q6,202 14,215" fill="none" stroke="#12103a" stroke-width="6" stroke-linecap="round"/>
+          <rect x="7" y="208" width="16" height="13" rx="6.5" fill="#0a0918"/>
         </svg>
-        <span class="lbl" style="color:rgba(0,0,0,0.35);font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-top:10px;transition:opacity 0.3s ease;white-space:nowrap;">Headset</span>
+        <span class="lbl" style="color:rgba(0,0,0,.32);font-size:9.5px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-top:12px;transition:opacity .35s;white-space:nowrap;">HEADSET</span>
       </div>
 
       <!-- MIC -->
-      <div id="w-mic" style="position:absolute;display:flex;flex-direction:column;align-items:center;bottom:0px;transition:left 0.75s cubic-bezier(0.65,0,0.35,1),bottom 0.75s cubic-bezier(0.65,0,0.35,1);">
-        <svg id="v-mic" width="90" height="200" viewBox="0 0 90 205" style="overflow:visible;transition:width 0.75s cubic-bezier(0.65,0,0.35,1),height 0.75s cubic-bezier(0.65,0,0.35,1);filter:drop-shadow(0 8px 24px rgba(80,40,180,0.15));">
+      <div id="w-mic" style="position:absolute;display:flex;flex-direction:column;align-items:center;transition:left .75s cubic-bezier(.65,0,.35,1),bottom .75s cubic-bezier(.65,0,.35,1);">
+        <svg id="v-mic" width="95" height="215" viewBox="0 0 95 218" style="transition:width .75s cubic-bezier(.65,0,.35,1),height .75s cubic-bezier(.65,0,.35,1);overflow:visible;filter:drop-shadow(0 12px 28px rgba(80,40,200,.18))">
           <defs>
-            <radialGradient id="mBG" cx="42%" cy="38%" r="62%"><stop offset="0%" stop-color="#22214a"/><stop offset="100%" stop-color="#0a0919"/></radialGradient>
+            <radialGradient id="mbody" cx="40%" cy="35%" r="64%"><stop offset="0%" stop-color="#28265a"/><stop offset="100%" stop-color="#0d0b1e"/></radialGradient>
+            <linearGradient id="mbase" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1c1a40"/><stop offset="100%" stop-color="#0d0b1e"/></linearGradient>
           </defs>
-          <!-- Base plate -->
-          <ellipse cx="45" cy="198" rx="34" ry="7" fill="#12112a"/>
-          <!-- Stand -->
-          <rect x="36" y="168" width="18" height="32" rx="5" fill="#0e0d24"/>
-          <!-- Pole -->
-          <rect x="42" y="125" width="6" height="47" fill="#16153a"/>
-          <!-- RGB accent on pole -->
-          <rect x="42" y="145" width="6" height="8" rx="1.5" fill="#00c8e8" opacity="0.85"/>
-          <!-- Body capsule -->
-          <rect x="15" y="38" width="60" height="90" rx="30" fill="url(#mBG)" stroke="#00c8e8" stroke-width="1.8"/>
-          <!-- Top dome -->
-          <ellipse cx="45" cy="40" rx="30" ry="10" fill="#12112a"/>
-          <!-- Grille lines -->
-          <g stroke="#2a2848" stroke-width="1.8" stroke-linecap="round">
-            <line x1="20" y1="56" x2="70" y2="56"/>
-            <line x1="18" y1="68" x2="72" y2="68"/>
-            <line x1="17" y1="80" x2="73" y2="80"/>
-            <line x1="17" y1="92" x2="73" y2="92"/>
-            <line x1="18" y1="104" x2="72" y2="104"/>
-            <line x1="20" y1="116" x2="70" y2="116"/>
+          <ellipse cx="47" cy="210" rx="36" ry="8" fill="#0d0b1e"/>
+          <rect x="38" y="178" width="19" height="35" rx="5" fill="url(#mbase)"/>
+          <ellipse cx="47" cy="178" rx="20" ry="6" fill="#1c1a40"/>
+          <rect x="44" y="133" width="7" height="48" fill="#1c1a40"/>
+          <rect x="44" y="151" width="7" height="9" rx="2" fill="#00d0f0" opacity=".9"/>
+          <rect x="14" y="35" width="67" height="100" rx="33" fill="url(#mbody)" stroke="#00d0f0" stroke-width="2"/>
+          <ellipse cx="47" cy="37" rx="33" ry="11" fill="#14123a"/>
+          <g stroke="#28265a" stroke-width="2" stroke-linecap="round">
+            <line x1="19" y1="55" x2="75" y2="55"/>
+            <line x1="16" y1="67" x2="78" y2="67"/>
+            <line x1="15" y1="79" x2="79" y2="79"/>
+            <line x1="15" y1="91" x2="79" y2="91"/>
+            <line x1="16" y1="103" x2="78" y2="103"/>
+            <line x1="19" y1="115" x2="75" y2="115"/>
+            <line x1="22" y1="126" x2="72" y2="126"/>
           </g>
-          <!-- RGB ring on body -->
-          <rect x="15" y="38" width="60" height="90" rx="30" fill="none" stroke="#cc30ff" stroke-width="2" stroke-dasharray="10 6" opacity="0.6"/>
+          <rect x="14" y="35" width="67" height="100" rx="33" fill="none" stroke="#c830ff" stroke-width="2.5" stroke-dasharray="11 6" opacity=".65"/>
         </svg>
-        <span class="lbl" style="color:rgba(0,0,0,0.35);font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-top:10px;transition:opacity 0.3s ease;white-space:nowrap;">Microphone</span>
+        <span class="lbl" style="color:rgba(0,0,0,.32);font-size:9.5px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-top:12px;transition:opacity .35s;white-space:nowrap;">MICROPHONE</span>
       </div>
 
-      <!-- KEYBOARD (rendered behind monitor via z-index) -->
-      <div id="w-keyboard" style="position:absolute;display:flex;flex-direction:column;align-items:center;bottom:0px;z-index:2;transition:left 0.75s cubic-bezier(0.65,0,0.35,1),bottom 0.75s cubic-bezier(0.65,0,0.35,1);">
-        <svg id="v-keyboard" width="280" height="120" viewBox="0 0 280 120" style="overflow:visible;transition:width 0.75s cubic-bezier(0.65,0,0.35,1),height 0.75s cubic-bezier(0.65,0,0.35,1);filter:drop-shadow(0 6px 20px rgba(0,0,0,0.22));">
+      <!-- KEYBOARD -->
+      <div id="w-keyboard" style="position:absolute;display:flex;flex-direction:column;align-items:center;z-index:2;transition:left .75s cubic-bezier(.65,0,.35,1),bottom .75s cubic-bezier(.65,0,.35,1);">
+        <svg id="v-keyboard" width="300" height="130" viewBox="0 0 300 130" style="transition:width .75s cubic-bezier(.65,0,.35,1),height .75s cubic-bezier(.65,0,.35,1);overflow:visible;filter:drop-shadow(0 12px 28px rgba(0,0,0,.28))">
           <defs>
-            <linearGradient id="kBG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1c1b30"/><stop offset="100%" stop-color="#0c0b1a"/></linearGradient>
-            <linearGradient id="kRGB" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#00c8e8"/><stop offset="45%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#00c8e8"/></linearGradient>
+            <linearGradient id="kbbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1c1a30"/><stop offset="100%" stop-color="#0a0916"/></linearGradient>
+            <linearGradient id="kbrgb" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#00d0f0"/><stop offset="48%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#00d0f0"/></linearGradient>
           </defs>
-          <!-- Body -->
-          <rect x="1" y="6" width="278" height="107" rx="11" fill="url(#kBG)" stroke="#20203a" stroke-width="1.5"/>
-          <!-- RGB underglow strip -->
-          <rect x="1" y="106" width="278" height="7" rx="4" fill="url(#kRGB)" opacity="0.8"/>
-          <!-- Keys -->
-          <g fill="#14132e" stroke="#22214a" stroke-width="0.9">
-            <!-- Row 1 -->
-            <rect x="8"  y="13" width="17" height="15" rx="3.5"/><rect x="28" y="13" width="17" height="15" rx="3.5"/><rect x="48" y="13" width="17" height="15" rx="3.5"/><rect x="68" y="13" width="17" height="15" rx="3.5"/><rect x="88" y="13" width="17" height="15" rx="3.5"/><rect x="108" y="13" width="17" height="15" rx="3.5"/><rect x="128" y="13" width="17" height="15" rx="3.5"/><rect x="148" y="13" width="17" height="15" rx="3.5"/><rect x="168" y="13" width="17" height="15" rx="3.5"/><rect x="188" y="13" width="17" height="15" rx="3.5"/><rect x="208" y="13" width="17" height="15" rx="3.5"/><rect x="228" y="13" width="17" height="15" rx="3.5"/><rect x="248" y="13" width="30" height="15" rx="3.5"/>
-            <!-- Row 2 -->
-            <rect x="8"  y="31" width="25" height="15" rx="3.5"/><rect x="36" y="31" width="17" height="15" rx="3.5"/><rect x="56" y="31" width="17" height="15" rx="3.5"/><rect x="76" y="31" width="17" height="15" rx="3.5"/><rect x="96" y="31" width="17" height="15" rx="3.5"/><rect x="116" y="31" width="17" height="15" rx="3.5"/><rect x="136" y="31" width="17" height="15" rx="3.5"/><rect x="156" y="31" width="17" height="15" rx="3.5"/><rect x="176" y="31" width="17" height="15" rx="3.5"/><rect x="196" y="31" width="17" height="15" rx="3.5"/><rect x="216" y="31" width="17" height="15" rx="3.5"/><rect x="236" y="31" width="42" height="15" rx="3.5"/>
-            <!-- Row 3 -->
-            <rect x="8"  y="49" width="32" height="15" rx="3.5"/><rect x="43" y="49" width="17" height="15" rx="3.5"/><rect x="63" y="49" width="17" height="15" rx="3.5"/><rect x="83" y="49" width="17" height="15" rx="3.5"/><rect x="103" y="49" width="17" height="15" rx="3.5"/><rect x="123" y="49" width="17" height="15" rx="3.5"/><rect x="143" y="49" width="17" height="15" rx="3.5"/><rect x="163" y="49" width="17" height="15" rx="3.5"/><rect x="183" y="49" width="17" height="15" rx="3.5"/><rect x="203" y="49" width="17" height="15" rx="3.5"/><rect x="223" y="49" width="55" height="15" rx="3.5"/>
-            <!-- Row 4 spacebar -->
-            <rect x="8"  y="67" width="25" height="15" rx="3.5"/><rect x="36" y="67" width="17" height="15" rx="3.5"/><rect x="56" y="67" width="17" height="15" rx="3.5"/><rect x="76" y="67" width="122" height="15" rx="3.5"/><rect x="201" y="67" width="17" height="15" rx="3.5"/><rect x="221" y="67" width="17" height="15" rx="3.5"/><rect x="241" y="67" width="17" height="15" rx="3.5"/><rect x="261" y="67" width="17" height="15" rx="3.5"/>
-            <!-- Row 5 -->
-            <rect x="8"  y="85" width="25" height="13" rx="3.5"/><rect x="36" y="85" width="25" height="13" rx="3.5"/><rect x="64" y="85" width="25" height="13" rx="3.5"/>
-            <rect x="241" y="85" width="17" height="13" rx="3.5"/><rect x="261" y="85" width="17" height="13" rx="3.5"/>
+          <rect x="1" y="5" width="298" height="117" rx="12" fill="url(#kbbg)" stroke="#1e1c38" stroke-width="1.5"/>
+          <rect x="1" y="115" width="298" height="7" rx="4" fill="url(#kbrgb)" opacity=".85"/>
+          <g fill="#14122e" stroke="#222048" stroke-width="1">
+            <rect x="9" y="13" width="18" height="16" rx="4"/><rect x="30" y="13" width="18" height="16" rx="4"/><rect x="51" y="13" width="18" height="16" rx="4"/><rect x="72" y="13" width="18" height="16" rx="4"/><rect x="93" y="13" width="18" height="16" rx="4"/><rect x="114" y="13" width="18" height="16" rx="4"/><rect x="135" y="13" width="18" height="16" rx="4"/><rect x="156" y="13" width="18" height="16" rx="4"/><rect x="177" y="13" width="18" height="16" rx="4"/><rect x="198" y="13" width="18" height="16" rx="4"/><rect x="219" y="13" width="18" height="16" rx="4"/><rect x="240" y="13" width="18" height="16" rx="4"/><rect x="261" y="13" width="29" height="16" rx="4"/>
+            <rect x="9" y="33" width="27" height="16" rx="4"/><rect x="39" y="33" width="18" height="16" rx="4"/><rect x="60" y="33" width="18" height="16" rx="4"/><rect x="81" y="33" width="18" height="16" rx="4"/><rect x="102" y="33" width="18" height="16" rx="4"/><rect x="123" y="33" width="18" height="16" rx="4"/><rect x="144" y="33" width="18" height="16" rx="4"/><rect x="165" y="33" width="18" height="16" rx="4"/><rect x="186" y="33" width="18" height="16" rx="4"/><rect x="207" y="33" width="18" height="16" rx="4"/><rect x="228" y="33" width="18" height="16" rx="4"/><rect x="249" y="33" width="41" height="16" rx="4"/>
+            <rect x="9" y="53" width="34" height="16" rx="4"/><rect x="46" y="53" width="18" height="16" rx="4"/><rect x="67" y="53" width="18" height="16" rx="4"/><rect x="88" y="53" width="18" height="16" rx="4"/><rect x="109" y="53" width="18" height="16" rx="4"/><rect x="130" y="53" width="18" height="16" rx="4"/><rect x="151" y="53" width="18" height="16" rx="4"/><rect x="172" y="53" width="18" height="16" rx="4"/><rect x="193" y="53" width="18" height="16" rx="4"/><rect x="214" y="53" width="18" height="16" rx="4"/><rect x="235" y="53" width="55" height="16" rx="4"/>
+            <rect x="9" y="73" width="27" height="16" rx="4"/><rect x="39" y="73" width="18" height="16" rx="4"/><rect x="60" y="73" width="18" height="16" rx="4"/><rect x="81" y="73" width="130" height="16" rx="4"/><rect x="214" y="73" width="18" height="16" rx="4"/><rect x="235" y="73" width="18" height="16" rx="4"/><rect x="256" y="73" width="18" height="16" rx="4"/><rect x="277" y="73" width="14" height="16" rx="4"/>
+            <rect x="9" y="93" width="27" height="14" rx="4"/><rect x="39" y="93" width="27" height="14" rx="4"/><rect x="69" y="93" width="27" height="14" rx="4"/><rect x="256" y="93" width="18" height="14" rx="4"/><rect x="277" y="93" width="14" height="14" rx="4"/>
           </g>
-          <!-- A few RGB key highlights -->
-          <g fill="none" stroke="#00c8e8" stroke-width="1" opacity="0.55">
-            <rect x="36" y="31" width="17" height="15" rx="3.5"/>
-            <rect x="96" y="49" width="17" height="15" rx="3.5"/>
-            <rect x="76" y="67" width="122" height="15" rx="3.5"/>
+          <g fill="none" stroke="#00d0f0" stroke-width="1.2" opacity=".6">
+            <rect x="39" y="33" width="18" height="16" rx="4"/>
+            <rect x="109" y="53" width="18" height="16" rx="4"/>
+            <rect x="81" y="73" width="130" height="16" rx="4"/>
           </g>
         </svg>
-        <span class="lbl" style="color:rgba(0,0,0,0.35);font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-top:10px;transition:opacity 0.3s ease;white-space:nowrap;">Keyboard</span>
+        <span class="lbl" style="color:rgba(0,0,0,.32);font-size:9.5px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-top:12px;transition:opacity .35s;white-space:nowrap;">KEYBOARD</span>
       </div>
 
-      <!-- MONITOR (higher z-index so it overlaps keyboard) -->
-      <div id="w-monitor" style="position:absolute;display:flex;flex-direction:column;align-items:center;bottom:0px;z-index:3;transition:left 0.75s cubic-bezier(0.65,0,0.35,1),bottom 0.75s cubic-bezier(0.65,0,0.35,1);">
-        <svg id="v-monitor" width="300" height="290" viewBox="0 0 300 295" style="overflow:visible;transition:width 0.75s cubic-bezier(0.65,0,0.35,1),height 0.75s cubic-bezier(0.65,0,0.35,1);filter:drop-shadow(0 10px 30px rgba(60,30,160,0.22));">
+      <!-- MONITOR -->
+      <div id="w-monitor" style="position:absolute;display:flex;flex-direction:column;align-items:center;z-index:3;transition:left .75s cubic-bezier(.65,0,.35,1),bottom .75s cubic-bezier(.65,0,.35,1);">
+        <svg id="v-monitor" width="320" height="318" viewBox="0 0 320 318" style="transition:width .75s cubic-bezier(.65,0,.35,1),height .75s cubic-bezier(.65,0,.35,1);overflow:visible;filter:drop-shadow(0 14px 36px rgba(60,20,180,.25))">
           <defs>
-            <radialGradient id="scrG2" cx="50%" cy="56%" r="68%">
-              <stop offset="0%" stop-color="#b83800" stop-opacity="0.75"/>
-              <stop offset="20%" stop-color="#7c22cc" stop-opacity="0.88"/>
-              <stop offset="52%" stop-color="#1840c8" stop-opacity="0.95"/>
-              <stop offset="100%" stop-color="#010110"/>
+            <radialGradient id="scr" cx="50%" cy="56%" r="68%">
+              <stop offset="0%" stop-color="#b83000" stop-opacity=".78"/>
+              <stop offset="18%" stop-color="#8020cc" stop-opacity=".9"/>
+              <stop offset="50%" stop-color="#1438c8" stop-opacity=".96"/>
+              <stop offset="100%" stop-color="#01010e"/>
             </radialGradient>
-            <radialGradient id="scrH2" cx="50%" cy="60%" r="28%">
-              <stop offset="0%" stop-color="#ff7020" stop-opacity="0.95"/>
+            <radialGradient id="scrHot" cx="50%" cy="58%" r="26%">
+              <stop offset="0%" stop-color="#ff6010" stop-opacity=".98"/>
               <stop offset="100%" stop-color="transparent"/>
             </radialGradient>
           </defs>
-          <!-- Stand base -->
-          <ellipse cx="150" cy="287" rx="54" ry="7" fill="#c0c0c0"/>
-          <!-- Neck -->
-          <rect x="132" y="240" width="36" height="50" rx="6" fill="#b8b8b8"/>
-          <rect x="138" y="224" width="24" height="22" rx="4" fill="#a8a8a8"/>
-          <!-- Frame -->
-          <rect x="2" y="2" width="296" height="222" rx="14" fill="#0e0d22" stroke="#18173a" stroke-width="2"/>
-          <!-- Screen -->
-          <rect x="9" y="9" width="282" height="208" rx="10" fill="#010110"/>
-          <rect x="9" y="9" width="282" height="208" rx="10" fill="url(#scrG2)"/>
-          <rect x="9" y="9" width="282" height="208" rx="10" fill="url(#scrH2)"/>
-          <!-- Stars -->
-          <g fill="white" opacity="0.8">
-            <circle cx="38" cy="32" r="1.4"/><circle cx="90" cy="55" r="1.1"/><circle cx="145" cy="24" r="1.6"/>
-            <circle cx="210" cy="42" r="1.2"/><circle cx="272" cy="30" r="1.3"/><circle cx="278" cy="72" r="1"/>
-            <circle cx="24" cy="98" r="1.1"/><circle cx="278" cy="118" r="1.4"/><circle cx="235" cy="162" r="1.1"/>
-            <circle cx="60" cy="172" r="1.2"/><circle cx="162" cy="195" r="1"/><circle cx="110" cy="185" r="1.3"/>
-            <circle cx="195" cy="82" r="1"/><circle cx="75" cy="88" r="1.2"/><circle cx="258" cy="170" r="1"/>
-            <circle cx="135" cy="145" r="0.9"/><circle cx="52" cy="128" r="1"/>
+          <ellipse cx="160" cy="310" rx="58" ry="8" fill="#c8c8c8"/>
+          <rect x="140" y="258" width="40" height="56" rx="7" fill="#c0c0c0"/>
+          <rect x="148" y="242" width="24" height="22" rx="5" fill="#b0b0b0"/>
+          <rect x="2" y="2" width="316" height="240" rx="15" fill="#0c0b20" stroke="#16153a" stroke-width="2"/>
+          <rect x="10" y="10" width="300" height="224" rx="10" fill="#01010e"/>
+          <rect x="10" y="10" width="300" height="224" rx="10" fill="url(#scr)"/>
+          <rect x="10" y="10" width="300" height="224" rx="10" fill="url(#scrHot)"/>
+          <g fill="white" opacity=".82">
+            <circle cx="42" cy="35" r="1.5"/><circle cx="98" cy="58" r="1.2"/><circle cx="158" cy="26" r="1.7"/>
+            <circle cx="222" cy="44" r="1.3"/><circle cx="288" cy="32" r="1.4"/><circle cx="296" cy="80" r="1.1"/>
+            <circle cx="26" cy="108" r="1.2"/><circle cx="298" cy="128" r="1.5"/><circle cx="252" cy="176" r="1.2"/>
+            <circle cx="65" cy="185" r="1.3"/><circle cx="172" cy="212" r="1.1"/><circle cx="116" cy="200" r="1.4"/>
+            <circle cx="205" cy="90" r="1.1"/><circle cx="78" cy="95" r="1.3"/>
           </g>
-          <!-- Power LED -->
-          <circle cx="150" cy="234" r="3.5" fill="#00c8e8" opacity="0.9"/>
+          <circle cx="160" cy="250" r="4" fill="#00d0f0" opacity=".9"/>
         </svg>
-        <span class="lbl" style="color:rgba(0,0,0,0.35);font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-top:10px;transition:opacity 0.3s ease;white-space:nowrap;">Monitor</span>
+        <span class="lbl" style="color:rgba(0,0,0,.32);font-size:9.5px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-top:12px;transition:opacity .35s;white-space:nowrap;">MONITOR</span>
       </div>
 
       <!-- MOUSE -->
-      <div id="w-mouse" style="position:absolute;display:flex;flex-direction:column;align-items:center;bottom:0px;z-index:2;transition:left 0.75s cubic-bezier(0.65,0,0.35,1),bottom 0.75s cubic-bezier(0.65,0,0.35,1);">
-        <svg id="v-mouse" width="125" height="158" viewBox="0 0 115 158" style="overflow:visible;transition:width 0.75s cubic-bezier(0.65,0,0.35,1),height 0.75s cubic-bezier(0.65,0,0.35,1);filter:drop-shadow(0 8px 24px rgba(80,40,180,0.18));">
+      <div id="w-mouse" style="position:absolute;display:flex;flex-direction:column;align-items:center;z-index:2;transition:left .75s cubic-bezier(.65,0,.35,1),bottom .75s cubic-bezier(.65,0,.35,1);">
+        <svg id="v-mouse" width="130" height="165" viewBox="0 0 120 165" style="transition:width .75s cubic-bezier(.65,0,.35,1),height .75s cubic-bezier(.65,0,.35,1);overflow:visible;filter:drop-shadow(0 12px 28px rgba(80,40,200,.2))">
           <defs>
-            <radialGradient id="mseBG" cx="38%" cy="28%" r="70%"><stop offset="0%" stop-color="#1e1d3a"/><stop offset="100%" stop-color="#070612"/></radialGradient>
-            <linearGradient id="mseRGB" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#00c8e8"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient>
+            <radialGradient id="msebg" cx="36%" cy="26%" r="72%"><stop offset="0%" stop-color="#1e1c3a"/><stop offset="100%" stop-color="#07060f"/></radialGradient>
+            <linearGradient id="msergb" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#00d0f0"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient>
           </defs>
-          <!-- Shadow -->
-          <ellipse cx="57" cy="152" rx="30" ry="5" fill="rgba(0,0,0,0.09)"/>
-          <!-- Body -->
-          <path d="M20,128 Q4,110 4,74 Q4,20 40,12 Q64,8 82,30 Q100,52 96,94 Q91,124 66,136 Q42,142 20,128Z" fill="url(#mseBG)" stroke="#1e1d3a" stroke-width="1.5"/>
-          <!-- Center split -->
-          <path d="M50,13 L50,96" stroke="#04040e" stroke-width="2.8"/>
-          <!-- Left button area -->
-          <path d="M50,13 Q28,16 12,42 Q6,62 8,80 L50,80Z" fill="#161530" opacity="0.55"/>
-          <!-- Scroll wheel -->
-          <rect x="42" y="36" width="16" height="34" rx="8" fill="#12112e" stroke="#00c8e8" stroke-width="1.8"/>
-          <rect x="45" y="40" width="10" height="5" rx="2.5" fill="#1e1d3a"/>
-          <rect x="45" y="48" width="10" height="5" rx="2.5" fill="#1e1d3a"/>
-          <rect x="45" y="56" width="10" height="5" rx="2.5" fill="#1e1d3a"/>
-          <!-- RGB underglow -->
-          <path d="M20,128 Q42,142 66,136 Q91,124 96,94" stroke="url(#mseRGB)" stroke-width="5" fill="none" opacity="0.92"/>
-          <!-- Side button -->
-          <rect x="5" y="74" width="5" height="22" rx="2.5" fill="#161530"/>
+          <ellipse cx="60" cy="158" rx="32" ry="6" fill="rgba(0,0,0,.1)"/>
+          <path d="M18,132 Q2,114 2,76 Q2,18 38,10 Q64,6 84,30 Q104,54 100,98 Q95,128 68,140 Q42,148 18,132Z" fill="url(#msebg)" stroke="#1a1838" stroke-width="1.5"/>
+          <path d="M48,11 L48,100" stroke="#030308" stroke-width="3"/>
+          <path d="M48,11 Q26,15 10,44 Q4,64 6,84 L48,84Z" fill="#161432" opacity=".55"/>
+          <rect x="40" y="36" width="16" height="36" rx="8" fill="#0e0c28" stroke="#00d0f0" stroke-width="2"/>
+          <rect x="43" y="41" width="10" height="5" rx="2.5" fill="#1e1c3a"/>
+          <rect x="43" y="50" width="10" height="5" rx="2.5" fill="#1e1c3a"/>
+          <rect x="43" y="59" width="10" height="5" rx="2.5" fill="#1e1c3a"/>
+          <path d="M18,132 Q42,148 68,140 Q95,128 100,98" stroke="url(#msergb)" stroke-width="5.5" fill="none" opacity=".94"/>
+          <rect x="3" y="78" width="5" height="24" rx="2.5" fill="#141232"/>
         </svg>
-        <span class="lbl" style="color:rgba(0,0,0,0.35);font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-top:10px;transition:opacity 0.3s ease;white-space:nowrap;">Mouse</span>
+        <span class="lbl" style="color:rgba(0,0,0,.32);font-size:9.5px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-top:12px;transition:opacity .35s;white-space:nowrap;">MOUSE</span>
       </div>
 
       <!-- TOWER -->
-      <div id="w-tower" style="position:absolute;display:flex;flex-direction:column;align-items:center;bottom:0px;z-index:2;transition:left 0.75s cubic-bezier(0.65,0,0.35,1),bottom 0.75s cubic-bezier(0.65,0,0.35,1);">
-        <svg id="v-tower" width="190" height="340" viewBox="0 0 190 345" style="overflow:visible;transition:width 0.75s cubic-bezier(0.65,0,0.35,1),height 0.75s cubic-bezier(0.65,0,0.35,1);filter:drop-shadow(0 10px 30px rgba(60,30,160,0.22));">
+      <div id="w-tower" style="position:absolute;display:flex;flex-direction:column;align-items:center;z-index:2;transition:left .75s cubic-bezier(.65,0,.35,1),bottom .75s cubic-bezier(.65,0,.35,1);">
+        <svg id="v-tower" width="200" height="370" viewBox="0 0 200 375" style="transition:width .75s cubic-bezier(.65,0,.35,1),height .75s cubic-bezier(.65,0,.35,1);overflow:visible;filter:drop-shadow(0 14px 36px rgba(60,20,180,.25))">
           <defs>
-            <linearGradient id="tBG2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#080814"/><stop offset="100%" stop-color="#12112a"/></linearGradient>
-            <linearGradient id="tSideRGB" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00c8e8"/><stop offset="38%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#00c8e8"/></linearGradient>
-            <linearGradient id="tFanRGB" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00c8e8"/><stop offset="100%" stop-color="#4433ee"/></linearGradient>
+            <linearGradient id="twrbg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#07060f"/><stop offset="100%" stop-color="#10102a"/></linearGradient>
+            <linearGradient id="twrside" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00d0f0"/><stop offset="35%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#00d0f0"/></linearGradient>
+            <linearGradient id="fanring" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00d0f0"/><stop offset="100%" stop-color="#4422ee"/></linearGradient>
           </defs>
-          <!-- Main chassis -->
-          <rect x="5" y="4" width="155" height="337" rx="10" fill="url(#tBG2)" stroke="#18173a" stroke-width="2"/>
-          <!-- Glass panel -->
-          <rect x="14" y="15" width="112" height="315" rx="7" fill="#040410" stroke="#141330" stroke-width="1"/>
-          <!-- RGB left edge strip -->
-          <rect x="5" y="4" width="7" height="337" rx="3.5" fill="url(#tSideRGB)"/>
-
+          <rect x="5" y="4" width="162" height="367" rx="11" fill="url(#twrbg)" stroke="#14122e" stroke-width="2"/>
+          <rect x="14" y="16" width="118" height="343" rx="8" fill="#030309" stroke="#10102a" stroke-width="1"/>
+          <rect x="5" y="4" width="8" height="367" rx="4" fill="url(#twrside)"/>
           <!-- Fan 1 -->
-          <circle cx="70" cy="83"  r="40" fill="#080814" stroke="#14132e" stroke-width="1.5"/>
-          <circle cx="70" cy="83"  r="35" fill="none" stroke="url(#tFanRGB)" stroke-width="4" opacity="0.92"/>
-          <circle cx="70" cy="83"  r="24" fill="#040410"/>
-          <circle cx="70" cy="83"  r="8"  fill="#0c1830"/>
-          <circle cx="70" cy="83"  r="4"  fill="#00c8e8" opacity="0.8"/>
-          <g transform="translate(70,83)" fill="#0a1220" stroke="#141e30" stroke-width="0.6">
-            <path d="M0,-27 Q13,-14 0,-8 Q-13,-14 0,-27"/>
-            <path d="M27,0 Q14,13 8,0 Q14,-13 27,0"/>
-            <path d="M0,27 Q-13,14 0,8 Q13,14 0,27"/>
-            <path d="M-27,0 Q-14,-13 -8,0 Q-14,13 -27,0"/>
+          <circle cx="73" cy="90"  r="43" fill="#060614" stroke="#10102a" stroke-width="1.5"/>
+          <circle cx="73" cy="90"  r="38" fill="none" stroke="url(#fanring)" stroke-width="4.5" opacity=".95"/>
+          <circle cx="73" cy="90"  r="26" fill="#030309"/>
+          <circle cx="73" cy="90"  r="9"  fill="#0c1630"/>
+          <circle cx="73" cy="90"  r="4.5" fill="#00d0f0" opacity=".85"/>
+          <g transform="translate(73,90)" fill="#090e1e" stroke="#121e30" stroke-width=".7">
+            <path d="M0,-29 Q14,-15 0,-9 Q-14,-15 0,-29"/><path d="M29,0 Q15,14 9,0 Q15,-14 29,0"/>
+            <path d="M0,29 Q-14,15 0,9 Q14,15 0,29"/><path d="M-29,0 Q-15,-14 -9,0 Q-15,14 -29,0"/>
           </g>
-
           <!-- Fan 2 -->
-          <circle cx="70" cy="190" r="40" fill="#080814" stroke="#14132e" stroke-width="1.5"/>
-          <circle cx="70" cy="190" r="35" fill="none" stroke="url(#tFanRGB)" stroke-width="4" opacity="0.92"/>
-          <circle cx="70" cy="190" r="24" fill="#040410"/>
-          <circle cx="70" cy="190" r="8"  fill="#0c1830"/>
-          <circle cx="70" cy="190" r="4"  fill="#00c8e8" opacity="0.8"/>
-          <g transform="translate(70,190)" fill="#0a1220" stroke="#141e30" stroke-width="0.6">
-            <path d="M0,-27 Q13,-14 0,-8 Q-13,-14 0,-27"/>
-            <path d="M27,0 Q14,13 8,0 Q14,-13 27,0"/>
-            <path d="M0,27 Q-13,14 0,8 Q13,14 0,27"/>
-            <path d="M-27,0 Q-14,-13 -8,0 Q-14,13 -27,0"/>
+          <circle cx="73" cy="205" r="43" fill="#060614" stroke="#10102a" stroke-width="1.5"/>
+          <circle cx="73" cy="205" r="38" fill="none" stroke="url(#fanring)" stroke-width="4.5" opacity=".95"/>
+          <circle cx="73" cy="205" r="26" fill="#030309"/>
+          <circle cx="73" cy="205" r="9"  fill="#0c1630"/>
+          <circle cx="73" cy="205" r="4.5" fill="#00d0f0" opacity=".85"/>
+          <g transform="translate(73,205)" fill="#090e1e" stroke="#121e30" stroke-width=".7">
+            <path d="M0,-29 Q14,-15 0,-9 Q-14,-15 0,-29"/><path d="M29,0 Q15,14 9,0 Q15,-14 29,0"/>
+            <path d="M0,29 Q-14,15 0,9 Q14,15 0,29"/><path d="M-29,0 Q-15,-14 -9,0 Q-15,14 -29,0"/>
           </g>
-
           <!-- Fan 3 -->
-          <circle cx="70" cy="295" r="36" fill="#080814" stroke="#14132e" stroke-width="1.5"/>
-          <circle cx="70" cy="295" r="31" fill="none" stroke="url(#tFanRGB)" stroke-width="3.5" opacity="0.92"/>
-          <circle cx="70" cy="295" r="21" fill="#040410"/>
-          <circle cx="70" cy="295" r="7"  fill="#0c1830"/>
-          <circle cx="70" cy="295" r="3.5" fill="#00c8e8" opacity="0.75"/>
-          <g transform="translate(70,295)" fill="#0a1220" stroke="#141e30" stroke-width="0.6">
-            <path d="M0,-23 Q11,-12 0,-7 Q-11,-12 0,-23"/>
-            <path d="M23,0 Q12,11 7,0 Q12,-11 23,0"/>
-            <path d="M0,23 Q-11,12 0,7 Q11,12 0,23"/>
-            <path d="M-23,0 Q-12,-11 -7,0 Q-12,11 -23,0"/>
+          <circle cx="73" cy="318" r="38" fill="#060614" stroke="#10102a" stroke-width="1.5"/>
+          <circle cx="73" cy="318" r="33" fill="none" stroke="url(#fanring)" stroke-width="4" opacity=".95"/>
+          <circle cx="73" cy="318" r="22" fill="#030309"/>
+          <circle cx="73" cy="318" r="8"  fill="#0c1630"/>
+          <circle cx="73" cy="318" r="4"  fill="#00d0f0" opacity=".8"/>
+          <g transform="translate(73,318)" fill="#090e1e" stroke="#121e30" stroke-width=".7">
+            <path d="M0,-24 Q12,-13 0,-8 Q-12,-13 0,-24"/><path d="M24,0 Q13,12 8,0 Q13,-12 24,0"/>
+            <path d="M0,24 Q-12,13 0,8 Q12,13 0,24"/><path d="M-24,0 Q-13,-12 -8,0 Q-13,12 -24,0"/>
           </g>
-
-          <!-- Right IO panel -->
-          <rect x="132" y="15" width="28" height="315" rx="5" fill="#080814"/>
-          <!-- Power button -->
-          <circle cx="146" cy="38" r="9" fill="#0e0d22" stroke="#00c8e8" stroke-width="2"/>
-          <circle cx="146" cy="38" r="4" fill="#00c8e8" opacity="0.7"/>
-          <!-- Ports -->
-          <rect x="136" y="56" width="18" height="10" rx="2.5" fill="#04040e" stroke="#141330" stroke-width="0.8"/>
-          <rect x="136" y="72" width="18" height="10" rx="2.5" fill="#04040e" stroke="#141330" stroke-width="0.8"/>
-          <rect x="136" y="92" width="18" height="12" rx="2.5" fill="#04040e" stroke="#141330" stroke-width="0.8"/>
-          <rect x="136" y="110" width="18" height="12" rx="2.5" fill="#04040e" stroke="#141330" stroke-width="0.8"/>
-          <rect x="136" y="132" width="18" height="45" rx="3" fill="#04040e" stroke="#141330" stroke-width="0.8"/>
-          <rect x="136" y="186" width="18" height="10" rx="2.5" fill="#0e0d22"/>
-          <rect x="136" y="202" width="18" height="10" rx="2.5" fill="#0e0d22"/>
+          <!-- IO panel -->
+          <rect x="140" y="16" width="27" height="343" rx="5" fill="#07060f"/>
+          <circle cx="153" cy="40" r="10" fill="#0d0c22" stroke="#00d0f0" stroke-width="2.2"/>
+          <circle cx="153" cy="40" r="5" fill="#00d0f0" opacity=".72"/>
+          <rect x="144" y="60" width="18" height="11" rx="3" fill="#030309" stroke="#10102a" stroke-width=".8"/>
+          <rect x="144" y="77" width="18" height="11" rx="3" fill="#030309" stroke="#10102a" stroke-width=".8"/>
+          <rect x="144" y="98" width="18" height="14" rx="3" fill="#030309" stroke="#10102a" stroke-width=".8"/>
+          <rect x="144" y="118" width="18" height="14" rx="3" fill="#030309" stroke="#10102a" stroke-width=".8"/>
+          <rect x="144" y="142" width="18" height="50" rx="3" fill="#030309" stroke="#10102a" stroke-width=".8"/>
+          <rect x="144" y="200" width="18" height="11" rx="3" fill="#0d0c22"/>
+          <rect x="144" y="218" width="18" height="11" rx="3" fill="#0d0c22"/>
         </svg>
-        <span class="lbl" style="color:rgba(0,0,0,0.35);font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-top:10px;transition:opacity 0.3s ease;white-space:nowrap;">PC Tower</span>
+        <span class="lbl" style="color:rgba(0,0,0,.32);font-size:9.5px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-top:12px;transition:opacity .35s;white-space:nowrap;">PC TOWER</span>
       </div>
 
-      <!-- Glow (hover only) -->
-      <div id="bmp-glow" style="position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 0.7s;background:radial-gradient(ellipse at 50% 70%, rgba(0,180,216,0.1) 0%, rgba(100,40,220,0.07) 45%, transparent 72%);border-radius:20px;z-index:1;"></div>
+      <div id="glow" style="position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .7s;background:radial-gradient(ellipse at 52% 72%, rgba(0,180,216,.12) 0%, rgba(100,40,220,.08) 42%, transparent 70%);border-radius:24px;"></div>
 
     </div>
   </div>
 
-  <!-- CTA -->
-  <div style="text-align:center;margin-top:50px;">
+  <div style="text-align:center;margin-top:54px;">
     <a href="#"
-       onmouseover="this.style.background='#00b4d8';this.style.color='#fff';this.style.boxShadow='0 0 28px rgba(0,180,216,0.38)';"
+       onmouseover="this.style.background='#00b4d8';this.style.color='#fff';this.style.boxShadow='0 0 30px rgba(0,180,216,.4)';"
        onmouseout="this.style.background='transparent';this.style.color='#00b4d8';this.style.boxShadow='none';"
-       style="display:inline-block;color:#00b4d8;background:transparent;border:1.5px solid #00b4d8;padding:14px 52px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;text-decoration:none;transition:all 0.25s;">
+       style="display:inline-block;color:#00b4d8;background:transparent;border:1.5px solid #00b4d8;padding:14px 54px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;text-decoration:none;transition:all .25s;">
       START BUILDING →
     </a>
   </div>
@@ -284,64 +228,74 @@
 <script>
 (function(){
   var stage = document.getElementById('stage');
-  var glow  = document.getElementById('bmp-glow');
+  var glow  = document.getElementById('glow');
+  var hint  = document.getElementById('hint');
 
-  /* ─── SPREAD: evenly spaced, all at bottom:0 ─── */
-  /* Stage width = 1200. Parts total ~1050, padding ~75 each side */
+  // SPREAD: evenly spaced with clear gaps. Stage=1260px
+  // widths: headset=185, mic=95, keyboard=300, monitor=320, mouse=130, tower=200 → total=1230
+  // gaps of ~40px between each → offsets below
   var SP = {
-    headset:  { l:  30, b: 40 },   /* slightly elevated (no stand) */
-    mic:      { l: 235, b:  0 },
-    keyboard: { l: 365, b:  0 },
-    monitor:  { l: 490, b:  0 },
-    mouse:    { l: 820, b:  0 },
-    tower:    { l: 990, b:  0 },
+    headset:  { l:  15, b: 50 },
+    mic:      { l: 238, b:  0 },
+    keyboard: { l: 371, b:  0 },
+    monitor:  { l: 709, b:  0 },
+    mouse:    { l:1067, b:  0 },
+    tower:    { l: 980, b:  0 }, // temporarily will be fixed in apply
   };
 
-  /* ─── ASSEMBLED: tight, centered, matching screenshot ─── */
-  /* Total assembled group width ≈ 1000px, centered in 1200px → start ~100 */
+  // Recalculate spread so tower fits - total parts width ~1230, stage 1260
+  // headset(185)+gap40+mic(95)+gap40+keyboard(300)+gap40+monitor(320)+gap40+mouse(130)+gap40+tower(200)=1390
+  // Adjust: reduce gaps to 20px
+  // 15 | 220 | 335 | 655 | 995 | 1145
+  SP = {
+    headset:  { l:  15, b: 50 },
+    mic:      { l: 218, b:  0 },
+    keyboard: { l: 328, b:  0 },
+    monitor:  { l: 642, b:  0 },
+    mouse:    { l: 978, b:  0 },
+    tower:    { l:1122, b:  0 },
+  };
+
+  // ASSEMBLED: tight centered group
   var AS = {
-    headset:  { l:  40, b: 150 },  /* elevated far left                    */
-    mic:      { l: 195, b:   5 },  /* desk level right of headset          */
-    monitor:  { l: 310, b: 128 },  /* raised on stand above keyboard       */
-    keyboard: { l: 285, b:   5 },  /* desk level below monitor             */
-    mouse:    { l: 585, b:   8 },  /* right of keyboard, tight             */
-    tower:    { l: 725, b:   5 },  /* right, tall                          */
+    headset:  { l:  58, b: 162 },
+    mic:      { l: 222, b:   8 },
+    keyboard: { l: 302, b:   8 },
+    monitor:  { l: 270, b: 142 },
+    mouse:    { l: 622, b:  10 },
+    tower:    { l: 768, b:   5 },
   };
 
-  /* SVG sizes [w, h] */
   var SZ_SP = {
-    headset:  [175,210], mic:[90,200], keyboard:[280,120],
-    monitor:  [300,290], mouse:[125,158], tower:[190,340],
+    headset: [185,220], mic:[95,215], keyboard:[300,130],
+    monitor: [320,318], mouse:[130,165], tower:[200,370],
   };
   var SZ_AS = {
-    headset:  [200,240], mic:[82,185], keyboard:[305,130],
-    monitor:  [340,328], mouse:[118,148], tower:[205,368],
+    headset: [215,255], mic:[84,195], keyboard:[322,138],
+    monitor: [364,354], mouse:[120,152], tower:[218,395],
   };
 
-  var parts = ['headset','mic','keyboard','monitor','mouse','tower'];
+  var PARTS = ['headset','mic','keyboard','monitor','mouse','tower'];
 
   function apply(hover){
-    parts.forEach(function(n){
-      var pos = hover ? AS[n]    : SP[n];
-      var sz  = hover ? SZ_AS[n] : SZ_SP[n];
-      var w   = document.getElementById('w-'+n);
-      var v   = document.getElementById('v-'+n);
-      w.style.left   = pos.l + 'px';
-      w.style.bottom = pos.b + 'px';
-      v.setAttribute('width',  sz[0]);
-      v.setAttribute('height', sz[1]);
+    PARTS.forEach(function(n){
+      var p = hover ? AS[n]    : SP[n];
+      var s = hover ? SZ_AS[n] : SZ_SP[n];
+      var w = document.getElementById('w-'+n);
+      var v = document.getElementById('v-'+n);
+      w.style.left   = p.l+'px';
+      w.style.bottom = p.b+'px';
+      v.setAttribute('width',  s[0]);
+      v.setAttribute('height', s[1]);
       w.querySelector('.lbl').style.opacity = hover ? '0' : '1';
     });
     glow.style.opacity = hover ? '1' : '0';
+    hint.style.opacity = hover ? '0' : '1';
   }
 
-  /* Set initial spread positions */
   apply(false);
-
   stage.addEventListener('mouseenter', function(){ apply(true);  });
   stage.addEventListener('mouseleave', function(){ apply(false); });
 })();
 </script>
-
-</body>
-</html>
+</div>
