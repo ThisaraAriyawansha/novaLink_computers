@@ -251,7 +251,7 @@
             </div>
         </div>
 
-
+        @include('buildpcsection')
 
 
             <!-- Product Area Start -->
