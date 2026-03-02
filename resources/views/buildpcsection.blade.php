@@ -298,23 +298,24 @@
 
 
 
-<div style="margin:0;padding:0;background:#fff;">
+<div class="hidden md:block" style="margin:0;padding:0;background:#fff;">
 
-<section style="background:#fff;padding:70px 0 90px;font-family:system-ui,sans-serif;overflow:hidden;">
+<section style="background:#fff;padding:52px 0 68px;font-family:system-ui,sans-serif;overflow:hidden;">
 
-  <div style="text-align:center;margin-bottom:50px;">
-    <h2 style="color:#111;font-size:2rem;font-weight:700;margin:0 0 12px;">Build My PC</h2>
+  <div style="text-align:center;margin-bottom:38px;">
+                        <h2 class="text-2xl font-light text-black mb-2" style="font-family: 'Orbitron', sans-serif;">Build My PC</h2>
+
     <span style="display:block;width:52px;height:3px;background:#111;margin:0 auto;border-radius:2px;"></span>
   </div>
 
   <p id="hint" style="text-align:center;color:rgba(0,0,0,.3);font-size:10.5px;letter-spacing:3px;text-transform:uppercase;margin:0 0 0;transition:opacity .4s;">HOVER TO ASSEMBLE YOUR SETUP</p>
 
-  <div style="width:100%;overflow:visible;">
-    <div id="stage" style="position:relative;width:1260px;height:500px;margin:0 auto;">
+  <div style="width:100%;overflow:visible;margin-top:24px;">
+    <div id="stage" style="position:relative;width:945px;height:375px;margin:0 auto;">
 
       <!-- HEADSET -->
       <div id="w-headset" style="position:absolute;display:flex;flex-direction:column;align-items:center;transition:left .75s cubic-bezier(.65,0,.35,1),bottom .75s cubic-bezier(.65,0,.35,1);">
-        <svg id="v-headset" width="185" height="220" viewBox="0 0 180 225" style="transition:width .75s cubic-bezier(.65,0,.35,1),height .75s cubic-bezier(.65,0,.35,1);overflow:visible;)">
+        <svg id="v-headset" width="139" height="165" viewBox="0 0 180 225" style="transition:width .75s cubic-bezier(.65,0,.35,1),height .75s cubic-bezier(.65,0,.35,1);overflow:visible;)">
           <defs>
             <radialGradient id="hcup" cx="42%" cy="38%" r="62%"><stop offset="0%" stop-color="#555"/><stop offset="100%" stop-color="#1a1a1a"/></radialGradient>
             <linearGradient id="hring" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fff"/><stop offset="48%" stop-color="#aaa"/><stop offset="100%" stop-color="#555"/></linearGradient>
@@ -344,7 +345,7 @@
 
       <!-- MIC -->
       <div id="w-mic" style="position:absolute;display:flex;flex-direction:column;align-items:center;transition:left .75s cubic-bezier(.65,0,.35,1),bottom .75s cubic-bezier(.65,0,.35,1);">
-        <svg id="v-mic" width="95" height="215" viewBox="0 0 95 218" style="transition:width .75s cubic-bezier(.65,0,.35,1),height .75s cubic-bezier(.65,0,.35,1);overflow:visible;)">
+        <svg id="v-mic" width="71" height="161" viewBox="0 0 95 218" style="transition:width .75s cubic-bezier(.65,0,.35,1),height .75s cubic-bezier(.65,0,.35,1);overflow:visible;)">
           <defs>
             <radialGradient id="mbody" cx="40%" cy="35%" r="64%"><stop offset="0%" stop-color="#555"/><stop offset="100%" stop-color="#1a1a1a"/></radialGradient>
             <linearGradient id="mbase" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#333"/><stop offset="100%" stop-color="#111"/></linearGradient>
@@ -372,7 +373,7 @@
 
       <!-- KEYBOARD -->
       <div id="w-keyboard" style="position:absolute;display:flex;flex-direction:column;align-items:center;z-index:2;transition:left .75s cubic-bezier(.65,0,.35,1),bottom .75s cubic-bezier(.65,0,.35,1);">
-        <svg id="v-keyboard" width="300" height="130" viewBox="0 0 300 130" style="transition:width .75s cubic-bezier(.65,0,.35,1),height .75s cubic-bezier(.65,0,.35,1);overflow:visible;)">
+        <svg id="v-keyboard" width="225" height="98" viewBox="0 0 300 130" style="transition:width .75s cubic-bezier(.65,0,.35,1),height .75s cubic-bezier(.65,0,.35,1);overflow:visible;)">
           <defs>
             <linearGradient id="kbbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2a2a2a"/><stop offset="100%" stop-color="#111"/></linearGradient>
             <linearGradient id="kbedge" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#fff"/><stop offset="48%" stop-color="#888"/><stop offset="100%" stop-color="#fff"/></linearGradient>
@@ -397,7 +398,7 @@
 
       <!-- MONITOR -->
       <div id="w-monitor" style="position:absolute;display:flex;flex-direction:column;align-items:center;z-index:3;transition:left .75s cubic-bezier(.65,0,.35,1),bottom .75s cubic-bezier(.65,0,.35,1);">
-        <svg id="v-monitor" width="320" height="318" viewBox="0 0 320 318" style="transition:width .75s cubic-bezier(.65,0,.35,1),height .75s cubic-bezier(.65,0,.35,1);overflow:visible;)">
+        <svg id="v-monitor" width="240" height="239" viewBox="0 0 320 318" style="transition:width .75s cubic-bezier(.65,0,.35,1),height .75s cubic-bezier(.65,0,.35,1);overflow:visible;)">
           <defs>
             <radialGradient id="scr" cx="50%" cy="50%" r="65%">
               <stop offset="0%" stop-color="#444"/>
@@ -430,7 +431,7 @@
 
       <!-- MOUSE -->
       <div id="w-mouse" style="position:absolute;display:flex;flex-direction:column;align-items:center;z-index:2;transition:left .75s cubic-bezier(.65,0,.35,1),bottom .75s cubic-bezier(.65,0,.35,1);">
-        <svg id="v-mouse" width="130" height="165" viewBox="0 0 120 165" style="transition:width .75s cubic-bezier(.65,0,.35,1),height .75s cubic-bezier(.65,0,.35,1);overflow:visible;)">
+        <svg id="v-mouse" width="98" height="124" viewBox="0 0 120 165" style="transition:width .75s cubic-bezier(.65,0,.35,1),height .75s cubic-bezier(.65,0,.35,1);overflow:visible;)">
           <defs>
             <radialGradient id="msebg" cx="36%" cy="26%" r="72%"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#0f0f0f"/></radialGradient>
             <linearGradient id="mseedge" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#fff"/><stop offset="100%" stop-color="#555"/></linearGradient>
@@ -451,7 +452,7 @@
 
       <!-- TOWER -->
       <div id="w-tower" style="position:absolute;display:flex;flex-direction:column;align-items:center;z-index:2;transition:left .75s cubic-bezier(.65,0,.35,1),bottom .75s cubic-bezier(.65,0,.35,1);">
-        <svg id="v-tower" width="200" height="370" viewBox="0 0 200 375" style="transition:width .75s cubic-bezier(.65,0,.35,1),height .75s cubic-bezier(.65,0,.35,1);overflow:visible;)">
+        <svg id="v-tower" width="150" height="278" viewBox="0 0 200 375" style="transition:width .75s cubic-bezier(.65,0,.35,1),height .75s cubic-bezier(.65,0,.35,1);overflow:visible;)">
           <defs>
             <linearGradient id="twrbg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#0f0f0f"/><stop offset="100%" stop-color="#1e1e1e"/></linearGradient>
             <linearGradient id="twrside" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fff"/><stop offset="35%" stop-color="#777"/><stop offset="100%" stop-color="#fff"/></linearGradient>
@@ -506,13 +507,13 @@
     </div>
   </div>
 
-  <div style="text-align:center;margin-top:54px;">
-    <a href="#"
-       onmouseover="this.style.background='#111';this.style.color='#fff';this.style.boxShadow='0 0 30px rgba(0,0,0,.15)';"
-       onmouseout="this.style.background='transparent';this.style.color='#111';this.style.boxShadow='none';"
-       style="display:inline-block;color:#111;background:transparent;border:1.5px solid #111;padding:14px 54px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;text-decoration:none;transition:all .25s;">
-      START BUILDING →
-    </a>
+  <div style="text-align:center;margin-top:40px;">
+<a href="{{ route('buildMyPC')}}"
+   onmouseover="this.style.background='#111';this.style.color='#fff';"
+   onmouseout="this.style.background='transparent';this.style.color='#111';"
+   style="display:inline-block; color:#111; background:transparent; border:1px solid #111; padding:6px 18px; border-radius:3px; font-size:9.5px; font-weight:700; letter-spacing:1.8px; text-transform:uppercase; text-decoration:none; transition:all .2s;">
+  START BUILDING →
+</a>
   </div>
 
 </section>
@@ -524,30 +525,30 @@
   var hint  = document.getElementById('hint');
 
   var SP = {
-    headset:  { l:  15, b:  0 },
-    mic:      { l: 218, b:  0 },
-    keyboard: { l: 328, b:  0 },
-    monitor:  { l: 642, b:  0 },
-    mouse:    { l: 978, b:  0 },
-    tower:    { l:1122, b:  0 },
+    headset:  { l:  11, b:  0 },
+    mic:      { l: 164, b:  0 },
+    keyboard: { l: 246, b:  0 },
+    monitor:  { l: 482, b:  0 },
+    mouse:    { l: 734, b:  0 },
+    tower:    { l: 842, b:  0 },
   };
 
   var AS = {
-    monitor:  { l: 440, b: 180 },
-    keyboard: { l: 460, b:   8 },
-    mouse:    { l: 800, b:   8 },
-    tower:    { l: 960, b:   5 },
-    headset:  { l: 220, b: 220 },
-    mic:      { l: 276, b:  10 },
+    monitor:  { l: 330, b: 135 },
+    keyboard: { l: 345, b:   6 },
+    mouse:    { l: 600, b:   6 },
+    tower:    { l: 720, b:   4 },
+    headset:  { l: 165, b: 165 },
+    mic:      { l: 207, b:   8 },
   };
 
   var SZ_SP = {
-    headset: [185,220], mic:[95,215], keyboard:[300,130],
-    monitor: [320,318], mouse:[130,165], tower:[200,370],
+    headset: [139,165], mic:[71,161], keyboard:[225,98],
+    monitor: [240,239], mouse:[98,124], tower:[150,278],
   };
   var SZ_AS = {
-    headset: [200,240], mic:[88,200], keyboard:[320,138],
-    monitor: [380,370], mouse:[122,155], tower:[218,395],
+    headset: [150,180], mic:[66,150], keyboard:[240,104],
+    monitor: [285,278], mouse:[92,116], tower:[164,296],
   };
 
   var PARTS = ['headset','mic','keyboard','monitor','mouse','tower'];
