@@ -518,6 +518,8 @@
 
 </section>
 
+<div style="width:100%;height:0.5px;background:#111;"></div>
+
 <script>
 (function(){
   var stage = document.getElementById('stage');
