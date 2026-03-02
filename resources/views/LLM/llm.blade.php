@@ -407,7 +407,7 @@
         messageDiv.innerHTML = `
             <div class="avatar ${avatarClass}">${avatar}</div>
             <div class="message-content">
-                ${formatMessage(content)}
+                ${formatMessage(content, sender === 'user')}
             </div>
         `;
         
@@ -415,10 +415,40 @@
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
     
-    function formatMessage(content) {
+    function formatMessage(content, isUser = false) {
+        if (isUser) {
+            // Escape HTML for user messages to prevent XSS
+            return content
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                .replace(/\n/g, '<br>');
+        }
+
+        // Render markdown for AI responses
         return content
-            .replace(/\n/g, '<br>')
-            .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" style="color: #667eea; text-decoration: underline;">$1</a>');
+            // Bold + italic
+            .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
+            // Bold
+            .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+            // Italic
+            .replace(/\*([^*\n]+?)\*/g, '<em>$1</em>')
+            // Inline code
+            .replace(/`([^`]+)`/g, '<code style="background:#f1f5f9;color:#0f172a;padding:2px 6px;border-radius:4px;font-size:13px;font-family:monospace;">$1</code>')
+            // Headings
+            .replace(/^### (.+)$/gm, '<h4 style="font-size:15px;font-weight:700;margin:10px 0 4px;color:#1e293b;">$1</h4>')
+            .replace(/^## (.+)$/gm,  '<h3 style="font-size:16px;font-weight:700;margin:10px 0 4px;color:#1e293b;">$1</h3>')
+            .replace(/^# (.+)$/gm,   '<h2 style="font-size:18px;font-weight:700;margin:10px 0 4px;color:#1e293b;">$1</h2>')
+            // Bullet points (•, -, *)
+            .replace(/^[•\-\*] (.+)$/gm, '<li style="margin:3px 0;padding-left:4px;list-style:none;">• $1</li>')
+            // Wrap consecutive <li> blocks in a <ul>
+            .replace(/(<li[^>]*>.*?<\/li>\n?)+/gs, '<ul style="padding:0;margin:6px 0;">$&</ul>')
+            // Numbered lists
+            .replace(/^\d+\. (.+)$/gm, '<li style="margin:3px 0;list-style:decimal;margin-left:18px;">$1</li>')
+            // Links
+            .replace(/(https?:\/\/[^\s<"]+)/g, '<a href="$1" target="_blank" style="color:#667eea;text-decoration:underline;">$1</a>')
+            // Double newline → paragraph break
+            .replace(/\n\n/g, '<br><br>')
+            // Single newline → line break
+            .replace(/\n/g, '<br>');
     }
     
     function showTypingIndicator() {
@@ -473,12 +503,14 @@
     
     // Load conversation history on page load
     document.addEventListener('DOMContentLoaded', function() {
-        // Clear existing messages and load from conversation
         const chatMessages = document.getElementById('chatMessages');
         chatMessages.innerHTML = '';
-        
-        // You can optionally load previous messages here if needed
-        // For now, it will start fresh each page load for simplicity
+
+        // Show welcome message
+        addMessage(
+            "Hello! I'm your **NovaLink AI** assistant — expert in PC building and tech advice.\n\nHere's what I can help you with:\n• Custom PC builds for any budget\n• Product recommendations from our store\n• Component compatibility checks\n• Upgrade advice for your existing setup\n• Compare specs and prices\n• Store info (location, hours, contact)\n\nWhat would you like to know today?",
+            'ai'
+        );
     });
 </script>
 </body>

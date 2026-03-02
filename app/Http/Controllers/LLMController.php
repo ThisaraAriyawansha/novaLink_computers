@@ -327,39 +327,90 @@ class LLMController extends Controller
     private function buildSystemPrompt($products)
     {
         $productContext = $this->prepareProductContext($products);
-        
-        return "You are NovaLink AI, an expert PC building assistant for NovaLink Computers. You help users build PCs, recommend components, and provide technical advice.
 
-Available Products in Store:
+        return "You are NovaLink AI, an expert tech advisor and PC building assistant for NovaLink Computers — a technology retail store in Matara, Sri Lanka.
+
+**Store Information:**
+- Location: No. 12/B, Galle Road, Matara, Sri Lanka
+- Phone: 0769417154
+- Email: novaLinkcomputers@gmail.com
+- Business Hours: Monday–Saturday, 9:00 AM–7:00 PM (Closed Sundays & Public Holidays)
+- Currency: All prices are in Sri Lankan Rupees (LKR)
+
+**Your Expertise:**
+- Custom PC building: gaming rigs, workstations, office and student builds
+- Component selection & compatibility: CPU, GPU, RAM, storage, motherboard, PSU, cooling, cases
+- Product recommendations from our inventory based on budget and use case
+- Technical explanations in plain language
+- Price-to-performance analysis
+- Upgrade advice for existing systems
+- Laptop and peripheral recommendations
+
+**Response Format:**
+- Use **bold** for product names, prices, and important specs
+- Use bullet points (•) for component lists and recommendations
+- For full PC build recommendations, list every component with its price and the total cost
+- Always state prices in LKR
+- Be concise yet thorough — avoid padding
+- Ask follow-up questions when the user's budget or use case is unclear
+
+**Current Inventory:**
 {$productContext}
 
-Guidelines:
-- Be helpful, friendly, and professional
-- Recommend specific products from available inventory when possible
-- Provide technical explanations in simple terms
-- Suggest compatible components when discussing builds
-- Mention prices and key features when recommending products
-- If unsure about something, admit it rather than guessing
-- Keep responses concise but informative
-- Focus on helping users make informed decisions
-
-Always prioritize recommending from the available products list above.";
+**Rules:**
+- Only recommend products from the inventory above when they are available
+- If an item is out of stock, proactively suggest the closest in-stock alternative
+- Be honest if we don't carry a specific product
+- For multi-component builds, verify compatibility and optimise value within the stated budget
+- Never invent product names, specs, or prices that are not in the inventory";
     }
 
     private function prepareProductContext($products)
     {
         if (empty($products)) {
-            return "No specific products available at the moment.";
+            return "No products currently available in inventory.";
         }
 
         $context = "";
         foreach ($products as $product) {
-            $context .= "• {$product['name']} ({$product['type']}) - \${$product['dis_price']}";
-            if (!empty($product['features'])) {
-                $context .= " - Features: " . implode(', ', array_slice($product['features'], 0, 3));
+            $name    = $product['name']    ?? 'Unknown';
+            $type    = $product['type']    ?? 'Unknown';
+            $warranty = $product['warranty'] ?? 'No warranty info';
+            $inStock = ($product['in_stock'] ?? false) ? '✓ In Stock' : '✗ Out of Stock';
+
+            // Handle both raw numeric prices and pre-formatted "150,000 LKR" strings
+            $disPrice = is_numeric($product['dis_price'] ?? null)
+                ? number_format((float) $product['dis_price'], 0) . ' LKR'
+                : ($product['dis_price'] ?? 'N/A');
+
+            $retPrice = is_numeric($product['ret_price'] ?? null)
+                ? number_format((float) $product['ret_price'], 0) . ' LKR'
+                : ($product['ret_price'] ?? 'N/A');
+
+            $context .= "• **{$name}** ({$type})\n";
+            $context .= "  Price: {$disPrice}";
+            if ($disPrice !== $retPrice && !in_array($retPrice, ['N/A', '0 LKR', '0'], true)) {
+                $context .= " (retail: {$retPrice})";
             }
+            $context .= " | {$inStock} | Warranty: {$warranty}\n";
+
+            if (!empty($product['features'])) {
+                $features = is_array($product['features'])
+                    ? implode(', ', $product['features'])
+                    : $product['features'];
+                $context .= "  Specs: {$features}\n";
+            }
+
+            if (!empty($product['tags'])) {
+                $tags = is_array($product['tags'])
+                    ? implode(', ', $product['tags'])
+                    : $product['tags'];
+                $context .= "  Tags: {$tags}\n";
+            }
+
             $context .= "\n";
         }
+
         return $context;
     }
 

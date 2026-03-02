@@ -359,36 +359,106 @@ class DeepSeekService
     private function generateLaptopResponse($products)
     {
         $laptops = array_filter($products, function($product) {
-            return str_contains(strtolower($product['type']), 'laptop') || 
+            return str_contains(strtolower($product['type']), 'laptop') ||
                    str_contains(strtolower($product['name']), 'laptop');
         });
 
         if (empty($laptops)) {
-            return "I can help you choose the right laptop! Consider these factors:\n\n" .
+            return "I can help you choose the right laptop! Key things to consider:\n\n" .
                    "• **Portability**: Weight and battery life\n" .
-                   "• **Performance**: Gaming, productivity, or basic tasks\n" .
-                   "• **Display**: Screen size and resolution preferences\n" .
-                   "• **Budget**: Price range you're comfortable with\n\n" .
+                   "• **Performance**: Gaming, productivity, or everyday tasks\n" .
+                   "• **Display**: Screen size and resolution\n" .
+                   "• **Budget**: Your price range in LKR\n\n" .
                    "What will you primarily use the laptop for?";
         }
 
         $response = "Here are our available laptops:\n\n";
         foreach (array_slice($laptops, 0, 3) as $laptop) {
-            $response .= "• **{$laptop['name']}** - \${$laptop['dis_price']}\n";
+            $price = is_numeric($laptop['dis_price'])
+                ? number_format((float) $laptop['dis_price'], 0) . ' LKR'
+                : $laptop['dis_price'];
+            $response .= "• **{$laptop['name']}** — {$price}\n";
         }
-        
+
         return $response . "\nWhat's your intended use and budget?";
+    }
+
+    private function generateUpgradeResponse($products)
+    {
+        return "Great — let's upgrade your PC! To give you the best advice, please tell me:\n\n" .
+               "• **Current specs**: What CPU, RAM, and GPU do you have now?\n" .
+               "• **Pain point**: What feels slow or limited?\n" .
+               "• **Budget**: How much are you looking to spend (LKR)?\n\n" .
+               "Common high-impact upgrades:\n" .
+               "• **RAM** → big boost for multitasking (8GB → 16GB or 32GB)\n" .
+               "• **SSD** → dramatically faster load times than HDD\n" .
+               "• **GPU** → best upgrade for gaming performance\n" .
+               "• **CPU** → best for rendering, streaming, or heavy workloads\n\n" .
+               "Share your current setup and I'll recommend the best upgrade path!";
+    }
+
+    private function generateBudgetResponse($message, $products)
+    {
+        // Try to extract a budget figure from the message
+        preg_match('/(\d[\d,]*)\s*(lkr|rs|k)?/i', $message, $matches);
+        $budget = isset($matches[1]) ? (int) str_replace(',', '', $matches[1]) : null;
+        if ($budget && isset($matches[2]) && strtolower($matches[2]) === 'k') {
+            $budget *= 1000;
+        }
+
+        if ($budget) {
+            $formatted = number_format($budget) . ' LKR';
+            return "With a **{$formatted}** budget, here's what I'd suggest:\n\n" .
+                   ($budget < 80000
+                       ? "• **Office/Student PC**: Basic productivity — web, documents, light multitasking\n" .
+                         "• Ryzen 3 / Intel Core i3, 8GB RAM, 256GB SSD, integrated graphics\n"
+                       : ($budget < 150000
+                           ? "• **Mid-Range Build**: Gaming at 1080p, content creation, coding\n" .
+                             "• Ryzen 5 / Core i5, 16GB RAM, 512GB NVMe SSD, entry GPU\n"
+                           : ($budget < 300000
+                               ? "• **High-End Gaming Rig**: Smooth 1440p gaming, streaming\n" .
+                                 "• Ryzen 7 / Core i7, 32GB DDR5, 1TB NVMe, mid-range GPU\n"
+                               : "• **Workstation / Enthusiast**: 4K gaming, video editing, 3D rendering\n" .
+                                 "• Ryzen 9 / Core i9, 32–64GB RAM, fast NVMe, high-end GPU\n"))) .
+                   "\nWould you like me to recommend specific products from our store within this budget?";
+        }
+
+        return "I'd love to help you find the best value build! Please share your **budget in LKR** and your **primary use case** (gaming, office work, video editing, etc.) and I'll put together the perfect component list.";
+    }
+
+    private function generateWorkstationResponse($products)
+    {
+        return "For a **professional workstation**, focus on these priorities:\n\n" .
+               "• **CPU**: High core count — AMD Threadripper, Ryzen 9, or Intel Core i9\n" .
+               "• **RAM**: 32GB minimum; 64GB+ for video editing and 3D work\n" .
+               "• **Storage**: Fast NVMe SSD for active projects + large HDD for archive\n" .
+               "• **GPU**: Depends on workload:\n" .
+               "  — Video editing: CUDA cores (NVIDIA RTX) for Adobe Premiere / DaVinci\n" .
+               "  — 3D rendering: High VRAM GPU\n" .
+               "  — CAD: Professional GPU (Quadro / Radeon Pro)\n" .
+               "• **Cooling**: Liquid AIO or high-end air cooler for sustained performance\n\n" .
+               "What software or tasks will this workstation run? I can tailor specific recommendations from our stock.";
+    }
+
+    private function generateComparisonResponse($message)
+    {
+        return "I'd be happy to compare products for you! To give you a useful breakdown, please tell me:\n\n" .
+               "• The **two products** you want to compare (e.g., \"RTX 4070 vs RX 7800 XT\")\n" .
+               "• Your **use case** (gaming at 1080p/1440p/4K, content creation, etc.)\n" .
+               "• Your **budget** (optional)\n\n" .
+               "I can compare specs, price-to-performance, and which one suits your needs better. What would you like to compare?";
     }
 
     private function getDefaultResponse()
     {
-        return "I'd be happy to help you with PC building! I can assist with:\n\n" .
-               "• Custom PC builds and recommendations\n" .
-               "• Component compatibility and performance advice\n" .
-               "• Gaming, workstation, and productivity setups\n" .
-               "• Upgrade suggestions and comparisons\n" .
-               "• Technical troubleshooting\n\n" .
-               "What specific help do you need today?";
+        return "I'm your **NovaLink AI** assistant — happy to help! I can assist with:\n\n" .
+               "• Custom PC builds for any budget\n" .
+               "• Component recommendations from our store\n" .
+               "• Gaming, workstation, and office setups\n" .
+               "• Upgrade advice for your existing PC\n" .
+               "• Product comparisons and spec breakdowns\n" .
+               "• Store info (location, hours, contact)\n\n" .
+               "What would you like help with today?";
     }
 
     // ... (keep existing cache methods unchanged)
