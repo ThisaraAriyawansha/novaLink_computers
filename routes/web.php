@@ -271,6 +271,9 @@ Route::middleware(['auth', 'agent'])->prefix('admin')->name('admin.')->group(fun
     Route::patch('/shops/{id}/toggle', [ShopController::class, 'adminToggle'])->name('shops.toggle');
 });
 
+// PC Advisor proxy (avoids browser CORS on direct Python call)
+Route::post('/pc-advisor/predict', [BuildMyPCController::class, 'proxyPredict']);
+
 // LLM Routes
 Route::get('/llm', [LLMController::class, 'show'])->name('llm');
 Route::post('/llm/chat', [LLMController::class, 'chat'])->name('llm.chat');

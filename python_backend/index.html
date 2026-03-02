@@ -754,11 +754,20 @@ function predictTier(job, workload, budget, gpu, multiApp, hours) {
   };
   score += (jobBoosts[job] || 0.5) * 0.47;
 
+  // Budget hard cap — never recommend a tier the user can't afford
+  let maxTier = 3;
+  if (budget < 130000)  maxTier = 0;  // under LKR 130k → Budget only
+  else if (budget < 220000) maxTier = 1;  // under LKR 220k → Mid-Range max
+  else if (budget < 340000) maxTier = 2;  // under LKR 340k → High-End max
+
   // Tier thresholds derived from training data distribution
-  if (score >= 14) return 3;  // workstation
-  if (score >= 9)  return 2;  // high-end
-  if (score >= 5)  return 1;  // mid-range
-  return 0;                   // budget
+  let tier;
+  if (score >= 14) tier = 3;  // workstation
+  else if (score >= 9)  tier = 2;  // high-end
+  else if (score >= 5)  tier = 1;  // mid-range
+  else tier = 0;                   // budget
+
+  return Math.min(tier, maxTier);
 }
 
 // ─── Spec recommendations per tier ──────────────────────────────────────────
@@ -772,7 +781,7 @@ const tierData = {
     priceMax: 'LKR 130,000',
     specs: [
       { icon: '🧠', label: 'CPU', value: 'Intel Core i3-12100', sub: 'or AMD Ryzen 3 5300G' },
-      { icon: '💾', label: 'RAM', value: '8 GB DDR4', sub: 'Upgradeable to 16 GB' },
+      { icon: '💾', label: 'RAM', value: '8 GB DDR4', sub: 'Sufficient for everyday tasks' },
       { icon: '🖥️', label: 'GPU', value: 'Integrated Graphics', sub: 'Intel UHD / AMD Radeon' },
       { icon: '💽', label: 'Storage', value: '256 GB SSD', sub: 'SATA SSD recommended' },
       { icon: '⚡', label: 'PSU', value: '400W Bronze', sub: 'Reliable power supply' },
@@ -883,7 +892,6 @@ function recommend() {
   const hours = parseFloat(document.getElementById('hours').value);
 
   if (!job || !budget || isNaN(gpu) || isNaN(multiApp) || !hours) {
-    // Shake the button
     const btn = document.querySelector('.btn-submit');
     btn.style.animation = 'shake 0.4s ease';
     btn.textContent = '⚠️ Please fill all fields!';
@@ -899,77 +907,117 @@ function recommend() {
   loadingBar.classList.add('active');
   loadingBar.innerHTML = '<div class="loading-fill"></div>';
 
-  setTimeout(() => {
+  // Infer RAM and CPU tier from inputs for backend
+  const ram = inferRam(job, workload, multiApp);
+  const cpuTier = workload >= 4 ? 3 : workload >= 3 ? 2 : 1;
+  const storage = gpu >= 2 ? 2 : 1;
+
+  fetch('/predict', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ job, workload, ram, budget, gpu, multiApp, hours, cpuTier, storage })
+  })
+  .then(res => res.json())
+  .then(result => {
     loadingBar.classList.remove('active');
 
+    // Apply budget hard cap on top of model prediction
+    let tier = result.tier;
+    let maxTier = 3;
+    if (budget < 130000) maxTier = 0;
+    else if (budget < 220000) maxTier = 1;
+    else if (budget < 340000) maxTier = 2;
+    tier = Math.min(tier, maxTier);
+
+    showResult(tierData[tier], result.confidence, job);
+  })
+  .catch(() => {
+    // Fallback to local JS model if backend is unreachable
+    loadingBar.classList.remove('active');
     const tier = predictTier(job, workload, budget, gpu, multiApp, hours);
-    const data = tierData[tier];
+    showResult(tierData[tier], null, job);
+  });
+}
 
-    // Calculate confidence score
-    const confidence = Math.floor(85 + Math.random() * 10);
+// Job-specific suggestion overrides (replaces the generic tier suggestions)
+const jobSuggestions = {
+  office: [
+    '<strong>RAM:</strong> 8 GB is perfectly sufficient for email, Word, Excel, Teams, and web browsing — no upgrade needed.',
+    '<strong>CPU:</strong> An i3 or Ryzen 3 handles all standard office applications smoothly without wasting budget.',
+    '<strong>Storage:</strong> A 256 GB SSD is enough for documents and office files. Cloud storage (OneDrive, Google Drive) handles the rest.',
+    '<strong>Sri Lanka tip:</strong> Check Softlogic, Abans, or iRepair for budget-friendly options with warranty.',
+  ],
+  student: [
+    '<strong>RAM:</strong> 8 GB is fine for most coursework and coding assignments. Only upgrade if you run virtual machines.',
+    '<strong>Storage:</strong> 256–512 GB SSD is sufficient — use cloud storage for large files and projects.',
+    '<strong>Battery:</strong> For students, a laptop with good battery life (6+ hours) matters more than raw specs.',
+    '<strong>Sri Lanka tip:</strong> University discounts are available at Softlogic and Micro Group — bring your student ID.',
+  ],
+};
 
-    // Build result HTML
-    const resultsDiv = document.getElementById('results');
-    resultsDiv.innerHTML = `
-      <div class="result-tier-card ${data.tier}">
-        <div class="tier-header">
-          <div>
-            <div class="tier-label">Recommended PC Tier</div>
-            <div class="tier-name">${data.emoji} ${data.name}</div>
-            <div style="color:var(--muted);font-size:14px;margin-top:8px">${data.tagline}</div>
-          </div>
-          <div class="confidence-badge">🎯 ${confidence}% Match</div>
+function showResult(data, confidence, job) {
+  const confText = confidence ? `🎯 ${confidence}% Match` : '🎯 ML Predicted';
+  // Use job-specific suggestions for low-intensity roles, otherwise use tier defaults
+  const suggestions = jobSuggestions[job] || data.suggestions;
+  const resultsDiv = document.getElementById('results');
+  resultsDiv.innerHTML = `
+    <div class="result-tier-card ${data.tier}">
+      <div class="tier-header">
+        <div>
+          <div class="tier-label">Recommended PC Tier</div>
+          <div class="tier-name">${data.emoji} ${data.name}</div>
+          <div style="color:var(--muted);font-size:14px;margin-top:8px">${data.tagline}</div>
         </div>
+        <div class="confidence-badge">${confText}</div>
+      </div>
 
-        <div class="price-range">
-          <div class="price-icon">💰</div>
-          <div class="price-text">
-            <div class="price-label">Estimated Price Range (Sri Lanka)</div>
-            <div class="price-value">${data.priceMin} – ${data.priceMax}</div>
-          </div>
-        </div>
-
-        <div class="specs-grid">
-          ${data.specs.map(s => `
-            <div class="spec-card">
-              <span class="spec-icon">${s.icon}</span>
-              <div class="spec-label">${s.label}</div>
-              <div class="spec-value">${s.value}</div>
-              <div class="spec-sub">${s.sub}</div>
-            </div>
-          `).join('')}
+      <div class="price-range">
+        <div class="price-icon">💰</div>
+        <div class="price-text">
+          <div class="price-label">Estimated Price Range (Sri Lanka)</div>
+          <div class="price-value">${data.priceMin} – ${data.priceMax}</div>
         </div>
       </div>
 
-      <div class="suggestions-section">
-        <div class="suggestions-title">💡 Recommendations for You</div>
-        ${data.suggestions.map(s => `
-          <div class="suggestion-item">
-            <div class="suggestion-dot"></div>
-            <div class="suggestion-text">${s}</div>
+      <div class="specs-grid">
+        ${data.specs.map(s => `
+          <div class="spec-card">
+            <span class="spec-icon">${s.icon}</span>
+            <div class="spec-label">${s.label}</div>
+            <div class="spec-value">${s.value}</div>
+            <div class="spec-sub">${s.sub}</div>
           </div>
         `).join('')}
       </div>
+    </div>
 
-      <div class="products-section">
-        <div class="suggestions-title">🛒 Example Products in Sri Lanka</div>
-        ${data.products.map(p => `
-          <div class="product-item">
-            <div class="product-info">
-              <div class="product-name">${p.name}</div>
-              <div class="product-spec">${p.spec}</div>
-            </div>
-            <div class="product-price">${p.price}</div>
+    <div class="suggestions-section">
+      <div class="suggestions-title">💡 Recommendations for You</div>
+      ${suggestions.map(s => `
+        <div class="suggestion-item">
+          <div class="suggestion-dot"></div>
+          <div class="suggestion-text">${s}</div>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="products-section">
+      <div class="suggestions-title">🛒 Example Products in Sri Lanka</div>
+      ${data.products.map(p => `
+        <div class="product-item">
+          <div class="product-info">
+            <div class="product-name">${p.name}</div>
+            <div class="product-spec">${p.spec}</div>
           </div>
-        `).join('')}
-      </div>
+          <div class="product-price">${p.price}</div>
+        </div>
+      `).join('')}
+    </div>
 
-      <button class="btn-reset" onclick="resetForm()">← Try Another Profile</button>
-    `;
-
-    resultsDiv.classList.add('visible');
-    resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 1200);
+    <button class="btn-reset" onclick="resetForm()">← Try Another Profile</button>
+  `;
+  resultsDiv.classList.add('visible');
+  resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function resetForm() {

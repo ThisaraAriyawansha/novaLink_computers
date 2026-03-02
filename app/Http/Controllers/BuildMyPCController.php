@@ -6,6 +6,7 @@ use App\Mail\InvoiceMail;
 use Illuminate\Http\Request;
 use PDF;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
 
 use Mail;
 use Exception;
@@ -66,6 +67,19 @@ public function mainbuildMyPC()
     public function buildMyPC()
     {
         return view('animation');
+    }
+
+    public function proxyPredict(Request $request)
+    {
+        try {
+            $response = Http::timeout(5)->post('http://localhost:5000/predict', $request->only([
+                'job', 'workload', 'ram', 'budget', 'gpu', 'multiApp', 'hours', 'cpuTier', 'storage'
+            ]));
+
+            return response()->json($response->json(), $response->status());
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Python server unavailable'], 503);
+        }
     }
 
 
