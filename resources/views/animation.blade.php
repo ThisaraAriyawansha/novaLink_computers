@@ -33,7 +33,7 @@
                 <div style="width: 100%; max-width: 350px; display: flex; justify-content: center; align-items: center;">
                     <dotlottie-player
                         id="lottie-animation"
-                        src="assets/images/animation/gaming.json"
+                        src="assets/images/animation/ai animation Flow 1.json"
                         background="transparent"
                         speed="1"
                         style="width: 100%; height: auto; max-height: 50vh; min-height: 150px;"
