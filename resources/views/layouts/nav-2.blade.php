@@ -1,3 +1,31 @@
+{{-- Page Loading Overlay --}}
+<div id="page-loader" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#ffffff;transition:opacity 0.5s ease;">
+    <div id="lottie-loader" style="width:200px;height:200px;"></div>
+    <p style="color:#222222;font-family:'Orbitron',sans-serif;font-size:0.85rem;margin-top:12px;letter-spacing:2px;opacity:0.75;">Loading...</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+<script>
+    (function () {
+        var lottieAnim = lottie.loadAnimation({
+            container: document.getElementById('lottie-loader'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: '{{ str_replace(" ", "%20", asset("assets/images/animation/Untitled file.json")) }}'
+        });
+
+        window.addEventListener('load', function () {
+            var loader = document.getElementById('page-loader');
+            loader.style.opacity = '0';
+            setTimeout(function () {
+                loader.style.display = 'none';
+                lottieAnim.destroy();
+            }, 500);
+        });
+    })();
+</script>
+
 <div class="w-full p-2 px-3 z-50 fixed top-0">
     <nav class="bg-black text-white h-[10dvh] flex justify-center items-center rounded-2xl w-full">
         <div class="px-4 flex justify-between items-center w-full">
