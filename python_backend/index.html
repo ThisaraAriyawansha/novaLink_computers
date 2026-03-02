@@ -636,19 +636,6 @@
       </div>
 
       <div class="form-group">
-        <label>Current / Expected RAM</label>
-        <select id="ram">
-          <option value="">Select RAM...</option>
-          <option value="4">4 GB</option>
-          <option value="8">8 GB</option>
-          <option value="16">16 GB</option>
-          <option value="32">32 GB</option>
-          <option value="64">64 GB</option>
-          <option value="128">128 GB+</option>
-        </select>
-      </div>
-
-      <div class="form-group">
         <label>Hours Using PC Per Day</label>
         <select id="hours">
           <option value="">Select hours...</option>
@@ -661,13 +648,13 @@
       </div>
 
       <div class="form-group">
-        <label>GPU Requirement</label>
+        <label>What do you mainly use graphics for?</label>
         <select id="gpu">
-          <option value="">Select GPU type...</option>
-          <option value="0">Integrated (no dedicated GPU needed)</option>
-          <option value="1">Entry-level GPU (basic gaming / design)</option>
-          <option value="2">Mid-range GPU (video editing / dev)</option>
-          <option value="3">High-end GPU (3D / ML / gaming)</option>
+          <option value="">Select graphics usage...</option>
+          <option value="0">Emails, docs, browsing — no graphics needs</option>
+          <option value="1">Basic photo editing, light design work</option>
+          <option value="2">Video editing, UI/UX design, development</option>
+          <option value="3">3D rendering, ML/AI training, high-end gaming</option>
         </select>
       </div>
 
@@ -733,11 +720,27 @@ document.getElementById('workload').addEventListener('input', function() {
 // ─── Decision logic based on trained model feature importance ────────────────
 // Feature importance: budget(0.254) > ram(0.195) > gpu(0.149) > cpu(0.142) > workload(0.111)
 
-function predictTier(job, workload, ram, budget, gpu, multiApp, hours) {
+function inferRam(job, workload, multiApp) {
+  // Infer RAM need (in GB) from job role, workload, and multitasking
+  const jobRamBase = {
+    'media': 32, 'data_analyst': 32, 'developer': 16,
+    'it_admin': 16, 'designer': 16, 'student': 8,
+    'office': 8, 'other': 8
+  };
+  let ram = jobRamBase[job] || 8;
+  if (workload >= 4) ram = Math.max(ram, 32);
+  if (multiApp >= 2) ram = Math.max(ram, 16);
+  if (multiApp >= 3) ram = Math.max(ram, 32);
+  return ram;
+}
+
+function predictTier(job, workload, budget, gpu, multiApp, hours) {
   // Weighted scoring mirrors the Random Forest feature importance
+  const ram = inferRam(job, workload, multiApp);  // system infers RAM
+
   let score = 0;
   score += (budget / 100000) * 2.54;   // budget weight 0.254 (normalized)
-  score += (ram / 16) * 1.95;          // ram weight 0.195
+  score += (ram / 16) * 1.95;          // ram inferred from usage
   score += gpu * 1.49;                  // gpu weight 0.149
   score += workload * 1.11;            // workload weight 0.111
   score += multiApp * 0.55;            // multi_app weight 0.055
@@ -874,13 +877,12 @@ const tierData = {
 function recommend() {
   const job = document.getElementById('jobRole').value;
   const budget = parseFloat(document.getElementById('budget').value);
-  const ram = parseFloat(document.getElementById('ram').value);
   const workload = parseFloat(document.getElementById('workload').value);
   const gpu = parseFloat(document.getElementById('gpu').value);
   const multiApp = parseFloat(document.getElementById('multiApp').value);
   const hours = parseFloat(document.getElementById('hours').value);
 
-  if (!job || !budget || !ram || !gpu || !multiApp || !hours) {
+  if (!job || !budget || isNaN(gpu) || isNaN(multiApp) || !hours) {
     // Shake the button
     const btn = document.querySelector('.btn-submit');
     btn.style.animation = 'shake 0.4s ease';
@@ -900,7 +902,7 @@ function recommend() {
   setTimeout(() => {
     loadingBar.classList.remove('active');
 
-    const tier = predictTier(job, workload, ram, budget, gpu, multiApp, hours);
+    const tier = predictTier(job, workload, budget, gpu, multiApp, hours);
     const data = tierData[tier];
 
     // Calculate confidence score
