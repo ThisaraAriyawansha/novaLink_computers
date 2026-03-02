@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Log;
 
 class BuildMyPCController extends Controller
 {
-public function buildMyPC()
+
+public function mainbuildMyPC()
 {
     $pcTypes = [
         'PROCESSOR', 'MOTHERBOARD', 'RAM', 'GRAPHIC CARDS',
@@ -61,6 +62,11 @@ public function buildMyPC()
     ]);
 }
 
+
+    public function buildMyPC()
+    {
+        return view('animation');
+    }
 
 
 

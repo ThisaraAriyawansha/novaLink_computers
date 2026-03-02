@@ -109,10 +109,13 @@ Route::get('/api/product-images/singlepage/{productId}', [ProductImageController
 Route::get('/product-quantity/{productId}', [ProductController::class, 'getProductQuantity']);
 
 //Build My PC
-Route::get('/buildMyPC', [BuildMyPCController::class, 'buildMyPC'])->name('buildMyPC');
+Route::get('/mainbuildMyPC', [BuildMyPCController::class, 'mainbuildMyPC'])->name('mainbuildMyPC');
 Route::post('/send-invoice-email', [BuildMyPCController::class, 'sendInvoiceEmail'])->name('send.invoice.email');
 Route::post('/send-invoice', [BuildMyPCController::class, 'sendInvoice']);
 Route::post('/send-invoice-email', [BuildMyPCController::class, 'sendInvoiceEmail']);
+
+Route::get('/buildMyPC', [BuildMyPCController::class, 'buildMyPC'])->name('buildMyPC');
+
 
 //Bit
 Route::get('/biddings', [LiveBitController::class, 'biddings'])->name('biddings');
