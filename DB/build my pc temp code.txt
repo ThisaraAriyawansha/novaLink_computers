@@ -382,7 +382,7 @@
                             <div class="rounded-xl px-3 py-2.5 mb-3 flex items-center gap-2" id="adv-price-range-box">
                                 <i class="fas fa-tag text-xs"></i>
                                 <div>
-                                    <p class="text-[10px] text-slate-500" id="adv-price-range-label">Estimated Build Cost (from catalog)</p>
+                                    <p class="text-[10px] text-slate-500">Estimated Price Range</p>
                                     <p class="text-sm font-bold" id="adv-price-range"></p>
                                 </div>
                             </div>
@@ -1027,30 +1027,17 @@
         return psuSteps.find(w => w >= needed) || psuSteps[psuSteps.length - 1];
     }
 
-    // Default TDP estimates (W) per component type when power_consumption feature is absent
-    const defaultTDP = {
-        'PROCESSOR':          65,
-        'GRAPHIC CARDS':     150,
-        'MOTHERBOARD':        30,
-        'RAM':                 5,
-        'STORAGE & NAS':       5,
-        'SSD NVME':            3,
-        'HARD DISK':           8,
-        'COOLING & LIGHTING':  5,
-        'FANS':                2,
-        'POWER SUPPLY':        0,
-        'CASINGS':             0,
-    };
-
     function updatePowerAndCompatibility() {
         // ── Power Calculation ──────────────────────────────────────────────────
         let totalPower = 20; // base system (motherboard, misc)
+        const powerTypes = ['PROCESSOR', 'MOTHERBOARD', 'RAM', 'GRAPHIC CARDS',
+                            'STORAGE & NAS', 'SSD NVME', 'HARD DISK',
+                            'COOLING & LIGHTING', 'FANS'];
 
         for (const [type, product] of Object.entries(currentBuild)) {
-            if (product) {
-                const features = product.features || {};
-                const tdp = parseFloat(features.power_consumption) || defaultTDP[type] || 0;
-                totalPower += tdp;
+            if (product && product.features) {
+                const tdp = parseFloat(product.features.power_consumption || 0);
+                if (tdp > 0) totalPower += tdp;
             }
         }
 
@@ -1443,18 +1430,7 @@
 
         const priceBox = document.getElementById('adv-price-range-box');
         priceBox.style.cssText = `background:${meta.bg}; border:1px solid ${meta.border}; border-radius:12px; padding:8px 12px; margin-bottom:12px; display:flex; align-items:center; gap:8px;`;
-
-        // Calculate live price range from actual catalog products
-        const estimatedTotal = previewBuildTotal(tier);
-        let priceRangeText;
-        if (estimatedTotal > 0) {
-            const low  = Math.round(estimatedTotal * 0.92 / 1000) * 1000;
-            const high = Math.round(estimatedTotal * 1.08 / 1000) * 1000;
-            priceRangeText = 'LKR ' + low.toLocaleString() + ' – LKR ' + high.toLocaleString();
-        } else {
-            priceRangeText = `${meta.priceMin} – ${meta.priceMax}`;
-        }
-        document.getElementById('adv-price-range').textContent = priceRangeText;
+        document.getElementById('adv-price-range').textContent = `${meta.priceMin} – ${meta.priceMax}`;
         document.getElementById('adv-price-range').style.color = meta.color;
 
         const specsGrid = document.getElementById('adv-specs-grid');
@@ -1478,62 +1454,6 @@
         document.getElementById('advisor-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
-    // Shared filter config used by both preview and auto-select
-    const storageKeywords = {
-        nvme: ['nvme', 'm.2', 'pcie'],
-        ssd:  ['ssd', 'solid state'],
-        hdd:  ['hdd', 'hard drive', 'rpm']
-    };
-    const cpuTierKeywords = {
-        0: ['i3', 'ryzen 3', 'pentium', 'celeron'],
-        1: ['i5', 'ryzen 5'],
-        2: ['i7', 'ryzen 7'],
-        3: ['i9', 'ryzen 9', 'threadripper', 'xeon']
-    };
-
-    // Calculate what auto-select would cost without actually selecting anything
-    function previewBuildTotal(tier) {
-        const essentialTypes = ['PROCESSOR', 'MOTHERBOARD', 'RAM', 'GRAPHIC CARDS', 'STORAGE & NAS', 'POWER SUPPLY', 'CASINGS'];
-        const targetPct = tierPercentile[tier];
-        const storagePref = document.getElementById('adv-storage').value;
-        let total = 0;
-
-        essentialTypes.forEach(type => {
-            const cards = Array.from(document.querySelectorAll(`.product-card[data-type="${type}"]`));
-            if (cards.length === 0) return;
-
-            let products = cards.map(card => {
-                const btn = card.querySelector('.add-to-build-btn');
-                if (!btn) return null;
-                const price = parseFloat(btn.getAttribute('data-price'));
-                return { name: btn.getAttribute('data-name'), dis_price: price };
-            }).filter(p => p && !isNaN(p.dis_price));
-
-            if (products.length === 0) return;
-
-            if (type === 'STORAGE & NAS') {
-                const kws = storageKeywords[storagePref] || [];
-                if (kws.length > 0) {
-                    const f = products.filter(p => kws.some(kw => p.name.toLowerCase().includes(kw)));
-                    if (f.length > 0) products = f;
-                }
-            }
-            if (type === 'PROCESSOR') {
-                const kws = cpuTierKeywords[tier] || [];
-                if (kws.length > 0) {
-                    const f = products.filter(p => kws.some(kw => p.name.toLowerCase().includes(kw)));
-                    if (f.length > 0) products = f;
-                }
-            }
-
-            products.sort((a, b) => a.dis_price - b.dis_price);
-            const idx = Math.min(Math.floor(products.length * targetPct), products.length - 1);
-            total += products[idx].dis_price;
-        });
-
-        return total;
-    }
-
     function autoSelectComponents() {
         if (currentAdvisorTier === null) return;
 
@@ -1541,54 +1461,26 @@
         const targetPct = tierPercentile[currentAdvisorTier];
         const selected = [];
 
-        // Storage keyword filters based on user's storage preference
-        const storagePreference = document.getElementById('adv-storage').value;
-
         essentialTypes.forEach(type => {
             // Collect all product cards of this type
             const cards = Array.from(document.querySelectorAll(`.product-card[data-type="${type}"]`));
             if (cards.length === 0) return;
 
             // Pull data from each card's add-to-build button
-            let products = cards.map(card => {
+            const products = cards.map(card => {
                 const btn = card.querySelector('.add-to-build-btn');
                 if (!btn) return null;
                 const price = parseFloat(btn.getAttribute('data-price'));
-                let features = {};
-                try { features = JSON.parse(btn.getAttribute('data-features') || '{}'); } catch(e) {}
                 return {
-                    id:       btn.getAttribute('data-id'),
-                    name:     btn.getAttribute('data-name'),
+                    id:    btn.getAttribute('data-id'),
+                    name:  btn.getAttribute('data-name'),
                     dis_price: price,
-                    image:    btn.getAttribute('data-image'),
-                    type:     btn.getAttribute('data-type'),
-                    features: features
+                    image: btn.getAttribute('data-image'),
+                    type:  btn.getAttribute('data-type')
                 };
             }).filter(p => p && !isNaN(p.dis_price));
 
             if (products.length === 0) return;
-
-            // Filter STORAGE by user's storage type preference (nvme/ssd/hdd)
-            if (type === 'STORAGE & NAS') {
-                const keywords = storageKeywords[storagePreference] || [];
-                if (keywords.length > 0) {
-                    const filtered = products.filter(p =>
-                        keywords.some(kw => p.name.toLowerCase().includes(kw))
-                    );
-                    if (filtered.length > 0) products = filtered;
-                }
-            }
-
-            // Filter PROCESSOR by CPU family matching the recommended tier
-            if (type === 'PROCESSOR') {
-                const keywords = cpuTierKeywords[currentAdvisorTier] || [];
-                if (keywords.length > 0) {
-                    const filtered = products.filter(p =>
-                        keywords.some(kw => p.name.toLowerCase().includes(kw))
-                    );
-                    if (filtered.length > 0) products = filtered;
-                }
-            }
 
             // Sort by price ascending, pick the item at the target percentile
             products.sort((a, b) => a.dis_price - b.dis_price);
