@@ -629,6 +629,15 @@
     const descriptionTextarea = document.getElementById('description');
     form.addEventListener('submit', () => {
         descriptionTextarea.value = quill.root.innerHTML;
+
+        // Disable inputs inside hidden spec groups so duplicate names don't overwrite active group values
+        document.querySelectorAll('.spec-group').forEach(function(group) {
+            if (group.style.display === 'none') {
+                group.querySelectorAll('input, select').forEach(function(el) {
+                    el.disabled = true;
+                });
+            }
+        });
     });
 </script>
 
