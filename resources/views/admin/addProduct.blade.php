@@ -22,6 +22,31 @@
         gap: 1rem;
     }
 
+    /* Override theme's 72px fixed width so dropdowns span full width */
+    .form-new-product .select,
+    .form-new-product .select select {
+        width: 100%;
+    }
+
+    /* Hide the theme's custom caret inside form — Select2 provides its own */
+    .form-new-product .select::after { display: none; }
+
+    /* Select2 tweaks to match existing form styling */
+    .form-new-product .select2-container { width: 100% !important; }
+    .form-new-product .select2-selection--single {
+        height: auto !important;
+        padding: 12px 22px;
+        border: 1px solid var(--Input, #e2e8f0) !important;
+        border-radius: 12px !important;
+    }
+    .form-new-product .select2-selection__rendered {
+        padding: 0 !important;
+        line-height: 20px !important;
+        color: var(--Heading, #2B2B2B) !important;
+        font-size: 14px !important;
+    }
+    .form-new-product .select2-selection__arrow { top: 50% !important; right: 10px !important; transform: translateY(-50%); }
+
 </style>
 <div class="main-content">
     <div class="main-content-inner">
@@ -709,5 +734,42 @@
         } else {
             specSection.style.display = 'none';
         }
+    });
+</script>
+
+<!-- Select2 JS (CSS already loaded in header) -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.form-new-product select').select2({
+            width: '100%',
+            minimumResultsForSearch: Infinity
+        });
+
+        // When type changes via Select2, trigger the spec group logic
+        $('#type').on('change', function() {
+            const selectedType = $(this).val();
+            const specSection = document.getElementById('pc-specs-section');
+            const specGroupMap = {
+                'PROCESSOR':'PROCESSOR','MOTHERBOARD':'MOTHERBOARD','RAM':'RAM',
+                'GRAPHIC CARDS':'GRAPHIC_CARDS','POWER SUPPLY':'POWER_SUPPLY',
+                'SSD NVME':'STORAGE','HARD DISK':'STORAGE','STORAGE & NAS':'STORAGE',
+                'CASINGS':'CASINGS','COOLING & LIGHTING':'COOLING','FANS':'COOLING',
+            };
+            const groupId = specGroupMap[selectedType];
+            document.querySelectorAll('.spec-group').forEach(el => el.style.display = 'none');
+            if (groupId) {
+                specSection.style.display = 'block';
+                const group = document.getElementById('spec-' + groupId);
+                if (group) group.style.display = 'block';
+            } else {
+                specSection.style.display = 'none';
+            }
+        });
+
+        // When tags changes via Select2, trigger deal dates logic
+        $('#tags').on('change', function() {
+            toggleDealDates();
+        });
     });
 </script>
