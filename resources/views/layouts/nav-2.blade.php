@@ -15,7 +15,7 @@
             path: '{{ str_replace(" ", "%20", asset("assets/images/animation/Untitled file.json")) }}'
         });
 
-        window.addEventListener('load', function () {
+        document.addEventListener('DOMContentLoaded', function () {
             var loader = document.getElementById('page-loader');
             loader.style.opacity = '0';
             setTimeout(function () {
