@@ -1,0 +1,136 @@
+Loaded 6010 clean responses
+Dropped 1 dirty rows -> 6009 usable rows
+
+--- Target Distributions (merged classes) ---
+
+y_cpu:
+y_cpu
+High-end / Enthusiast    2483
+Mid-range                1769
+Entry-level              1757
+Name: count, dtype: int64
+
+y_ram:
+y_ram
+32GB or more    2690
+8GB or less     2028
+16GB            1291
+Name: count, dtype: int64
+
+y_storage_type:
+y_storage_type
+SSD     4948
+HDD      614
+eMMC     447
+Name: count, dtype: int64
+
+y_storage_size:
+y_storage_size
+512GB or less    3169
+1TB - 2TB        2636
+4TB or more       204
+Name: count, dtype: int64
+
+y_gpu:
+y_gpu
+Integrated      3339
+High-end GPU    1389
+Discrete GPU    1281
+Name: count, dtype: int64
+
+Class weights computed.
+
+Training stopped (EarlyStopping triggered)
+Gradient Boosting training complete.
+Random Forest training complete.
+
+============================================================
+MODEL COMPARISON  (Ensemble = NN + GB + RF  |  RAM = GB + RF only)
+============================================================
+
+CPU Tier:
+  Neural Network      : 80.53%
+  Gradient Boosting   : 83.36%
+  Random Forest       : 81.86%
+  Ensemble (3-way)    : 82.28%  <-- used for predictions
+                       precision    recall  f1-score   support
+
+          Entry-level       0.83      0.88      0.85       363
+            Mid-range       0.68      0.70      0.69       340
+High-end / Enthusiast       0.92      0.87      0.89       499
+
+             accuracy                           0.82      1202
+            macro avg       0.81      0.81      0.81      1202
+         weighted avg       0.83      0.82      0.82      1202
+
+
+RAM:
+  Neural Network      : 76.79%
+  Gradient Boosting   : 80.87%
+  Random Forest       : 80.45%
+  Ensemble (GB+RF)    : 80.62%  <-- used for predictions
+              precision    recall  f1-score   support
+
+ 8GB or less       0.85      0.92      0.89       418
+        16GB       0.52      0.49      0.50       240
+32GB or more       0.89      0.86      0.87       544
+
+    accuracy                           0.81      1202
+   macro avg       0.75      0.76      0.75      1202
+weighted avg       0.80      0.81      0.80      1202
+
+
+Storage Type:
+  Neural Network      : 87.44%
+  Gradient Boosting   : 88.69%
+  Random Forest       : 87.35%
+  Ensemble (3-way)    : 88.02%  <-- used for predictions
+              precision    recall  f1-score   support
+
+         HDD       0.48      0.91      0.63       117
+        eMMC       0.75      0.96      0.84        89
+         SSD       1.00      0.87      0.93       996
+
+    accuracy                           0.88      1202
+   macro avg       0.74      0.91      0.80      1202
+weighted avg       0.93      0.88      0.89      1202
+
+
+Storage Size:
+  Neural Network      : 84.86%
+  Gradient Boosting   : 84.19%
+  Random Forest       : 84.53%
+  Ensemble (3-way)    : 84.03%  <-- used for predictions
+               precision    recall  f1-score   support
+
+512GB or less       0.89      0.87      0.88       637
+    1TB - 2TB       0.82      0.81      0.81       516
+  4TB or more       0.55      0.86      0.67        49
+
+     accuracy                           0.84      1202
+    macro avg       0.75      0.84      0.79      1202
+ weighted avg       0.85      0.84      0.84      1202
+
+
+GPU:
+  Neural Network      : 81.20%
+  Gradient Boosting   : 82.61%
+  Random Forest       : 81.45%
+  Ensemble (3-way)    : 82.20%  <-- used for predictions
+              precision    recall  f1-score   support
+
+  Integrated       0.99      0.89      0.94       670
+Discrete GPU       0.56      0.67      0.61       248
+High-end GPU       0.75      0.80      0.77       284
+
+    accuracy                           0.82      1202
+   macro avg       0.77      0.78      0.77      1202
+weighted avg       0.84      0.82      0.83      1202
+
+
+Neural network saved -> model/model.keras
+Gradient Boosting models saved -> model/gb_models.pkl
+Random Forest models saved -> model/rf_models.pkl
+All artifacts saved.
+
+Ready! Now run: python app.py

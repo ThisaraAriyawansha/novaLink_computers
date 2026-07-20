@@ -1,0 +1,151 @@
+
+
+----------------------------------------------------------------
+SLIDE 1: TITLE SLIDE
+----------------------------------------------------------------
+
+Title   : PC Hardware Recommendation System
+Subtitle: Model Training Architecture & Technology Stack
+
+
+----------------------------------------------------------------
+SLIDE 2: OVERVIEW
+----------------------------------------------------------------
+
+What Does This Model Do?
+
+  - Predicts 5 PC hardware components for a user:
+      * CPU Tier
+      * RAM
+      * Storage Type
+      * Storage Size
+      * GPU
+
+  - Based on 17 user profile features
+    (job role, workload, budget, hours, software used, etc.)
+
+  - Uses a 3-model ensemble for maximum accuracy
+
+
+----------------------------------------------------------------
+SLIDE 3: TECHNOLOGY STACK
+----------------------------------------------------------------
+
+  Library               Purpose
+  ─────────────────────────────────────────────────────────────
+  TensorFlow / Keras    Deep Neural Network (multi-output)
+  scikit-learn          Tree-based models + preprocessing
+  pandas                Data loading & cleaning
+  numpy                 Numerical computation
+  pickle (built-in)     Saving trained model artifacts
+
+
+----------------------------------------------------------------
+SLIDE 4: WHY THESE TECHNOLOGIES?
+----------------------------------------------------------------
+
+TensorFlow / Keras
+  - Best for building multi-output neural networks
+  - Built-in support for custom loss functions
+    (needed to handle class imbalance per output)
+  - BatchNorm and Dropout layers prevent overfitting
+  - EarlyStopping and ReduceLROnPlateau callbacks
+    automatically stop training at the best point
+
+scikit-learn
+  - HistGradientBoosting and RandomForest are highly
+    effective on tabular / survey-style data
+  - Simple API for compute_sample_weight to handle
+    imbalanced classes
+  - LabelEncoder and StandardScaler for preprocessing
+
+Ensemble Approach
+  - No single model performs best across all 5 outputs
+  - Averaging probabilities from 3 models reduces the
+    weaknesses of any individual model
+  - Example: Neural Network is excluded from RAM predictions
+    because it was found to hurt ensemble accuracy there
+
+
+----------------------------------------------------------------
+SLIDE 5: THREE MODELS EXPLAINED
+----------------------------------------------------------------
+
+Model 1 — Neural Network (TensorFlow / Keras)
+  - Architecture:
+      Input(17 features)
+      -> Dense(512) + BatchNorm + Dropout(0.30)
+      -> Dense(256) + BatchNorm + Dropout(0.25)
+      -> Dense(128) + BatchNorm + Dropout(0.20)   [shared backbone]
+      -> 5 output heads (one per hardware component)
+  - Optimizer : Adam (learning_rate = 0.001)
+  - Max epochs: 300 with EarlyStopping (patience = 25)
+
+Model 2 — HistGradientBoosting (scikit-learn)
+  - Gradient boosting decision trees
+  - More powerful on structured / tabular survey data
+  - Separate classifier trained for each of the 5 outputs
+  - Up to 2000 iterations for RAM (hardest to predict)
+
+Model 3 — Random Forest (scikit-learn)
+  - 500 decision trees per output
+  - Good at capturing non-linear feature interactions
+  - Parallel training (n_jobs = -1) for speed
+  - Max depth = 20, min_samples_leaf = 5
+
+
+----------------------------------------------------------------
+SLIDE 6: ENSEMBLE STRATEGY
+----------------------------------------------------------------
+
+  Final Prediction = Average of model probability scores
+
+  Output          Models Used
+  ─────────────────────────────────────────────────────────────
+  CPU             Neural Network + Gradient Boosting + Random Forest
+  RAM             Gradient Boosting + Random Forest  (NN excluded)
+  Storage Type    Neural Network + Gradient Boosting + Random Forest
+  Storage Size    Neural Network + Gradient Boosting + Random Forest
+  GPU             Neural Network + Gradient Boosting + Random Forest
+
+  Why Ensemble?
+  - Reduces variance and bias from any single model
+  - Each model captures different patterns in the data
+  - Overall accuracy is higher than any single model alone
+
+
+----------------------------------------------------------------
+SLIDE 7: HANDLING CLASS IMBALANCE
+----------------------------------------------------------------
+
+  Problem:
+    Some hardware tiers appear far more often in the dataset
+    than others, causing the model to favour majority classes.
+
+  Solutions Applied:
+    1. compute_class_weight('balanced')
+         - Automatically adjusts loss penalties per class
+         - Used inside the Neural Network custom loss function
+
+    2. compute_sample_weight('balanced')
+         - Adjusts importance of each training sample
+         - Used for Gradient Boosting and Random Forest
+
+    3. Manual weight tuning for RAM
+         - Class 1 (16GB) weight manually reduced to 0.6
+         - Fixed over-prediction of the 16GB class
+
+
+----------------------------------------------------------------
+SLIDE 8: SUMMARY
+----------------------------------------------------------------
+
+  Model               Best At                      Weakness
+  ─────────────────────────────────────────────────────────────
+  Neural Network      Complex patterns, GPU/CPU     RAM prediction
+  Gradient Boosting   Tabular data, precision       Slower to tune
+  Random Forest       Stable, handles noise well    Higher memory use
+  ─────────────────────────────────────────────────────────────
+  Ensemble (final)    Best overall accuracy         —
+
+

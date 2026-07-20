@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PC Recommender — Sri Lanka</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface2: #1a1a26;
+    --border: #2a2a3a;
+    --accent: #6c63ff;
+    --accent2: #ff6b6b;
+    --accent3: #43e97b;
+    --text: #e8e8f0;
+    --muted: #7070a0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(108,99,255,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(255,107,107,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(67,233,123,0.04) 0%, transparent 60%);
+    animation: bgShift 20s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @keyframes bgShift {
+    0%   { transform: translate(0,0) rotate(0deg); }
+    100% { transform: translate(2%,2%) rotate(2deg); }
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* ── Header ── */
+  .header {
+    text-align: center;
+    margin-bottom: 56px;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(108,99,255,0.15);
+    border: 1px solid rgba(108,99,255,0.3);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #a09cf7;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .header-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: #6c63ff;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%,100% { opacity:1; transform:scale(1); }
+    50%      { opacity:0.5; transform:scale(0.8); }
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(34px, 6vw, 60px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+
+  h1 span {
+    background: linear-gradient(135deg, #6c63ff, #ff6b6b, #43e97b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  /* ── Form card ── */
+  .form-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 40px;
+    margin-bottom: 28px;
+    animation: fadeUp 0.8s ease 0.2s both;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+
+  @media (max-width: 640px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .form-card { padding: 24px; }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-group.full { grid-column: 1 / -1; }
+
+  label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+  }
+
+  select {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    padding: 12px 38px 12px 16px;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237070a0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+  }
+
+  select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(108,99,255,0.15);
+  }
+
+  select option { background: #1a1a26; color: var(--text); }
+
+  /* ── Submit button ── */
+  .btn-submit {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(135deg, #6c63ff, #8b5cf6);
+    border: none;
+    border-radius: 14px;
+    color: white;
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-submit::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.5s;
+  }
+
+  .btn-submit:hover::before { left: 100%; }
+  .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(108,99,255,0.4); }
+  .btn-submit:active { transform: translateY(0); }
+  .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  /* ── Loading bar ── */
+  .loading-bar {
+    display: none;
+    height: 3px;
+    background: var(--border);
+    border-radius: 100px;
+    margin: 20px 0 0;
+    overflow: hidden;
+  }
+
+  .loading-bar.active { display: block; }
+
+  .loading-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #6c63ff, #ff6b6b, #43e97b);
+    border-radius: 100px;
+    animation: loadFill 1.4s ease both;
+  }
+
+  @keyframes loadFill {
+    from { width: 0; }
+    to   { width: 100%; }
+  }
+
+  /* ── Results ── */
+  .results { display: none; }
+  .results.visible { display: block; animation: fadeUp 0.6s ease both; }
+
+  .result-header-card {
+    background: linear-gradient(135deg, rgba(108,99,255,0.12), rgba(67,233,123,0.06));
+    border: 1px solid rgba(108,99,255,0.3);
+    border-radius: 24px;
+    padding: 36px 40px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .result-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #a09cf7;
+    margin-bottom: 8px;
+  }
+
+  .result-headline {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+
+  .result-sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  .ai-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(108,99,255,0.15);
+    border: 1px solid rgba(108,99,255,0.3);
+    border-radius: 100px;
+    padding: 10px 18px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #a09cf7;
+    white-space: nowrap;
+  }
+
+  /* ── Component cards grid ── */
+  .components-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 700px) {
+    .components-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 420px) {
+    .components-grid { grid-template-columns: 1fr; }
+  }
+
+  .comp-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 22px;
+    transition: border-color 0.2s, transform 0.2s;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .comp-card:hover {
+    border-color: rgba(108,99,255,0.4);
+    transform: translateY(-2px);
+  }
+
+  /* stagger animation */
+  .comp-card:nth-child(1) { animation-delay: 0.05s; }
+  .comp-card:nth-child(2) { animation-delay: 0.10s; }
+  .comp-card:nth-child(3) { animation-delay: 0.15s; }
+  .comp-card:nth-child(4) { animation-delay: 0.20s; }
+  .comp-card:nth-child(5) { animation-delay: 0.25s; }
+
+  .comp-icon {
+    font-size: 26px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .comp-type {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .comp-tier {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .comp-name {
+    font-size: 13px;
+    color: #c0c0d8;
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+
+  /* Confidence bar */
+  .conf-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .conf-bar-bg {
+    flex: 1;
+    height: 5px;
+    background: var(--border);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+
+  .conf-bar-fill {
+    height: 100%;
+    border-radius: 100px;
+    transition: width 1s ease;
+  }
+
+  .conf-bar-fill.high   { background: #43e97b; }
+  .conf-bar-fill.medium { background: #f7971e; }
+  .conf-bar-fill.low    { background: #ff6b6b; }
+
+  .conf-pct {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    min-width: 34px;
+    text-align: right;
+  }
+
+  /* Storage spans 2 columns */
+  .storage-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 420px) {
+    .storage-pair { grid-template-columns: 1fr; }
+  }
+
+  /* ── Reset button ── */
+  .btn-reset {
+    width: 100%;
+    padding: 16px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 4px;
+  }
+
+  .btn-reset:hover { border-color: var(--accent); color: var(--text); }
+
+  /* ── Animations ── */
+  @keyframes fadeDown {
+    from { opacity:0; transform:translateY(-20px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(28px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  @keyframes shake {
+    0%,100% { transform:translateX(0); }
+    25%      { transform:translateX(-8px); }
+    75%      { transform:translateX(8px); }
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-badge">Sri Lanka PC Recommender</div>
+    <h1>Tell Us What You Do.<br><span>We'll Pick Your PC.</span></h1>
+    <p class="subtitle">Answer 6 quick questions about your work. Our neural network predicts the ideal CPU, RAM, storage, and GPU tailored to you.</p>
+  </div>
+
+  <!-- Form -->
+  <div class="form-card" id="formSection">
+    <div class="section-label">Your Profile</div>
+    <div class="form-grid">
+
+      <div class="form-group full">
+        <label>What is your job role?</label>
+        <select id="job">
+          <option value="">Select your role...</option>
+        </select>
+      </div>
+
+      <div class="form-group full">
+        <label>What do you mainly use your PC for?</label>
+        <select id="activity">
+          <option value="">Select your primary activity...</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Workload intensity</label>
+        <select id="workload">
+          <option value="">Select workload...</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Hours on PC per day</label>
+        <select id="hours">
+          <option value="">Select hours...</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Run multiple apps at once?</label>
+        <select id="multiApp">
+          <option value="">Select multitasking level...</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Budget (LKR)</label>
+        <select id="budget">
+          <option value="">Select budget...</option>
+        </select>
+      </div>
+
+      <div class="form-group full">
+        <label>What software do you mainly use?</label>
+        <select id="software">
+          <option value="">Select your primary software...</option>
+        </select>
+      </div>
+
+      <div class="form-group full">
+        <label>What is the typical size of files you work with?</label>
+        <select id="fileSize">
+          <option value="">Select file size...</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="loading-bar" id="loadingBar">
+      <div class="loading-fill"></div>
+    </div>
+
+    <button class="btn-submit" id="submitBtn" onclick="recommend()">
+      Predict My Best PC
+    </button>
+  </div>
+
+  <!-- Results -->
+  <div class="results" id="results"></div>
+
+</div>
+
+<script>
+// ── Load dropdown options from backend ────────────────────────────────────────
+async function loadQuestions() {
+  try {
+    const res  = await fetch('/questions');
+    const data = await res.json();
+    populate('job',      data.job,      'key');
+    populate('activity', data.activity, 'key');
+    populate('workload', data.workload, 'key');
+    populate('hours',    data.hours,    'key');
+    populate('multiApp', data.multiApp, 'key');
+    populate('budget',   data.budget,   'key');
+    populate('software', data.software, 'key');
+    populate('fileSize', data.fileSize, 'key');
+  } catch {
+    // fallback hardcoded options
+    populateFallback();
+  }
+}
+
+function populate(id, options, valKey) {
+  const sel = document.getElementById(id);
+  options.forEach(o => {
+    const opt = document.createElement('option');
+    opt.value = o[valKey];
+    opt.textContent = o.label;
+    sel.appendChild(opt);
+  });
+}
+
+function populateFallback() {
+  const fallbacks = {
+    job:      [['game_dev','Game Developer'],['mobile_dev','Mobile App Developer'],['data_ml','Data Scientist / AI / ML'],['cad_3d','Architect / Civil / 3D / CAD'],['designer','Graphic Designer / UI-UX'],['student','Student / Researcher'],['office','Business / Finance / Office'],['it_admin','IT Support / Network / Security / QA'],['software_dev','Software Developer / DevOps'],['other','Other']],
+    activity: [['heavy_graphics','Game Dev / 3D Rendering / CAD / Physics Simulation'],['data_ml','Machine Learning / Data Analysis / AI Modeling'],['media','Video Editing / Motion Graphics / VFX'],['mobile_dev','Mobile App Development'],['software_dev','Web / Backend / DevOps / Cloud Development'],['qa','Testing / QA / Bug Reporting'],['it_admin','Network / Security / Server Admin'],['design','Graphic Design / UI Mockups / Branding'],['office','Documents / Spreadsheets / Email / Office'],['student','Assignments / Online Classes / Research'],['general','General / Browsing / Light Tasks']],
+    workload: [[1,'Very Light (email, web browsing)'],[2,'Light (document editing, presentations)'],[3,'Moderate (programming, data analysis, photo editing)'],[4,'Heavy (video editing, 3D rendering, VMs)'],[5,'Very Heavy (ML training, scientific computing, simulations)']],
+    hours:    [[3,'Less than 4 hours'],[5,'4 - 6 hours'],[7,'6 - 8 hours'],[10,'8+ hours']],
+    multiApp: [[1,'Rarely (1-2 apps)'],[2,'Occasionally (2-3 apps)'],[3,'Moderately (3-5 apps)'],[4,'Frequently (6+ apps)']],
+    budget:   [[1,'Under LKR 100,000'],[2,'LKR 100,000 - 150,000'],[3,'LKR 150,000 - 200,000'],[4,'LKR 200,000 - 250,000'],[5,'LKR 250,000 - 300,000'],[6,'Above LKR 300,000']],
+    software: [['ml_heavy','Python / TensorFlow / PyTorch / CUDA  (ML & AI)'],['game_dev','Unity / Unreal Engine / Blender / C++  (Game Dev)'],['cad_3d','AutoCAD / Revit / 3ds Max / STAAD Pro  (CAD & 3D)'],['media','Premiere Pro / After Effects / Photoshop  (Media)'],['mobile_dev','Android Studio / Flutter / Xcode  (Mobile)'],['dev_tools','VS Code / Docker / Git / IntelliJ  (Dev & DevOps)'],['qa_tools','Selenium / JIRA / Postman / JMeter  (QA & Testing)'],['it_tools','Wireshark / VMware / Active Directory  (IT & Security)'],['office_tools','Microsoft Office / Excel / Teams / Zoom  (Office)'],['general','General / Mixed / Other']],
+    fileSize: [[1,'Small  (under 10 MB)'],[2,'Medium  (10 MB - 100 MB)'],[3,'Large  (100 MB - 1 GB)'],[4,'Very Large  (1 GB+)']],
+  };
+  for (const [id, opts] of Object.entries(fallbacks)) {
+    const sel = document.getElementById(id);
+    opts.forEach(([val, lbl]) => {
+      const opt = document.createElement('option');
+      opt.value = val;
+      opt.textContent = lbl;
+      sel.appendChild(opt);
+    });
+  }
+}
+
+loadQuestions();
+
+// ── Component display config ──────────────────────────────────────────────────
+const COMP_META = {
+  cpu:          { icon: '🧠', label: 'Processor (CPU)' },
+  ram:          { icon: '💾', label: 'Memory (RAM)' },
+  storage_type: { icon: '💽', label: 'Storage Type' },
+  storage_size: { icon: '📦', label: 'Storage Capacity' },
+  gpu:          { icon: '🖥️', label: 'Graphics Card (GPU)' },
+};
+
+// ── Main predict function ─────────────────────────────────────────────────────
+async function recommend() {
+  const fields = ['job','activity','workload','hours','multiApp','budget','software','fileSize'];
+  const values = {};
+  for (const f of fields) {
+    const v = document.getElementById(f).value;
+    if (!v) {
+      flashError('Please answer all 6 questions.');
+      return;
+    }
+    values[f] = isNaN(v) ? v : Number(v);
+  }
+
+  const btn = document.getElementById('submitBtn');
+  const bar = document.getElementById('loadingBar');
+  btn.disabled = true;
+  btn.textContent = 'Analysing...';
+  bar.classList.add('active');
+  bar.innerHTML = '<div class="loading-fill"></div>';
+
+  try {
+    const res  = await fetch('/predict', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(values),
+    });
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+    showResults(data, values);
+  } catch (err) {
+    flashError('Something went wrong: ' + err.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Predict My Best PC';
+    bar.classList.remove('active');
+  }
+}
+
+// ── Render results ────────────────────────────────────────────────────────────
+function showResults(data, inputs) {
+  const jobLabel      = selectedLabel('job');
+  const activityLabel = selectedLabel('activity');
+  const budgetLabel   = selectedLabel('budget');
+
+  // Confidence colour class
+  function confClass(c) {
+    if (c >= 70) return 'high';
+    if (c >= 50) return 'medium';
+    return 'low';
+  }
+
+  // Build a component card
+  function compCard(key, result) {
+    const meta = COMP_META[key];
+    const conf = result.confidence;
+    const cls  = confClass(conf);
+
+    const tierOrAmount = result.tier || result.amount || result.type || result.size || '';
+    const recommendation = result.recommendation || '';
+
+    return `
+      <div class="comp-card">
+        <span class="comp-icon">${meta.icon}</span>
+        <div class="comp-type">${meta.label}</div>
+        <div class="comp-tier">${tierOrAmount}</div>
+        <div class="comp-name">${recommendation}</div>
+        <div class="conf-row">
+          <div class="conf-bar-bg">
+            <div class="conf-bar-fill ${cls}" style="width:${conf}%"></div>
+          </div>
+          <span class="conf-pct">${conf}%</span>
+        </div>
+      </div>
+    `;
+  }
+
+  const resultsDiv = document.getElementById('results');
+  resultsDiv.innerHTML = `
+    <div class="result-header-card">
+      <div>
+        <div class="result-title">Neural Network Recommendation</div>
+        <div class="result-headline">Your Ideal PC Build</div>
+        <div class="result-sub">${jobLabel} &nbsp;·&nbsp; ${activityLabel} &nbsp;·&nbsp; ${budgetLabel}</div>
+      </div>
+      <div class="ai-badge">
+        <span style="width:8px;height:8px;background:#43e97b;border-radius:50%;display:inline-block"></span>
+        ML Predicted
+      </div>
+    </div>
+
+    <div class="components-grid">
+      ${compCard('cpu', data.cpu)}
+      ${compCard('ram', data.ram)}
+      ${compCard('gpu', data.gpu)}
+    </div>
+
+    <div class="storage-pair">
+      ${compCard('storage_type', data.storage_type)}
+      ${compCard('storage_size', data.storage_size)}
+    </div>
+
+    <button class="btn-reset" onclick="resetForm()">
+      Try Another Profile
+    </button>
+  `;
+
+  resultsDiv.classList.add('visible');
+  resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function selectedLabel(id) {
+  const sel = document.getElementById(id);
+  return sel.options[sel.selectedIndex]?.text || '';
+}
+
+function flashError(msg) {
+  const btn = document.getElementById('submitBtn');
+  btn.style.animation = 'shake 0.4s ease';
+  btn.textContent = '  ' + msg;
+  setTimeout(() => {
+    btn.style.animation = '';
+    btn.textContent = 'Predict My Best PC';
+  }, 2500);
+}
+
+function resetForm() {
+  document.getElementById('results').classList.remove('visible');
+  document.getElementById('results').innerHTML = '';
+  document.getElementById('formSection').scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+</body>
+</html>

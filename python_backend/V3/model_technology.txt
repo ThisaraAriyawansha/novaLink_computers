@@ -1,0 +1,240 @@
+================================================================================
+  PC RECOMMENDER SYSTEM — MODEL & TECHNOLOGY REFERENCE
+  Version 3  |  Multi-Output Neural Network + Ensemble
+================================================================================
+
+
+────────────────────────────────────────────────────────────────────────────────
+1. TECHNOLOGIES USED
+────────────────────────────────────────────────────────────────────────────────
+
+  Language        : Python 3.11
+
+  Deep Learning   : TensorFlow 2.x / Keras
+                    - Model architecture, training, saving (.keras format)
+
+  Machine Learning: scikit-learn
+                    - LabelEncoder       (encode categorical text features)
+                    - StandardScaler     (normalize numeric features)
+                    - train_test_split   (80% train / 20% test split)
+                    - compute_class_weight (balance imbalanced classes)
+                    - compute_sample_weight (per-sample weights for sklearn)
+                    - HistGradientBoostingClassifier (boosted trees per output)
+                    - RandomForestClassifier (random forest per output)
+                    - accuracy_score, classification_report (evaluation)
+
+  Data Handling   : pandas  (load CSV, clean rows, apply feature engineering)
+                    NumPy   (array operations, argmax for predictions)
+
+  API Server      : Flask + Flask-CORS
+                    - GET  /questions  -> returns dropdown options to frontend
+                    - POST /predict    -> accepts user answers, returns component recommendations
+
+  Serialization   : pickle  (save/load encoders, scaler, label maps, sklearn models)
+
+  Frontend        : HTML5 / CSS3 / Vanilla JavaScript  (single-page UI)
+
+
+────────────────────────────────────────────────────────────────────────────────
+2. DATASET
+────────────────────────────────────────────────────────────────────────────────
+
+  File            : data/responses.csv
+  Total Columns   : 40
+  Total Rows      : 6,010
+  Clean Rows Used : 6,009  (1 dropped — missing/invalid target values)
+
+
+────────────────────────────────────────────────────────────────────────────────
+3. INPUT FEATURES  (17 features fed to the model)
+────────────────────────────────────────────────────────────────────────────────
+
+  Base Features (8):
+  #   Feature Name        CSV Column   Type         Description
+  --- ------------------- ------------ ------------ ----------------------------
+  1   job_encoded         Column  1    Categorical  Job role / profession
+  2   activity_encoded    Column 25    Categorical  Primary daily computing task
+  3   software_encoded    Column 22    Categorical  Main software tools used
+  4   workload            Column 28    Numeric      Workload intensity (1–5)
+  5   hours               Column 26    Numeric      Daily usage hours (3/5/7/10)
+  6   multi_app           Column 27    Numeric      Apps used simultaneously (1–4)
+  7   budget              Column 24    Numeric      Budget range LKR (1–6)
+  8   file_size           Column 23    Numeric      Typical file sizes (1–4)
+
+  Interaction Features (9):
+  9   workload_x_budget   workload * budget
+  10  activity_x_software activity_encoded * software_encoded
+  11  filesize_x_workload file_size * workload
+  12  hours_x_multiapp    hours * multi_app
+  13  workload_x_hours    workload * hours
+  14  budget_x_filesize   budget * file_size
+  15  ram_demand          workload*2 + multi_app*1.5 + budget*0.5 + hours*0.3
+  16  job_x_activity      job_encoded * activity_encoded
+  17  ram_intensity       workload * file_size * multi_app
+
+  All 17 features are normalized using StandardScaler before training.
+
+
+────────────────────────────────────────────────────────────────────────────────
+4. OUTPUT TARGETS  (5 outputs predicted by the model)
+────────────────────────────────────────────────────────────────────────────────
+
+  #   Output Head      CSV Column   Classes (3 each — merged for accuracy)
+  --- ---------------- ------------ --------------------------------------------------
+  1   CPU Tier         Column 10    0=Entry-level  1=Mid-range  2=High-end/Enthusiast
+                                   (Enthusiast merged into High-end)
+
+  2   RAM              Column  8    0=8GB or less  1=16GB  2=32GB or more
+                                   (32GB and 64GB+ merged; 16GB kept separate)
+
+  3   Storage Type     Column 14    0=HDD  1=eMMC  2=SSD
+                                   (SATA+NVMe merged → SSD; budget selects sub-type in app.py)
+
+  4   Storage Size     Column 15    0=512GB or less  1=1TB–2TB  2=4TB or more
+                                   (256GB+512GB merged; 1TB+2TB merged)
+
+  5   GPU Tier         Column 16    0=Integrated  1=Discrete GPU  2=High-end GPU
+                                   (Entry-level+Mid-range merged → Discrete GPU)
+
+  Each output head uses softmax activation.
+  The class with the highest probability is selected as the recommendation.
+  Confidence (%) = max probability × 100.
+
+
+────────────────────────────────────────────────────────────────────────────────
+5. MODEL ARCHITECTURE
+────────────────────────────────────────────────────────────────────────────────
+
+  Type            : Multi-Output Neural Network (1 model, 5 output heads)
+  Framework       : TensorFlow / Keras (Functional API)
+
+  Input Layer     : shape=(17,)   — 17 normalized features
+
+  Shared Backbone :
+    Dense(512, relu)
+    BatchNormalization
+    Dropout(0.30)
+    Dense(256, relu)
+    BatchNormalization
+    Dropout(0.25)
+    Dense(128, relu)
+    BatchNormalization
+    Dropout(0.20)
+
+  Output Heads    : 5 separate branches ending in Dense(3, softmax)
+    - cpu          -> task_branch:  Dense(64)→Dense(32)→Dense(3, softmax)
+    - ram          -> wide_branch:  Dense(128)→BN→Drop(0.2)→Dense(64)→Dense(32)→Dense(3, softmax)
+    - storage_type -> task_branch:  Dense(64)→Dense(32)→Dense(3, softmax)
+    - storage_size -> task_branch:  Dense(64)→Dense(32)→Dense(3, softmax)
+    - gpu          -> task_branch:  Dense(64)→Dense(32)→Dense(3, softmax)
+
+  Saved Format    : model/model.keras
+
+
+────────────────────────────────────────────────────────────────────────────────
+6. TRAINING CONFIGURATION
+────────────────────────────────────────────────────────────────────────────────
+
+  Optimizer           : Adam  (initial learning rate = 0.001)
+  Loss Function       : Custom weighted sparse categorical crossentropy
+                        (separate per output head, class weights built in)
+  Loss Weights        : cpu=1.2, ram=2.0, storage_type=1.0, storage_size=1.0, gpu=1.0
+  Class Balancing     : compute_class_weight('balanced') from scikit-learn
+                        applied to all 5 outputs independently
+  Max Epochs          : 300
+  Batch Size          : 32
+  Validation Split    : 15% of training data
+  Train / Test Split  : 80% / 20%  (random_state=42)
+
+  Callbacks:
+    - EarlyStopping     : monitors val_loss, patience=25, restores best weights
+    - ReduceLROnPlateau : monitors val_loss, factor=0.5, patience=10, min_lr=1e-6
+
+  sklearn Models (per output):
+    - HistGradientBoostingClassifier:
+        Default: max_iter=1000, max_depth=8, learning_rate=0.02, min_samples_leaf=8
+        RAM:     max_iter=2000, max_depth=10, learning_rate=0.01, min_samples_leaf=5
+    - RandomForestClassifier:
+        n_estimators=500, max_depth=20, min_samples_leaf=5, n_jobs=-1
+
+
+────────────────────────────────────────────────────────────────────────────────
+7. ENSEMBLE STRATEGY
+────────────────────────────────────────────────────────────────────────────────
+
+  CPU / Storage Type / Storage Size / GPU:
+    Prediction = average probability from NN + GB + RF  (equal 1/3 each)
+
+  RAM (special case):
+    The NN underperforms on RAM (76.8% vs GB 80.9% / RF 80.5%).
+    Prediction = average probability from GB + RF only  (1/2 each)
+    This gives the ensemble 80.62% vs 79.53% if NN were included.
+
+
+────────────────────────────────────────────────────────────────────────────────
+8. SAVED ARTIFACTS  (model/ folder)
+────────────────────────────────────────────────────────────────────────────────
+
+  model.keras            — trained Keras model (loaded with compile=False for inference)
+  gb_models.pkl          — dict of HistGradientBoostingClassifier (one per output)
+  rf_models.pkl          — dict of RandomForestClassifier (one per output)
+  job_encoder.pkl        — LabelEncoder for job categories
+  activity_encoder.pkl   — LabelEncoder for activity categories
+  software_encoder.pkl   — LabelEncoder for software categories
+  scaler.pkl             — StandardScaler fitted on training features (17 features)
+  label_maps.pkl         — dict mapping class index -> label string (all 5 outputs)
+  features.pkl           — ordered list of 17 feature names (used to align input)
+
+
+────────────────────────────────────────────────────────────────────────────────
+9. NUMBER OF MODELS & ACCURACY
+────────────────────────────────────────────────────────────────────────────────
+
+  Total Models Trained : 11
+    1 Neural Network (shared backbone, 5 output heads)
+    5 HistGradientBoostingClassifiers (one per output)
+    5 RandomForestClassifiers (one per output)
+
+  Ensemble Strategy    : NN + GB + RF probability averaging per output
+                         (RAM uses GB + RF only)
+
+  ┌────────────────────┬────────────┬─────────────────────────────────────────┐
+  │  Output / Target   │  Accuracy  │  Class Details                          │
+  ├────────────────────┼────────────┼─────────────────────────────────────────┤
+  │  CPU Tier          │  82.28 %   │  Entry / Mid / High+Enthusiast          │
+  │  RAM               │  80.62 %   │  8GB / 16GB / 32GB+                     │
+  │  Storage Type      │  88.02 %   │  HDD / eMMC / SSD (SATA or NVMe)       │
+  │  Storage Size      │  84.03 %   │  512GB- / 1-2TB / 4TB+                 │
+  │  GPU               │  82.20 %   │  Integrated / Discrete / High-end       │
+  └────────────────────┴────────────┴─────────────────────────────────────────┘
+
+  Test Set Size : 1,202 samples  (20% of 6,009 clean rows)
+
+  Detailed Classification Reports:
+
+  CPU Tier (82.28%):
+    Entry-level           precision=0.83  recall=0.88  f1=0.85
+    Mid-range             precision=0.68  recall=0.70  f1=0.69
+    High-end / Enthusiast precision=0.92  recall=0.87  f1=0.89
+
+  RAM (80.62% — GB+RF ensemble):
+    8GB or less   precision=0.85  recall=0.92  f1=0.89
+    16GB          precision=0.52  recall=0.49  f1=0.50
+    32GB or more  precision=0.89  recall=0.86  f1=0.87
+
+  Storage Type (88.02%):
+    HDD           precision=0.48  recall=0.91  f1=0.63
+    eMMC          precision=0.75  recall=0.96  f1=0.84
+    SSD           precision=1.00  recall=0.87  f1=0.93
+
+  Storage Size (84.03%):
+    512GB or less precision=0.89  recall=0.87  f1=0.88
+    1TB - 2TB     precision=0.82  recall=0.81  f1=0.81
+    4TB or more   precision=0.55  recall=0.86  f1=0.67
+
+  GPU (82.20%):
+    Integrated    precision=0.99  recall=0.89  f1=0.94
+    Discrete GPU  precision=0.56  recall=0.67  f1=0.61
+    High-end GPU  precision=0.75  recall=0.80  f1=0.77
+
+================================================================================

@@ -88,7 +88,39 @@
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
         }
-        
+
+        #adv-workload {
+            background: transparent;
+        }
+        #adv-workload::-webkit-slider-runnable-track {
+            background: #e2e8f0;
+            height: 6px;
+            border-radius: 3px;
+        }
+        #adv-workload::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #000;
+            margin-top: -5px;
+            cursor: pointer;
+        }
+        #adv-workload::-moz-range-track {
+            background: #e2e8f0;
+            height: 6px;
+            border-radius: 3px;
+        }
+        #adv-workload::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #000;
+            border: none;
+            cursor: pointer;
+        }
+
         .component-icon {
             width: 40px;
             height: 40px;
@@ -257,14 +289,55 @@
                                 <select id="adv-job"
                                     class="w-full text-xs border border-slate-200 rounded-lg px-2.5 py-2 bg-white text-slate-700 focus:outline-none focus:border-black">
                                     <option value="">Select role...</option>
-                                    <option value="developer">Software Developer / Engineer</option>
-                                    <option value="data_analyst">Data Scientist / Analyst</option>
+                                    <option value="software_dev">Software Developer / DevOps / Backend / Frontend</option>
+                                    <option value="data_ml">Data Scientist / AI / ML Engineer</option>
+                                    <option value="game_dev">Game Developer</option>
+                                    <option value="mobile_dev">Mobile App Developer</option>
+                                    <option value="cad_3d">Architect / Civil / 3D Artist / CAD</option>
                                     <option value="designer">Graphic Designer / UI-UX</option>
-                                    <option value="media">Video Editor / 3D Artist</option>
                                     <option value="student">Student / Researcher</option>
-                                    <option value="office">Office / Business / Admin</option>
-                                    <option value="it_admin">IT Admin / Cybersecurity</option>
+                                    <option value="office">Business / Finance / Office / Admin</option>
+                                    <option value="it_admin">IT Support / Network / Security / QA</option>
                                     <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <!-- Primary Activity -->
+                            <div>
+                                <label class="block text-[11px] font-medium text-slate-500 mb-1">Primary Activity</label>
+                                <select id="adv-activity"
+                                    class="w-full text-xs border border-slate-200 rounded-lg px-2.5 py-2 bg-white text-slate-700 focus:outline-none focus:border-black">
+                                    <option value="">What do you do?</option>
+                                    <option value="heavy_graphics">Game Dev / 3D Rendering / CAD / Physics Simulation</option>
+                                    <option value="data_ml">Machine Learning / Data Analysis / AI Modeling</option>
+                                    <option value="media">Video Editing / Motion Graphics / VFX</option>
+                                    <option value="mobile_dev">Mobile App Development</option>
+                                    <option value="software_dev">Web / Backend / DevOps / Cloud Development</option>
+                                    <option value="qa">Testing / QA / Bug Reporting</option>
+                                    <option value="it_admin">Network / Security / Server Administration</option>
+                                    <option value="design">Graphic Design / UI Mockups / Branding</option>
+                                    <option value="office">Documents / Spreadsheets / Email / Office Work</option>
+                                    <option value="student">Assignments / Online Classes / Research</option>
+                                    <option value="general">General / Browsing / Light Tasks</option>
+                                </select>
+                            </div>
+
+                            <!-- Software Used -->
+                            <div>
+                                <label class="block text-[11px] font-medium text-slate-500 mb-1">Software Used</label>
+                                <select id="adv-software"
+                                    class="w-full text-xs border border-slate-200 rounded-lg px-2.5 py-2 bg-white text-slate-700 focus:outline-none focus:border-black">
+                                    <option value="">Select software...</option>
+                                    <option value="dev_tools">VS Code / Docker / Git / IntelliJ (Dev & DevOps)</option>
+                                    <option value="ml_heavy">Python / TensorFlow / PyTorch / CUDA (ML & AI)</option>
+                                    <option value="game_dev">Unity / Unreal Engine / Blender / C++ (Game Dev)</option>
+                                    <option value="mobile_dev">Android Studio / Flutter / Xcode (Mobile)</option>
+                                    <option value="cad_3d">AutoCAD / Revit / 3ds Max / STAAD Pro (CAD & 3D)</option>
+                                    <option value="media">Premiere Pro / After Effects / Photoshop (Media)</option>
+                                    <option value="qa_tools">Selenium / JIRA / Postman / JMeter (QA & Testing)</option>
+                                    <option value="it_tools">Wireshark / VMware / Active Directory (IT & Security)</option>
+                                    <option value="office_tools">Microsoft Office / Excel / Teams / Zoom (Office)</option>
+                                    <option value="general">General / Mixed / Other</option>
                                 </select>
                             </div>
 
@@ -274,27 +347,12 @@
                                 <select id="adv-budget"
                                     class="w-full text-xs border border-slate-200 rounded-lg px-2.5 py-2 bg-white text-slate-700 focus:outline-none focus:border-black">
                                     <option value="">Select budget...</option>
-                                    <option value="90000">Under LKR 100,000</option>
-                                    <option value="125000">LKR 100,000 – 150,000</option>
-                                    <option value="175000">LKR 150,000 – 200,000</option>
-                                    <option value="225000">LKR 200,000 – 250,000</option>
-                                    <option value="275000">LKR 250,000 – 300,000</option>
-                                    <option value="350000">Above LKR 300,000</option>
-                                </select>
-                            </div>
-
-                            <!-- Primary Use Case -->
-                            <div>
-                                <label class="block text-[11px] font-medium text-slate-500 mb-1">Primary Use</label>
-                                <select id="adv-use"
-                                    class="w-full text-xs border border-slate-200 rounded-lg px-2.5 py-2 bg-white text-slate-700 focus:outline-none focus:border-black">
-                                    <option value="">What will you do?</option>
-                                    <option value="gaming">Gaming</option>
-                                    <option value="editing">Video / Photo Editing</option>
-                                    <option value="programming">Programming / Development</option>
-                                    <option value="office">Office & Study</option>
-                                    <option value="data_science">Data Science / AI / ML</option>
-                                    <option value="general">General Use / Browsing</option>
+                                    <option value="1">Under LKR 100,000</option>
+                                    <option value="2">LKR 100,000 – 150,000</option>
+                                    <option value="3">LKR 150,000 – 200,000</option>
+                                    <option value="4">LKR 200,000 – 250,000</option>
+                                    <option value="5">LKR 250,000 – 300,000</option>
+                                    <option value="6">Above LKR 300,000</option>
                                 </select>
                             </div>
 
@@ -304,21 +362,10 @@
                                 <select id="adv-hours"
                                     class="w-full text-xs border border-slate-200 rounded-lg px-2.5 py-2 bg-white text-slate-700 focus:outline-none focus:border-black">
                                     <option value="">Select usage...</option>
-                                    <option value="light">Light (up to 4 hrs)</option>
-                                    <option value="moderate" selected>Moderate (4–8 hrs)</option>
-                                    <option value="heavy">Heavy (8+ hrs)</option>
-                                </select>
-                            </div>
-
-                            <!-- Storage Priority -->
-                            <div>
-                                <label class="block text-[11px] font-medium text-slate-500 mb-1">Storage Priority</label>
-                                <select id="adv-storage"
-                                    class="w-full text-xs border border-slate-200 rounded-lg px-2.5 py-2 bg-white text-slate-700 focus:outline-none focus:border-black">
-                                    <option value="">Select priority...</option>
-                                    <option value="nvme">Fast (NVMe SSD)</option>
-                                    <option value="ssd" selected>Balanced (SATA SSD)</option>
-                                    <option value="hdd">Budget (HDD)</option>
+                                    <option value="3">Less than 4 hours</option>
+                                    <option value="5" selected>4 – 6 hours</option>
+                                    <option value="7">6 – 8 hours</option>
+                                    <option value="10">8+ hours</option>
                                 </select>
                             </div>
 
@@ -327,12 +374,26 @@
                                 <label class="block text-[11px] font-medium text-slate-500 mb-1">Multitasking</label>
                                 <select id="adv-multiapp"
                                     class="w-full text-xs border border-slate-200 rounded-lg px-2.5 py-2 bg-white text-slate-700 focus:outline-none focus:border-black">
-                                    <option value="0">Rarely (1–2 apps)</option>
-                                    <option value="1" selected>Sometimes (3–5 apps)</option>
-                                    <option value="2">Frequently (6–10 apps)</option>
-                                    <option value="3">Very frequently (10+)</option>
+                                    <option value="1">Rarely (1–2 apps)</option>
+                                    <option value="2" selected>Occasionally (2–3 apps)</option>
+                                    <option value="3">Moderately (3–5 apps)</option>
+                                    <option value="4">Frequently (6+ apps)</option>
                                 </select>
                             </div>
+
+                            <!-- Typical File Size -->
+                            <div>
+                                <label class="block text-[11px] font-medium text-slate-500 mb-1">Typical File Size</label>
+                                <select id="adv-filesize"
+                                    class="w-full text-xs border border-slate-200 rounded-lg px-2.5 py-2 bg-white text-slate-700 focus:outline-none focus:border-black">
+                                    <option value="">Select file size...</option>
+                                    <option value="1">Small (under 10 MB — docs, code, emails)</option>
+                                    <option value="2">Medium (10 MB – 100 MB — images, projects)</option>
+                                    <option value="3">Large (100 MB – 1 GB — videos, datasets, CAD)</option>
+                                    <option value="4">Very Large (1 GB+ — ML datasets, 4K video)</option>
+                                </select>
+                            </div>
+
                         </div>
 
                         <!-- Workload slider -->
@@ -1234,6 +1295,26 @@
     // ─── AI PC Advisor ─────────────────────────────────────────────────────────
 
     let currentAdvisorTier = null;
+    let currentAdvisorData = null;
+
+    // Derive storage preference keyword from V3 recommendation
+    function getStoragePref() {
+        if (currentAdvisorData) {
+            const rec = (currentAdvisorData.storage_type?.recommendation || '').toLowerCase();
+            if (rec.includes('nvme') || rec.includes('pcie')) return 'nvme';
+            if (rec.includes('hdd') || rec.includes('7200rpm') || rec.includes('emmc')) return 'hdd';
+            return 'ssd';
+        }
+        return 'ssd';
+    }
+
+    // Parse wattage number from a PSU product name (e.g. "550 WATT", "750W")
+    function parsePsuWattage(name) {
+        const m = name.match(/(\d{3,4})\s*(?:w(?:att)?)/i);
+        return m ? parseInt(m[1]) : null;
+    }
+
+    const tierMinPsuWatt = { 0: 450, 1: 550, 2: 750, 3: 850 };
 
     // Tier → price percentile target (0.0 = cheapest, 1.0 = most expensive)
     // Budget picks bottom ~20%, Mid ~45%, High-End ~70%, Workstation ~90%
@@ -1257,47 +1338,11 @@
         btn.firstChild.textContent = open ? 'Get Advice ' : 'Close ';
     }
 
-    // Derive technical specs from user-friendly answers
-    function deriveSpecs(use, workload, hours) {
-        const heavy = workload >= 4;
-
-        const ramMap    = { gaming: heavy ? 32 : 16, editing: heavy ? 64 : 32, programming: heavy ? 32 : 16, office: heavy ? 16 : 8,  data_science: heavy ? 64 : 32, general: 8 };
-        const gpuMap    = { gaming: heavy ? 3 : 2,   editing: 2,               programming: 1,               office: 0,               data_science: heavy ? 3 : 2,   general: 0 };
-        const cpuMap    = { gaming: heavy ? 4 : 3,   editing: heavy ? 4 : 3,   programming: heavy ? 3 : 2,   office: heavy ? 2 : 1,   data_science: heavy ? 4 : 3,   general: heavy ? 2 : 1 };
-        const hoursMap  = { light: 3, moderate: 6, heavy: 9 };
-
-        return {
-            ram:     ramMap[use]    ?? 8,
-            gpu:     gpuMap[use]    ?? 0,
-            cpuTier: cpuMap[use]    ?? 2,
-            hours:   hoursMap[hours] ?? 5
-        };
-    }
-
-    // Local fallback scoring (mirrors trained RandomForest feature importances)
-    function localPredictTier(job, workload, ram, budget, gpu, cpuTier, multiApp) {
-        let score = 0;
-        score += (budget / 100000) * 2.54;
-        score += (ram / 16) * 1.95;
-        score += gpu * 1.49;
-        score += cpuTier * 1.42;
-        score += workload * 1.11;
-        score += multiApp * 0.55;
-        const jobBoosts = { media: 1.5, data_analyst: 1.2, developer: 1.0, it_admin: 0.8, designer: 1.1, student: 0.6, office: 0.3, other: 0.5 };
-        score += (jobBoosts[job] || 0.5) * 0.47;
-
-        let tier;
-        if (score >= 14) tier = 3;
-        else if (score >= 9)  tier = 2;
-        else if (score >= 5)  tier = 1;
-        else tier = 0;
-
-        // Budget hard cap — never recommend a tier the user can't actually afford
-        let maxTier = 3;
-        if (budget < 130000)       maxTier = 0;
-        else if (budget < 220000)  maxTier = 1;
-        else if (budget < 340000)  maxTier = 2;
-        return Math.min(tier, maxTier);
+    // Local fallback: derive tier from budget key (1-6) + workload
+    function localPredictTier(budget, workload, multiApp) {
+        let tier = budget <= 1 ? 0 : budget <= 3 ? 1 : budget <= 5 ? 2 : 3;
+        if (workload >= 5 && tier < 3) tier = Math.min(tier + 1, 3);
+        return tier;
     }
 
     const tierMeta = {
@@ -1357,28 +1402,26 @@
 
     async function getAIRecommendation() {
         const job      = document.getElementById('adv-job').value;
-        const budget   = parseFloat(document.getElementById('adv-budget').value);
-        const use      = document.getElementById('adv-use').value;
-        const hoursVal = document.getElementById('adv-hours').value;
-        const storage  = document.getElementById('adv-storage').value;
-        const multiApp = parseFloat(document.getElementById('adv-multiapp').value);
-        const workload = parseFloat(document.getElementById('adv-workload').value);
+        const activity = document.getElementById('adv-activity').value;
+        const software = document.getElementById('adv-software').value;
+        const budget   = parseInt(document.getElementById('adv-budget').value);
+        const hours    = parseInt(document.getElementById('adv-hours').value);
+        const multiApp = parseInt(document.getElementById('adv-multiapp').value);
+        const fileSize = parseInt(document.getElementById('adv-filesize').value);
+        const workload = parseInt(document.getElementById('adv-workload').value);
 
-        if (!job || !budget || !use || !hoursVal || !storage) {
+        if (!job || !activity || !software || !budget || !hours || !fileSize) {
             const btn = document.getElementById('adv-submit-btn');
             btn.textContent = '⚠️ Please fill all fields!';
             setTimeout(() => { btn.innerHTML = '<i class="fas fa-magic text-xs"></i> Analyse My Needs'; }, 2000);
             return;
         }
 
-        const storageMap = { nvme: 2, ssd: 1, hdd: 0 };
-        const { ram, gpu, cpuTier, hours } = deriveSpecs(use, workload, hoursVal);
-
         const btn = document.getElementById('adv-submit-btn');
         btn.innerHTML = '<i class="fas fa-spinner fa-spin text-xs"></i> Analysing...';
         btn.disabled = true;
 
-        let tier, confidence, sourceTag;
+        let tier, confidence, sourceTag, v3Data = null;
 
         try {
             const res = await fetch('/pc-advisor/predict', {
@@ -1387,21 +1430,34 @@
                     'Content-Type': 'application/json',
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
                 },
-                body: JSON.stringify({ job, workload, ram, budget, gpu, multiApp, hours, cpuTier, storage: storageMap[storage] ?? 1 })
+                body: JSON.stringify({ job, activity, software, workload, hours, multiApp, budget, fileSize })
             });
             if (!res.ok) throw new Error('API error');
             const json = await res.json();
-            // Apply budget hard cap on top of ML model result
-            let maxTier = 3;
-            if (budget < 130000)       maxTier = 0;
-            else if (budget < 220000)  maxTier = 1;
-            else if (budget < 340000)  maxTier = 2;
-            tier       = Math.min(json.tier, maxTier);
-            confidence = json.confidence;
+            if (json.error) throw new Error(json.error);
+
+            v3Data = json;
+
+            // Map V3 component tier labels → UI tier index (0–3)
+            const cpuLabel = (json.cpu?.tier || '').toLowerCase();
+            const gpuLabel = (json.gpu?.tier || '').toLowerCase();
+            let rawTier;
+            if (cpuLabel.includes('entry') && gpuLabel.includes('integrated'))    rawTier = 0;
+            else if (cpuLabel.includes('entry') || gpuLabel.includes('integrated')) rawTier = 1;
+            else if (cpuLabel.includes('mid'))                                     rawTier = 1;
+            else if (cpuLabel.includes('high') && !gpuLabel.includes('high-end')) rawTier = 2;
+            else                                                                    rawTier = 3;
+
+            // Budget hard cap
+            const maxTier = budget <= 1 ? 0 : budget <= 3 ? 1 : budget <= 5 ? 2 : 3;
+            tier = Math.min(rawTier, maxTier);
+
+            // Average confidence across all 5 predicted components
+            const confs = [json.cpu?.confidence, json.ram?.confidence, json.storage_type?.confidence, json.storage_size?.confidence, json.gpu?.confidence].filter(v => v != null);
+            confidence = confs.length ? Math.round(confs.reduce((a, b) => a + b, 0) / confs.length) : 80;
             sourceTag  = 'ml';
         } catch (e) {
-            // Fallback to local prediction (budget cap already applied inside)
-            tier       = localPredictTier(job, workload, ram, budget, gpu, cpuTier, multiApp);
+            tier       = localPredictTier(budget, workload, multiApp);
             confidence = Math.floor(82 + Math.random() * 10);
             sourceTag  = 'local';
         }
@@ -1409,23 +1465,26 @@
         btn.innerHTML = '<i class="fas fa-magic text-xs"></i> Analyse My Needs';
         btn.disabled = false;
 
-        renderAdvisorResult(tier, confidence, sourceTag, job);
+        renderAdvisorResult(tier, confidence, sourceTag, job, v3Data);
     }
 
-    // Job-specific tips — relevant advice for each role, not generic developer suggestions
+    // Job-specific tips keyed to V3 job option values
     const jobTips = {
         office:      'An i3 / Ryzen 3 handles Word, Excel, Teams and web browsing smoothly. Invest saved budget in a good monitor and ergonomic setup instead.',
         student:     'Prioritise battery life (6+ hrs) over raw specs. Bring your student ID to Softlogic or Micro Group for university discounts.',
-        developer:   'Dual-channel RAM matters more than clock speed. Add a second monitor — productivity gains are immediate and significant.',
-        data_analyst:'More RAM is almost always worth it for data work. A dedicated GPU helps if you run CUDA-accelerated libraries (PyTorch, RAPIDS).',
+        software_dev:'Dual-channel RAM matters more than clock speed. Add a second monitor — productivity gains are immediate and significant.',
+        data_ml:     'More RAM is almost always worth it for data work. A dedicated GPU helps if you run CUDA-accelerated libraries (PyTorch, RAPIDS).',
         designer:    'Invest in a colour-accurate IPS or OLED display — your screen matters more than your GPU for most design work.',
-        media:       'Fast NVMe storage is critical for smooth 4K timeline scrubbing. A dedicated GPU with NVENC/VCE speeds up exports dramatically.',
+        game_dev:    'A fast NVMe SSD cuts asset compile times dramatically. Consider at least RTX 3060 for real-time rendering in Unreal or Blender.',
+        mobile_dev:  'An SSD and at least 16 GB RAM will keep Android Studio and emulators running smoothly. A second monitor helps significantly.',
+        cad_3d:      'Fast single-core performance matters most for CAD work. More RAM is crucial for large assemblies — 32 GB minimum recommended.',
         it_admin:    'Reliability beats raw performance here. Look for ECC RAM support and a quality PSU — downtime is more costly than hardware.',
         other:       'Focus budget on the CPU and RAM first; storage and GPU can be upgraded more easily later.',
     };
 
-    function renderAdvisorResult(tier, confidence, sourceTag, job) {
+    function renderAdvisorResult(tier, confidence, sourceTag, job, v3Data = null) {
         currentAdvisorTier = tier;
+        currentAdvisorData = v3Data;
         const meta = tierMeta[tier];
 
         // Tier header row — B&W scheme
@@ -1458,7 +1517,19 @@
         document.getElementById('adv-price-range').style.color = meta.color;
 
         const specsGrid = document.getElementById('adv-specs-grid');
-        specsGrid.innerHTML = meta.specs.map(s => `
+        let displaySpecs;
+        if (v3Data) {
+            const storageVal = [v3Data.storage_type?.recommendation, v3Data.storage_size?.recommendation].filter(Boolean).join(' · ');
+            displaySpecs = [
+                { icon: '🧠', label: 'CPU',     value: v3Data.cpu?.recommendation  || meta.specs[0].value },
+                { icon: '💾', label: 'RAM',     value: v3Data.ram?.recommendation  || meta.specs[1].value },
+                { icon: '🖥️', label: 'GPU',     value: v3Data.gpu?.recommendation  || meta.specs[2].value },
+                { icon: '💽', label: 'Storage', value: storageVal                  || meta.specs[3].value },
+            ];
+        } else {
+            displaySpecs = meta.specs;
+        }
+        specsGrid.innerHTML = displaySpecs.map(s => `
             <div style="display:flex;align-items:center;gap:8px;background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:8px 10px;">
                 <span style="font-size:16px;">${s.icon}</span>
                 <div>
@@ -1478,12 +1549,27 @@
         document.getElementById('advisor-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
-    // Shared filter config used by both preview and auto-select
-    const storageKeywords = {
-        nvme: ['nvme', 'm.2', 'pcie'],
-        ssd:  ['ssd', 'solid state'],
-        hdd:  ['hdd', 'hard drive', 'rpm']
-    };
+    // Shared storage filter — applied by filterStorageProducts()
+    const nvmeKws = ['nvme', 'm.2', 'pcie'];
+    const hddKws  = ['hdd', 'hard drive', 'rpm', '7200rpm'];
+
+    function filterStorageProducts(products, pref) {
+        const n = name => name.toLowerCase();
+        if (pref === 'nvme') {
+            const f = products.filter(p => nvmeKws.some(kw => n(p.name).includes(kw)));
+            return f.length > 0 ? f : products;
+        }
+        if (pref === 'hdd') {
+            const f = products.filter(p => hddKws.some(kw => n(p.name).includes(kw)));
+            return f.length > 0 ? f : products;
+        }
+        // ssd: has 'ssd' but not any NVMe indicator
+        const f = products.filter(p => {
+            const nm = n(p.name);
+            return nm.includes('ssd') && !nvmeKws.some(kw => nm.includes(kw));
+        });
+        return f.length > 0 ? f : products;
+    }
     const cpuTierKeywords = {
         0: ['i3', 'ryzen 3', 'pentium', 'celeron'],
         1: ['i5', 'ryzen 5'],
@@ -1491,11 +1577,51 @@
         3: ['i9', 'ryzen 9', 'threadripper', 'xeon']
     };
 
+    // Derive CPU filter keywords from the actual V3 recommendation text
+    function getCpuKeywords(tier) {
+        if (currentAdvisorData?.cpu?.recommendation) {
+            const rec = currentAdvisorData.cpu.recommendation.toLowerCase();
+            if (rec.includes('xeon') || rec.includes('threadripper')) return ['xeon', 'threadripper'];
+            if (rec.includes('i9')   || rec.includes('ryzen 9'))      return ['i9', 'ryzen 9'];
+            if (rec.includes('i7')   || rec.includes('ryzen 7'))      return ['i7', 'ryzen 7'];
+            if (rec.includes('i5')   || rec.includes('ryzen 5'))      return ['i5', 'ryzen 5'];
+            if (rec.includes('i3')   || rec.includes('ryzen 3'))      return ['i3', 'ryzen 3'];
+        }
+        return cpuTierKeywords[tier ?? currentAdvisorTier] || [];
+    }
+
+    // Returns null = skip GPU (integrated), [] = no filter, [kws] = filter by model keywords
+    function getGpuKeywords() {
+        if (!currentAdvisorData) return [];
+        const gpuTier = (currentAdvisorData.gpu?.tier || '').toLowerCase();
+        if (gpuTier.includes('integrated')) return null; // no discrete GPU needed
+        const rec = (currentAdvisorData.gpu?.recommendation || '').toLowerCase();
+        // Extract model string e.g. "rtx 4060", "rx 6700 xt", "gtx 1650"
+        const m = rec.match(/((?:rtx|gtx)\s+\d+(?:\s*(?:ti|super))?|rx\s+\d+(?:\s+(?:xt|xtx|gre))?)/i);
+        return m ? [m[1].toLowerCase()] : [];
+    }
+
+    // Extract target RAM GB from V3 recommendation (e.g. "32GB+ DDR4/DDR5" → 32)
+    function getTargetRamGb() {
+        if (!currentAdvisorData?.ram?.recommendation) return null;
+        const m = currentAdvisorData.ram.recommendation.match(/(\d+)\s*gb/i);
+        return m ? parseInt(m[1]) : null;
+    }
+
+    // Extract the TOTAL kit capacity from a RAM product name.
+    // Product names always list total capacity first (e.g. "64GB (2x32GB)"),
+    // so the first GB number in the string is the total.
+    function getProductRamGb(name) {
+        const m = name.match(/(\d+)\s*GB/i);
+        return m ? parseInt(m[1]) : null;
+    }
+
     // Calculate what auto-select would cost without actually selecting anything
     function previewBuildTotal(tier) {
         const essentialTypes = ['PROCESSOR', 'MOTHERBOARD', 'RAM', 'GRAPHIC CARDS', 'STORAGE & NAS', 'POWER SUPPLY', 'CASINGS'];
         const targetPct = tierPercentile[tier];
-        const storagePref = document.getElementById('adv-storage').value;
+        const storagePref = getStoragePref();
+        const minPsuW = tierMinPsuWatt[tier] || 550;
         let total = 0;
 
         essentialTypes.forEach(type => {
@@ -1512,18 +1638,39 @@
             if (products.length === 0) return;
 
             if (type === 'STORAGE & NAS') {
-                const kws = storageKeywords[storagePref] || [];
+                products = filterStorageProducts(products, storagePref);
+            }
+            if (type === 'PROCESSOR') {
+                const kws = getCpuKeywords(tier);
                 if (kws.length > 0) {
                     const f = products.filter(p => kws.some(kw => p.name.toLowerCase().includes(kw)));
                     if (f.length > 0) products = f;
                 }
             }
-            if (type === 'PROCESSOR') {
-                const kws = cpuTierKeywords[tier] || [];
-                if (kws.length > 0) {
-                    const f = products.filter(p => kws.some(kw => p.name.toLowerCase().includes(kw)));
+            if (type === 'RAM') {
+                const targetGb = getTargetRamGb();
+                if (targetGb !== null) {
+                    // Prefer exact total-capacity match; fall back to ≥ target if none found
+                    let f = products.filter(p => getProductRamGb(p.name) === targetGb);
+                    if (f.length === 0)
+                        f = products.filter(p => { const gb = getProductRamGb(p.name); return gb !== null && gb >= targetGb; });
                     if (f.length > 0) products = f;
                 }
+            }
+            if (type === 'GRAPHIC CARDS') {
+                const gpuKws = getGpuKeywords();
+                if (gpuKws === null) return; // integrated GPU — skip GPU cost
+                if (gpuKws.length > 0) {
+                    const f = products.filter(p => gpuKws.some(kw => p.name.toLowerCase().includes(kw)));
+                    if (f.length > 0) products = f;
+                }
+            }
+            if (type === 'POWER SUPPLY') {
+                const f = products.filter(p => {
+                    const w = parsePsuWattage(p.name);
+                    return w !== null && w >= minPsuW;
+                });
+                if (f.length > 0) products = f;
             }
 
             products.sort((a, b) => a.dis_price - b.dis_price);
@@ -1541,8 +1688,8 @@
         const targetPct = tierPercentile[currentAdvisorTier];
         const selected = [];
 
-        // Storage keyword filters based on user's storage preference
-        const storagePreference = document.getElementById('adv-storage').value;
+        const storagePreference = getStoragePref();
+        const minPsuW = tierMinPsuWatt[currentAdvisorTier] || 550;
 
         essentialTypes.forEach(type => {
             // Collect all product cards of this type
@@ -1568,9 +1715,14 @@
 
             if (products.length === 0) return;
 
-            // Filter STORAGE by user's storage type preference (nvme/ssd/hdd)
+            // Filter STORAGE by V3-recommended storage type (nvme/ssd/hdd)
             if (type === 'STORAGE & NAS') {
-                const keywords = storageKeywords[storagePreference] || [];
+                products = filterStorageProducts(products, storagePreference);
+            }
+
+            // Filter PROCESSOR by CPU family from V3 recommendation
+            if (type === 'PROCESSOR') {
+                const keywords = getCpuKeywords(currentAdvisorTier);
                 if (keywords.length > 0) {
                     const filtered = products.filter(p =>
                         keywords.some(kw => p.name.toLowerCase().includes(kw))
@@ -1579,15 +1731,36 @@
                 }
             }
 
-            // Filter PROCESSOR by CPU family matching the recommended tier
-            if (type === 'PROCESSOR') {
-                const keywords = cpuTierKeywords[currentAdvisorTier] || [];
-                if (keywords.length > 0) {
+            // Filter RAM by V3 recommended capacity (8GB / 16GB / 32GB+)
+            if (type === 'RAM') {
+                const targetGb = getTargetRamGb();
+                if (targetGb !== null) {
+                    let f = products.filter(p => getProductRamGb(p.name) === targetGb);
+                    if (f.length === 0)
+                        f = products.filter(p => { const gb = getProductRamGb(p.name); return gb !== null && gb >= targetGb; });
+                    if (f.length > 0) products = f;
+                }
+            }
+
+            // Filter GRAPHIC CARDS by V3 GPU recommendation
+            if (type === 'GRAPHIC CARDS') {
+                const gpuKws = getGpuKeywords();
+                if (gpuKws === null) return; // integrated GPU — no discrete card needed
+                if (gpuKws.length > 0) {
                     const filtered = products.filter(p =>
-                        keywords.some(kw => p.name.toLowerCase().includes(kw))
+                        gpuKws.some(kw => p.name.toLowerCase().includes(kw))
                     );
                     if (filtered.length > 0) products = filtered;
                 }
+            }
+
+            // Filter POWER SUPPLY by minimum wattage parsed from product name
+            if (type === 'POWER SUPPLY') {
+                const filtered = products.filter(p => {
+                    const w = parsePsuWattage(p.name);
+                    return w !== null && w >= minPsuW;
+                });
+                if (filtered.length > 0) products = filtered;
             }
 
             // Sort by price ascending, pick the item at the target percentile
@@ -1623,14 +1796,17 @@
 
     function resetAdvisor() {
         document.getElementById('advisor-result').classList.add('hidden');
-        document.getElementById('adv-job').value     = '';
-        document.getElementById('adv-budget').value  = '';
-        document.getElementById('adv-use').value     = '';
-        document.getElementById('adv-hours').value   = 'moderate';
-        document.getElementById('adv-storage').value = 'ssd';
-        document.getElementById('adv-multiapp').value = '1';
+        document.getElementById('adv-job').value      = '';
+        document.getElementById('adv-activity').value = '';
+        document.getElementById('adv-software').value = '';
+        document.getElementById('adv-budget').value   = '';
+        document.getElementById('adv-hours').value    = '5';
+        document.getElementById('adv-multiapp').value = '2';
+        document.getElementById('adv-filesize').value = '';
         document.getElementById('adv-workload').value = 3;
         updateWorkloadLabel(3);
+        currentAdvisorTier = null;
+        currentAdvisorData = null;
     }
 
     // ─── End AI PC Advisor ─────────────────────────────────────────────────────

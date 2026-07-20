@@ -72,8 +72,8 @@ public function mainbuildMyPC()
     public function proxyPredict(Request $request)
     {
         try {
-            $response = Http::timeout(5)->post('http://localhost:5000/predict', $request->only([
-                'job', 'workload', 'ram', 'budget', 'gpu', 'multiApp', 'hours', 'cpuTier', 'storage'
+            $response = Http::timeout(10)->post('http://localhost:5000/predict', $request->only([
+                'job', 'activity', 'software', 'workload', 'hours', 'multiApp', 'budget', 'fileSize'
             ]));
 
             return response()->json($response->json(), $response->status());
